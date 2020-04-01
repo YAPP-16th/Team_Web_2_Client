@@ -1,44 +1,68 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 찾아Zone
 
-## Available Scripts
+**본격적으로 방을 알아보기 전, 위치 가이드라인을 제공하는 주거 지역 큐레이션 서비스**
 
-In the project directory, you can run:
+## 팀원
 
-### `yarn start`
+- 기획자 : 임정환(PM)
+- 디자이너 : 장재영
+- 개발자 : 노영지(FE), 안광호(FE), 이송원,(FE) 정원희(BE), 허진호(BE)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 실행방법
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- 현재 프로젝트를 로컬에 위치시킨 후 프로젝트 최상위 경로에서 아래 명령어 실행
 
-### `yarn test`
+  ```Shell
+  npm install
+  npm run start #server 실행
+  npm run test #Jest 기반 테스트 실행
+  npm run test #Jest 기반 테스트 결과만 출력
+  ```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- localhost:3000으로 접속하여 결과 확인
 
-### `yarn build`
+## 사용기술
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Language library
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- React.js, Typescript
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Third Party library
 
-### `yarn eject`
+Redux-saga, axios, SASS, Styled-Components
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Bundling
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Webpack
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Test library
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Jest, RTL(React Testing Library)
 
-## Learn More
+## 브랜치 전략
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Git Flow방식을 사용하여 브랜치를 관리한다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. master : 배포 버전 소스(release브랜치를 통해서만 merge)
+2. develop : 개발 완료된 소스(master브랜치에서 분리)
+3. feature/{기능} : 새로운 기능 개발(develop에서 분리되며 완료 시 develop에 PR)
+4. release : 배포 전 브랜치(develop에서 분리)
+
+- 개발 진행 시 develop에서 브랜치를 분리하여 기능작업 후 develop에 병합을 수행한다.
+- 배포 전 Test를 위해 release브랜치를 분리하며 Bug에 대하여 release에서 수정 후 master, develop브랜치 2군데에 병합한다.
+
+## 개발 Flow
+
+TDD 방법론을 사용하여 `테스트케이스 작성->구현->테스트케이스 수정->코드 수정` 과정을 반복하여 개발을 진행한다.
+
+지속적인 제공 및 배포를 위하여 CI/CD를 사용한다.
+
+### CI/CD 흐름도
+
+사용기술 : git-hook(husky), github Action, Docker, Google Cloud
+
+1. 개발자가 브랜치에 Push전 로컬에서 test를 진행하여 성공 시 push한다.(git-hook)
+2. feature/{기능} -> develop 브랜치에 PR시 unit test를 진행하며 성공 시 PR을 진행한다.(github Action)
+3. release -> master 브랜치에 PR시 unit test 수행 후 성공 시 PR을 진행한다.(github Action)
+4. master 브랜치에 PR완료 시 npm build, dockerize 수행 후 Google Cloud에 배포한다.(github Aciont, Docker, Google Cloud)
+5. Cloud에서 reverse proxy server를 사용하여 load balancer를 사용하여 무중단으로 배포한다.

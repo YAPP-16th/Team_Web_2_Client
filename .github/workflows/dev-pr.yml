@@ -1,0 +1,47 @@
+name: develop branch PR Test Flow
+
+on:
+  pull_request:
+    types: [opened, reopened]
+    branches: [develop]
+
+jobs:
+  Run-Jest:
+    runs-on: [ubuntu-latest]
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.0.0
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+        
+      - name: npm install
+        run: npm install
+        
+      - name: run test code
+        run: npm run test:watch
+
+      - name: if fail
+        uses: actions/github-script@0.8.0
+        with:
+          github-token: ${{ github.token }}
+          script: :|
+            const ref = "${{github.ref}}"
+            const pull_number = Number(ref.split("/")[2])
+            await github.pulls.createReview({
+              ...context.repo,
+              pull_number,
+              body:"테스트코드를 다시 확인해주세요.",
+              event:"REQUEST_CHANGES"
+            })
+            await github.pulls.update({
+              ...context.repo,
+              pull_number,
+              state:"closed"
+            })
+        if: failure()
