@@ -16,7 +16,7 @@
   npm install
   npm run start #server 실행
   npm run test #Jest 기반 테스트 실행
-  npm run test #Jest 기반 테스트 결과만 출력
+  npm run test:watch #Jest 기반 테스트 결과만 출력
   ```
 
 - localhost:3000으로 접속하여 결과 확인
