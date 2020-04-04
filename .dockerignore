@@ -1,0 +1,11 @@
+#확장자
+.git
+.dockerignore
+.hg
+.svn
+
+/node_modules
+/k8s
+kustomization.yaml
+Dockerfile
+npm-debug.log
