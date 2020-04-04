@@ -6,14 +6,14 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-        app: fe-findzone
+        app: findzone-fe
   template:
     metadata:
       labels:
-        app: fe-findzone
+        app: findzone-fe
     spec:
       containers:
-        - name: fe-findzone
-          image: gcr.io/yapp16-findzone/fe-findzone:latest
+        - name: findzone-fe
+          image: gcr.io/yapp16-findzone/findzone-fe:latest
           ports:
             - containerPort: 80

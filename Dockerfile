@@ -1,4 +1,4 @@
-﻿# React App Build
+# React App Build
 FROM node:12 as builder
 
 WORKDIR /
