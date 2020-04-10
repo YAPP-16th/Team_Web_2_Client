@@ -3,6 +3,7 @@ import rooms from './rooms';
 import { roomsSaga } from './rooms';
 import { all } from 'redux-saga/effects';
 
+// 루트 라우터
 const rootReducer = combineReducers({
   rooms
 });
