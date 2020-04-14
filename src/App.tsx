@@ -11,8 +11,6 @@ function App() {
       <main>
         <BrowserRouter>
           <Route path="/search" exact>searchPage</Route>
-          <Route path="/search">SearchResult</Route>
-          <Route path="/search/zone">ZoneDetail</Route>
         </BrowserRouter>
       </main>
       <footer>
