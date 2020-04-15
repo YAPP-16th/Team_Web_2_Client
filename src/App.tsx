@@ -2,8 +2,6 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 // Global SCSS
-import './assets/scss/main.scss';
-
 import './App.scss';
 
 // PAGES
