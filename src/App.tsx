@@ -2,6 +2,9 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 
+// PAGES
+import ZoneSearchPage from './pages/ZoneSearchPage/ZoneSearchPage';
+
 function App() {
   return (
     <div className="App">
@@ -10,7 +13,7 @@ function App() {
       </header>
       <main>
         <BrowserRouter>
-          <Route path="/search" exact>searchPage</Route>
+          <Route path="/search" exact component={ZoneSearchPage}>searchPage</Route>
         </BrowserRouter>
       </main>
       <footer>
