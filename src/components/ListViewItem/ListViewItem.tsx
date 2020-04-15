@@ -12,14 +12,43 @@ export type ListViewItemProps = {
 const ListViewItemWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  border-bottom: 0.5px solid grey;
   padding: 14px 20px;
 `;
 
-const ZoneCodeWrapper = styled.div``;
+const ZoneCodeWrapper = styled.div`
+  font-family: GothamMedium;
+  font-size: 17px;
+  color: var(--LightTextColor);
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.76;
+  letter-spacing: -0.76px;
+`;
 
-const ZoneNameWrapper = styled.div``;
+const ZoneNameWrapper = styled.div`
+  font-family: NotoSansRegular;
+  font-size: 16px;
+  color: var(--GreyTextColor);
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.88;
+  letter-spacing: -0.71px;
+`;
 
-const DistanceWrapper = styled.div``;
+const DistanceWrapper = styled.div`
+  color: var(--GreyTextColor);
+  font-family: GothamBook;
+  font-size: 15px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 2;
+  letter-spacing: -0.67px;
+  text-align: right;
+`;
 
 const ListViewItem = ({
   zoneCode,
@@ -29,7 +58,7 @@ const ListViewItem = ({
 }: ListViewItemProps) => {
   return (
     <ListViewItemWrapper>
-      <ZoneCodeWrapper>{zoneCode}</ZoneCodeWrapper>
+      <ZoneCodeWrapper>ZONE {zoneCode}</ZoneCodeWrapper>
       <ZoneNameWrapper>{zoneName}</ZoneNameWrapper>
       <DistanceWrapper>{distance}</DistanceWrapper>
     </ListViewItemWrapper>

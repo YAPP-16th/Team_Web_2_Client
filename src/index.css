@@ -12,6 +12,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+/* CSS VARIABLES */
+
 #root {
   height: 100%;
   --BackgroundColor: #1d1d1d;
@@ -20,10 +27,28 @@ body {
   --PrimaryColor: #40aee1;
 
   --LightTextColor: #ffffff;
+  --GreyTextColor: #b6b6b6;
   --DarkTextColor: #5e5e5e;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+/* FONTS */
+
+@font-face {
+  font-family: NotoSansRegular;
+  src: url('./assets/fonts/NotoSansKR-Regular.otf');
+}
+
+@font-face {
+  font-family: NotoSansMedium;
+  src: url('./assets/fonts/NotoSansKR-Medium.otf');
+}
+
+@font-face {
+  font-family: GothamBook;
+  src: url('./assets/fonts/Gotham-Book.ttf');
+}
+
+@font-face {
+  font-family: GothamMedium;
+  src: url('./assets/fonts/Gotham-Medium.ttf');
 }
