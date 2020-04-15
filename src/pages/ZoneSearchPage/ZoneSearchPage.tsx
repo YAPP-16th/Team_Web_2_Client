@@ -3,7 +3,14 @@ import './ZoneSearchPage.scss';
 
 const ZoneSearchPage = () => {
   return (
-    <div></div>
+    <>
+      <div className="modal">
+
+      </div>
+      <div className="content">
+
+      </div>
+    </>
   )
 }
 

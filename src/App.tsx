@@ -17,7 +17,7 @@ function App() {
       </header>
       <main>
         <BrowserRouter>
-          <Route path="/search" exact component={ZoneSearchPage}>searchPage</Route>
+          <Route path="/search" exact component={ZoneSearchPage}></Route>
         </BrowserRouter>
       </main>
       <footer>
