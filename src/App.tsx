@@ -7,12 +7,16 @@ import './App.scss';
 // PAGES
 import ZoneSearchPage from './pages/ZoneSearchPage/ZoneSearchPage';
 
-
+// Containers
+import ListViewContainer from './containers/ListViewContainer/ListViewContainer';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <section className="modal-section">
+        <ListViewContainer />
+      </section>
+      <header>
         
       </header>
       <main>

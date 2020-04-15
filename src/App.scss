@@ -1,6 +1,4 @@
-@import './assets/scss/colors.scss';
-
 .App {
   height: 100%;
-  background-color: $BackgroundColor;
+  background-color: var(--BackgroundColor);
 }
