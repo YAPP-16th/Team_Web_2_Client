@@ -1,12 +1,15 @@
 import React from 'react';
-import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
+
+// Global SCSS
+import './assets/scss/main.scss';
+
+import './App.scss';
 
 // PAGES
 import ZoneSearchPage from './pages/ZoneSearchPage/ZoneSearchPage';
 
-// Global SCSS
-import './assets/scss/main.scss';
+
 
 function App() {
   return (
