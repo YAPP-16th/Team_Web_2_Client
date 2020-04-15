@@ -5,6 +5,9 @@ import { BrowserRouter, Route } from 'react-router-dom';
 // PAGES
 import ZoneSearchPage from './pages/ZoneSearchPage/ZoneSearchPage';
 
+// Global SCSS
+import './assets/scss/main.scss';
+
 function App() {
   return (
     <div className="App">
