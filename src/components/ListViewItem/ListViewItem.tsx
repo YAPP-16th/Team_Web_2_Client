@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 export type ListViewItemProps = {
+  id?: string | number;
   zoneCode: string | number;
   zoneName: string;
   distance: string | number;

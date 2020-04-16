@@ -69,10 +69,10 @@ const ModalBody = styled.div`
 
 // Dummy Data
 const items = [
-  { zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
-  { zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
-  { zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
-  { zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
+  { id: 1, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
+  { id: 2, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
+  { id: 3, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
+  { id: 4, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
 ];
 
 

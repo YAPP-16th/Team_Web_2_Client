@@ -7,6 +7,7 @@ describe("<ListView />", () => {
     const utils = render(<ListViewContainer />);
     const toggleButton = utils.getByText("리스트뷰 +");
     fireEvent.click(toggleButton);
-    expect(toggleButton).toHaveTextContent('리스트뷰 -');
+    // 기본적으로 상태 변화는 비동기이므로 findBy를 써야합니다.
+    utils.findByText("리스트뷰 -")
   });
 });
