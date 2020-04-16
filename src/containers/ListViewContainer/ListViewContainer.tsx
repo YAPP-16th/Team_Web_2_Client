@@ -1,20 +1,41 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState, MouseEvent } from "react";
+import styled, { keyframes } from "styled-components";
 
 // Components
 import ListView from "../../components/ListView/ListView";
 
 type ListViewContainerProps = {};
 
+// Animations
+const moveUp = keyframes`
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-78%);
+  }
+`
+
+const moveDown = keyframes`
+  from {
+    transform: translateY(-78%);
+  }
+  to {
+    transform: translateY(0);
+  }
+`
+
 // Styles
-const ListViewContainerWrapper = styled.div`
+const ListViewContainerWrapper = styled.div<{clicked: boolean}>`
   width: 100%;
   position: absolute;
   top: 92%;
   background-color: var(--BackgroundColor);
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
+  animation: ${props => props.clicked ? moveUp : moveDown} 0.3s linear forwards;
 `;
+
 const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
@@ -35,6 +56,7 @@ const ModalHeader = styled.div`
 
   .button {
     font-family: NotoSansMedium;
+    cursor: pointer;
   }
 
   padding: 10px 20px;
@@ -53,18 +75,34 @@ const items = [
   { zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
 ];
 
-// Interative
-const onDragStartHandler = () => {
-
-}
 
 
 const ListViewContainer = ({}: ListViewContainerProps) => {
+
+  // States
+  const [ listViewState, setListViewState ] = useState({
+    clicked: false
+  })
+
+  // Handlers
+  const onDragStartHandler = (e: MouseEvent) => {
+    const processed = { ...listViewState };
+    processed.clicked = !processed.clicked;
+    setListViewState(processed);
+    if (listViewState) {
+      e.currentTarget.innerHTML = '리스트뷰 -'
+    } else {
+      e.currentTarget.innerHTML = '리스트뷰 +'
+    }
+  }
+
   return (
-    <ListViewContainerWrapper>
+    <ListViewContainerWrapper
+      clicked={listViewState.clicked}
+    >
       <ModalHeader>
-        <span className="text">4개의 ZONE</span>
-        <span className="button">리스트뷰 +</span>
+  <span className="text">{listViewState.clicked ? `${items.length}개의 ZONE` : ''}</span>
+        <span className="button" onMouseUp={onDragStartHandler}>리스트뷰 +</span>
       </ModalHeader>
       <ModalBody>
         <ListView items={items} />

@@ -8,7 +8,9 @@ type ListViewProps = {
 	items: Array<ListViewItemProps>;
 };
 
-const ListViewWrapper = styled.div``;
+const ListViewWrapper = styled.div`
+	
+`;
 
 const ListView = ({ items }: ListViewProps) => {
 
