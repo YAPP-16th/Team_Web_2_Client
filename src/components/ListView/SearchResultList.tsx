@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import ListViewItem, { ListViewItemProps } from "../ListViewItem/ListViewItem";
+import ListViewItem, { ListViewItemProps } from "./ListViewItem/SearchResultItem";
 
 type ListViewProps = {
   /** 리스트가 활용할 배열 데이터*/
