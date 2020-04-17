@@ -2,8 +2,11 @@ import React, { useState, MouseEvent } from "react";
 import styled, { keyframes } from "styled-components";
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
+// Custom Hooks
+import useListView from './ListViewHooks';
+
 // Components
-import ListView from "../../components/ListView/SearchResultList";
+import SearchResultItem from "../../components/ListViewItem/SearchResultItem";
 
 type ListViewContainerProps = {
   history: RouteComponentProps['history'],
@@ -102,40 +105,49 @@ const items = [
 
 const ListViewContainer = ({history}: ListViewContainerProps) => {
   // States
-  const [listViewState, setListViewState] = useState({
-    clicked: false,
-  });
+  const listView = useListView();
 
   // Handlers
   const onToggleHandler = (e: MouseEvent) => {
-    const processed = { ...listViewState };
-    processed.clicked = !processed.clicked;
-    setListViewState(processed);
-    if (listViewState) {
-      e.currentTarget.innerHTML = "리스트뷰 -";
-    } else {
+    listView.toggle();
+    if (listView.toggled) {
       e.currentTarget.innerHTML = "리스트뷰 +";
+    } else {
+      e.currentTarget.innerHTML = "리스트뷰 -";
     }
   };
 
-  const onItemClickHandler = () => {
-    history.push('/search/zone');
+  const onItemClickHandler = (id: string | number) => {
+    history.push(`/search/zone/${id}`);
   }
 
-  
+  // Props Handling
+  const searchResultItemList = items.map((item) => {
+    return (
+      <div key={item.id}>
+        <SearchResultItem
+          id={item.id}
+          zoneCode={item.zoneCode}
+          zoneName={item.zoneName}
+          distance={item.distance}
+          onClick={onItemClickHandler}
+        />
+      </div>
+    );
+  });
 
   return (
-    <ListViewContainerWrapper clicked={listViewState.clicked}>
+    <ListViewContainerWrapper clicked={listView.toggled}>
       <ModalHeader>
         <span className="text">
-          {listViewState.clicked ? `${items.length}개의 ZONE` : ""}
+          {listView.toggled ? `${items.length}개의 ZONE` : ""}
         </span>
         <span className="button" onMouseUp={onToggleHandler}>
           리스트뷰 +
         </span>
       </ModalHeader>
       <ModalBody>
-        <ListView items={items} onItemClick={onItemClickHandler} />
+        {searchResultItemList}
       </ModalBody>
     </ListViewContainerWrapper>
   );

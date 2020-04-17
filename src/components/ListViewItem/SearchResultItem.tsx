@@ -2,10 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 export type ListViewItemProps = {
-  id?: string | number;
+  id: string | number;
   zoneCode: string | number;
   zoneName: string;
   distance: string | number;
+  onClick: (id: string | number) => void;
   /* 추가적인 스타일링을 적용하기 위한 클래스 */
   className?: string;
 };
@@ -51,13 +52,15 @@ const DistanceWrapper = styled.div`
 `;
 
 const ListViewItem = ({
+  id,
   zoneCode,
   zoneName,
   distance,
   className,
+  onClick
 }: ListViewItemProps) => {
   return (
-    <ListViewItemWrapper>
+    <ListViewItemWrapper onClick={() => onClick(id)}>
       <ZoneCodeWrapper>ZONE {zoneCode}</ZoneCodeWrapper>
       <ZoneNameWrapper>{zoneName}</ZoneNameWrapper>
       <DistanceWrapper>{distance}</DistanceWrapper>

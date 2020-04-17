@@ -6,7 +6,7 @@ import "./App.scss";
 
 // PAGES
 import ZoneSearchResultPage from "./pages/ZoneSearchResultPage/ZoneSearchResultPage";
-import ZoneDetailPage from './pages/ZoneDetailPage/ZoneDetailPage';
+import ZoneDetailPage from "./pages/ZoneDetailPage/ZoneDetailPage";
 import HeaderPage from "./pages/HeaderPage/HeaderPage";
 
 // Containers
@@ -15,14 +15,14 @@ import ListViewContainer from "./containers/ListViewContainer/ListViewContainer"
 function App() {
   return (
     <div className="App">
-      <section className="modal-section">
-        <ListViewContainer />
-      </section>
-      <header>
-        <HeaderPage />
-      </header>
-      <main>
-        <BrowserRouter>
+      <BrowserRouter>
+        <section className="modal-section">
+          <ListViewContainer />
+        </section>
+        <header>
+          <HeaderPage />
+        </header>
+        <main>
           <Switch>
             <Route
               path="/search/result"
@@ -35,9 +35,9 @@ function App() {
               component={ZoneDetailPage}
             ></Route>
           </Switch>
-        </BrowserRouter>
-      </main>
-      <footer></footer>
+        </main>
+        <footer></footer>
+      </BrowserRouter>
     </div>
   );
 }
