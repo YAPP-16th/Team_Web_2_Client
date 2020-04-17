@@ -1,14 +1,16 @@
-import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 // Global SCSS
-import './App.scss';
+import "./App.scss";
 
 // PAGES
-import ZoneSearchPage from './pages/ZoneSearchPage/ZoneSearchPage';
+import ZoneSearchResultPage from "./pages/ZoneSearchResultPage/ZoneSearchResultPage";
+import ZoneDetailPage from './pages/ZoneDetailPage/ZoneDetailPage';
+import HeaderPage from "./pages/HeaderPage/HeaderPage";
 
 // Containers
-import ListViewContainer from './containers/ListViewContainer/ListViewContainer';
+import ListViewContainer from "./containers/ListViewContainer/ListViewContainer";
 
 function App() {
   return (
@@ -17,16 +19,25 @@ function App() {
         <ListViewContainer />
       </section>
       <header>
-        
+        <HeaderPage />
       </header>
       <main>
         <BrowserRouter>
-          <Route path="/search" exact component={ZoneSearchPage}></Route>
+          <Switch>
+            <Route
+              path="/search/result"
+              exact
+              component={ZoneSearchResultPage}
+            ></Route>
+            <Route
+              path="/search/zone/:id"
+              exact
+              component={ZoneDetailPage}
+            ></Route>
+          </Switch>
         </BrowserRouter>
       </main>
-      <footer>
-
-      </footer>
+      <footer></footer>
     </div>
   );
 }

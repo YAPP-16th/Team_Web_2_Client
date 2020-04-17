@@ -35,10 +35,12 @@ const Toolbar = ({}: ToolbarProps) => {
     <ToolbarWrapper>
       <ToolbarContent>
         <ToolbarLeftItem>
+          L
           {/* <Icon /> */}
         </ToolbarLeftItem>
         <FlexBoxSpacer />
         <ToolbarRightItem>
+          R
           {/* <Icon />
           <Icon /> */}
         </ToolbarRightItem>

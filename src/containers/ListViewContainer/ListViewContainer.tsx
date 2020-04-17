@@ -1,34 +1,61 @@
 import React, { useState, MouseEvent } from "react";
 import styled, { keyframes } from "styled-components";
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 // Components
 import ListView from "../../components/ListView/SearchResultList";
 
-type ListViewContainerProps = {};
+type ListViewContainerProps = {
+  history: RouteComponentProps['history'],
+
+};
 
 // Animations
 const moveUp = keyframes`
-  from {
+  0% {
     transform: translateY(0);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
   }
-  to {
-    transform: translateY(-78%);
+
+  75% {
+    transform: translateY(-430px);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+
+  100% {
+    transform: translateY(-430px);
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
   }
 `;
 
 const moveDown = keyframes`
-  from {
-    transform: translateY(-78%);
+  0% {
+    transform: translateY(-430px);
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
   }
-  to {
+
+  75% {
     transform: translateY(0);
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+
+  100% {
+    transform: translateY(0);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
   }
 `;
 
 // Styles
 const ListViewContainerWrapper = styled.div<{ clicked: boolean }>`
   width: 100%;
-  position: absolute;
+  height: 100%;
+  position: fixed;
   top: 92%;
   background-color: var(--BackgroundColor);
   border-top-left-radius: 12px;
@@ -52,11 +79,9 @@ const ModalHeader = styled.div`
   }
 
   .text {
-    font-family: GothamMedium, NotoSansMedium;
   }
 
   .button {
-    font-family: NotoSansMedium;
     cursor: pointer;
   }
 
@@ -75,14 +100,14 @@ const items = [
   { id: 4, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
 ];
 
-const ListViewContainer = ({}: ListViewContainerProps) => {
+const ListViewContainer = ({history}: ListViewContainerProps) => {
   // States
   const [listViewState, setListViewState] = useState({
     clicked: false,
   });
 
   // Handlers
-  const onDragStartHandler = (e: MouseEvent) => {
+  const onToggleHandler = (e: MouseEvent) => {
     const processed = { ...listViewState };
     processed.clicked = !processed.clicked;
     setListViewState(processed);
@@ -93,21 +118,27 @@ const ListViewContainer = ({}: ListViewContainerProps) => {
     }
   };
 
+  const onItemClickHandler = () => {
+    history.push('/search/zone');
+  }
+
+  
+
   return (
     <ListViewContainerWrapper clicked={listViewState.clicked}>
       <ModalHeader>
         <span className="text">
           {listViewState.clicked ? `${items.length}개의 ZONE` : ""}
         </span>
-        <span className="button" onMouseUp={onDragStartHandler}>
+        <span className="button" onMouseUp={onToggleHandler}>
           리스트뷰 +
         </span>
       </ModalHeader>
       <ModalBody>
-        <ListView items={items} />
+        <ListView items={items} onItemClick={onItemClickHandler} />
       </ModalBody>
     </ListViewContainerWrapper>
   );
 };
 
-export default ListViewContainer;
+export default withRouter(ListViewContainer);

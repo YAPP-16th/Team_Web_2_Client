@@ -1,3 +1,10 @@
+/* REMOVE Default HTML Tag Styles */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 html {
   height: 100%;
 }
@@ -51,4 +58,18 @@ code {
 @font-face {
   font-family: GothamMedium;
   src: url('./assets/fonts/Gotham-Medium.ttf');
+}
+
+/* Default Fonts Style*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div {
+  font-family: GothamMedium, NotoSansMedium;
 }

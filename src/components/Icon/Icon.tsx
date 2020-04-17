@@ -11,7 +11,7 @@ export type IconProps = {
   /** 아이콘 색상 */
   color?: string;
   /** 아이콘 크기 */
-  size?: string | number;
+  size: string | number;
   /** 따로 집어넣을 클래스 */
   className?: string;
 };
@@ -25,6 +25,7 @@ export type IconProps = {
 
 const Icon = ({ icon, color, size, className }: IconProps) => {
   const SVGWrapper = styled.div`
+    height: ${size};
     svg {
       width: ${size};
       height: auto;
@@ -42,5 +43,9 @@ const Icon = ({ icon, color, size, className }: IconProps) => {
     </SVGWrapper>
   );
 };
+
+Icon.defaultProps = {
+  size: "24px"
+}
 
 export default Icon;

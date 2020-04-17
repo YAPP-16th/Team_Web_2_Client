@@ -18,7 +18,6 @@ const ListViewItemWrapper = styled.div`
 `;
 
 const ZoneCodeWrapper = styled.div`
-  font-family: GothamMedium;
   font-size: 17px;
   color: var(--LightTextColor);
   font-weight: 500;
