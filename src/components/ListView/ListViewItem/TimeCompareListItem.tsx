@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-type ListItemProps = {
+type TimeCompareItemProps = {
 
 }
 
-const ListItemWrapper = styled.div`
+const TimeCompareItemWrapper = styled.div`
 
 `
 
-const ListItem = ({}: ListItemProps) => {
-  return <ListItemWrapper></ListItemWrapper>
+const TimeCompareItem = ({}: TimeCompareItemProps) => {
+  return <TimeCompareItemWrapper></TimeCompareItemWrapper>
 }
 
-export default ListItem;
+export default TimeCompareItem;

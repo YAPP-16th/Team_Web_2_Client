@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { FlexBoxSpacer } from "../../utils/components";
+import { FlexBoxSpacer } from "../../utils/utilComponents";
 
 // Icon
 import Icon from '../Icon/Icon';
