@@ -2,9 +2,11 @@ import React from "react";
 import "./ZoneSearchPage.scss";
 import {
   HashRouter,
-  Route,
   withRouter,
+  Route,
+  Link,
   RouteComponentProps,
+  Switch,
 } from "react-router-dom";
 
 import queryString from "query-string";
@@ -21,9 +23,12 @@ const ZoneSearchPage = ({ match, location }: RouteComponentProps) => {
 
   return (
     <div className="zone-search">
-      <HashRouter basename="/zone">
-        <Route path="/:id/:feature" component={ZoneDetailPage} />
-      </HashRouter>
+      <Switch>
+        <HashRouter basename="/zone">
+          <Route path="/:id/:feature" exact component={ZoneDetailPage} />
+        </HashRouter>
+        <Route path="/search" exact component={() => <Link to="/search?key=value">Click</Link>}/>
+      </Switch>
     </div>
   );
 };

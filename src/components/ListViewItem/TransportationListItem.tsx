@@ -27,7 +27,6 @@ const TransportationItemHeading = styled.h1`
 
 const TransportationItemDescription = styled.h2`
   color: var(--GreyTextColor);
-
   font-size: 14px;
   font-weight: 300;
   font-stretch: normal;

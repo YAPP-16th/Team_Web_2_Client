@@ -1,6 +1,11 @@
 import React, { MouseEvent } from "react";
 import styled, { keyframes } from "styled-components";
-import { Link, HashRouter, withRouter, RouteComponentProps } from "react-router-dom";
+import {
+  Link,
+  HashRouter,
+  withRouter,
+  RouteComponentProps,
+} from "react-router-dom";
 
 // Custom Hooks
 import useListView from "./ListViewHooks";
@@ -130,9 +135,8 @@ const ListViewContainer = ({ history, location }: RouteComponentProps) => {
   // Props Handling
   const searchResultItemList = items.map((item) => {
     return (
-      
-        <div key={item.id}>
-          <Link to={`/${item.id}/timecompare`}>
+      <div key={item.id}>
+        <Link to={`/${item.id}/timecompare`}>
           <SearchResultItem
             id={item.id}
             zoneCode={item.zoneCode}
@@ -140,12 +144,12 @@ const ListViewContainer = ({ history, location }: RouteComponentProps) => {
             distance={item.distance}
             onClick={onItemClickHandler}
           />
-          </Link>
-        </div>
+        </Link>
+      </div>
     );
   });
 
-  if (location.search) {
+  if (location.search && !location.hash.includes("/zone/")) {
     return (
       <HashRouter basename="/zone">
         <ListViewContainerWrapper clicked={listView.toggled}>

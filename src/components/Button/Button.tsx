@@ -25,17 +25,17 @@ export const GhostButton = styled.button`
   padding: 15px 22px;
 `;
 
-export const TagButton = styled.button`
+export const TagButton = styled.button<{fontSize: string}>`
   height: 33px;
   background: none;
   border-radius: 16.5px;
   border: solid 1px var(--PrimaryColor);
   padding: 8px 14px;
   color: var(--PrimaryColor);
-  font-size: 14px;
+  font-size: ${props => props.fontSize ? props.fontSize : '14px'};
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
-  line-height: normal;
+  line-height: 0px;
   letter-spacing: -0.62px;
 `;

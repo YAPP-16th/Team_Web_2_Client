@@ -33,7 +33,7 @@ const TransportationContainerWrapper = styled.div`
 `;
 
 const PathArea = styled.div`
-  margin-bottom: 41px;
+  position: relative;
 `;
 
 const Heading = styled.h1`
@@ -54,16 +54,35 @@ const PathItem = styled.span`
   font-style: normal;
   line-height: 1.88;
   letter-spacing: -0.71px;
+  &:after {
+    content: "";
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 10px;
+    left: 10px;
+    border-radius: 50%;
+    background-color: var(--GreyTextColor);
+    width: 8px;
+    height: 8px;
+  }
 `;
 
 const PathItemsWrapper = styled.div`
-  margin: 14px 24px;
+  margin: 14px 24px 0px 24px;
   padding-left: 24px;
   display: flex;
   flex-direction: column;
-  border-left: 0.1px solid var(--GreyTextColor);
-  &:not(:last-child) {
+  > span:first-child {
     margin-bottom: 16px;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    border-left: 0.1px solid var(--GreyTextColor);
+    height: 40px;
+    left: 24px;
+    top: 60px;
   }
 `;
 
@@ -102,12 +121,15 @@ const ZoneCode = styled.h1`
   font-style: normal;
   line-height: 1.88;
   letter-spacing: -0.71px;
+  padding-left: 50px;
+  margin-bottom: 10px;
 `;
 
 const TagButtonsWrapper = styled.div`
   display: flex;
-  align-items: center;
-  &:not(:last-child) {
+  padding-left: 45px;
+  margin-bottom: 41px;
+  > button {
     margin-right: 10px;
   }
 `;
@@ -115,7 +137,7 @@ const TagButtonsWrapper = styled.div`
 // not 이 안먹히나 styled components에서는?
 
 const tagButtons = tagButtonContents.map((content) => {
-  return <TagButton>{content.text}</TagButton>;
+  return <TagButton fontSize="14px">{content.text}</TagButton>;
 });
 
 const TransportationArea = styled.div``;
@@ -127,8 +149,8 @@ const TransportationContainer = () => {
         <Heading>경로</Heading>
         <PathItemsWrapper>
           {pathItems}
-          <ZoneCode>:ZONE {zoneCode}</ZoneCode>
         </PathItemsWrapper>
+        <ZoneCode>:ZONE {zoneCode}</ZoneCode>
         
         <TagButtonsWrapper>
           {tagButtons}

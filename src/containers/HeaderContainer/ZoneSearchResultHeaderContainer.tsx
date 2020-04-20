@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Route, Switch, HashRouter } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 // Components
 import Toolbar from "../../components/Toolbar/Toolbar";
@@ -31,11 +31,11 @@ const RightContentsWrapper = styled.div`
 const rightContents = <RightContentsWrapper><Icon icon="search" size="18px"/><Icon icon="menu" size="18px"/></RightContentsWrapper>
 
 
-const ZoneSearchResultHeaderContainer = () => {
+const ZoneSearchResultHeaderContainer = ({history}: RouteComponentProps) => {
   // State
   const ListView = useListView();
 
-  let addedHeight = "0px";
+  let addedHeight;
 
   if (ListView.toggled) {
     addedHeight = "30px";
@@ -43,24 +43,17 @@ const ZoneSearchResultHeaderContainer = () => {
     addedHeight = "0px";
   }
 
-  const Header = () => (
+  const goHomePageHandler = () => history.push('/');
+
+  return (
     <HeaderContainerWrapper>
       <Toolbar
-        leftContents={<Icon icon="simplifiedLogo" size="27px" />}
+        leftContents={<Icon icon="simplifiedLogo" onClick={goHomePageHandler} size="27px" />}
         rightContents={rightContents}
       />
       <ZoneSearchResultHeaderInfo itemCount={itemCount} addedHeight={addedHeight} />
     </HeaderContainerWrapper>
-  )
-
-  return (
-    <Switch>
-      <Route path="/" component={Header} />
-      <HashRouter basename="/zone">
-        <Route path="/:id/:feature" component={ZoneDetailHeaderContainer} />
-      </HashRouter>
-    </Switch>
   );
 };
 
-export default ZoneSearchResultHeaderContainer;
+export default withRouter(ZoneSearchResultHeaderContainer);

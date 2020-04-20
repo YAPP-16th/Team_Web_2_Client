@@ -38,7 +38,7 @@ const TabItemWrapper = styled.div`
 const TabItem = ({ children, to }: TabItemProps) => {
   return (
     <TabItemWrapper className="tabItem">
-      <Link className="tabItemLink" to={to}>
+      <Link className="tabItemLink" to={`/${to}`}>
         {children}
       </Link>
     </TabItemWrapper>

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { withRouter, RouteComponentProps, HashRouter } from 'react-router-dom';
 
 // Components
 import Toolbar from "../../components/Toolbar/Toolbar";
@@ -17,14 +17,6 @@ const sections = [
   { name: "교통편", to: "transportation" },
   { name: "매물", to: "realestate" },
 ];
-
-const tabItems = sections.map((section) => {
-  return (
-    <div key={section.name}>
-      <TabItem to={section.to}>{section.name}</TabItem>
-    </div>
-  );
-});
 
 const StickyTabs = styled.div`
   display: flex;
@@ -43,16 +35,28 @@ const ZoneDetailHeaderContainer = ({ history, location }: RouteComponentProps) =
   // Handlers
   const goToSearchPageHandler = () => history.push('/search/' + location.search);
 
-  console.log(location.search);
+  console.log(location.hash);
+
+  const tabItems = sections.map((section) => {
+    return (
+      <div key={section.name}>
+        <TabItem to={section.to}>{section.name}</TabItem>
+      </div>
+    );
+  });
+
+  const id = location.hash.split('/')[3];
 
   return (
-    <HeaderContainerWrapper>
-      <Toolbar
-        leftContents={<Icon onClick={goToSearchPageHandler} icon="back" size="13px"/>}
-      />
-      <ZoneDetailHeaderInfo address={address} zoneCode={zoneCode} />
-      <StickyTabs>{tabItems}</StickyTabs>
-    </HeaderContainerWrapper>
+    <HashRouter basename={`/zone/${id}`}>
+      <HeaderContainerWrapper>
+        <Toolbar
+          leftContents={<Icon onClick={goToSearchPageHandler} icon="back" size="13px"/>}
+        />
+        <ZoneDetailHeaderInfo address={address} zoneCode={zoneCode} />
+        <StickyTabs>{tabItems}</StickyTabs>
+      </HeaderContainerWrapper>
+    </HashRouter>
   );
 };
 
