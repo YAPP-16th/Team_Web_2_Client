@@ -14,6 +14,6 @@ const store = createStore(rootReducer);
 
   it("first test", () => {
     const utils = render(<Provider store={store}><App /></Provider>);
-    
+    utils.getByText("Click");
   });
 });
