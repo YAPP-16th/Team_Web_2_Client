@@ -1,0 +1,9 @@
+export { ReactComponent as test } from './airbnb.svg';
+export { ReactComponent as simplifiedLogo } from '../logo-simplified.svg';
+export { ReactComponent as back } from './icon-back.svg';
+export { ReactComponent as company } from './icon-company.svg';
+export { ReactComponent as share } from './icon-share.svg';
+export { ReactComponent as search } from './icon-search.svg';
+export { ReactComponent as menu } from './icon-menu.svg';
+export { ReactComponent as koex } from './icon-koex.svg';
+export { ReactComponent as seoulForest } from './icon-seoul-forest.svg';
