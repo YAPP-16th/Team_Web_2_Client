@@ -5,8 +5,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.scss";
 
 // PAGES
-import ZoneSearchResultPage from "./pages/ZoneSearchResultPage/ZoneSearchResultPage";
-import ZoneDetailPage from "./pages/ZoneDetailPage/ZoneDetailPage";
+import ZoneSearchPage from "./pages/ZoneSearchPage/ZoneSearchPage";
 import HeaderPage from "./pages/HeaderPage/HeaderPage";
 
 // Containers
@@ -25,14 +24,9 @@ function App() {
         <main>
           <Switch>
             <Route
-              path="/search/result"
+              path="/search"
               exact
-              component={ZoneSearchResultPage}
-            ></Route>
-            <Route
-              path="/search/zone/:id"
-              exact
-              component={ZoneDetailPage}
+              component={ZoneSearchPage}
             ></Route>
           </Switch>
         </main>

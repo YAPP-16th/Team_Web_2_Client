@@ -6,12 +6,15 @@ import { FlexBoxSpacer } from "../../utils/utilComponents";
 import Icon from "../Icon/Icon";
 
 type SearchResultInfoProps = {
-  ItemCount: string | number;
+  itemCount: string | number;
+  addedHeight: string;
 };
 
-const SearchResultInfoWrapper = styled.div`
+const SearchResultInfoWrapper = styled.div<{addedHeight: string}>`
   padding: 20px;
   display: flex;
+  transition: all 1s;
+  padding-bottom: Calc(20px + ${props => props.addedHeight});
 `;
 
 const LeftContent = styled.div`
@@ -45,16 +48,16 @@ const Text = styled.h2`
   letter-spacing: -1.07px;
 `;
 
-const SearchResultInfo = ({ ItemCount }: SearchResultInfoProps) => {
+const SearchResultInfo = ({ itemCount, addedHeight }: SearchResultInfoProps) => {
   return (
-    <SearchResultInfoWrapper>
+    <SearchResultInfoWrapper addedHeight={addedHeight}>
       <LeftContent>
-        <BoldText>{ItemCount}개의 ZONE이</BoldText>
+        <BoldText>{itemCount}개의 ZONE이</BoldText>
         <Text>검색되었습니다.</Text>
       </LeftContent>
       <FlexBoxSpacer />
       <RightContent>
-        <Icon icon="Test" />
+        <Icon icon="share" size="20px" />
       </RightContent>
     </SearchResultInfoWrapper>
   );

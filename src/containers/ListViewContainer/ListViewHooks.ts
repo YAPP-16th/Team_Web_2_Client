@@ -11,7 +11,7 @@ const useListView = () => {
 
   const toggle = useCallback(
     () => {
-      return dispatch(toggleListView);
+      return dispatch(toggleListView());
     },
     [dispatch]
   );

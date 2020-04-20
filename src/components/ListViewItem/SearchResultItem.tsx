@@ -14,7 +14,7 @@ export type ListViewItemProps = {
 const ListViewItemWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  border-bottom: 0.5px solid grey;
+  border-bottom: 1px solid rgba(182, 182, 182, 0.1);
   padding: 14px 20px;
 `;
 

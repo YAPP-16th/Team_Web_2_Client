@@ -6,14 +6,13 @@ import { FlexBoxSpacer } from "../../utils/utilComponents";
 import Icon from '../Icon/Icon';
 
 type ToolbarProps = {
-
+  rightContents?: React.ReactNode;
+  leftContents?: React.ReactNode;
 };
 
 const ToolbarWrapper = styled.header`
   padding: 18px 20px;
   backgroundColor: var(--BackgroundColor);
-  position: sticky;
-  top: 0;
   color: var(--GreyTextColor);
 `;
 
@@ -30,19 +29,16 @@ const ToolbarRightItem = styled.div`
 
 `;
 
-const Toolbar = ({}: ToolbarProps) => {
+const Toolbar = ({ rightContents, leftContents }: ToolbarProps) => {
   return (
     <ToolbarWrapper>
       <ToolbarContent>
         <ToolbarLeftItem>
-          L
-          {/* <Icon /> */}
+          {leftContents}
         </ToolbarLeftItem>
         <FlexBoxSpacer />
         <ToolbarRightItem>
-          R
-          {/* <Icon />
-          <Icon /> */}
+          {rightContents}
         </ToolbarRightItem>
       </ToolbarContent>
     </ToolbarWrapper>

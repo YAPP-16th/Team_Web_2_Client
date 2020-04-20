@@ -1,17 +1,14 @@
-import React, { useState, MouseEvent } from "react";
+import React, { MouseEvent } from "react";
 import styled, { keyframes } from "styled-components";
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { Link, HashRouter, withRouter, RouteComponentProps } from "react-router-dom";
 
 // Custom Hooks
-import useListView from './ListViewHooks';
+import useListView from "./ListViewHooks";
 
 // Components
 import SearchResultItem from "../../components/ListViewItem/SearchResultItem";
 
-type ListViewContainerProps = {
-  history: RouteComponentProps['history'],
-
-};
+// Responsive
 
 // Animations
 const moveUp = keyframes`
@@ -22,13 +19,13 @@ const moveUp = keyframes`
   }
 
   75% {
-    transform: translateY(-430px);
+    transform: translateY(Calc(250px - 100vh));
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
   }
 
   100% {
-    transform: translateY(-430px);
+    transform: translateY(Calc(250px - 100vh));
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
   }
@@ -36,7 +33,7 @@ const moveUp = keyframes`
 
 const moveDown = keyframes`
   0% {
-    transform: translateY(-430px);
+    transform: translateY(Calc(250px - 100vh));
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
   }
@@ -57,19 +54,24 @@ const moveDown = keyframes`
 // Styles
 const ListViewContainerWrapper = styled.div<{ clicked: boolean }>`
   width: 100%;
-  height: 100%;
+  height: Calc(100vh - 193px);
+  overflow-y: scroll;
+  scrollbar-width: 0px;
   position: fixed;
   top: 92%;
   background-color: var(--BackgroundColor);
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
-  animation: ${(props) => (props.clicked ? moveUp : moveDown)} 0.3s linear
+  animation: ${(props) => (props.clicked ? moveUp : moveDown)} 1s ease-out
     forwards;
 `;
 
 const ModalHeader = styled.div`
+  position: sticky;
+  top: 0;
   display: flex;
   justify-content: space-between;
+  background-color: var(--BackgroundColor);
 
   span {
     color: var(--PrimaryColor);
@@ -101,9 +103,13 @@ const items = [
   { id: 2, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
   { id: 3, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
   { id: 4, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
+  { id: 5, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
+  { id: 6, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
+  { id: 7, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
+  { id: 8, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
 ];
 
-const ListViewContainer = ({history}: ListViewContainerProps) => {
+const ListViewContainer = ({ history, location }: RouteComponentProps) => {
   // States
   const listView = useListView();
 
@@ -118,39 +124,46 @@ const ListViewContainer = ({history}: ListViewContainerProps) => {
   };
 
   const onItemClickHandler = (id: string | number) => {
-    history.push(`/search/zone/${id}`);
-  }
+    listView.toggle(); // 어 이거 지우면 되는거 같은데
+  };
 
   // Props Handling
   const searchResultItemList = items.map((item) => {
     return (
-      <div key={item.id}>
-        <SearchResultItem
-          id={item.id}
-          zoneCode={item.zoneCode}
-          zoneName={item.zoneName}
-          distance={item.distance}
-          onClick={onItemClickHandler}
-        />
-      </div>
+      
+        <div key={item.id}>
+          <Link to={`/${item.id}/timecompare`}>
+          <SearchResultItem
+            id={item.id}
+            zoneCode={item.zoneCode}
+            zoneName={item.zoneName}
+            distance={item.distance}
+            onClick={onItemClickHandler}
+          />
+          </Link>
+        </div>
     );
   });
 
-  return (
-    <ListViewContainerWrapper clicked={listView.toggled}>
-      <ModalHeader>
-        <span className="text">
-          {listView.toggled ? `${items.length}개의 ZONE` : ""}
-        </span>
-        <span className="button" onMouseUp={onToggleHandler}>
-          리스트뷰 +
-        </span>
-      </ModalHeader>
-      <ModalBody>
-        {searchResultItemList}
-      </ModalBody>
-    </ListViewContainerWrapper>
-  );
+  if (location.search) {
+    return (
+      <HashRouter basename="/zone">
+        <ListViewContainerWrapper clicked={listView.toggled}>
+          <ModalHeader>
+            <span className="text">
+              {listView.toggled ? `${items.length}개의 ZONE` : ""}
+            </span>
+            <span className="button" onMouseUp={onToggleHandler}>
+              리스트뷰 +
+            </span>
+          </ModalHeader>
+          <ModalBody>{searchResultItemList}</ModalBody>
+        </ListViewContainerWrapper>
+      </HashRouter>
+    );
+  } else {
+    return <div></div>;
+  }
 };
 
 export default withRouter(ListViewContainer);

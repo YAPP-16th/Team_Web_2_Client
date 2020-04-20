@@ -2,10 +2,10 @@ import React from "react";
 import * as icons from "../../assets/svgs/icons";
 import styled from "styled-components";
 
-type IconType = keyof typeof icons;
+export type IconType = keyof typeof icons;
 export const iconTypes: IconType[] = Object.keys(icons) as any[]; // 스토리에서 불러오기 위함
 
-export type IconProps = {
+type IconProps = {
   /** 사용 할 아이콘 타입 */
   icon: IconType;
   /** 아이콘 색상 */
@@ -14,6 +14,8 @@ export type IconProps = {
   size: string | number;
   /** 따로 집어넣을 클래스 */
   className?: string;
+  /** 클릭시 실행할 함수 */
+  onClick?: () => void;
 };
 
 /** 아이콘을 보여주고 싶을 땐 `Icon` 컴포넌트를 사용하세요.
@@ -23,7 +25,7 @@ export type IconProps = {
  * 스타일로 모양새를 설정 할 때에는 `color`로 색상을 설정하고 `width`로 크기를 설정하세요.
  */
 
-const Icon = ({ icon, color, size, className }: IconProps) => {
+const Icon = ({ icon, color, size, className, onClick }: IconProps) => {
   const SVGWrapper = styled.div`
     height: ${size};
     svg {
@@ -38,7 +40,7 @@ const Icon = ({ icon, color, size, className }: IconProps) => {
   const SVGIcon = icons[icon];
 
   return (
-    <SVGWrapper>
+    <SVGWrapper onClick={onClick}>
       <SVGIcon className={className} />
     </SVGWrapper>
   );
