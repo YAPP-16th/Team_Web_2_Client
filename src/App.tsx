@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 
 // Global SCSS
 import "./App.scss";
@@ -22,12 +22,9 @@ function App() {
           <HeaderPage />
         </header>
         <main>
+          <Link to="/search?key=value">Click</Link>
           <Switch>
-            <Route
-              path="/search"
-              exact
-              component={ZoneSearchPage}
-            ></Route>
+            <Route path="/search" exact component={ZoneSearchPage}></Route>
           </Switch>
         </main>
         <footer></footer>
