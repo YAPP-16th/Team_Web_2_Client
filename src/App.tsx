@@ -22,7 +22,6 @@ function App() {
           <HeaderPage />
         </header>
         <main>
-          <Link to="/search?key=value">Click</Link>
           <Switch>
             <Route path="/search" exact component={ZoneSearchPage}></Route>
           </Switch>

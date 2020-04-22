@@ -35,7 +35,7 @@ const ZoneDetailHeaderContainer = ({ history, location }: RouteComponentProps) =
   // Handlers
   const goToSearchPageHandler = () => history.push('/search/' + location.search);
 
-  console.log(location.hash);
+  const id = location.hash.split('/')[2];
 
   const tabItems = sections.map((section) => {
     return (
@@ -45,7 +45,7 @@ const ZoneDetailHeaderContainer = ({ history, location }: RouteComponentProps) =
     );
   });
 
-  const id = location.hash.split('/')[3];
+  
 
   return (
     <HashRouter basename={`/zone/${id}`}>
