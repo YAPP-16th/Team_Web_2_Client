@@ -7,3 +7,4 @@ export { ReactComponent as search } from './icon-search.svg';
 export { ReactComponent as menu } from './icon-menu.svg';
 export { ReactComponent as koex } from './icon-koex.svg';
 export { ReactComponent as seoulForest } from './icon-seoul-forest.svg';
+export { ReactComponent as filterOption } from './icon-filter-option.svg';
