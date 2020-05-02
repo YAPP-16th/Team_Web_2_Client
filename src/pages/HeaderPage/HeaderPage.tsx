@@ -20,9 +20,6 @@ const HeaderPage = ({ match, location, history}: RouteComponentProps<ParamsType>
 
   let HeaderContainer;
 
-  // 이것도 zone을 뒤에 붙일 수 있는거면 좋겠는데
-  console.log(location.hash);
-
   if (location.hash.includes('/zone/')) {
     HeaderContainer = ZoneDetailHeaderContainer;
   } else if (location.search) {

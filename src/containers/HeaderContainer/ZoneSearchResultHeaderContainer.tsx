@@ -48,7 +48,7 @@ const ZoneSearchResultHeaderContainer = ({history}: RouteComponentProps) => {
   return (
     <HeaderContainerWrapper>
       <Toolbar
-        leftContents={<Icon icon="simplifiedLogo" onClick={goHomePageHandler} size="27px" />}
+        leftContents={<Icon testId="go-home" icon="simplifiedLogo" onClick={goHomePageHandler} size="27px" />}
         rightContents={rightContents}
       />
       <ZoneSearchResultHeaderInfo itemCount={itemCount} addedHeight={addedHeight} />

@@ -15,11 +15,7 @@ import queryString from "query-string";
 import ZoneDetailPage from "../ZoneDetailPage/ZoneDetailPage";
 
 const ZoneSearchPage = ({ match, location }: RouteComponentProps) => {
-  const query = queryString.parse(location.search);
 
-  if (location.search) {
-
-  }
 
   return (
     <div className="zone-search">
@@ -27,7 +23,6 @@ const ZoneSearchPage = ({ match, location }: RouteComponentProps) => {
         <HashRouter basename="/zone">
           <Route path="/:id/:feature" exact component={ZoneDetailPage} />
         </HashRouter>
-        <Route path="/search" exact component={() => <Link to="/search?key=value">Click</Link>}/>
       </Switch>
     </div>
   );

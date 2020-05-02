@@ -39,18 +39,18 @@ const ZoneDetailHeaderContainer = ({ history, location }: RouteComponentProps) =
   const tabItems = sections.map((section) => {
     return (
       <div key={section.name}>
-        <TabItem to={section.to}>{section.name}</TabItem>
+        <TabItem to={section.to} testId={section.to}>{section.name}</TabItem>
       </div>
     );
   });
 
-  const id = location.hash.split('/')[3];
+  const id = location.hash.split('/')[2];
 
   return (
     <HashRouter basename={`/zone/${id}`}>
       <HeaderContainerWrapper>
         <Toolbar
-          leftContents={<Icon onClick={goToSearchPageHandler} icon="back" size="13px"/>}
+          leftContents={<Icon testId="go-back" onClick={goToSearchPageHandler} icon="back" size="13px"/>}
         />
         <ZoneDetailHeaderInfo address={address} zoneCode={zoneCode} />
         <StickyTabs>{tabItems}</StickyTabs>

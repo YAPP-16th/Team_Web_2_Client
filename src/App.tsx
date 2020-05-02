@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 // Global SCSS
 import "./App.scss";
@@ -14,24 +14,18 @@ import ListViewContainer from "./containers/ListViewContainer/ListViewContainer"
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <section className="modal-section">
-          <ListViewContainer />
-        </section>
-        <header>
-          <HeaderPage />
-        </header>
-        <main>
-          <Switch>
-            <Route
-              path="/search"
-              exact
-              component={ZoneSearchPage}
-            ></Route>
-          </Switch>
-        </main>
-        <footer></footer>
-      </BrowserRouter>
+      <section className="modal-section">
+        <ListViewContainer />
+      </section>
+      <header>
+        <HeaderPage />
+      </header>
+      <main>
+        <Switch>
+          <Route path="/search" exact component={ZoneSearchPage}></Route>
+        </Switch>
+      </main>
+      <footer></footer>
     </div>
   );
 }

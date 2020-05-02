@@ -30,7 +30,7 @@ const DefaultHeaderContainer = ({ history }: RouteComponentProps) => {
   return (
     <HeaderContainerWrapper>
       <Toolbar
-        leftContents={<Icon onClick={goHomePageHandler} icon="simplifiedLogo" size="27px" />}
+        leftContents={<Icon testId="go-home" onClick={goHomePageHandler} icon="simplifiedLogo" size="27px" />}
         rightContents={rightContents}
       />
     </HeaderContainerWrapper>

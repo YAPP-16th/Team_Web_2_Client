@@ -16,6 +16,8 @@ type IconProps = {
   className?: string;
   /** 클릭시 실행할 함수 */
   onClick?: () => void;
+  /** 테스트에 필요한 test-id */
+  testId?: string;
 };
 
 /** 아이콘을 보여주고 싶을 땐 `Icon` 컴포넌트를 사용하세요.
@@ -25,7 +27,7 @@ type IconProps = {
  * 스타일로 모양새를 설정 할 때에는 `color`로 색상을 설정하고 `width`로 크기를 설정하세요.
  */
 
-const Icon = ({ icon, color, size, className, onClick }: IconProps) => {
+const Icon = ({ icon, color, size, className, onClick, testId }: IconProps) => {
   const SVGWrapper = styled.div`
     height: ${size};
     svg {
@@ -40,7 +42,7 @@ const Icon = ({ icon, color, size, className, onClick }: IconProps) => {
   const SVGIcon = icons[icon];
 
   return (
-    <SVGWrapper onClick={onClick}>
+    <SVGWrapper onClick={onClick} data-testid={testId}>
       <SVGIcon className={className} />
     </SVGWrapper>
   );

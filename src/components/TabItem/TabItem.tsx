@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 type TabItemProps = {
   children?: React.ReactNode;
   to: string;
+  testId?: string;
 };
 
 const TabItemWrapper = styled.div`
@@ -35,10 +36,10 @@ const TabItemWrapper = styled.div`
   }
 `;
 
-const TabItem = ({ children, to }: TabItemProps) => {
+const TabItem = ({ children, to, testId }: TabItemProps) => {
   return (
     <TabItemWrapper className="tabItem">
-      <Link className="tabItemLink" to={`/${to}`}>
+      <Link className="tabItemLink" to={`/${to}`} data-testid={testId}>
         {children}
       </Link>
     </TabItemWrapper>
