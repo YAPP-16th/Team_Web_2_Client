@@ -34,8 +34,6 @@ const ZoneDetailHeaderContainer = ({ history, location }: RouteComponentProps) =
   // Handlers
   const goToSearchPageHandler = () => history.push('/search/' + location.search);
 
-  console.log(location.hash);
-
   const tabItems = sections.map((section) => {
     return (
       <div key={section.name}>
@@ -53,7 +51,7 @@ const ZoneDetailHeaderContainer = ({ history, location }: RouteComponentProps) =
           leftContents={<Icon testId="go-back" onClick={goToSearchPageHandler} icon="back" size="13px"/>}
         />
         <ZoneDetailHeaderInfo className="header-info" address={address} zoneCode={zoneCode} />
-        <StickyTabs className="header0tabs">{tabItems}</StickyTabs>
+        <StickyTabs className="header-tabs">{tabItems}</StickyTabs>
       </HeaderContainerWrapper>
     </HashRouter>
   );
