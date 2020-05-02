@@ -8,19 +8,27 @@ import queryString from 'query-string';
 import DefaultHeaderContainer from '../../containers/HeaderContainer/DefaultHeaderContainer';
 import ZoneDetailHeaderContainer from '../../containers/HeaderContainer/ZoneDetailHeaderContainer';
 import ZoneSearchResultHeaderContainer from '../../containers/HeaderContainer/ZoneSearchResultHeaderContainer';
+import InputHeaderContainer from '../../containers/HeaderContainer/InputHeaderContainer';
 
 type ParamsType = {
   id: string;
   feature: string;
-}
+};
 
-const HeaderPage = ({ match, location, history}: RouteComponentProps<ParamsType>) => {  
-  
+const HeaderPage = ({
+  match,
+  location,
+  history,
+}: RouteComponentProps<ParamsType>) => {
   const query = queryString.parse(location.search);
 
   let HeaderContainer;
 
-  if (location.hash.includes('/zone/')) {
+  console.log(location.pathname);
+
+  if (location.pathname === '/searchInput') {
+    HeaderContainer = InputHeaderContainer;
+  } else if (location.hash.includes('/zone/')) {
     HeaderContainer = ZoneDetailHeaderContainer;
   } else if (location.search) {
     HeaderContainer = ZoneSearchResultHeaderContainer;
@@ -32,7 +40,7 @@ const HeaderPage = ({ match, location, history}: RouteComponentProps<ParamsType>
     <div className="header">
       <HeaderContainer />
     </div>
-  )
-}
+  );
+};
 
 export default withRouter(HeaderPage);

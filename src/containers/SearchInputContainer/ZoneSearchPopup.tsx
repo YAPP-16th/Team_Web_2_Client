@@ -1,6 +1,5 @@
 import React from 'react';
 import DaumPostcode from 'react-daum-postcode';
-import './ZoneSearchPage.scss';
 
 const ZoneSearchPopUp = () => {
   const handleComplete = (data: any) => {
@@ -17,7 +16,6 @@ const ZoneSearchPopUp = () => {
       }
       fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
-
     alert(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
   };
 

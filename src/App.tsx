@@ -1,15 +1,16 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 // Global SCSS
-import "./App.scss";
+import './App.scss';
 
 // PAGES
-import ZoneSearchPage from "./pages/ZoneSearchPage/ZoneSearchPage";
-import HeaderPage from "./pages/HeaderPage/HeaderPage";
+import ZoneSearchPage from './pages/ZoneSearchPage/ZoneSearchPage';
+import HeaderPage from './pages/HeaderPage/HeaderPage';
+import SearchInputPage from './pages/SearchInputPage/SearchInputPage';
 
 // Containers
-import ListViewContainer from "./containers/ListViewContainer/ListViewContainer";
+import ListViewContainer from './containers/ListViewContainer/ListViewContainer';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <main>
         <Switch>
           <Route path="/search" exact component={ZoneSearchPage}></Route>
+          <Route path="/searchInput" exact component={SearchInputPage}></Route>
         </Switch>
       </main>
       <footer></footer>
