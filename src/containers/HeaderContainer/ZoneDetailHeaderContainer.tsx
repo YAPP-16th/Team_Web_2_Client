@@ -17,6 +17,44 @@ const sections = [
   { name: "매물", to: "realestate" },
 ];
 
+const HeaderContainerWrapper = styled.div`
+  position: sticky;
+  top: 100px;
+
+  @media screen and (min-width: 1060px) {
+    .header-info {
+      margin-left: 9px;
+      align-items: flex-start;
+
+      > :nth-child(1) {
+        margin-bottom: 86px;
+        order: 2;
+        font-size: 24px;
+        padding-left: 10px;
+      }
+
+      > :nth-child(2) {
+        margin-top: 100px;
+        order: 1;
+      }
+    }
+
+    .header-tabs {
+      justify-content: flex-start;
+      > * {
+        flex: initial;
+      }
+    }
+
+    .tab-item {
+      a {
+        font-size: 20px;
+      }
+    }
+  }  
+
+`;
+
 const StickyTabs = styled.div`
   display: flex;
   > * {
@@ -24,10 +62,7 @@ const StickyTabs = styled.div`
   }
 `;
 
-const HeaderContainerWrapper = styled.div`
-  position: sticky;
-  top: 100px;
-`;
+
 
 const ZoneDetailHeaderContainer = ({ history, location }: RouteComponentProps) => {
 
@@ -36,7 +71,7 @@ const ZoneDetailHeaderContainer = ({ history, location }: RouteComponentProps) =
 
   const tabItems = sections.map((section) => {
     return (
-      <div key={section.name}>
+      <div className="tab-item" key={section.name}>
         <TabItem to={section.to} testId={section.to}>{section.name}</TabItem>
       </div>
     );
