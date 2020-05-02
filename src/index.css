@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* REMOVE Default HTML Tag Styles */
 * {
   padding: 0;
@@ -5,6 +6,8 @@
   box-sizing: border-box;
 }
 
+=======
+>>>>>>> 1c09f127abd7fa025ed161b1d957cb63ed1f9aad
 html {
   height: 100%;
 }
@@ -58,6 +61,7 @@ code {
   font-family: GothamMedium;
   src: url('./assets/fonts/Gotham-Medium.ttf');
 }
+<<<<<<< HEAD
 
 /* Default Fonts Style*/
 
@@ -78,3 +82,5 @@ button {
 a {
   text-decoration: none;
 }
+=======
+>>>>>>> 1c09f127abd7fa025ed161b1d957cb63ed1f9aad
