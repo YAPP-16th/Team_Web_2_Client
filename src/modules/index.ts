@@ -1,11 +1,17 @@
 import { combineReducers } from 'redux';
-import rooms from './rooms';
-import { roomsSaga } from './rooms';
 import { all } from 'redux-saga/effects';
+
+// Reducers
+import rooms from './rooms';
+import listView from './listView';
+
+// Sagas
+import { roomsSaga } from './rooms';
 
 // 루트 라우터
 const rootReducer = combineReducers({
-  rooms
+  rooms,
+  listView,
 });
 
 export default rootReducer;
