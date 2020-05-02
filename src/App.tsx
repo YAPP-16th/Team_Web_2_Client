@@ -1,29 +1,31 @@
-import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React from "react";
+import { Route, Switch } from "react-router-dom";
 
 // Global SCSS
-import './App.scss';
+import "./App.scss";
 
 // PAGES
-import ZoneSearchPage from './pages/ZoneSearchPage/ZoneSearchPage';
+import ZoneSearchPage from "./pages/ZoneSearchPage/ZoneSearchPage";
+import HeaderPage from "./pages/HeaderPage/HeaderPage";
+
+// Containers
+import ListViewContainer from "./containers/ListViewContainer/ListViewContainer";
 
 function App() {
   return (
     <div className="App">
       <section className="modal-section">
-
+        <ListViewContainer />
       </section>
       <header>
-        
+        <HeaderPage />
       </header>
       <main>
-        <BrowserRouter>
+        <Switch>
           <Route path="/search" exact component={ZoneSearchPage}></Route>
-        </BrowserRouter>
+        </Switch>
       </main>
-      <footer>
-
-      </footer>
+      <footer></footer>
     </div>
   );
 }
