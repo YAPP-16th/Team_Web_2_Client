@@ -8,6 +8,7 @@ import Icon from "../Icon/Icon";
 type SearchResultInfoProps = {
   itemCount: string | number;
   addedHeight: string;
+  className?: string;
 };
 
 const SearchResultInfoWrapper = styled.div<{addedHeight: string}>`
@@ -48,9 +49,9 @@ const Text = styled.h2`
   letter-spacing: -1.07px;
 `;
 
-const SearchResultInfo = ({ itemCount, addedHeight }: SearchResultInfoProps) => {
+const SearchResultInfo = ({ itemCount, addedHeight, className }: SearchResultInfoProps) => {
   return (
-    <SearchResultInfoWrapper addedHeight={addedHeight}>
+    <SearchResultInfoWrapper addedHeight={addedHeight} className={className}>
       <LeftContent>
         <BoldText>{itemCount}개의 ZONE이</BoldText>
         <Text>검색되었습니다.</Text>

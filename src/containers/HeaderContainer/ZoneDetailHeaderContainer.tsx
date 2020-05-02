@@ -52,8 +52,8 @@ const ZoneDetailHeaderContainer = ({ history, location }: RouteComponentProps) =
         <Toolbar
           leftContents={<Icon testId="go-back" onClick={goToSearchPageHandler} icon="back" size="13px"/>}
         />
-        <ZoneDetailHeaderInfo address={address} zoneCode={zoneCode} />
-        <StickyTabs>{tabItems}</StickyTabs>
+        <ZoneDetailHeaderInfo className="header-info" address={address} zoneCode={zoneCode} />
+        <StickyTabs className="header0tabs">{tabItems}</StickyTabs>
       </HeaderContainerWrapper>
     </HashRouter>
   );

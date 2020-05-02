@@ -7,6 +7,7 @@ import Icon from "../Icon/Icon";
 type CurrentItemInfoProps = {
   address: string | number;
   zoneCode: string | number;
+  className?: string;
 };
 
 const CurrentItemInfoWrapper = styled.div`
@@ -45,9 +46,10 @@ const ZoneCode = styled.h2`
 const CurrentItemInfo = ({
   address,
   zoneCode,
+  className
 }: CurrentItemInfoProps) => {
   return (
-    <CurrentItemInfoWrapper>
+    <CurrentItemInfoWrapper className={className}>
       <Address>{address}</Address>
       <ZoneCode>ZONE {zoneCode}</ZoneCode>
     </CurrentItemInfoWrapper>
