@@ -116,3 +116,32 @@
   height: 16px;
   object-fit: contain;
 }
+
+
+.transportList {
+  width: 320px;
+  height: 51px;
+  border-radius: 8px;
+  background-color: #323232;
+  color: white;
+}
+
+.styledLoadingBlueText {
+  width: 143px;
+  height: 192px;
+  font-family: NotoSansCJKkr;
+  font-size: 20px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.6;
+  letter-spacing: -0.89px;
+  text-align: center;
+  color: #40aee1;
+}
+
+.styledLoadingWhiteText {
+  font-family: Gotham;
+  font-weight: 300;
+  color: #ffffff;
+}
