@@ -36,18 +36,28 @@ interface data {
   rooms: Array<any>;
 }
 
+interface naverLatLng {
+  x: number;
+  y: number;
+  _lat: number;
+  _lng: number;
+}
+
 const DEFAULT_LOCATION: { x: string; y: string } = {
   x: "37.3595704",
   y: "127.105399",
 };
+const MAKER_ID: Array<string> = ["marker1", "marker2"];
 
-const MapContainer = (props: any) => {
-  const { id = "naverMap" } = props;
-  const { width = "100%", height = "500px" } = props.style;
-  const Div = Styled.div<DivProps>`
+const Div = Styled.div<DivProps>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
 `;
+
+const MapContainer = (props: { id: string; style: any }) => {
+  const { id = "naverMap" } = props;
+  const { width = "100%", height = "500px" } = props.style;
+
   return <Div id={id} width={width} height={height}></Div>;
 };
 
@@ -59,20 +69,17 @@ const MapContainer = (props: any) => {
  * @param style : json형태의 custom style
  */
 function ZoneMap(props: MapProps) {
-  const { id = "map" } = props;
-  const [tttt, setTTTT] = useState() as any;
-  const [data, setData] = useState(props.data);
+  const { id = "map", data = [] } = props;
   const [zones, setZones] = useState(new Map<number, Zone>());
-  const markerID: Array<string> = ["marker1", "marker2"];
   let bShowPolygon: boolean = false;
-  let naverMapAPI: any = null;
-  let markerClustering: any;
+  let naverMapAPI: any;
 
-  const createPolygon = (props: Array<any>) => {
-    let ret: any[][] = [];
+  const createPolygon = (props: naverLatLng[] | naverLatLng[][]) => {
+    let ret: any[] = [];
     const { naver } = window;
-
-    if (props.every((value) => !Array.isArray(value))) {
+    if (
+      props.every((value: naverLatLng | naverLatLng[]) => !Array.isArray(value))
+    ) {
       ret.push(
         new naver.maps.Polygon({
           map: naverMapAPI,
@@ -86,7 +93,7 @@ function ZoneMap(props: MapProps) {
         })
       );
     } else {
-      props.forEach((value) => {
+      props.forEach((value: any) => {
         ret.push(createPolygon(value));
       });
     }
@@ -94,8 +101,8 @@ function ZoneMap(props: MapProps) {
     return ret;
   };
 
-  const createPolygonPaths = (props: Array<any>) => {
-    let ret: any[][] = [];
+  const createPolygonPaths = (props: Array<naverLatLng>) => {
+    let ret: Array<any> = [];
     const { naver } = window;
     props.forEach((value) => {
       if (Array.isArray(value)) {
@@ -152,7 +159,7 @@ function ZoneMap(props: MapProps) {
     y: string | number
   ) => {
     const { naver } = window;
-    return new naver.maps.Map(parent, {
+    naverMapAPI = new naver.maps.Map(parent, {
       center: new naver.maps.LatLng(x, y),
       zoom: 12,
       keyboardShortcuts: false,
@@ -163,36 +170,40 @@ function ZoneMap(props: MapProps) {
   const initMap = () => {
     const { naver } = window;
     data?.forEach((obj) => {
-      //0. 폴리곤 Marker(클러스터용)
-      const location = createMarker(obj.x, obj.y);
-      location._zoneID = obj.id;
+      if (!zones.has(obj.id)) {
+        //0. 폴리곤 Marker(클러스터용)
+        const location = createMarker(obj.x, obj.y);
+        location._zoneID = obj.id;
 
-      //1. Room생성하기
-      const rooms = [
-        ...obj.rooms.map((value) => {
-          const marker = createMarker(value.location.lat, value.location.lng);
-          naver.maps.Event.addListener(marker, "click", function (event: any) {
-            event.domEvent.preventDefault();
-            event.domEvent.stopPropagation();
-            if (props.roomClick) {
-              const roomProps = { id: value.id };
-              props.roomClick(roomProps);
-            }
-          });
-          return marker;
-        }),
-      ];
+        //1. Room생성하기
+        const rooms = [
+          ...obj.rooms.map((value) => {
+            const marker = createMarker(value.location.lat, value.location.lng);
+            naver.maps.Event.addListener(marker, "click", function (
+              event: any
+            ) {
+              event.domEvent.preventDefault();
+              event.domEvent.stopPropagation();
+              if (props.roomClick) {
+                const roomProps = { id: value.id };
+                props.roomClick(roomProps);
+              }
+            });
+            return marker;
+          }),
+        ];
 
-      //2. 폴리곤 생성하기
-      const polygon = createPolygon(createPolygonPaths(obj.polygon));
-      setZones(zones.set(obj.id, { location, polygon, rooms }));
+        //2. 폴리곤 생성하기
+        const polygon = createPolygon(createPolygonPaths(obj.polygon));
+        setZones(zones.set(obj.id, { location, polygon, rooms }));
+      }
     });
 
     const marker1 = {
-        content: `<div id=${markerID[0]} class="marker1" tabindex="-1"></div>`,
+        content: `<div id=${MAKER_ID[0]} class="marker1" tabindex="-1"></div>`,
       },
       marker2 = {
-        content: `<div id=${markerID[1]} class="marker2" tabindex="-1"></div>`,
+        content: `<div id=${MAKER_ID[1]} class="marker2" tabindex="-1"></div>`,
       };
 
     const cluster = new MarkerClustering({
@@ -242,7 +253,7 @@ function ZoneMap(props: MapProps) {
 
       const { id } = event.target as HTMLElement;
 
-      if (markerID.some((makerID) => id === makerID)) {
+      if (MAKER_ID.some((makerID) => id === makerID)) {
         const target = event.target as HTMLElement;
         target.focus();
         if (props.clusterClick) {
@@ -273,7 +284,7 @@ function ZoneMap(props: MapProps) {
       event.preventDefault();
       event.stopPropagation();
 
-      markerClustering = initMap();
+      initMap();
 
       MakerClustering.onload = null;
     };
@@ -289,7 +300,7 @@ function ZoneMap(props: MapProps) {
 
         naverAPI.onload = null;
 
-        naverMapAPI = createNaverMap(id, x, y);
+        createNaverMap(id, x, y);
 
         MakerClustering.type = "text/javascript";
         MakerClustering.src = "./MarkerClustering.js";
@@ -316,11 +327,11 @@ function ZoneMap(props: MapProps) {
         const x = data ? data[0].x : DEFAULT_LOCATION.x;
         const y = data ? data[0].y : DEFAULT_LOCATION.y;
 
-        naverMapAPI = createNaverMap(id, x, y);
-        markerClustering = initMap();
+        createNaverMap(id, x, y);
+        initMap();
       }
     }
-  }, [props.data]);
+  });
 
   return <MapContainer id={id} style={props.style}></MapContainer>;
 }
