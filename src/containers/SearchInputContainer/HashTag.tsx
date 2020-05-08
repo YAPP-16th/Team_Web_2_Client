@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const HashTag = () => {
   const tagList: any = ['#회사', '#학교', '추가+'];
@@ -8,7 +8,7 @@ const HashTag = () => {
     index: number,
     newItem: string
   ) => {
-    return [...array.slice(0, index), newItem, ...array.slice(index)];
+    console.log([...array.slice(0, index), newItem, ...array.slice(index)])
   };
 
   const onClickHandler = (e: any) => {
@@ -18,16 +18,17 @@ const HashTag = () => {
   const tagListMap: any = tagList.map((e: any, idx: number) => {
     return (
       <>
-        {e}
         <div
           className="StyledHashTag"
           key={idx}
           onClick={() => onClickHandler(e)}
-        />
+        >
+          {e}
+        </div>
       </>
     );
   });
   return <>{tagListMap}</>;
 };
 
-export { HashTag };
+export default HashTag;
