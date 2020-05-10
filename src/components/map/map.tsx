@@ -69,7 +69,7 @@ const MapContainer = (props: { id: string; style: any }) => {
  * @param style : json형태의 custom style
  */
 function ZoneMap(props: MapProps) {
-  const { id = "map", data = [] } = props;
+  const { id = "map", data = [], style={} } = props;
   const [zones, setZones] = useState(new Map<number, Zone>());
   let bShowPolygon: boolean = false;
   let naverMapAPI: any;
@@ -294,8 +294,8 @@ function ZoneMap(props: MapProps) {
       const { naver } = window;
 
       if (naver) {
-        const x = data ? data[0].x : DEFAULT_LOCATION.x;
-        const y = data ? data[0].y : DEFAULT_LOCATION.y;
+        const x = data.length ? data[0].x : DEFAULT_LOCATION.x;
+        const y = data.length ? data[0].y : DEFAULT_LOCATION.y;
 
         naverAPI.onload = null;
 
@@ -323,8 +323,8 @@ function ZoneMap(props: MapProps) {
       loadAPI();
     } else {
       if (!naverMapAPI) {
-        const x = data ? data[0].x : DEFAULT_LOCATION.x;
-        const y = data ? data[0].y : DEFAULT_LOCATION.y;
+        const x = data.length ? data[0].x : DEFAULT_LOCATION.x;
+        const y = data.length ? data[0].y : DEFAULT_LOCATION.y;
 
         createNaverMap(id, x, y);
         initMap();
@@ -332,7 +332,7 @@ function ZoneMap(props: MapProps) {
     }
   });
 
-  return <MapContainer id={id} style={props.style}></MapContainer>;
+  return <MapContainer id={id} style={style}></MapContainer>;
 }
 
 export default ZoneMap;
