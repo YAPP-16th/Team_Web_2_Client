@@ -303,7 +303,7 @@ function ZoneMap(props: MapProps) {
         createNaverMap(id, x, y);
 
         MakerClustering.type = "text/javascript";
-        MakerClustering.src = "./MarkerClustering.js";
+        MakerClustering.src = "./openapi/MarkerClustering.js";
         MakerClustering.onload = MakerClusteringCallback;
         headers.appendChild(MakerClustering);
       }
