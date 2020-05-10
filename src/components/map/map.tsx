@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Styled from "styled-components";
 import naverkey from "./naverkey.json";
-import "./map.scss";
+import "./Map.scss";
 
 declare global {
   interface Window {
