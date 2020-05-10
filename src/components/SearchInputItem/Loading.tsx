@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import '../../pages/SearchInputPage/ZoneSearchPage.scss';
-import ZoneSearchPopUp from './ZoneSearchPopup';
-import Dialog from '.././../components/Dialog/Dialog';
+// import '../../pages/SearchInputPage/ZoneSearchPage.scss';
+import ZoneSearchPopUp from './SearchInputStep1/ZoneSearchPopup';
+import Dialog from '../Dialog/Dialog';
 import styled from 'styled-components';
-import HashTag from '../../containers/SearchInputContainer/HashTag';
-import CurrentLocation from './CurrentLocation';
-import group3 from './group3.png';
+import HashTag from './SearchInputStep1/HashTag';
+import CurrentLocation from './SearchInputStep1/CurrentLocation';
+import group3 from '../../assets/img/group3.png';
 
 const Loading = () => {
 

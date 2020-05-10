@@ -1,13 +1,13 @@
 import React from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import './ZoneSearchPage.scss';
-import SearchInput from '../../containers/SearchInputContainer/SearchInput';
 import { withRouter, RouteComponentProps, Link } from 'react-router-dom';
-import SearchInput1 from '../../containers/SearchInputContainer/SearchInput1';
-import SearchInput2 from '../../containers/SearchInputContainer/SearchInput2';
-import SearchInput3 from '../../containers/SearchInputContainer/SearchInput3';
-import Loading from '../../containers/SearchInputContainer/Loading';
 import styled from 'styled-components';
+
+import SearchInputStep1Container from '../../containers/SearchInputStep1Container/Step1Container';
+import SearchInputStep2Container from '../../containers/SearchInputStep2Container/Step2Container';
+import SearchInputStep3Container from '../../containers/SearchInputStep3Container/Step3Container';
+import SearchInputLoadingContainer from '../../containers/SearchInputLoadingContainer/SearchInputLoadingContainer';
 
 type paramsType = {
   step: string;
@@ -60,13 +60,13 @@ const SearchInputPage = ({ match, history }: RouteComponentProps<paramsType>) =>
   // history.push
   const stepParam = match.params.step;
   if (stepParam === '1') {
-    container = <SearchInput1 />;
+    container = <SearchInputStep1Container />;
   } else if (stepParam === '2') {
-    container = <SearchInput2 />;
+    container = <SearchInputStep2Container />;
   } else if (stepParam === '3') {
-    container = <SearchInput3 />;
+    container = <SearchInputStep3Container />;
   } else if (stepParam === 'loading') {
-    container = <Loading />
+    container = <SearchInputLoadingContainer />
   }
 
   return (
