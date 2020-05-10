@@ -162,8 +162,7 @@ function ZoneMap(props: MapProps) {
     naverMapAPI = new naver.maps.Map(parent, {
       center: new naver.maps.LatLng(x, y),
       zoom: 12,
-      keyboardShortcuts: false,
-      zoomControl: true,
+      keyboardShortcuts: false
     });
   };
 
