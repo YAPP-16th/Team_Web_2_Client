@@ -24,7 +24,7 @@ function App() {
       <main>
         <Switch>
           <Route path="/search" exact component={ZoneSearchPage}></Route>
-          <Route path="/searchInput" exact component={SearchInputPage}></Route>
+          <Route path="/searchInput/:step" exact component={SearchInputPage}></Route>
         </Switch>
       </main>
       <footer></footer>

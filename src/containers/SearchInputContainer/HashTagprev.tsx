@@ -25,7 +25,6 @@ const HashTag = () => {
         >
           {e}
         </div>
-
       </>
     );
   });

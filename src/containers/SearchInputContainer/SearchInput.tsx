@@ -9,7 +9,6 @@ import SearchInput1 from './SearchInput1';
 import SearchInput2 from './SearchInput2';
 import SearchInput3 from './SearchInput3';
 import Loading from './Loading';
-
 import icongps from './icongps.png';
 
 const SearchInputWrapper = styled.div`
@@ -38,9 +37,9 @@ const SearchInput = () => {
 
   return (
     <SearchInputWrapper>
-      {/* <SearchInput1></SearchInput1> */}
-      {/* <SearchInput2></SearchInput2> */}
-      {/* <SearchInput3 /> */}
+      <SearchInput1></SearchInput1>
+      <SearchInput2></SearchInput2>
+      <SearchInput3 />
       <Loading />
       <MoreItemButton>다음으로</MoreItemButton>
     </SearchInputWrapper>
