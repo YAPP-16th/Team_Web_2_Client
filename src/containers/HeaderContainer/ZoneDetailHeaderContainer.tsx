@@ -22,6 +22,8 @@ const HeaderContainerWrapper = styled.div`
   top: 100px;
 
   @media screen and (min-width: 1060px) {
+    width: 1120px;
+    margin: auto;
     .header-info {
       margin-left: 9px;
       align-items: flex-start;
@@ -40,6 +42,7 @@ const HeaderContainerWrapper = styled.div`
     }
 
     .header-tabs {
+      margin-left: 9px;
       justify-content: flex-start;
       > * {
         flex: initial;
@@ -59,6 +62,16 @@ const StickyTabs = styled.div`
   display: flex;
   > * {
     flex: 1;
+  }
+  @media screen and (min-width: 1060px) {
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0px;
+      width: Calc(100% - 18px);
+      z-index: -1;
+      border-bottom: 2px solid var(--ItemColor);
+    }
   }
 `;
 

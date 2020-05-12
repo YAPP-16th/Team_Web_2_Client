@@ -7,7 +7,7 @@ import Toolbar from "../../components/Toolbar/Toolbar";
 import ZoneSearchResultHeaderInfo from "../../components/HeaderInfo/SearchResultInfo";
 import Icon from "../../components/Icon/Icon";
 
-import useListView from '../ListViewContainer/ListViewHooks'
+import useListView from '../../hooks/listViewHooks';
 
 // Container
 import ZoneDetailHeaderContainer from './ZoneDetailHeaderContainer';
@@ -18,6 +18,10 @@ const itemCount = 17;
 const HeaderContainerWrapper = styled.div`
   position: sticky;
   top: 100px;
+  @media screen and (min-width: 1060px) {
+    width: 1120px;
+    margin: auto;
+  }
 `;
 
 const RightContentsWrapper = styled.div`

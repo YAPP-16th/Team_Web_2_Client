@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 // Custom Hooks
-import useListView from "./ListViewHooks";
+import useListView from "../../hooks/listViewHooks";
 
 // Components
 import SearchResultItem from "../../components/ListViewItem/SearchResultItem";
@@ -36,6 +36,20 @@ const moveUp = keyframes`
   }
 `;
 
+const moveUpDesktop = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+
+  75% {
+    transform: translateY(Calc(270px - 100vh));
+  }
+
+  100% {
+    transform: translateY(Calc(270px - 100vh));
+  }
+`;
+
 const moveDown = keyframes`
   0% {
     transform: translateY(Calc(250px - 100vh));
@@ -56,12 +70,24 @@ const moveDown = keyframes`
   }
 `;
 
+const moveDownDesktop = keyframes`
+  0% {
+    transform: translateY(Calc(270px - 100vh));
+  }
+
+  75% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+`;
+
 // Styles
 const ListViewContainerWrapper = styled.div<{ clicked: boolean }>`
   width: 100%;
   height: Calc(100vh - 193px);
-  overflow-y: scroll;
-  scrollbar-width: 0px;
   position: fixed;
   top: 92%;
   background-color: var(--BackgroundColor);
@@ -69,6 +95,27 @@ const ListViewContainerWrapper = styled.div<{ clicked: boolean }>`
   border-top-right-radius: 12px;
   animation: ${(props) => (props.clicked ? moveUp : moveDown)} 1s ease-out
     forwards;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+		width: 10px;
+    background: none;
+	}
+	&::-webkit-scrollbar-thumb {
+      background: none;
+      border-radius: 20px;
+	    opacity: .4;
+	}
+	&::-webkit-scrollbar-track {
+	    background: none;
+	}
+
+  @media screen and (min-width: 1060px) {
+    width: 332px;
+    margin: auto;
+    right: 19px;
+    animation: ${(props) => (props.clicked ? moveUpDesktop : moveDownDesktop)}
+      1s ease-out forwards;
+  }
 `;
 
 const ModalHeader = styled.div`
@@ -112,6 +159,12 @@ const items = [
   { id: 6, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
   { id: 7, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
   { id: 8, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
+  { id: 9, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
+  { id: 10, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
+  { id: 11, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
+  { id: 12, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
+  { id: 13, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
+
 ];
 
 const ListViewContainer = ({ location }: RouteComponentProps) => {

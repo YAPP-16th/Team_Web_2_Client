@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useCallback } from 'react';
-import { RootState } from '../../modules'
-import { toggleListView } from '../../modules/listView'
+import { RootState } from '../modules'
+import { toggleListView } from '../modules/listView'
 
 const useListView = () => {
   const { toggled } = useSelector(

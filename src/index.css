@@ -27,7 +27,7 @@ code {
 /* CSS VARIABLES */
 
 #root {
-  height: 100%;
+  min-height: 100%;
   --BackgroundColor: #1d1d1d;
   --ItemColor: #2a2a2a;
   --LightItemColor: #ffffff;

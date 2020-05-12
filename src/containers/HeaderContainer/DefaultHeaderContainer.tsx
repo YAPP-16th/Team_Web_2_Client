@@ -11,6 +11,10 @@ import Icon from "../../components/Icon/Icon";
 const HeaderContainerWrapper = styled.div`
   position: sticky;
   top: 100px;
+  @media screen and (min-width: 1060px) {
+    width: 1120px;
+    margin: auto;
+  }
 `;
 
 const RightContentsWrapper = styled.div`

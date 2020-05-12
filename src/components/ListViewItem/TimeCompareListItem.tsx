@@ -1,4 +1,4 @@
-import React from "react";
+import React, {  } from "react";
 import styled from "styled-components";
 
 // Components
@@ -12,6 +12,7 @@ type TimeCompareListItemProps = {
   address: string;
   distanceFrom: string | number;
   distanceTo: string | number;
+  className?: string;
 };
 
 const TimeCompareListItemWrapper = styled.div`
@@ -80,9 +81,10 @@ const TimeCompareListItem = ({
   address,
   distanceFrom,
   distanceTo,
+  className
 }: TimeCompareListItemProps) => {
   return (
-    <TimeCompareListItemWrapper>
+    <TimeCompareListItemWrapper className={className}>
       <ContentRow>
         <HeadingAndIcon>
           <Icon icon={icon} />

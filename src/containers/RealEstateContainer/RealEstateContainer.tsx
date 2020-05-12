@@ -105,6 +105,11 @@ const RealEstateContainerWrapper = styled.div`
 
   .realestate-item {
   }
+
+  @media screen and (min-width: 1060px) {
+    width: 1120px;
+    margin: auto;
+  }
 `;
 
 const Header = styled.div`
@@ -112,6 +117,10 @@ const Header = styled.div`
   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 50px;
+  @media screen and (min-width: 1060px) {
+    margin-top: 80px;
+  }
+  
 `
 
 const Heading = styled.h1`
@@ -122,6 +131,9 @@ const Heading = styled.h1`
   line-height: 1.36;
   letter-spacing: -0.98px;
   color: var(--LightTextColor);
+  @media screen and (min-width: 1060px) {
+    font-size: 32px;
+  }
 `;
 
 const realEstateListItems = RealEstateListContents.map((content) => {
@@ -145,6 +157,10 @@ const RealEstateListItemsWrapper = styled.div`
   grid-template-columns: repeat(2, minmax(120px, 1fr));
   grid-gap: 14px;
   margin-bottom: 24px;
+  @media screen and (min-width: 1060px) {
+    grid-gap: 18px;
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
+  }
 `;
 
 const MoreItemButton = styled.button`

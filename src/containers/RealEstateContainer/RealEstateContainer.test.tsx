@@ -6,9 +6,6 @@ import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
 
 describe("<RealEstateContainer />", () => {
-  it("매물", () => {
-
-  });
   // it("매물 데이터 가져오기", () => {
   //   const utils = render(<RealEstateContainer />);
   // });
