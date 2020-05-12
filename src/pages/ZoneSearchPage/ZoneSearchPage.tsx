@@ -15,8 +15,6 @@ import queryString from "query-string";
 import ZoneDetailPage from "../ZoneDetailPage/ZoneDetailPage";
 
 const ZoneSearchPage = ({ match, location }: RouteComponentProps) => {
-
-
   return (
     <div className="zone-search">
       <Switch>

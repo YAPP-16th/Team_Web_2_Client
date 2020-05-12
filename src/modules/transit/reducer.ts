@@ -28,8 +28,7 @@ const transit = createReducer<TransitsState, TransitsAction>(initialState, {
   [GET_TRANSITS_ERROR]: (state, action) => {
     return {
       ...state,
-      error: action.payload,
-      loading: true,
+      error: action.payload
     }
   },
 })

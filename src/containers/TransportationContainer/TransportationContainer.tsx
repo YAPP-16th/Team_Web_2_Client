@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import useTransit from '../../hooks/transitHooks'
-import { TransitQuery } from '../../api/transits'
+import useTransit from "../../hooks/transitHooks";
+import { Transit, TransitQuery } from "../../api/transits";
 
 // Components
 import TransportationListItem from "../../components/ListViewItem/TransportationListItem";
 import { TagButton } from "../../components/Button/Button";
+
+type TransportationContainerProps = {
+  zoneCode: string | number;
+  zoneAddress: string;
+  queries: TransitQuery;
+};
 
 const TransportationContainerWrapper = styled.div`
   background-color: var(--BackgroundColor);
@@ -162,45 +168,42 @@ const TransportationArea = styled.div`
   }
 `;
 
-const TransportationContainer = ({ zoneId, lat, lng }: TransitQuery) => {
-
+const TransportationContainer = ({
+  zoneCode,
+  zoneAddress,
+  queries: { zoneId, lat, lng },
+}: TransportationContainerProps) => {
+  
   const transit = useTransit();
 
+  const [selectedTransit, setSelectTransit] = useState({
+    transitObj: {
+      firstStation: "",
+      firstStationLine: 0,
+      transitCount: "",
+      vehicleTypes: ["버스"],
+      time: 0,
+    },
+  });
+
   useEffect(() => {
-    transit.loadTransitsByQueries({ zoneId, lat, lng })
+    transit.loadTransitsByQueries({ zoneId, lat, lng });
   }, []);
 
-  const transitData = transit.data;
-
-
-  // Dummy Data
-  const selectedTransportation = "Bus";
-  const zoneCode = 65323;
-
-  const pathContents = [
-    { address: "서울 강남구 선릉로 429" },
-    { address: "서울 강남구 역삼 1동" },
-  ];
+  const transportationContents = transit.data.map((data) => ({
+    transportationInfo:
+      data.vehicleTypes.reduce((a, x) => a + " " + x) + " " + data.firstStation,
+    time: data.time,
+    transfer: data.transitCount,
+  }));
 
   const tagButtonContents = [
-    { text: "회사" },
-    { text: "BUS" },
-    { text: "10-20m" },
     { text: "#회사" },
     { text: "#BUS" },
     { text: "#10-20m" },
   ];
 
-  const transportationContents = [
-    { transportationInfo: "641 Bus", time: 14, transfer: 2 },
-    { transportationInfo: "614 Bus", time: 12, transfer: 2 },
-    { transportationInfo: "312 Bus", time: 11, transfer: 3 },
-    { transportationInfo: "121 Bus", time: 16, transfer: 1 },
-  ];
-  const pathItems = pathContents.map((content) => {
-    return <PathItem>{content.address}</PathItem>;
-  });
-
+  // Item Components
   const transportationItems = transportationContents.map((content) => {
     return (
       <TransportationListItem
@@ -215,29 +218,52 @@ const TransportationContainer = ({ zoneId, lat, lng }: TransitQuery) => {
     return <TagButton fontSize="14px">{content.text}</TagButton>;
   });
 
+  // Handlers
+  const selectTransitHandler = (transitObj: Transit) => {
+    const selectedIndex = transit.data.findIndex(
+      (item) =>
+        item.firstStation === transitObj.firstStation &&
+        item.firstStationLine === transitObj.firstStationLine
+    );
+    if (selectedIndex !== -1) {
+      const processed = { ...selectedTransit };
+      processed.transitObj = transitObj;
+      setSelectTransit(processed);
+    }
+  };
+
   return (
-    <TransportationContainerWrapper>
-      <PathArea>
-        <Heading>경로</Heading>
-        <PathItemsWrapper>{pathItems}</PathItemsWrapper>
-        <ZoneCode>:ZONE {zoneCode}</ZoneCode>
-        <DesktopHeading>
-          보다 만족스러운 <br />
-          출퇴근길을 위해서
-        </DesktopHeading>
-        <DesktopSubHeading>
-          선택했던 옵션을 바탕으로 <br /> 새로운 교통편을 안내해드릴게요.{" "}
-        </DesktopSubHeading>
-        <TagButtonsWrapper>{tagButtons}</TagButtonsWrapper>
-      </PathArea>
-      <TransportationArea>
-        <Heading>{selectedTransportation}</Heading>
-        <DesktopSubHeading>새로운 교통편</DesktopSubHeading>
-        <TransportationItemsWrapper>
-          {transportationItems}
-        </TransportationItemsWrapper>
-      </TransportationArea>
-    </TransportationContainerWrapper>
+    <>
+      {transit.loading && <p style={{ textAlign: "center" }}>로딩중..</p>}
+      {transit.error && <p style={{ textAlign: "center" }}>에러발생</p>}
+      <TransportationContainerWrapper>
+        <PathArea>
+          <Heading>경로</Heading>
+          <PathItemsWrapper>
+            <PathItem>{selectedTransit.transitObj.firstStation}</PathItem>
+            <PathItem>{zoneAddress}</PathItem>
+          </PathItemsWrapper>
+          <ZoneCode>:ZONE {zoneCode}</ZoneCode>
+          <DesktopHeading>
+            보다 만족스러운 <br />
+            출퇴근길을 위해서
+          </DesktopHeading>
+          <DesktopSubHeading>
+            선택했던 옵션을 바탕으로 <br /> 새로운 교통편을 안내해드릴게요.{" "}
+          </DesktopSubHeading>
+          <TagButtonsWrapper>{tagButtons}</TagButtonsWrapper>
+        </PathArea>
+        <TransportationArea>
+          <Heading>새로운 교통편</Heading>
+          <DesktopSubHeading>새로운 교통편</DesktopSubHeading>
+          <TransportationItemsWrapper>
+            {transit.data.length !== 0
+              ? transportationItems
+              : "다른 교통편이 없습니다"}
+          </TransportationItemsWrapper>
+        </TransportationArea>
+      </TransportationContainerWrapper>
+    </>
   );
 };
 

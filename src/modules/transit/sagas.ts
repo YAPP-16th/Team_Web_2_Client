@@ -4,8 +4,9 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 
 function* getTransitsSaga(action: ReturnType<typeof getTransitsAsync.request>) {
   try {
-    const Trasits: Array<Transit> = yield call(getTransits, action.payload);
-    yield put(getTransitsAsync.success(Trasits));
+    console.log('what?')
+    const transits: Array<Transit> = yield call(getTransits, action.payload);
+    yield put(getTransitsAsync.success(transits));
   } catch (e) {
     yield put(getTransitsAsync.failure(e));
   }

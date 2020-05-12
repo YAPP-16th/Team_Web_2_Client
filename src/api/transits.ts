@@ -6,7 +6,7 @@ export type TransitObj = {
 }
 
 export type Transit = {
-  firstStation: string | number;
+  firstStation: string;
   firstStationLine: number;
   transitCount: string;
   vehicleTypes: Array<string>
@@ -20,6 +20,10 @@ export type TransitQuery = {
 }
 
 export async function getTransits ({lat, lng, zoneId}: TransitQuery) {
-  const response = await axios.get<TransitObj>(`http://testloadbalancer-153098121.ap-northeast-2.elb.amazonaws.com/transit?lat=${lat}&lng=${lng}&zoneId=${zoneId}`);
+  const response = await axios.get<TransitObj>(`http://testloadbalancer-546010974.ap-northeast-2.elb.amazonaws.com/transit?lat=${lat}&lng=${lng}&zoneId=${zoneId}`, {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    }
+  });
   return response.data;
 }
