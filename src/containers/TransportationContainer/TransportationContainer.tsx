@@ -7,6 +7,7 @@ import { Transit, TransitQuery } from "../../api/transits";
 // Components
 import TransportationListItem from "../../components/ListViewItem/TransportationListItem";
 import { TagButton } from "../../components/Button/Button";
+import LoadingDots from "../../components/Loading/LoadingDots";
 
 type TransportationContainerProps = {
   zoneCode: string | number;
@@ -173,7 +174,6 @@ const TransportationContainer = ({
   zoneAddress,
   queries: { zoneId, lat, lng },
 }: TransportationContainerProps) => {
-  
   const transit = useTransit();
 
   const [selectedTransit, setSelectTransit] = useState({
@@ -190,12 +190,21 @@ const TransportationContainer = ({
     transit.loadTransitsByQueries({ zoneId, lat, lng });
   }, []);
 
-  const transportationContents = transit.data.map((data) => ({
-    transportationInfo:
-      data.vehicleTypes.reduce((a, x) => a + " " + x) + " " + data.firstStation,
-    time: data.time,
-    transfer: data.transitCount,
-  }));
+  console.log(transit.data);
+
+  const transportationContents = transit.data.map((data) => {
+    let transportationInfo = data.vehicleTypes[0] + " " + data.firstStationLine;
+    if (data.vehicleTypes.length > 1) {
+      for (let i = 1; i < data.vehicleTypes.length; i++) {
+        transportationInfo += " + " + data.vehicleTypes[i];
+      }
+    }
+    return {
+      transportationInfo: transportationInfo,
+      time: data.time,
+      transfer: data.transitCount,
+    };
+  });
 
   const tagButtonContents = [
     { text: "#회사" },
@@ -234,8 +243,7 @@ const TransportationContainer = ({
 
   return (
     <>
-      {transit.loading && <p style={{ textAlign: "center" }}>로딩중..</p>}
-      {transit.error && <p style={{ textAlign: "center" }}>에러발생</p>}
+      {transit.error && "에러가 발생했습니다"}
       <TransportationContainerWrapper>
         <PathArea>
           <Heading>경로</Heading>
@@ -257,9 +265,20 @@ const TransportationContainer = ({
           <Heading>새로운 교통편</Heading>
           <DesktopSubHeading>새로운 교통편</DesktopSubHeading>
           <TransportationItemsWrapper>
-            {transit.data.length !== 0
-              ? transportationItems
-              : "다른 교통편이 없습니다"}
+            {transit.loading && <LoadingDots color="white" size="15px" />}
+            {transit.data.length !== 0 ? (
+              transportationItems
+            ) : (
+              <p
+                style={{
+                  textAlign: "center",
+                  color: "white",
+                  display: transit.loading ? "none" : "block",
+                }}
+              >
+                교통편이 없습니다
+              </p>
+            )}
           </TransportationItemsWrapper>
         </TransportationArea>
       </TransportationContainerWrapper>
