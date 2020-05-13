@@ -52,7 +52,7 @@ const HashTag = () => {
   return <>
     {tagListMap}
     {isInput
-      ? <input defaultValue="# " onKeyPress={onKeyPressHandler} />
+      ? <input className="styledInput" defaultValue="# " onKeyPress={onKeyPressHandler} autoFocus/>
       :
       <>
         <div className=" StyledHashTag" onClick={() => onClickHandler()}>+추가</div>

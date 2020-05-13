@@ -48,12 +48,23 @@
 }
 
 .StyledHashTag {
+  width: 32px;
+  height: 23px;
+  font-family: NotoSansCJKkr;
+  font-size: 14px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.64;
+  letter-spacing: -0.62px;
+  color: #ffffff;
   width: 74px;
   height: 34px;
   border-radius: 18.5px;
   box-shadow: 0 0 6px 0 rgba(23, 23, 23, 0.03);
   border: solid 1px #2a2a2a;
   background-color: #2a2a2a;
+  display: flex;
 }
 
 .Rectangle_location {
@@ -63,6 +74,20 @@
   box-shadow: 0 0 6px 0 rgba(23, 23, 23, 0.03);
   border: solid 1px #2a2a2a;
   background-color: #2a2a2a;
+}
+
+.Rectangle {
+  width: 320px;
+  height: 51px;
+  border-radius: 8px;
+  background-color: #323232;
+  color: #ffffff;
+}
+
+.check1 {
+  width: 17px;
+  height: 17px;
+  object-fit: contain;
 }
 
 .ment {
@@ -144,4 +169,25 @@
   font-family: Gotham;
   font-weight: 300;
   color: #ffffff;
+}
+
+.styledInput {
+  width: 32px;
+  height: 23px;
+  font-family: NotoSansCJKkr;
+  font-size: 14px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.64;
+  letter-spacing: -0.62px;
+  color: #ffffff;
+  background-color: #2a2a2a;
+  width: 74px;
+  height: 34px;
+  border-radius: 18.5px;
+  box-shadow: 0 0 6px 0 rgba(23, 23, 23, 0.03);
+  border: solid 1px #2a2a2a;
+  outline: none;
+  display: flex;
 }

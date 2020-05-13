@@ -10,8 +10,9 @@ import icongps from '../../../assets/img/icongps.png';
 
 type InputProps = {
   click?: () => void;
+  location: string;
 }
-const SearchInput1 = ({ click }: InputProps) => {
+const SearchInput1 = ({ click, location }: InputProps) => {
 
   const onClickCurrentLocationHandler = () => {
     console.log('hit')
@@ -34,7 +35,7 @@ const SearchInput1 = ({ click }: InputProps) => {
         <br />
         <input
           type="text"
-          placeholder="주소를 입력하세요"
+          placeholder={location}
           onClick={click}
           className="Rectangle_Long"
         ></input>

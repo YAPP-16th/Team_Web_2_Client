@@ -11,9 +11,10 @@ type InputProps = {
 const SearchInputStep1Container = ({ click }: InputProps) => {
 
   const onClickLocationHandler = () => {
-    console.log('hit'); // ZoneSearchPopUp 팝업 창 띄우기
     return setIsOpen(!isOpen)
   };
+
+  const [location, setLocation] = useState('주소를 입력하세요' as string)
 
 
 
@@ -28,11 +29,16 @@ const SearchInputStep1Container = ({ click }: InputProps) => {
           display={isOpen}
           click={onClickLocationHandler}
         >
-          <ZoneSearchPopUp />
+          <ZoneSearchPopUp 
+          close={onClickLocationHandler}
+          //@ts-ignore
+          setLocation={setLocation}
+          />
         </Dialog>
         :
         <SearchInput1
           click={onClickLocationHandler}
+          location={location}
         />
       }
 
