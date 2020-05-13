@@ -10,11 +10,15 @@ const SearchInput2 = () => {
 
   const transport = ['지하철', '버스', '자전거', '도보', '자동차']
 
+  const HandleRadio = (e: any) => {
+    console.log(e.target.value, '리덕스 보내기')
+  }
+
   const transportList = transport.map((tp, idx) => {
     return (
       <>
-        <label>
-          <input type="radio" id="transport" name="transport" value={tp} ></input>
+        <label key={idx}>
+          <input type="radio" id="transport" name="transport" value={tp} onChange={HandleRadio}></input>
           <div className="transportList">{tp}</div>
         </label>
       </>

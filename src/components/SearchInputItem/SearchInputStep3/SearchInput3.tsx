@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
 // import '../../pages/SearchInputPage/ZoneSearchPage.scss';
-import ZoneSearchPopUp from '../SearchInputStep1/ZoneSearchPopup';
-import Dialog from '../../Dialog/Dialog';
-import styled from 'styled-components';
-import HashTag from '../SearchInputStep1/HashTag';
-import CurrentLocation from '../SearchInputStep1/CurrentLocation';
 
 const SearchInput3 = () => {
 
   const times = ['0-10분', '10분-20분', '20분-30분', '30분 이상']
 
+  const HandleRadio = (e: any) => {
+    console.log(e.target.value, '리덕스 보내기')
+  }
+
+
   const timeList = times.map((time, idx) => {
     return (
       <>
-        <label>
-          <input type="radio" id="transport" name="transport" value={time} ></input>
-          <div className="transportList">{time}</div>
+        {/* unique key error 가 왜 나는지 모르겠음 ㅡㅡ */}
+        <label key={time.toString()} >
+          <input type="radio" id="transport" name="transport" value={time} key={idx + 10000} onChange={HandleRadio}></input>
+          <div className="transportList" key={Math.random()}>{time}</div>
         </label>
       </>
     );

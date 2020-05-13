@@ -8,7 +8,7 @@ import CurrentLocation from './SearchInputStep1/CurrentLocation';
 import group3 from '../../assets/img/group3.png';
 
 const Loading = () => {
-
+  // Redux 에서 값 꺼내와서 내보내기
 
   return (
     <>
