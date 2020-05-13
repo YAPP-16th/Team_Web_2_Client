@@ -4,7 +4,7 @@ import ZoneSearchPopUp from './ZoneSearchPopup';
 import Dialog from '../../Dialog/Dialog';
 import styled from 'styled-components';
 import HashTag from './HashTag';
-import CurrentLocation from './CurrentLocation';
+import getLocation from './CurrentLocation';
 
 import icongps from '../../../assets/img/icongps.png';
 
@@ -15,7 +15,7 @@ const SearchInput1 = ({ click }: InputProps) => {
 
   const onClickCurrentLocationHandler = () => {
     console.log('hit')
-    // CurrentLocation()
+    getLocation();
   }
 
   return (
