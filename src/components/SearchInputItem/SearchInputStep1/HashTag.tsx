@@ -1,19 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const HashTag = () => {
-  const tagList: any = ['#회사', '#학교', '추가+'];
 
   const addTag: any = (
     array: Array<string>,
-    index: number,
     newItem: string
   ) => {
-    console.log([...array.slice(0, index), newItem, ...array.slice(index)])
+    array.push(newItem)
+    console.log(array)
+    setTagList(array)
   };
 
-  const onClickHandler = (e: any) => {
-    return e === '추가+' ? addTag(tagList, -1, e) : e;
+  const [isInput, setIsInput] = useState(false as boolean)
+  const [tagList, setTagList] = useState(['# 회사', '# 학교'] as any)
+
+  // useEffect(() => { }, [toggle]);
+
+  // const onClickHandler = (e: any) => {
+  //   return e === '추가+' ? addTag(tagList, -1, <input></input>) : e;
+  // };
+
+  const onClickHandler = () => {
+    return setIsInput(true)
   };
+
+  const onKeyPressHandler = (e: any) => {
+    if (e.key === 'Enter') {
+      addTag(tagList, e.target.value)
+      setIsInput(false)
+    }
+  }
 
   const tagListMap: any = tagList.map((e: any, idx: number) => {
     return (
@@ -21,15 +37,27 @@ const HashTag = () => {
         <div
           className="StyledHashTag"
           key={idx}
-          onClick={() => onClickHandler(e)}
         >
           {e}
         </div>
-
       </>
     );
   });
-  return <>{tagListMap}</>;
+  return <>
+    {tagListMap}
+    {isInput
+      ? <input defaultValue="# " onKeyPress={onKeyPressHandler} />
+      :
+      <>
+
+        <div className=" StyledHashTag" onClick={() => onClickHandler()}>+추가</div>
+      </>
+    }
+
+    <br />
+    <br />
+    <br />
+  </>;
 };
 
 export default HashTag;
