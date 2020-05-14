@@ -9,7 +9,11 @@ export type Transit = {
   firstStation: string;
   firstStationLine: number;
   transitCount: string;
-  vehicleTypes: Array<string>
+  vehicleTypes: Array<string>;
+  distance: {
+    text: string,
+    value: number
+  };
   time: number;
 }
 

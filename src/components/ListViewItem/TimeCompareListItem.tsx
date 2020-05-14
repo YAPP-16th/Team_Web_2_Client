@@ -1,11 +1,12 @@
-import React, {  } from "react";
+import React from "react";
 import styled from "styled-components";
 
 // Components
 import Icon, { IconType } from "../Icon/Icon";
+import { Button } from '../Button/Button';
 
 // type
-type TimeCompareListItemProps = {
+export type TimeCompareListItemProps = {
   icon: IconType;
   heading: string;
   savingTime: string | number;
@@ -13,6 +14,11 @@ type TimeCompareListItemProps = {
   distanceFrom: string | number;
   distanceTo: string | number;
   className?: string;
+  editMode?: boolean;
+  location?: {
+    lat: number,
+    lng: number
+  }
 };
 
 const TimeCompareListItemWrapper = styled.div`
@@ -74,6 +80,14 @@ const ContentRow = styled.div`
   align-items: center;
 `;
 
+const EditableItemWrapper = styled.div`
+
+`;
+
+const EditableHeading = styled.input`
+
+`;
+
 const TimeCompareListItem = ({
   icon,
   heading,
@@ -81,7 +95,8 @@ const TimeCompareListItem = ({
   address,
   distanceFrom,
   distanceTo,
-  className
+  className,
+  editMode
 }: TimeCompareListItemProps) => {
   return (
     <TimeCompareListItemWrapper className={className}>
@@ -95,11 +110,15 @@ const TimeCompareListItem = ({
       <ContentRow>
         <Address>{address}</Address>
         <Distance>
-          {distanceFrom}m -> {distanceTo}m
+          {distanceFrom} -> {distanceTo}
         </Distance>
       </ContentRow>
     </TimeCompareListItemWrapper>
   );
 };
+
+TimeCompareListItem.defaultProps = {
+  editMode: false
+}
 
 export default TimeCompareListItem;

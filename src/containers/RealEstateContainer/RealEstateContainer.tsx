@@ -55,6 +55,12 @@ const RealEstateListItemsWrapper = styled.div`
   grid-template-columns: repeat(2, minmax(120px, 1fr));
   grid-gap: 14px;
   margin-bottom: 24px;
+  > a {
+    transition: opacity 0.5s;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
   @media screen and (min-width: 1060px) {
     grid-gap: 18px;
     grid-template-columns: repeat(4, minmax(250px, 1fr));
@@ -87,9 +93,9 @@ const RealEstateContainer = ({ zoneId }: RealEstateContainerProps) => {
     room.loadRoomsByZoneId(zoneId);
   }, []);
 
-  console.log(room.data);
+  const realestateContents = room.data.filter(x => x.img !== null);
 
-  const realEstateListItems = room.data.map((item) => {
+  const realEstateListItems = realestateContents.map((item) => {
     return (
       <RealEstateListItem
         registerId={item.registerId}
@@ -120,17 +126,19 @@ const RealEstateContainer = ({ zoneId }: RealEstateContainerProps) => {
           {room.error && (
             <p style={{ textAlign: "center", color: "white" }}>에러발생</p>
           )}
-          {room.data.length !== 0 ? (
+          {realestateContents.length !== 0 ? (
             realEstateListItems
           ) : (
             <p
               style={{
+                width: "300px",
+                marginBottom: "30px",
                 textAlign: "center",
                 color: "white",
                 display: room.loading ? "none" : "block",
               }}
             >
-              매물이 없습니다
+              이 지역에서 판매 중인 매물이 없습니다
             </p>
           )}
         </RealEstateListItemsWrapper>

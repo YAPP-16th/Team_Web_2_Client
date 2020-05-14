@@ -262,8 +262,8 @@ const TransportationContainer = ({
           <TagButtonsWrapper>{tagButtons}</TagButtonsWrapper>
         </PathArea>
         <TransportationArea>
-          <Heading>새로운 교통편</Heading>
-          <DesktopSubHeading>새로운 교통편</DesktopSubHeading>
+          <Heading>실시간 교통편</Heading>
+          <DesktopSubHeading>실시간 교통편</DesktopSubHeading>
           <TransportationItemsWrapper>
             {transit.loading && <LoadingDots color="white" size="15px" />}
             {transit.data.length !== 0 ? (
