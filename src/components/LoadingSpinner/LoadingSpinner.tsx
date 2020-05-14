@@ -1,6 +1,6 @@
 import React from "react";
 import Styled, { css, keyframes } from "styled-components";
-import { ReactComponent as Spiner } from "../../assets/svgs/img-logo-spinner.svg";
+import { ReactComponent as Spiner } from "../../assets/svgs/compass-spinner.svg";
 
 interface RotateSpiner {
   width?: string;
