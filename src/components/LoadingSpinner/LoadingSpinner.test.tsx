@@ -41,7 +41,7 @@ describe("Loading Spinner 컴포넌트", () => {
       expect(child.innerHTML).toMatch(
         `animation="` + DEFAULT_VALUES.actionAnimation + `"`
       );
-      expect(child.innerHTML).toMatch(`img-logo-spinner.svg`);
+      expect(child.innerHTML).toMatch(`compass-spinner.svg`);
     });
     it("애니메이션 실행 설정 시 해당 값이 적용 되었다.", () => {
       const CUSTOM_DATA = {
@@ -77,7 +77,7 @@ describe("Loading Spinner 컴포넌트", () => {
       expect(child.innerHTML).toMatch(
         `animation="` + CUSTOM_DATA.actionAnimation + `"`
       );
-      expect(child.innerHTML).toMatch(`img-logo-spinner.svg`);
+      expect(child.innerHTML).toMatch(`compass-spinner.svg`);
     });
   });
 });
