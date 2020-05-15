@@ -1,4 +1,4 @@
-import { GET_ROOMS, GET_ROOMS_ERROR, GET_ROOMS_SUCCESS, getRoomsAsync } from './actions';
+import { GET_ROOMS, getRoomsAsync } from './actions';
 import { getRooms, Room } from '../../api/rooms';
 import { call, put, takeLatest } from 'redux-saga/effects';
 

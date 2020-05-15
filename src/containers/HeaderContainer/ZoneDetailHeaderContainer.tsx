@@ -13,6 +13,7 @@ const address = "강남구 역삼1동, 서울특별시";
 const zoneCode = 301421;
 const sections = [
   { name: "시간비교", to: "timecompare" },
+  { name: "편의시설", to: "place" },
   { name: "교통편", to: "transportation" },
   { name: "매물", to: "realestate" },
 ];
