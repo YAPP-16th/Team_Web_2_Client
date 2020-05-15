@@ -1,0 +1,24 @@
+@mixin marker($width, $height, $lineHeight, $fontSize) {
+  cursor: pointer;
+  color: black;
+  text-align: center;
+  background-color: rgba(64, 174, 225, 0.8);
+  border-radius: 50%;
+  width: $width;
+  height: $height;
+  line-height: $lineHeight;
+  font-size: $fontSize;
+
+  &:focus {
+    background-color: #1d1d1d;
+    color: #40aee1;
+    outline: none;
+  }
+}
+
+.marker1 {
+  @include marker(46px, 46px, 46px, 18px);
+}
+.marker2 {
+  @include marker(50px, 50px, 50px, 24px);
+}
