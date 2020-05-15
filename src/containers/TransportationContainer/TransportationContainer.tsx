@@ -9,10 +9,9 @@ import TransportationListItem from "../../components/ListViewItem/Transportation
 import { TagButton } from "../../components/Button/Button";
 import LoadingDots from "../../components/Loading/LoadingDots";
 
-type TransportationContainerProps = {
+type TransportationContainerProps = TransitQuery & {
   zoneCode: string | number;
   zoneAddress: string;
-  queries: TransitQuery;
 };
 
 const TransportationContainerWrapper = styled.div`
@@ -172,7 +171,9 @@ const TransportationArea = styled.div`
 const TransportationContainer = ({
   zoneCode,
   zoneAddress,
-  queries: { zoneId, lat, lng },
+  zoneId,
+  startLocation,
+  destinationLocation
 }: TransportationContainerProps) => {
   const transit = useTransit();
 
@@ -187,7 +188,7 @@ const TransportationContainer = ({
   });
 
   useEffect(() => {
-    transit.loadTransitsByQueries({ zoneId, lat, lng });
+    transit.loadTransitsByQueries({ zoneId, startLocation, mode: "LocationToZone" });
   }, []);
 
   const transportationContents = transit.data.map((data) => {

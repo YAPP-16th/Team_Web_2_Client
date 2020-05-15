@@ -25,13 +25,17 @@ export const setTimeCompareItems = (items: TimeCompareItem[]) => {
 
 export const timeCompare = async (item: TimeCompareItem, currentZoneId: number, selectedZoneId: number) => {  
   const currentZoneTransitData = await getTransits({
-    lat: item.location.lat,
-    lng: item.location.lng,
+    startLocation: {
+      lat: item.location.lat,
+      lng: item.location.lng,
+    },
     zoneId: currentZoneId
   });
   const selectedZoneTransitData = await getTransits({
-    lat: item.location.lat,
-    lng: item.location.lng,
+    startLocation: {
+      lat: item.location.lat,
+      lng: item.location.lng,
+    },
     zoneId: selectedZoneId
   });
 

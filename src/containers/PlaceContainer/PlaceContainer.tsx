@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react";
+import React, { useEffect } from "react";
 import styled, { keyframes } from "styled-components";
 import {
   Link,
@@ -8,13 +8,14 @@ import {
 } from "react-router-dom";
 
 // Custom Hooks
+import usePlace from '../../hooks/placeHooks';
 
 // Components
-
+import PlaceListItem from '../../components/ListViewItem/PlaceListItem';
 
 // Type
 type PlaceContainerProps = {
-
+  zoneId: number;
 }
 
 const PlaceContainerWrapper = styled.div`
@@ -25,8 +26,25 @@ const PlaceContainerWrapper = styled.div`
   }
 `
 
+const PlaceListItemsWrapper = styled.div`
+`
 
-const PlaceContainer = ({}: PlaceContainerProps) => {
+const PlaceContainer = ({zoneId}: PlaceContainerProps) => {
+
+  const place = usePlace();
+
+  useEffect(() => {
+    place.loadPlacesByZoneId(zoneId);
+  }, []);
+
+  console.log(place.data);
+
+  const placesListItems = place.data.map(item => {
+    return <div key={item.categoryName}>
+      <PlaceListItem />
+    </div>;
+  })
+
   return <PlaceContainerWrapper>PlaceContainer</PlaceContainerWrapper>
 }
 

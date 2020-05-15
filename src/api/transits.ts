@@ -22,17 +22,17 @@ export type TransitQuery = {
     lat: number;
     lng: number;
   };
-  destLocation?: {
+  destinationLocation?: {
     lat: number;
     lng: number;
   };
   zoneId?: number;
-  mode: "LocationToLocation" | "LocationToZone" | "ZoneToLocation";
+  mode?: "LocationToLocation" | "LocationToZone" | "ZoneToLocation";
 };
 
 export async function getTransits({
   startLocation,
-  destLocation,
+  destinationLocation,
   zoneId,
   mode,
 }: TransitQuery) {
@@ -40,23 +40,24 @@ export async function getTransits({
 
   switch (mode) {
     case "LocationToLocation":
-      if (destLocation && startLocation) {
+      if (destinationLocation && startLocation) {
         response = await axios.get<TransitObj>(
-          `http://testloadbalancer-546010974.ap-northeast-2.elb.amazonaws.com/transit/LocationToLocation?destinationLat=${destLocation.lat}&destinationLng=${destLocation.lng}&${startLocation.lat}&startLng=${startLocation.lng}`
+          `http://testloadbalancer-546010974.ap-northeast-2.elb.amazonaws.com/transit/LocationToLocation?destinationLat=${destinationLocation.lat}&destinationLng=${destinationLocation.lng}&startLat=${startLocation.lat}&startLng=${startLocation.lng}`
         );
       }
       break;
     case "LocationToZone":
       if (startLocation) {
+        console.log(startLocation, zoneId);
         response = await axios.get<TransitObj>(
           `http://testloadbalancer-546010974.ap-northeast-2.elb.amazonaws.com/transit/LocationToZone?destinationZoneId=${zoneId}&startLat=${startLocation.lat}&startLng=${startLocation.lng}`
         );
       }
       break;
     case "ZoneToLocation":
-      if (destLocation) {
+      if (destinationLocation) {
         response = await axios.get<TransitObj>(
-          `http://testloadbalancer-546010974.ap-northeast-2.elb.amazonaws.com/transit/ZoneToLocation?destinationLat=${destLocation.lat}&destinationLng=${destLocation.lng}&startZoneId=${zoneId}`
+          `http://testloadbalancer-546010974.ap-northeast-2.elb.amazonaws.com/transit/ZoneToLocation?destinationLat=${destinationLocation.lat}&destinationLng=${destinationLocation.lng}&startZoneId=${zoneId}`
         );
       }
       break;
