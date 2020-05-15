@@ -190,8 +190,6 @@ const TransportationContainer = ({
     transit.loadTransitsByQueries({ zoneId, lat, lng });
   }, []);
 
-  console.log(transit.data);
-
   const transportationContents = transit.data.map((data) => {
     let transportationInfo = data.vehicleTypes[0] + " " + data.firstStationLine;
     if (data.vehicleTypes.length > 1) {
@@ -215,11 +213,13 @@ const TransportationContainer = ({
   // Item Components
   const transportationItems = transportationContents.map((content) => {
     return (
-      <TransportationListItem
-        transportationInfo={content.transportationInfo}
-        time={content.time}
-        transfer={content.transfer}
-      />
+      <div key={content.transportationInfo}>
+        <TransportationListItem
+          transportationInfo={content.transportationInfo}
+          time={content.time}
+          transfer={content.transfer}
+        />
+      </div>
     );
   });
 

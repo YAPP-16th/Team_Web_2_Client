@@ -31,7 +31,8 @@ const ZoneDetailPage = ({
 
   switch (match.params.feature) {
     case "timecompare":
-      return <TimeCompareContainer 
+      return <TimeCompareContainer
+        currentZoneId={zoneId}
         startAddress="서울시 마포구 431 화인빌라"
       />;
       break;

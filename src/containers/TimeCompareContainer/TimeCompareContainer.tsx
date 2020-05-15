@@ -7,11 +7,12 @@ import TimeCompareListItem, { TimeCompareListItemProps } from "../../components/
 import { IconType } from "../../components/Icon/Icon";
 
 // Utils
-import { setDefaultTimeCompareItem, addTimeCompareItem, updateTimeCompareItem, delteTimeCompareItem, getTimeCompareItems, TimeCompareItem } from '../../utils/TimeCompare/functions';
+import { setDefaultTimeCompareItem, setTimeCompareItems, getTimeCompareItems, TimeCompareItem, timeCompare } from '../../utils/TimeCompare/functions';
 
 // Data Types
 type TimeCompareContainerProps = {
   startAddress: string;
+  currentZoneId: number;
 };
 
 const TimeCompareContainerWrapper = styled.div`
@@ -75,7 +76,6 @@ const TimeCompareList = styled.div`
   > div {
     margin-bottom: 12px;
     transition: all 0.5s;
-    cursor: pointer;
     &:hover {
       opacity: 0.5;
     }
@@ -143,20 +143,19 @@ const ItemAddButton = styled.a`
   }
 `;
 
-const TimeCompareContainer = ({ startAddress }: TimeCompareContainerProps) => {
-  const [timeCompareContents, setTimeCompareContents] = useState<TimeCompareListItemProps[]>([]);
+const TimeCompareContainer = ({ startAddress, currentZoneId }: TimeCompareContainerProps) => {
+  const [timeCompareContents, setTimeCompareContents] = useState<TimeCompareItem[]>([]);
+
+  // Dummy Data
+  const selectedZoneId = 3600;
 
   useEffect(() => {
-    let timeCompareItems: any = getTimeCompareItems();
+    let timeCompareItems = getTimeCompareItems();
 
-    /** 지금 currentZoneId 와 selectedZoneId 는 Dummy 입니다*/ 
+    /** 지금 selectedZoneId 는 Dummy 입니다*/ 
     if (timeCompareItems === null) {
-      setDefaultTimeCompareItem(3200, 3600).then(() => {
-        if (timeCompareItems !== null) {
-          // timeCompareItems 가 null 일수 없는 상황이라서 any를 썼습니다
-          timeCompareItems = getTimeCompareItems();
-          setTimeCompareContents(timeCompareItems);
-        }
+      setDefaultTimeCompareItem(currentZoneId, selectedZoneId).then((results) => {
+        setTimeCompareContents(results);
       }).catch(err => {
         console.log(err);
       });
@@ -165,18 +164,83 @@ const TimeCompareContainer = ({ startAddress }: TimeCompareContainerProps) => {
     }
   }, []);
 
+  // Handlers - item 내용을 업데이트 할 때는 기존의 내용을 바탕으로 해야합니다.
+  const updateTimeCompareItemHandler = async (item: TimeCompareItem, notCompleted?: boolean) => {
+    const processed = [ ...timeCompareContents ];
+    const targetCount = processed.reduce((a, x) => {
+      let matched = a;
+      if (x.heading === item.heading && x.address === item.address) {
+        matched += 1;
+      }
+      return matched;
+    }, 0);
+    if (targetCount !== 1) {
+      // 중복되는 주소와 제목을 가진 아이템이 있거나, 해당하는 주소와 제목의 아이템이 없음
+      alert('중복되는 이름과 주소의 아이템이 있습니다')
+    } else {
+      const targetIndex = processed.findIndex(x => x.heading === item.heading && x.address === item.address);
+      const compareSuccess = await timeCompare(item, currentZoneId, selectedZoneId);
+      if (compareSuccess) {
+        item.editMode = false;
+        if (notCompleted) {
+          item.editMode = true; 
+        }
+        processed.splice(targetIndex, 1, item);
+        setTimeCompareContents(processed);
+        setTimeCompareItems(processed);
+
+      }
+    }
+  }
+
+  const deleteTimeCompareItemHandler = async (item: TimeCompareItem) => {
+    const processed = [ ...timeCompareContents ];
+    const targetIndex = processed.findIndex(x => x.heading === item.heading && x.address === item.address);
+    processed.splice(targetIndex, 1);
+    setTimeCompareContents(processed);
+    setTimeCompareItems(processed);
+  }
+
+  const addTimeCompareItemHandler = async () => {
+    const processed = [ ...timeCompareContents ];
+    const defaultName = "이름을 입력해주세요";
+    const defaultAddress = "주소를 입력해주세요"
+    const emptyItem = {
+      icon: "company" as const,
+      heading: defaultName,
+      savingTime: 0,
+      address: defaultAddress,
+      distanceFrom: "0km",
+      distanceTo: "0km",
+      editMode: true,
+      location: {
+        lat: 0,
+        lng: 0
+      }
+    }
+    processed.push(emptyItem);
+    setTimeCompareContents(processed);
+    setTimeCompareItems(processed);
+  }
+
+  // Dynamically Generated Elements
+
   const timeCompareList = timeCompareContents.map((content) => {
     return (
-      <TimeCompareListItem
-        className="timecompare-item"
-        icon={content.icon}
-        heading={content.heading}
-        savingTime={content.savingTime}
-        address={content.address}
-        distanceFrom={content.distanceFrom}
-        distanceTo={content.distanceTo}
-        editMode={content.editMode}
-      />
+      <div key={content.heading}>
+        <TimeCompareListItem
+          className="timecompare-item"
+          icon={content.icon}
+          heading={content.heading}
+          savingTime={content.savingTime}
+          address={content.address}
+          distanceFrom={content.distanceFrom}
+          distanceTo={content.distanceTo}
+          editMode={content.editMode}
+          content={content}
+          editFunc={updateTimeCompareItemHandler}
+        />
+      </div>
     );
   });
 
@@ -194,7 +258,7 @@ const TimeCompareContainer = ({ startAddress }: TimeCompareContainerProps) => {
       </StartPositionSelectWrapper>
       <TimeCompareList>
         {timeCompareList}
-        <ItemAddButton>+ 추가하기</ItemAddButton>
+        <ItemAddButton onClick={addTimeCompareItemHandler}>+ 추가하기</ItemAddButton>
       </TimeCompareList>
     </TimeCompareContainerWrapper>
   );

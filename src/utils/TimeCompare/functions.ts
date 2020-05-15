@@ -23,27 +23,7 @@ export const setTimeCompareItems = (items: TimeCompareItem[]) => {
   localStorage.setItem("timeCompareItems", JSON.stringify(items));
 }
 
-export const addTimeCompareItem = async (item: TimeCompareItem, currentZoneId: number, selectedZoneId: number) => {
-  let timeCompareItems = getTimeCompareItems(); 
-  if (timeCompareItems === null) {
-    timeCompareItems = []; 
-  }
-  await timeCompare(item, currentZoneId, selectedZoneId);
-  timeCompareItems.push(item);
-  setTimeCompareItems(timeCompareItems);
-}
-
-export const updateTimeCompareItem = async (item: TimeCompareItem) => {
-  
-}
-
-export const delteTimeCompareItem = async (item: TimeCompareItem) => {
-  
-}
-
-
-
-export const timeCompare = async (item: TimeCompareItem, currentZoneId: number, selectedZoneId: number) => {
+export const timeCompare = async (item: TimeCompareItem, currentZoneId: number, selectedZoneId: number) => {  
   const currentZoneTransitData = await getTransits({
     lat: item.location.lat,
     lng: item.location.lng,
@@ -54,12 +34,19 @@ export const timeCompare = async (item: TimeCompareItem, currentZoneId: number, 
     lng: item.location.lng,
     zoneId: selectedZoneId
   });
+
+  if (!(currentZoneTransitData && selectedZoneTransitData)) {
+    alert('주소를 설정해주세요');
+    return false;
+  }
+
   const currentZoneMinTimeTransitItem = getMinTransitItem(currentZoneTransitData);
   const selectedZoneMinTimeTransitItem = getMinTransitItem(selectedZoneTransitData);
 
   item.distanceFrom = currentZoneMinTimeTransitItem.distance.text;
   item.distanceTo = selectedZoneMinTimeTransitItem.distance.text;
   item.savingTime = currentZoneMinTimeTransitItem.time - selectedZoneMinTimeTransitItem.time;
+  return true;
 }
 
 export const setDefaultTimeCompareItem = async (currentZoneId: number, selectedZoneId: number) => {
@@ -68,7 +55,7 @@ export const setDefaultTimeCompareItem = async (currentZoneId: number, selectedZ
       icon: "koex" as const,
       heading: "코엑스까지",
       savingTime: 0,
-      address: "서울 강남구 선릉로 429",
+      address: "서울 강남구 영동대로 513",
       distanceFrom: "0km",
       distanceTo: "0km",
       editMode: false,
@@ -81,7 +68,7 @@ export const setDefaultTimeCompareItem = async (currentZoneId: number, selectedZ
       icon: "seoulForest" as const,
       heading: "서울숲까지",
       savingTime: 0,
-      address: "서울 강남구 선릉로 429",
+      address: "서울 성동구 뚝섬로 273",
       distanceFrom: "0km",
       distanceTo: "0km",
       editMode: false,
@@ -95,6 +82,11 @@ export const setDefaultTimeCompareItem = async (currentZoneId: number, selectedZ
     await timeCompare(item, currentZoneId, selectedZoneId);
   }
   localStorage.setItem("timeCompareItems", JSON.stringify(defaultItems));
+  return defaultItems;
 }
+
+
+
+
 
 

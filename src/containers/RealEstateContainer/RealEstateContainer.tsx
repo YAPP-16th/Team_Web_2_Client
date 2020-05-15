@@ -55,7 +55,7 @@ const RealEstateListItemsWrapper = styled.div`
   grid-template-columns: repeat(2, minmax(120px, 1fr));
   grid-gap: 14px;
   margin-bottom: 24px;
-  > a {
+  > div > a {
     transition: opacity 0.5s;
     &:hover {
       opacity: 0.5;
@@ -97,17 +97,19 @@ const RealEstateContainer = ({ zoneId }: RealEstateContainerProps) => {
 
   const realEstateListItems = realestateContents.map((item) => {
     return (
-      <RealEstateListItem
-        registerId={item.registerId}
-        className="realestate-item"
-        buildingType={item.buildingType}
-        name={item.name}
-        deposit={item.deposit}
-        img={item.img}
-        monthlyPayment={item.monthlyPayment}
-        loanType={item.loanType}
-        roomType={item.roomType}
-      />
+      <div key={item.id}>
+        <RealEstateListItem
+          registerId={item.registerId}
+          className="realestate-item"
+          buildingType={item.buildingType}
+          name={item.name}
+          deposit={item.deposit}
+          img={item.img}
+          monthlyPayment={item.monthlyPayment}
+          loanType={item.loanType}
+          roomType={item.roomType}
+        />
+      </div>
     );
   });
 
