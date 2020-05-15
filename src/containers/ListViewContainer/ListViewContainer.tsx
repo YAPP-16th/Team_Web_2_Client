@@ -13,8 +13,6 @@ import useListView from "../../hooks/listViewHooks";
 // Components
 import SearchResultItem from "../../components/ListViewItem/SearchResultItem";
 
-// Responsive
-
 // Animations
 const moveUp = keyframes`
   0% {
