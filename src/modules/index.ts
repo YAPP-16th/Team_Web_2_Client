@@ -4,6 +4,7 @@ import { all } from 'redux-saga/effects';
 // Reducers
 import rooms from './rooms';
 import listView from './listView'
+import modal from './modal'
 
 // Sagas
 import { roomsSaga } from './rooms';
@@ -12,7 +13,8 @@ import { roomsSaga } from './rooms';
 // 루트 라우터
 const rootReducer = combineReducers({
   rooms,
-  listView
+  listView,
+  modal
 });
 
 export default rootReducer;
