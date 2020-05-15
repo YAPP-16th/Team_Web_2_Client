@@ -142,7 +142,7 @@ function LoadingContainer(props: LoadingContainerProps) {
         <CloseSpan>끝내기</CloseSpan>
       </CloseButton>
       <SpinnerDiv>
-        <LoadingSpinner width="237px" height="169px" />
+        <LoadingSpinner width="237px" height="237px" />
       </SpinnerDiv>
     </Container>
   );

@@ -15,6 +15,7 @@ interface LoadingSpinner {
   height?: string;
   speed?: number;
   actionAnimation?: boolean;
+  color?: string;
 }
 
 const rotate = keyframes`
@@ -38,11 +39,13 @@ const rotateAnimation = (props: any) =>
 
 const RotateSpiner = Styled(Spiner)<RotateSpiner>`
     position: absolute;
+    top: 29%;
     width: ${(props) => props.width};
     height:${(props) => props.height};
     display: block;
     margin: auto;
     animation: ${(props) => props.animation === "true" && rotateAnimation};
+    fill: ${props => props.color}
 `;
 
 function LoadingSpinner(props: LoadingSpinner) {
@@ -52,7 +55,9 @@ function LoadingSpinner(props: LoadingSpinner) {
     height = "100px",
     speed = 2,
     actionAnimation = true,
+    color = "#5e5e5e42"
   } = props;
+  
   return (
     <Div id={id} width={width} height={height}>
       <RotateSpiner
@@ -60,6 +65,7 @@ function LoadingSpinner(props: LoadingSpinner) {
         height={height}
         speed={speed}
         animation={actionAnimation.toString()}
+        color={color}
       ></RotateSpiner>
     </Div>
   );
