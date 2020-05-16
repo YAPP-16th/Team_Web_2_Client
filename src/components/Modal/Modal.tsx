@@ -39,7 +39,7 @@ const InnerContainer = Styled.div<InnerContainerProps>`
 `;
 
 function Modal(props: ModalProps) {
-  const { width = "500px", height = "500px" } = props;
+  const { width = "auto", height = "auto" } = props;
   const modalHooks = useModal();
   const actionClose = useCallback(
     (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
