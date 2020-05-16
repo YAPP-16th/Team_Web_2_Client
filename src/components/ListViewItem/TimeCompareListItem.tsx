@@ -196,7 +196,7 @@ const TimeCompareListItem = ({
   );
 
   return (
-    <TimeCompareListItemWrapper className={className}  href="javascript:undefined">
+    <TimeCompareListItemWrapper className={className}  href="#" onClick={(e) => { e.preventDefault() }}>
       <ContentRow>
         <HeadingAndIcon>
           <Icon icon={icon} />

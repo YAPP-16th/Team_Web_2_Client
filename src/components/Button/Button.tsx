@@ -2,7 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 export const Button = styled.button`
+<<<<<<< HEAD
   cursor: pointer;
+=======
+>>>>>>> 5d22e6f4247d1f7c0c833838c4ab3a80c68092a4
   height: min-content;
   border-radius: 7px;
   background-color: var(--LightItemColor);

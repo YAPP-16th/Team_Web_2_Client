@@ -7,6 +7,7 @@ import "./App.scss";
 // PAGES
 import ZoneSearchPage from "./pages/ZoneSearchPage/ZoneSearchPage";
 import HeaderPage from "./pages/HeaderPage/HeaderPage";
+import SearchInputPage from './pages/SearchInputPage/SearchInputPage';
 
 // Containers
 import ListViewContainer from "./containers/ListViewContainer/ListViewContainer";
@@ -23,6 +24,7 @@ function App() {
       <main>
         <Switch>
           <Route path="/search" exact component={ZoneSearchPage}></Route>
+          <Route path="/searchInput/:step" exact component={SearchInputPage}></Route>
         </Switch>
       </main>
       <footer></footer>
