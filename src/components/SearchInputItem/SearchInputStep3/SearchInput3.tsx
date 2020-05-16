@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 // import '../../pages/SearchInputPage/ZoneSearchPage.scss';
+import check1 from '../../../assets/img/check1.png';
+import check0 from '../../../assets/img/check0.png';
 
 const SearchInput3 = () => {
 
   const times = ['0-10분', '10분-20분', '20분-30분', '30분 이상']
 
-  const HandleRadio = (e: any) => {
-    console.log(e.target.value, '리덕스 보내기')
+  const handleTime = (time: string) => {
+    setSelectedTime(time)
+    console.log(time)
+  }
+
+  const [selectedTime, setSelectedTime] = useState('' as string);
+
+  const selectedTpCheckBox = (item: string, selected: string) => {
+    return item === selected ? <img className="check1" src={check1}></img> : <img className="check1" src={check0}></img>
   }
 
 
@@ -14,10 +23,12 @@ const SearchInput3 = () => {
     return (
       <>
         {/* unique key error 가 왜 나는지 모르겠음 ㅡㅡ */}
-        <label key={time.toString()} >
-          <input type="radio" id="transport" name="transport" value={time} key={idx + 10000} onChange={HandleRadio}></input>
-          <div className="transportList" key={Math.random()}>{time}</div>
-        </label>
+        <div className="Rectangle" onClick={() => handleTime(time)} key={idx}>
+          {selectedTpCheckBox(time, selectedTime)}
+          {time}
+        </div>
+
+
       </>
     );
   });

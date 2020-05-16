@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import HashTag from '../SearchInputStep1/HashTag';
 import CurrentLocation from '../SearchInputStep1/CurrentLocation';
 import check1 from '../../../assets/img/check1.png';
-import check0 from '../../../assets/img/check0.png'
+import check0 from '../../../assets/img/check0.png';
 
 const SearchInput2 = () => {
 
@@ -14,21 +14,30 @@ const SearchInput2 = () => {
 
   const transportDetail = ['환승없음', '1회환승', '2회환승'];
 
-  const [selected, setSelected] = useState('' as string)
+  const [selectedTp, setSelectedTp] = useState('' as string);
+  const [selectedDetailTp, setSelectedDetailTp] = useState('' as string);
 
-  const HandleRadio = (tp: string) => {
-    console.log(tp, '리덕스 보내기')
-    setSelected(tp)
+  const handleTp = (tp: string) => {
+    setSelectedTp(tp)
   }
 
-  const selectedCheckBox = (item: string) => {
+  const handleDetailTp = (dtp: string) => {
+    console.log(selectedTp, dtp)
+    setSelectedDetailTp(dtp)
+  }
+
+  const selectedTpCheckBox = (item: string, selected: string) => {
     return item === selected ? <img className="check1" src={check1}></img> : <img className="check1" src={check0}></img>
   }
+
 
   const transportDetailList = transportDetail.map((tpd, idx) => {
     return (
       <>
-      <div className="Rectangle" onClick={() => HandleRadio(tpd)}>{tpd}</div>
+        <div className="Rectangle" onClick={() => handleDetailTp(tpd)} style={{ marginLeft: '30px' }}>
+          {selectedTpCheckBox(tpd, selectedDetailTp)}
+          {tpd}
+        </div>
       </>
     )
   })
@@ -36,9 +45,11 @@ const SearchInput2 = () => {
   const transportList = transport.map((tp, idx) => {
     return (
       <>
-          {selectedCheckBox(tp)}
-          <div className="Rectangle" onClick={() => HandleRadio(tp)}>{tp}</div>
-          {tp === selected 
+        <div className="Rectangle" onClick={() => handleTp(tp)}>
+          {selectedTpCheckBox(tp, selectedTp)}
+          {tp}
+        </div>
+        {tp === selectedTp
           ? transportDetailList
           : null
         }
