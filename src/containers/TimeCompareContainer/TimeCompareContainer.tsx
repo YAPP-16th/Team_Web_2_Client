@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Button } from "../../components/Button/Button";
 import TimeCompareListItem, { TimeCompareListItemProps } from "../../components/ListViewItem/TimeCompareListItem";
 import { IconType } from "../../components/Icon/Icon";
+import LoadingDots from '../../components/Loading/LoadingDots';
 
 // Utils
 import { setDefaultTimeCompareItem, setTimeCompareItems, getTimeCompareItems, TimeCompareItem, timeCompare } from '../../utils/TimeCompare/functions';
@@ -75,9 +76,21 @@ const PlainText = styled.h2`
 const TimeCompareList = styled.div`
   > div {
     margin-bottom: 12px;
-    transition: all 0.5s;
-    &:hover {
-      opacity: 0.5;
+    > a {
+      transition: all 0.5s;
+      &:hover {
+        background-color: var(--ItemHoverColor);
+      }
+      &:active {
+        opacity: 0.4;
+      }
+      &:focus {
+        .icons {
+          display: flex;
+        }
+      }
+    }
+    &:focus-within {
     }
   }
 
@@ -94,15 +107,15 @@ const TimeCompareList = styled.div`
           align-self: flex-start;
         }
         > :nth-child(2) {
-          position: relative;
-          top: 150px;
+          position: absolute;
+          bottom: 10px;
           font-size: 30px;
           align-self: flex-end;
         }
       }
       > :nth-child(2) {
         position: relative;
-        top: -30px;
+        top: 0px;
         flex-direction: column;
         align-items: flex-start;
       }
@@ -223,6 +236,15 @@ const TimeCompareContainer = ({ startAddress, currentZoneId }: TimeCompareContai
     setTimeCompareItems(processed);
   }
 
+  const editModeTriggerHandler = (item: TimeCompareItem) => {
+    const processed = [ ...timeCompareContents ];
+    const targetIndex = processed.findIndex(x => x.heading === item.heading && x.address === item.address);
+    if (targetIndex !== -1) {
+      processed[targetIndex].editMode = true;
+    }
+    setTimeCompareContents(processed);
+  }
+
   // Dynamically Generated Elements
 
   const timeCompareList = timeCompareContents.map((content) => {
@@ -239,6 +261,8 @@ const TimeCompareContainer = ({ startAddress, currentZoneId }: TimeCompareContai
           editMode={content.editMode}
           content={content}
           editFunc={updateTimeCompareItemHandler}
+          deleteFunc={deleteTimeCompareItemHandler}
+          editModeFunc={editModeTriggerHandler}
         />
       </div>
     );
@@ -257,7 +281,7 @@ const TimeCompareContainer = ({ startAddress, currentZoneId }: TimeCompareContai
         <Button>수정</Button>
       </StartPositionSelectWrapper>
       <TimeCompareList>
-        {timeCompareList}
+        {timeCompareList.length !==0 ? timeCompareList : <LoadingDots color="white" size="15px" />}
         <ItemAddButton onClick={addTimeCompareItemHandler}>+ 추가하기</ItemAddButton>
       </TimeCompareList>
     </TimeCompareContainerWrapper>

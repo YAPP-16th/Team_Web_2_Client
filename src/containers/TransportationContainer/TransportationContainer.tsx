@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-
+import { Link } from 'react-router-dom';
 import useTransit from "../../hooks/transitHooks";
 import { Transit, TransitQuery } from "../../api/transits";
 
@@ -41,6 +41,21 @@ const Heading = styled.h1`
   font-style: normal;
   line-height: 1.36;
   letter-spacing: -0.98px;
+  margin-bottom: 10px;
+`;
+
+const SubHeading = styled.h3`
+  @media screen and (min-width: 1060px) {
+    display: none;
+  }
+  font-size: 14px;
+  font-weight: 500;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.67;
+  letter-spacing: -0.8px;
+  color: var(--GreyTextColor);
+  margin-bottom: 20px;
 `;
 
 const PathItem = styled.span`
@@ -116,9 +131,8 @@ const ZoneCode = styled.h1`
 
 const TagButtonsWrapper = styled.div`
   display: flex;
-  padding-left: 45px;
   margin-bottom: 41px;
-  > button {
+  > a {
     margin-right: 13px;
     margin-bottom: 18px;
   }
@@ -206,9 +220,9 @@ const TransportationContainer = ({
   });
 
   const tagButtonContents = [
-    { text: "#회사" },
-    { text: "#BUS" },
-    { text: "#10-20m" },
+    { text: "#회사", step: "1" },
+    { text: "#버스", step: "2" },
+    { text: "#10-20m", step: "3" },
   ];
 
   // Item Components
@@ -225,7 +239,7 @@ const TransportationContainer = ({
   });
 
   const tagButtons = tagButtonContents.map((content) => {
-    return <TagButton fontSize="14px">{content.text}</TagButton>;
+    return <a href={`/searchInput/${content.step}`}><TagButton fontSize="14px">{content.text}</TagButton></a>;
   });
 
   // Handlers
@@ -247,12 +261,13 @@ const TransportationContainer = ({
       {transit.error && "에러가 발생했습니다"}
       <TransportationContainerWrapper>
         <PathArea>
-          <Heading>경로</Heading>
-          <PathItemsWrapper>
-            <PathItem>{selectedTransit.transitObj.firstStation}</PathItem>
-            <PathItem>{zoneAddress}</PathItem>
-          </PathItemsWrapper>
-          <ZoneCode>:ZONE {zoneCode}</ZoneCode>
+          <Heading>
+            보다 만족스러운 <br />
+            출퇴근길을 위해서
+          </Heading>
+          <SubHeading>
+            선택했던 옵션을 바탕으로 <br /> 새로운 교통편을 안내해드릴게요.{" "}
+          </SubHeading>
           <DesktopHeading>
             보다 만족스러운 <br />
             출퇴근길을 위해서
@@ -263,8 +278,8 @@ const TransportationContainer = ({
           <TagButtonsWrapper>{tagButtons}</TagButtonsWrapper>
         </PathArea>
         <TransportationArea>
-          <Heading>실시간 교통편</Heading>
-          <DesktopSubHeading>실시간 교통편</DesktopSubHeading>
+          <Heading>전체 교통편</Heading>
+          <DesktopSubHeading>전체 교통편</DesktopSubHeading>
           <TransportationItemsWrapper>
             {transit.loading && <LoadingDots color="white" size="15px" />}
             {transit.data.length !== 0 ? (

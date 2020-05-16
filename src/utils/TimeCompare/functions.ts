@@ -29,14 +29,16 @@ export const timeCompare = async (item: TimeCompareItem, currentZoneId: number, 
       lat: item.location.lat,
       lng: item.location.lng,
     },
-    zoneId: currentZoneId
+    zoneId: currentZoneId,
+    mode: "LocationToZone"
   });
   const selectedZoneTransitData = await getTransits({
     startLocation: {
       lat: item.location.lat,
       lng: item.location.lng,
     },
-    zoneId: selectedZoneId
+    zoneId: selectedZoneId,
+    mode: "LocationToZone"
   });
 
   if (!(currentZoneTransitData && selectedZoneTransitData)) {

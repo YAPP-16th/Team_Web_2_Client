@@ -30,6 +30,7 @@ code {
   min-height: 100%;
   --BackgroundColor: #1d1d1d;
   --ItemColor: #2a2a2a;
+  --ItemHoverColor: rgba(42, 42, 42, 0.5);
   --LightItemColor: #ffffff;
   --PrimaryColor: #40aee1;
   --LightTextColor: #ffffff;

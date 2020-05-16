@@ -16,11 +16,15 @@ export type TimeCompareListItemProps = {
   distanceTo: string | number;
   className?: string;
   editMode?: boolean;
+  editModeFunc?: (item: TimeCompareItem) => void;
   content?: TimeCompareItem;
   editFunc?: (item: TimeCompareItem, notCompleted?: boolean) => Promise<void>;
+  deleteFunc?: (item: TimeCompareItem) => void;
 };
 
-const TimeCompareListItemWrapper = styled.div`
+const TimeCompareListItemWrapper = styled.a`
+  cursor: pointer;
+  display: block;
   border-radius: 8px;
   background-color: var(--ItemColor);
   padding: 19px 22px;
@@ -83,7 +87,6 @@ const ContentRow = styled.div`
 // --- Edit Items
 
 const EditableHeading = styled.input`
-  position: relative;
   background-color: #00000000;
   border: none;
   color: var(--LightTextColor);
@@ -96,7 +99,6 @@ const EditableHeading = styled.input`
   margin-left: 12px;
   text-decoration: underline;
   outline: none;
-  z-index: 1000;
 `;
 
 const EditButtonsWrapper = styled.div`
@@ -114,6 +116,17 @@ const EditCompleteButton = styled.a`
   }
 `;
 
+const EditIconWrapper = styled.div<{ right?: string; top?: string }>`
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  top: ${({ top }) => (top ? top : "")};
+  right: ${({ right }) => (right ? right : "")};
+  border-radius: 50%;
+  background-color: white;
+  padding: 3px;
+`;
+
 const TimeCompareListItem = ({
   icon,
   heading,
@@ -125,7 +138,10 @@ const TimeCompareListItem = ({
   content,
   editMode,
   editFunc,
+  deleteFunc,
+  editModeFunc,
 }: TimeCompareListItemProps) => {
+  // Handlers
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     if (inputValue) {
@@ -154,8 +170,33 @@ const TimeCompareListItem = ({
     }
   };
 
+  const UpdateIcon = () => (
+    <EditIconWrapper
+      right="-11px"
+      top="-11px"
+      className="icons"
+      onClick={(event: MouseEvent) =>
+        editModeFunc && content && editModeFunc(content)
+      }
+    >
+      <Icon icon="edit" size="18px" color="var(--BackgroundColor)" />
+    </EditIconWrapper>
+  );
+  const DeleteIcon = () => (
+    <EditIconWrapper
+      right="-11px"
+      top="20px"
+      className="icons"
+      onClick={(event: MouseEvent) =>
+        deleteFunc && content && deleteFunc(content)
+      }
+    >
+      <Icon icon="delete" size="18px" color="var(--BackgroundColor)" />
+    </EditIconWrapper>
+  );
+
   return (
-    <TimeCompareListItemWrapper className={className}>
+    <TimeCompareListItemWrapper className={className}  href="javascript:undefined">
       <ContentRow>
         <HeadingAndIcon>
           <Icon icon={icon} />
@@ -190,12 +231,16 @@ const TimeCompareListItem = ({
           </EditButtonsWrapper>
         </>
       ) : (
-        <ContentRow>
-          <Address>{address}</Address>
-          <Distance>
-            {distanceFrom} -> {distanceTo}
-          </Distance>
-        </ContentRow>
+        <>
+          <ContentRow>
+            <Address>{address}</Address>
+            <Distance>
+              {distanceFrom} -> {distanceTo}
+            </Distance>
+          </ContentRow>
+          <UpdateIcon />
+          <DeleteIcon />
+        </>
       )}
     </TimeCompareListItemWrapper>
   );

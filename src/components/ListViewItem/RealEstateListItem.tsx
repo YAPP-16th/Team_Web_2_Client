@@ -19,10 +19,12 @@ const RealEstateItemWrapper = styled.a`
   flex-direction: column;
   color: var(--LightTextColor);
   background-color: var(--ItemColor);
+  overflow: hidden;
 `;
 
 const TextInfoWrapper = styled.div`
   padding: 14px;
+  height: 132px;
 `;
 
 const RealEstateItemImage = styled.img`

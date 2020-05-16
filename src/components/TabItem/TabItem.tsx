@@ -11,7 +11,7 @@ type TabItemProps = {
 const TabItemWrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding: 17px;
+  padding: 13.5px;
   border-bottom: 2px solid var(--ItemColor);
   transition: border-bottom 0.35s;
   > a {

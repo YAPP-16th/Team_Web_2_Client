@@ -22,6 +22,12 @@ const HeaderContainerWrapper = styled.div`
   position: sticky;
   top: 100px;
 
+  .tab-item {
+    a {
+      font-size: 15px;
+    }
+  }
+
   @media screen and (min-width: 1060px) {
     width: 1120px;
     margin: auto;
