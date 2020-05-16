@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useCallback } from "react";
 import Styled from "styled-components";
 import useModal from "./ModalHooks";
 
@@ -38,23 +38,33 @@ const InnerContainer = Styled.div<InnerContainerProps>`
     width: ${(props) => props.width};
 `;
 
-const actionClose = (
-  event: React.MouseEvent<HTMLElement, MouseEvent>
-): void => {
-  event.preventDefault();
-  event.stopPropagation();
-
-  const target = event.target as HTMLElement;
-  if (target.id === DOM_ID.modal) {
-    modalHooks.closeModal();
-  }
-};
-
-let modalHooks: { [key: string]: any };
-
 function Modal(props: ModalProps) {
   const { width = "500px", height = "500px" } = props;
-  modalHooks = useModal();
+  const modalHooks = useModal();
+  const actionClose = useCallback(
+    (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const target = event.target as HTMLElement;
+      if (target.id === DOM_ID.modal) {
+        modalHooks.closeModal();
+      }
+    },
+    [modalHooks]
+  );
+
+  useEffect(() => {
+    const target = document.getElementsByTagName("html")[0];
+    const { children } = target;
+    for (let element of children)
+    {
+      if (element.tagName.toLocaleUpperCase() === "CANVAS")
+      {
+        element.remove();
+      }
+    }
+  }, [modalHooks]);
 
   return (
     <Container id={DOM_ID.modal} bShow={modalHooks.bShow} onClick={actionClose}>

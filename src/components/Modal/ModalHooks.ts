@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { useCallback } from "react";
 import { RootState } from "../../modules";
 import {
@@ -9,7 +9,7 @@ import {
 
 const useModal = () => {
   const dispatch = useDispatch();
-  const { bShow, container } = useSelector((state: RootState) => state.modal);
+  const { bShow, container } = useSelector((state: RootState) => state.modal, shallowEqual);
 
   const openModal = useCallback(() => {
     return dispatch(showModal());
@@ -23,7 +23,7 @@ const useModal = () => {
     },
     [dispatch]
   );
-
+  
   return {
     bShow,
     container,
