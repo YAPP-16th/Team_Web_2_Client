@@ -85,7 +85,7 @@ const moveDownDesktop = keyframes`
 // Styles
 const ListViewContainerWrapper = styled.div<{ clicked: boolean }>`
   width: 100%;
-  height: Calc(100vh - 193px);
+  height: Calc(100% - 193px);
   position: fixed;
   top: 92%;
   background-color: var(--BackgroundColor);

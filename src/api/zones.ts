@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Room } from "./rooms";
 
 export type ZoneObj = {
   code: number;
@@ -23,7 +22,7 @@ export type Zone = {
   y: number;
   polygon: Array<Array<Array<{ x: number; y: number }>>>;
   time: number;
-  rooms: Array<Room>;
+  rooms: [];
 };
 
 export type ZoneQuery = {

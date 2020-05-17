@@ -8,6 +8,7 @@ import queryString from 'query-string';
 import DefaultHeaderContainer from '../../containers/HeaderContainer/DefaultHeaderContainer';
 import ZoneDetailHeaderContainer from '../../containers/HeaderContainer/ZoneDetailHeaderContainer';
 import ZoneSearchResultHeaderContainer from '../../containers/HeaderContainer/ZoneSearchResultHeaderContainer';
+import { loadavg } from 'os';
 
 type ParamsType = {
   id: string;
@@ -16,8 +17,6 @@ type ParamsType = {
 
 const HeaderPage = ({ match, location, history}: RouteComponentProps<ParamsType>) => {  
   
-  const query = queryString.parse(location.search);
-
   let HeaderContainer;
 
   if (location.hash.includes('/zone/')) {
@@ -25,7 +24,11 @@ const HeaderPage = ({ match, location, history}: RouteComponentProps<ParamsType>
   } else if (location.search) {
     HeaderContainer = ZoneSearchResultHeaderContainer;
   } else {
-    HeaderContainer = DefaultHeaderContainer;
+    if (location.pathname === "/") {
+      HeaderContainer = () => <DefaultHeaderContainer displayLogo={false} />;
+    } else {
+      HeaderContainer = () => <DefaultHeaderContainer displayLogo />;
+    }
   }
 
   return (

@@ -69,7 +69,6 @@ const Address = styled.span`
 
 const Distance = styled.span`
   color: var(--DarkTextColor);
-
   font-size: 16px;
   font-weight: 300;
   font-stretch: normal;
