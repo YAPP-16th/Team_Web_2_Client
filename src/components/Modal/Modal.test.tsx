@@ -23,8 +23,7 @@ describe("Modal 컴포넌트", () => {
       const DEFAULT_VALUES = {
         section_id: "Modal",
         div_id: "ModalContainer",
-        width: "auto",
-        height: "auto",
+        backgroundColor: "rgba(0, 0, 0, 0.6)"
       };
       const { container } = render(
         <Provider store={store}>
@@ -34,37 +33,23 @@ describe("Modal 컴포넌트", () => {
       const section = container.firstChild as HTMLElement;
       expect(section.tagName).toEqual("SECTION");
       expect(section.id).toEqual(DEFAULT_VALUES.section_id);
-      const div = section.firstChild as HTMLElement;
-      expect(div.tagName).toEqual("DIV");
-      expect(div.id).toEqual(DEFAULT_VALUES.div_id);
-      expect(div.getAttribute("width")).toEqual(DEFAULT_VALUES.width);
-      expect(div.getAttribute("height")).toEqual(DEFAULT_VALUES.height);
-      expect(div.firstChild).toBeNull();
     });
     it("사용자 설정값이 정상적으로 설정 되었다.", () => {
       const DEFAULT_VALUES = {
         section_id: "Modal",
         div_id: "ModalContainer",
-        width: "200px",
-        height: "200px",
+        backgroundColor: "yellow"
       };
       const { container } = render(
         <Provider store={store}>
           <Modal
-            width={DEFAULT_VALUES.width}
-            height={DEFAULT_VALUES.height}
+            backgroundColor={DEFAULT_VALUES.backgroundColor}
           ></Modal>
         </Provider>
       );
       const section = container.firstChild as HTMLElement;
       expect(section.tagName).toEqual("SECTION");
       expect(section.id).toEqual(DEFAULT_VALUES.section_id);
-      const div = section.firstChild as HTMLElement;
-      expect(div.tagName).toEqual("DIV");
-      expect(div.id).toEqual(DEFAULT_VALUES.div_id);
-      expect(div.getAttribute("width")).toEqual(DEFAULT_VALUES.width);
-      expect(div.getAttribute("height")).toEqual(DEFAULT_VALUES.height);
-      expect(div.firstChild).toBeNull();
     });
 
     const setup = (defaultProps) => {

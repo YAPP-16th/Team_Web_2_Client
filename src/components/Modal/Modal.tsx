@@ -3,8 +3,6 @@ import Styled from "styled-components";
 import useModal from "./ModalHooks";
 
 interface ModalProps {
-  width?: string;
-  height?: string;
   backgroundColor?: string;
 }
 
@@ -32,14 +30,8 @@ const Container = Styled.section<ContainerProps>`
     z-index: 10001;
 `;
 
-const InnerContainer = Styled.div<InnerContainerProps>`
-    height: ${(props) => props.height};    
-    position: absolute;
-    width: ${(props) => props.width};
-`;
-
 function Modal(props: ModalProps) {
-  const { width = "auto", height = "auto" } = props;
+  const { backgroundColor = "" } = props;
   const modalHooks = useModal();
   const actionClose = useCallback(
     (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
@@ -57,20 +49,21 @@ function Modal(props: ModalProps) {
   useEffect(() => {
     const target = document.getElementsByTagName("html")[0];
     const { children } = target;
-    for (let element of children)
-    {
-      if (element.tagName.toLocaleUpperCase() === "CANVAS")
-      {
+    for (let element of children) {
+      if (element.tagName.toLocaleUpperCase() === "CANVAS") {
         element.remove();
       }
     }
   }, [modalHooks]);
 
   return (
-    <Container id={DOM_ID.modal} bShow={modalHooks.bShow} onClick={actionClose}>
-      <InnerContainer id={DOM_ID.conatiner} width={width} height={height}>
-        {modalHooks.container}
-      </InnerContainer>
+    <Container
+      id={DOM_ID.modal}
+      bShow={modalHooks.bShow}
+      backgroundColor={backgroundColor}
+      onClick={actionClose}
+    >
+      {modalHooks.container}
     </Container>
   );
 }
