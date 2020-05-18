@@ -12,8 +12,9 @@ type DefaultHeaderContainerProps = {
 }
 
 const HeaderContainerWrapper = styled.div<{backgroundColor: string}>`
-  position: sticky;
-  z-index: 100;
+  position: relative;
+  height: 100%;
+  z-index: 100000;
   background-color: ${({backgroundColor}) => backgroundColor ? backgroundColor : ""};
   @media screen and (min-width: 1060px) {
     width: 1120px;

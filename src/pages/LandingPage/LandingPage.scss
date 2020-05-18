@@ -14,13 +14,14 @@
 }
 
 .image-wrapper {
-  width: 700px;
-  height: 640px;
+  width: 100%;
+  height: 100%;
   position: absolute;
-  right: 5%;
-  z-index: 11;
-  bottom: 0px;
+  right: 0px;
+  z-index: 10;
+  bottom: -54px;
   display: none;
+  overflow: hidden;
   .mockup-image {
     position: absolute;
     z-index: 11;
@@ -37,30 +38,28 @@
 .landing-page {
   position: relative;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
   z-index: 11;
   top: -54px;
-  overflow-y: scroll;
 
-  &::-webkit-scrollbar {
-		width: 0px;
-    background: none;
-	}
-	&::-webkit-scrollbar-thumb {
-      background: none;
-      border-radius: 20px;
-	    opacity: .4;
-	}
-	&::-webkit-scrollbar-track {
-	    background: none;
-	}
+  // &::-webkit-scrollbar {
+	// 	width: 0px;
+  //   background: none;
+	// }
+	// &::-webkit-scrollbar-thumb {
+  //     background: none;
+  //     border-radius: 20px;
+	//     opacity: .4;
+	// }
+	// &::-webkit-scrollbar-track {
+	//     background: none;
+	// }
 
   &::before {
     z-index: 9;
     position: absolute;
-    top: -54px;
     content: "";
     width: 100%;
     height: calc(100% + 54px);
@@ -74,7 +73,6 @@
   &::after {
     z-index: 9;
     position: absolute;
-    top: -54px;
     content: "";
     width: 100%;
     height: calc(100% + 54px);
@@ -89,9 +87,9 @@
       position: relative;
       z-index: 11;
 
-      margin-top: 81px;
+      margin-top: 135px;
       @media screen and (min-width: 1060px) {
-        margin-top: 150px;
+        margin-top: 204px;
       }
     }
 
@@ -99,7 +97,7 @@
       position: relative;
       z-index: 11;
 
-      margin-top: 126px;
+      margin-top: 180px;
       font-size: 26px;
       font-weight: 100;
       font-stretch: normal;
@@ -118,7 +116,7 @@
       z-index: 11;
       display: none;
 
-      margin-top: 197px;
+      margin-top: 251px;
       font-size: 36px;
       font-weight: 300; 
       font-stretch: normal;
@@ -231,7 +229,7 @@
   .scroll-text-desktop {
     display: none;
     position: relative;
-    margin-top: 145px;
+    margin-top: 100px;
     z-index: 11;
     font-size: 18px;
     font-weight: 500;

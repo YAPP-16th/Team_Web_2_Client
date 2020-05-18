@@ -87,6 +87,7 @@ const ListViewContainerWrapper = styled.div<{ clicked: boolean }>`
   width: 100%;
   height: Calc(100% - 193px);
   position: fixed;
+  z-index: 1;
   top: 92%;
   background-color: var(--BackgroundColor);
   border-top-left-radius: 12px;
@@ -110,7 +111,7 @@ const ListViewContainerWrapper = styled.div<{ clicked: boolean }>`
   @media screen and (min-width: 1060px) {
     width: 332px;
     margin: auto;
-    right: 19px;
+    right: 35px;
     animation: ${(props) => (props.clicked ? moveUpDesktop : moveDownDesktop)}
       1s ease-out forwards;
   }

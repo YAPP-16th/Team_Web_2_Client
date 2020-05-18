@@ -7,6 +7,9 @@ import phoneMockUp from "../../assets/img/phone-mockup.png";
 import Icon from "../../components/Icon/Icon";
 
 const LandingPage = () => {
+  window.addEventListener('scroll', () => {
+    console.log('scroll')
+  });
   return (
     <div className="landing-page">
       <div></div>

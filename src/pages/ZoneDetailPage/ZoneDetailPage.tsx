@@ -30,10 +30,12 @@ const ZoneDetailPage = ({
   const destinationLat = Number(queries.destinationLat);
   const destinationLng = Number(queries.destinationLng);
 
+  let ZoneDetailContainer;
+
 
   switch (match.params.feature) {
     case "timecompare":
-      return (
+      ZoneDetailContainer = () => (
         <TimeCompareContainer
           currentZoneId={zoneId}
           startAddress="서울시 마포구 431 화인빌라"
@@ -41,7 +43,7 @@ const ZoneDetailPage = ({
       );
       break;
     case "transportation":
-      return (
+      ZoneDetailContainer = () => (
         <TransportationContainer
           zoneAddress="강남구 역삼1동, 서울특별시"
           zoneCode="06020"
@@ -52,15 +54,20 @@ const ZoneDetailPage = ({
       );
       break;
     case "realestate":
-      return <RealEstateContainer zoneId={zoneId} />;
+      ZoneDetailContainer = () => <RealEstateContainer zoneId={zoneId} />;
       break;
     case "place":
-      return <PlaceContainer zoneId={zoneId} />;
+      ZoneDetailContainer = () => <PlaceContainer zoneId={zoneId} />;
       break;
     default:
       return <div></div>;
       break;
   }
+
+  return <div className="zone-detail-page">
+    <ZoneDetailContainer />
+  </div>
 };
+
 
 export default withRouter(ZoneDetailPage);

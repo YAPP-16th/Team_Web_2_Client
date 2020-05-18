@@ -19,9 +19,8 @@ const sections = [
 ];
 
 const HeaderContainerWrapper = styled.div`
-  position: sticky;
-  top: 100px;
-
+  position: relative;
+  z-index: 11;
   .tab-item {
     a {
       font-size: 15px;
@@ -70,6 +69,7 @@ const StickyTabs = styled.div`
   > * {
     flex: 1;
   }
+
   @media screen and (min-width: 1060px) {
     &:after {
       content: "";

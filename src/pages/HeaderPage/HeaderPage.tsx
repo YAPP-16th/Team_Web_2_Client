@@ -19,6 +19,8 @@ const HeaderPage = ({ match, location, history}: RouteComponentProps<ParamsType>
   
   let HeaderContainer;
 
+  const isLanding = location.pathname === '/' ? "fixed" : "initial";
+
   if (location.hash.includes('/zone/')) {
     HeaderContainer = ZoneDetailHeaderContainer;
   } else if (location.search) {
@@ -32,7 +34,7 @@ const HeaderPage = ({ match, location, history}: RouteComponentProps<ParamsType>
   }
 
   return (
-    <div className="header">
+    <div className="header" style={{position: isLanding}}>
       <HeaderContainer />
     </div>
   )
