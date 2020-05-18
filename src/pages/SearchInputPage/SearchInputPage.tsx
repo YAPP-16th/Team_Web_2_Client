@@ -52,8 +52,13 @@ const SearchInputPage = ({ match, history }: RouteComponentProps<paramsType>) =>
         history.push("loading")
         break;
 
+      case "loading":
+        history.push("/search?startLat=37.5725&startLng=126.820454&zoneId=3774#");
+        break;
+
       default:
         break;
+        
     }
   }
 

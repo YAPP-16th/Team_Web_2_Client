@@ -11,20 +11,19 @@ const LandingPage = () => {
   let scrolled = false;
   const [ scrollAnimation, setScrollAnimation ] = useState(false);
 
-  const onScroll = (e: WheelEvent) => {
+  const onScroll = (e: any) => {
     if (!scrolled) {
-      setScrollAnimation(true);
       scrolled = true;
       const textScrollTrigger = setTimeout(() => {
-        console.log(e);
         scrolled = false;
+        setScrollAnimation(!scrollAnimation);
         clearTimeout(textScrollTrigger);
-      }, 1000);
+      }, 500);
     }
   }
 
   return (
-    <div className="landing-page" onWheel={onScroll}>
+    <div className="landing-page" onTouchMove={onScroll} onWheel={onScroll}>
       <div></div>
       <div className="intro">
         <Icon icon="logo" size="80px" className="logo" />
@@ -37,7 +36,7 @@ const LandingPage = () => {
           </div>
           <div className="intro-text-desktop">
             불필요하게 낭비되는 <br />
-            통학 시간을 절약하세요!
+            <div className="emphasized-text-wrapper"><p className={`emphasized-text1 ${scrollAnimation ? "emphasized-text-slide-up" : "emphasized-text-slide-down"}`} >통학 시간</p><p className={`emphasized-text2 ${scrollAnimation ? "emphasized-text-slide-up" : "emphasized-text-slide-down"}`} >출퇴근 시간</p></div>을 절약하세요!
           </div>
           <div className="intro-sub-text">
             맞춤형 주거 지역 추천 <br />
