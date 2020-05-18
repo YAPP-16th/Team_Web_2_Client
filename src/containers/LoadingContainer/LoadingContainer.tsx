@@ -29,6 +29,7 @@ const Container = Styled.div`
     
     @media only screen and (max-width: ${DEVICE_SIZE.mobile}) {
         justify-content: flex-start;
+        background-color: var(--BackgroundColor)
     }
 `;
 
