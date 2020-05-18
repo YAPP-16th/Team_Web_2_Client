@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, WheelEvent } from "react";
 import "./LandingPage.scss";
 import { Link } from "react-router-dom";
 import phoneMockUp from "../../assets/img/phone-mockup.png";
@@ -7,11 +7,24 @@ import phoneMockUp from "../../assets/img/phone-mockup.png";
 import Icon from "../../components/Icon/Icon";
 
 const LandingPage = () => {
-  window.addEventListener('scroll', () => {
-    console.log('scroll')
-  });
+
+  let scrolled = false;
+  const [ scrollAnimation, setScrollAnimation ] = useState(false);
+
+  const onScroll = (e: WheelEvent) => {
+    if (!scrolled) {
+      setScrollAnimation(true);
+      scrolled = true;
+      const textScrollTrigger = setTimeout(() => {
+        console.log(e);
+        scrolled = false;
+        clearTimeout(textScrollTrigger);
+      }, 1000);
+    }
+  }
+
   return (
-    <div className="landing-page">
+    <div className="landing-page" onWheel={onScroll}>
       <div></div>
       <div className="intro">
         <Icon icon="logo" size="80px" className="logo" />
@@ -19,7 +32,7 @@ const LandingPage = () => {
           <div className="intro-text">
             불필요하게 <br />
             낭비되는 <br />
-            통학 시간을 <br />
+            <div className="emphasized-text-wrapper"><p className={`emphasized-text1 ${scrollAnimation ? "emphasized-text-slide-up" : "emphasized-text-slide-down"}`} >통학 시간</p><p className={`emphasized-text2 ${scrollAnimation ? "emphasized-text-slide-up" : "emphasized-text-slide-down"}`} >출퇴근 시간</p></div>을 <br />
             절약하세요!
           </div>
           <div className="intro-text-desktop">
