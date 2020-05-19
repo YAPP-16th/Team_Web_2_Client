@@ -27,7 +27,7 @@ describe("Loading Spinner 컴포넌트", () => {
       const TAG_NAME = ["svg", "DIV", "BUTTON", "DIV"];
       const MATCH_STRING: string[] = [
         "loading-twinkle.svg",
-        "loading-close.svg",
+        "icon-close.svg",
         "",
         "loadingSpinner",
       ];
