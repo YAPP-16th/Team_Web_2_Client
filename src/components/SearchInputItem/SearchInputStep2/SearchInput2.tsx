@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import '../../pages/SearchInputPage/ZoneSearchPage.scss';
 import ZoneSearchPopUp from '../SearchInputStep1/ZoneSearchPopup';
 import Dialog from '../../Dialog/Dialog';
 import styled from 'styled-components';
@@ -8,9 +7,9 @@ import CurrentLocation from '../SearchInputStep1/CurrentLocation';
 import check1 from '../../../assets/img/check1.png';
 import check0 from '../../../assets/img/check0.png';
 
-const SearchInput2 = () => {
+const SearchInput2 = ({ setData }: any) => {
 
-  const transport = ['지하철', '버스', '자전거', '도보', '자동차'];
+  const transport = ['지하철', '버스', '지하철 & 버스'];
 
   const transportDetail = ['환승없음', '1회환승', '2회환승'];
 
@@ -19,11 +18,24 @@ const SearchInput2 = () => {
 
   const handleTp = (tp: string) => {
     setSelectedTp(tp)
+    if (tp === "지하철") {
+      setData("transitMode", ["subway"])
+    } else if (tp === "버스") {
+      setData("transitMode", ["bus"])
+    } else if (tp === "지하철 & 버스") {
+      setData("transitMode", ["subway", "bus"])
+    }
   }
 
   const handleDetailTp = (dtp: string) => {
-    console.log(selectedTp, dtp)
     setSelectedDetailTp(dtp)
+    if (dtp === "환승없음") {
+      setData("transferLimit", 0)
+    } else if (dtp === "1회환승") {
+      setData("transferLimit", 1)
+    } else if (dtp === "2회환승") {
+      setData("transferLimit", 2)
+    }
   }
 
   const selectedTpCheckBox = (item: string, selected: string) => {
@@ -45,7 +57,7 @@ const SearchInput2 = () => {
   const transportList = transport.map((tp, idx) => {
     return (
       <>
-        <div className="Rectangle" onClick={() => handleTp(tp)}>
+        <div className="Rectangle" onClick={() => handleTp(tp)} key={idx}>
           {selectedTpCheckBox(tp, selectedTp)}
           {tp}
         </div>
@@ -71,6 +83,7 @@ const SearchInput2 = () => {
         <span className="Rectangle_ment">선택해주세요</span>
         <br />
         {transportList}
+        <span className="option"> * 옵션을 선택해주세요</span>
       </div>
 
 

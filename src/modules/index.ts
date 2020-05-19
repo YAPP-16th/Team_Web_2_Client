@@ -4,6 +4,7 @@ import { all } from 'redux-saga/effects';
 // Reducers
 import rooms from './rooms';
 import listView from './listView';
+import searchInput from './searchInput';
 
 // Sagas
 import { roomsSaga } from './rooms';
@@ -12,6 +13,7 @@ import { roomsSaga } from './rooms';
 const rootReducer = combineReducers({
   rooms,
   listView,
+  searchInput,
 });
 
 export default rootReducer;

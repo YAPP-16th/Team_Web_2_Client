@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { KeyboardEvent } from "react";
+import React, { useState, useEffect, KeyboardEvent } from 'react';
+import useSearchInput from '../../../hooks/useSearchInput';
 
-const HashTag = () => {
+
+const HashTag = ({ setData, setUploadedHashTag }: any) => {
 
   const addTag: Function = (
     array: Array<string>,
@@ -11,8 +12,9 @@ const HashTag = () => {
     setTagList(array)
   };
 
-  const [isInput, setIsInput] = useState(false as boolean)
-  const [tagList, setTagList] = useState(['# 회사', '# 학교'] as Array<String>)
+  const [isInput, setIsInput] = useState(false as boolean);
+  const [tagList, setTagList] = useState(['# 회사', '# 학교'] as Array<String>);
+  const [selected, setSelected] = useState('' as string)
 
   // useEffect(() => { }, [toggle]);
 
@@ -29,38 +31,47 @@ const HashTag = () => {
       addTag(tagList, e.target.value)
       setIsInput(false)
     }
-  }
+  };
 
   const onClickSelectHandler = (e: string) => {
     // Redux 보내는 부분
-    console.log(e, '리덕스 보내기')
-  }
+    setData("addressTag", e.slice(2))
+    setUploadedHashTag(true)
+    setSelected(e)
+    console.log(e)
+  };
 
   const tagListMap: any = tagList.map((e: any, idx: number) => {
     return (
-      <>
+      (e === selected)
+        ?
         <div
-          className="StyledHashTag"
-          key={idx + 100}
+          className="SelectedHashTag"
+          key={idx}
           onClick={() => onClickSelectHandler(e)}
         >
           {e}
         </div>
-      </>
+        :
+        <div
+          className="StyledHashTag"
+          key={idx}
+          onClick={() => onClickSelectHandler(e)}
+        >
+          {e}
+        </div>
     );
   });
   return <>
     {tagListMap}
     {isInput
-      ? <input className="styledInput" defaultValue="# " onKeyPress={onKeyPressHandler} autoFocus/>
+      ? <input className="styledInput" defaultValue="# " onKeyPress={onKeyPressHandler} autoFocus />
       :
       <>
         <div className=" StyledHashTag" onClick={() => onClickHandler()}>+추가</div>
       </>
     }
 
-    <br />
-    <br />
     <br />
   </>;
 };

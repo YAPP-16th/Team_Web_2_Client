@@ -30,6 +30,19 @@
   color: #40aee1;
 }
 
+.option {
+  width: 86px;
+  height: 39px;
+  font-family: Gotham;
+  font-size: 15px;
+  font-weight: 100;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.95;
+  letter-spacing: -0.89px;
+  color: #40aee1;
+}
+
 .Rectangle_ment {
   width: 152px;
   height: 48px;
@@ -48,6 +61,26 @@
 }
 
 .StyledHashTag {
+  width: 32px;
+  height: 23px;
+  font-family: NotoSansCJKkr;
+  font-size: 14px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.64;
+  letter-spacing: -0.62px;
+  color: #ffffff;
+  width: 74px;
+  height: 34px;
+  border-radius: 18.5px;
+  box-shadow: 0 0 6px 0 rgba(23, 23, 23, 0.03);
+  border: solid 1px #2a2a2a;
+  // background-color: #2a2a2a;
+  display: flex;
+}
+
+.SelectedHashTag {
   width: 32px;
   height: 23px;
   font-family: NotoSansCJKkr;

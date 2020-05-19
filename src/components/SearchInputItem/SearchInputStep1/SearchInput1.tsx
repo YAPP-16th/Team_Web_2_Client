@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import '../../pages/SearchInputPage/ZoneSearchPage.scss';
 import ZoneSearchPopUp from './ZoneSearchPopup';
 import Dialog from '../../Dialog/Dialog';
 import styled from 'styled-components';
@@ -11,13 +10,15 @@ import icongps from '../../../assets/img/icongps.png';
 type InputProps = {
   click?: () => void;
   location: string;
+  setData: any;
+  setUploadedHashTag: any;
 }
-const SearchInput1 = ({ click, location }: InputProps) => {
+const SearchInput1 = ({ click, location, setData, setUploadedHashTag }: InputProps) => {
 
   const onClickCurrentLocationHandler = () => {
-    console.log('hit')
     getLocation();
   }
+
 
   return (
     <>
@@ -31,7 +32,10 @@ const SearchInput1 = ({ click, location }: InputProps) => {
         <br />
         <span className="Rectangle_ment">위치를 알려주세요</span>
         <br />
-        <HashTag />
+        <HashTag
+          setData={setData}
+          setUploadedHashTag={setUploadedHashTag}
+        />
         <br />
         <input
           type="text"
@@ -39,10 +43,9 @@ const SearchInput1 = ({ click, location }: InputProps) => {
           onClick={click}
           className="Rectangle_Long"
         ></input>
-        <img src={icongps} style={{ width: '30px' }} alt="currentLocation" onClick={onClickCurrentLocationHandler} />
+        {/* <img src={icongps} style={{ width: '30px' }} alt="currentLocation" onClick={onClickCurrentLocationHandler} /> */}
 
       </div>
-      }
 
     </>
   );

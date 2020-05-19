@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-// import '../../pages/SearchInputPage/ZoneSearchPage.scss';
 import check1 from '../../../assets/img/check1.png';
 import check0 from '../../../assets/img/check0.png';
 
-const SearchInput3 = () => {
+const SearchInput3 = ({ setData }: any) => {
 
   const times = ['0-10분', '10분-20분', '20분-30분', '30분 이상']
+  const timesForData = [[0, 10], [10, 20], [20, 30], [30, 40]]
 
   const handleTime = (time: string) => {
     setSelectedTime(time)
-    console.log(time)
+    const a = parseInt(time[0])
+    setData("minTime", timesForData[a][0])
+    setData("maxTime", timesForData[a][1])
   }
 
   const [selectedTime, setSelectedTime] = useState('' as string);

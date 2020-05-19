@@ -3,10 +3,12 @@ import DaumPostcode from 'react-daum-postcode';
 
 type ZoneSearchPopUpProps = {
   close?: () => void | undefined;
-  setLocation?: () => void | undefined;
+  setLocation?: any;
+  setData?: () => any;
+  setUploadedLocation?: any;
 }
 
-const ZoneSearchPopUp = ({ close, setLocation }: ZoneSearchPopUpProps ) => {
+const ZoneSearchPopUp = ({ close, setLocation, setData, setUploadedLocation }: ZoneSearchPopUpProps) => {
   const handleComplete = (data: any) => {
     let fullAddress = data.address;
     let extraAddress = '';
@@ -22,8 +24,11 @@ const ZoneSearchPopUp = ({ close, setLocation }: ZoneSearchPopUpProps ) => {
       fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
     // alert(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'\
-    //@ts-ignore
     setLocation(fullAddress)
+    setUploadedLocation(true)
+    console.log('ehla')
+    //@ts-ignore
+    setData("address", fullAddress)
     //@ts-ignore
     close();
   };
