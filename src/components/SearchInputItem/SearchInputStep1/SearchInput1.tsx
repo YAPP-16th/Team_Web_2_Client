@@ -32,10 +32,13 @@ const SearchInput1 = ({ click, location, setData, setUploadedHashTag }: InputPro
         <br />
         <span className="Rectangle_ment">위치를 알려주세요</span>
         <br />
+        <br />
         <HashTag
           setData={setData}
           setUploadedHashTag={setUploadedHashTag}
         />
+        <br />
+        <br />
         <br />
         <input
           type="text"
