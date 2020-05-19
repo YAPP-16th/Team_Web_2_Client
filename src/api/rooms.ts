@@ -25,7 +25,7 @@ export type Room = {
 
 export async function getRooms(payload: number) {
   const response = await axios.get<RoomObj>(
-    `http://testloadbalancer-546010974.ap-northeast-2.elb.amazonaws.com/rooms/byRegistration/?zoneId=${payload}`
+    process.env.REACT_APP_API_URL + `/rooms/byRegistration/?zoneId=${payload}`
   );
   return response.data.data;
 }

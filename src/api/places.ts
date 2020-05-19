@@ -21,7 +21,7 @@ export type PlaceObj = {
 
 export async function getPlaces(payload: number) {
   const response = await axios.get<PlaceObj>(
-    `http://testloadbalancer-546010974.ap-northeast-2.elb.amazonaws.com/places?zoneId=${payload}`
+    process.env.REACT_APP_API_URL + `/places?zoneId=${payload}`
   );
   return response.data.data;
 }
