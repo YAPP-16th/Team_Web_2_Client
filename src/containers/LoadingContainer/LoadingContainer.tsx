@@ -1,7 +1,7 @@
 import React from "react";
 import Styled from "styled-components";
 import { ReactComponent as twinkle } from "../../assets/svgs/loading-twinkle.svg";
-import { ReactComponent as close } from "../../assets/svgs/loading-close.svg";
+import { ReactComponent as close } from "../../assets/svgs/icons/icon-close.svg";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 interface LoadingContainerProps {

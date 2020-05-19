@@ -8,3 +8,5 @@ export { ReactComponent as menu } from './icon-menu.svg';
 export { ReactComponent as koex } from './icon-koex.svg';
 export { ReactComponent as seoulForest } from './icon-seoul-forest.svg';
 export { ReactComponent as filterOption } from './icon-filter-option.svg';
+export { ReactComponent as footerLogo } from './icon-footer-logo.svg';
+export { ReactComponent as close } from './icon-close.svg';
