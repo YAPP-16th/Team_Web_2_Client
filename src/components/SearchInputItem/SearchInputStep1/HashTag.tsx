@@ -2,7 +2,7 @@ import React, { useState, useEffect, KeyboardEvent } from 'react';
 import useSearchInput from '../../../hooks/useSearchInput';
 
 
-const HashTag = ({ setData, setUploadedHashTag }: any) => {
+const HashTag = () => {
 
   const addTag: Function = (
     array: Array<string>,
@@ -33,17 +33,26 @@ const HashTag = ({ setData, setUploadedHashTag }: any) => {
     }
   };
 
+  const searchInput = useSearchInput();
+
+  const setAddressTagRedux = (addressTag: any) => {
+    const processed = { ...searchInput.searchInputData };
+    processed.addressTag = addressTag;
+    searchInput.setSearchInputData(processed);
+  }
+
   const onClickSelectHandler = (e: string) => {
     // Redux 보내는 부분
-    setData("addressTag", e.slice(2))
-    setUploadedHashTag(true)
+    // setData("addressTag", e.slice(2))
+    setAddressTagRedux(e.slice(2))
     setSelected(e)
-    console.log(e)
   };
 
   const tagListMap: any = tagList.map((e: any, idx: number) => {
+    console.log('이거', searchInput.searchInputData.addressTag)
     return (
-      (e === selected)
+
+      (e.slice(2) === searchInput.searchInputData.addressTag)
         ?
         <div
           className="SelectedHashTag"

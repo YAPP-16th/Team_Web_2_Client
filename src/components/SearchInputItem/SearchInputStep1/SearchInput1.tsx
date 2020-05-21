@@ -3,22 +3,17 @@ import ZoneSearchPopUp from './ZoneSearchPopup';
 import Dialog from '../../Dialog/Dialog';
 import styled from 'styled-components';
 import HashTag from './HashTag';
-import getLocation from './CurrentLocation';
+import useSearchInput from '../../../hooks/useSearchInput';
 
 import icongps from '../../../assets/img/icongps.png';
 
 type InputProps = {
   click?: () => void;
-  location: string;
-  setData: any;
-  setUploadedHashTag: any;
 }
-const SearchInput1 = ({ click, location, setData, setUploadedHashTag }: InputProps) => {
-
-  const onClickCurrentLocationHandler = () => {
-    getLocation();
-  }
-
+const SearchInput1 = ({ click }: InputProps) => {
+  const searchInput = useSearchInput();
+  console.log(searchInput.searchInputData)
+  const location = searchInput.searchInputData.address
 
   return (
     <>
@@ -33,10 +28,7 @@ const SearchInput1 = ({ click, location, setData, setUploadedHashTag }: InputPro
         <span className="Rectangle_ment">위치를 알려주세요</span>
         <br />
         <br />
-        <HashTag
-          setData={setData}
-          setUploadedHashTag={setUploadedHashTag}
-        />
+        <HashTag />
         <br />
         <br />
         <br />

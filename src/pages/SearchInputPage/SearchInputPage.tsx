@@ -64,34 +64,34 @@ const SearchInputPage = ({ match, history }: RouteComponentProps<paramsType>) =>
 
 
   // 전역 상태
-  const searchInput = useSearchInput();
+  // const searchInput = useSearchInput();
 
-  var processed = { ...searchInput.searchInputData };
+  // var processed = { ...searchInput.searchInputData };
 
   const [isHover, setIsHover] = useState(false as boolean)
 
-  const handleSearchInput = (target: any, data: any) => {
-    if (target === "address") {
-      processed.address = data;
-    } else if (target === "addressTag") {
-      processed.addressTag = data;
-    } else if (target === "maxTime") {
-      processed.maxTime = data;
-    } else if (target === "minTime") {
-      processed.minTime = data;
-    } else if (target === "transferLimit") {
-      processed.transferLimit = data;
-    } else if (target === "transitMode") {
-      processed.transitMode = data;
-    }
-    // setSelected(processed)
-  }
+  // const handleSearchInput = (target: any, data: any) => {
+  //   if (target === "address") {
+  //     processed.address = data;
+  //   } else if (target === "addressTag") {
+  //     processed.addressTag = data;
+  //   } else if (target === "maxTime") {
+  //     processed.maxTime = data;
+  //   } else if (target === "minTime") {
+  //     processed.minTime = data;
+  //   } else if (target === "transferLimit") {
+  //     processed.transferLimit = data;
+  //   } else if (target === "transitMode") {
+  //     processed.transitMode = data;
+  //   }
+  //   // setSelected(processed)
+  // }
 
 
   let container;
 
   const stepForwardHandler = (step: string) => {
-    searchInput.setSearchInputData(processed)
+    // searchInput.setSearchInputData(processed)
     switch (step) {
       case "1":
         history.push("2")
@@ -114,19 +114,16 @@ const SearchInputPage = ({ match, history }: RouteComponentProps<paramsType>) =>
   if (stepParam === '1') {
     container =
       <SearchInputStep1Container
-        setData={handleSearchInput}
         setIsHover={setIsHover}
       />;
   } else if (stepParam === '2') {
     container =
       <SearchInputStep2Container
-        setData={handleSearchInput}
         setIsHover={setIsHover}
       />;
   } else if (stepParam === '3') {
     container =
       <SearchInputStep3Container
-        setData={handleSearchInput}
         setIsHover={setIsHover}
       />;
   } else if (stepParam === 'loading') {

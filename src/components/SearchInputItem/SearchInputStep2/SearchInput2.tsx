@@ -6,39 +6,78 @@ import HashTag from '../SearchInputStep1/HashTag';
 import CurrentLocation from '../SearchInputStep1/CurrentLocation';
 import check1 from '../../../assets/img/check1.png';
 import check0 from '../../../assets/img/check0.png';
+import useSearchInput from '../../../hooks/useSearchInput';
 
-const SearchInput2 = ({ setData }: any) => {
+
+const SearchInput2 = () => {
+
+  const searchInput = useSearchInput();
+
+  const setTransitModeRedux = (transitMode: any) => {
+    const processed = { ...searchInput.searchInputData };
+    processed.transitMode = transitMode;
+    searchInput.setSearchInputData(processed);
+  }
+
+  const setTransferLimitRedux = (transferLimit: any) => {
+    const processed = { ...searchInput.searchInputData };
+    processed.transferLimit = transferLimit;
+    searchInput.setSearchInputData(processed);
+  }
+
+  const translate = (item: any) => {
+    if (item == "subway") {
+      return "지하철"
+    } else if (item == "bus") {
+      return "버스"
+    } else if (item.length === 2) {
+      return "지하철 & 버스"
+    } else if (item === 0) {
+      return "환승없음"
+    } else if (item === 1) {
+      return "1회환승"
+    } else if (item === 2) {
+      return "2회환승"
+    }
+  }
+
 
   const transport = ['지하철', '버스', '지하철 & 버스'];
 
   const transportDetail = ['환승없음', '1회환승', '2회환승'];
 
-  const [selectedTp, setSelectedTp] = useState('' as string);
-  const [selectedDetailTp, setSelectedDetailTp] = useState('' as string);
+  // const [selectedTp, setSelectedTp] = useState('' as string);
+  // const [selectedDetailTp, setSelectedDetailTp] = useState('' as string);
 
   const handleTp = (tp: string) => {
-    setSelectedTp(tp)
+    // setSelectedTp(tp)
     if (tp === "지하철") {
-      setData("transitMode", ["subway"])
+      // setData("transitMode", ["subway"])
+      setTransitModeRedux(["subway"])
     } else if (tp === "버스") {
-      setData("transitMode", ["bus"])
+      // setData("transitMode", ["bus"])
+      setTransitModeRedux(["bus"])
     } else if (tp === "지하철 & 버스") {
-      setData("transitMode", ["subway", "bus"])
+      // setData("transitMode", ["subway", "bus"])
+      setTransitModeRedux(["subway", "bus"])
     }
   }
 
   const handleDetailTp = (dtp: string) => {
-    setSelectedDetailTp(dtp)
+    // setSelectedDetailTp(dtp)
     if (dtp === "환승없음") {
-      setData("transferLimit", 0)
+      // setData("transferLimit", 0)
+      setTransferLimitRedux(0)
     } else if (dtp === "1회환승") {
-      setData("transferLimit", 1)
+      // setData("transferLimit", 1)
+      setTransferLimitRedux(1)
     } else if (dtp === "2회환승") {
-      setData("transferLimit", 2)
+      // setData("transferLimit", 2)
+      setTransferLimitRedux(2)
     }
   }
 
-  const selectedTpCheckBox = (item: string, selected: string) => {
+  const selectedTpCheckBox = (item: string, selected: any) => {
     return item === selected ? <img className="check1" src={check1}></img> : <img className="check1" src={check0}></img>
   }
 
@@ -46,8 +85,8 @@ const SearchInput2 = ({ setData }: any) => {
   const transportDetailList = transportDetail.map((tpd, idx) => {
     return (
       <>
-        <div className="Rectangle" onClick={() => handleDetailTp(tpd)} style={{ marginLeft: '30px' }}>
-          {selectedTpCheckBox(tpd, selectedDetailTp)}
+        <div className="Rectangle" onClick={() => handleDetailTp(tpd)} style={{ marginLeft: '30px' }} key={idx}>
+          {selectedTpCheckBox(tpd, translate(searchInput.searchInputData.transferLimit))}
           {tpd}
         </div>
       </>
@@ -58,16 +97,18 @@ const SearchInput2 = ({ setData }: any) => {
     return (
       <>
         <div className="Rectangle" onClick={() => handleTp(tp)} key={idx}>
-          {selectedTpCheckBox(tp, selectedTp)}
+          {selectedTpCheckBox(tp, translate(searchInput.searchInputData.transitMode))}
           {tp}
         </div>
-        {tp === selectedTp
+        {tp === translate(searchInput.searchInputData.transitMode)
           ? transportDetailList
           : null
         }
       </>
     );
   });
+
+  // console.log(translate(searchInput.searchInputData.transitMode))
 
   return (
     <>

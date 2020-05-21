@@ -6,25 +6,29 @@ import styled from 'styled-components';
 import useSearchInput from '../../hooks/useSearchInput';
 
 type InputProps = {
-  setData?: any;
   setIsHover?: any;
 };
 
-const SearchInputStep1Container = ({ setData, setIsHover }: InputProps) => {
+const SearchInputStep1Container = ({ setIsHover }: InputProps) => {
 
 
   const onClickLocationHandler = () => {
     return setIsOpen(!isOpen)
   };
 
-  const [location, setLocation] = useState('주소를 입력하세요' as string)
   const [isOpen, setIsOpen] = useState(false as boolean);
-  const [upLoadedHashTag, setUploadedHashTag] = useState(false as boolean);
-  const [uploacedLocation, setUploadedLocation] = useState(false as boolean);
 
-  if (uploacedLocation && upLoadedHashTag) {
-    setIsHover(true);
-  };
+  const searchInput = useSearchInput();
+
+  const isHover = () => {
+    (searchInput.searchInputData.address !== '주소를 입력해 주세요')
+      &&
+      (searchInput.searchInputData.addressTag !== 'tag')
+      ? setIsHover(true)
+      : setIsHover(false)
+  }
+
+  isHover();
 
   return (
     <>
@@ -37,17 +41,11 @@ const SearchInputStep1Container = ({ setData, setIsHover }: InputProps) => {
         >
           <ZoneSearchPopUp
             close={onClickLocationHandler}
-            setLocation={setLocation}
-            setData={setData}
-            setUploadedLocation={setUploadedLocation}
           />
         </Dialog>
         :
         <SearchInput1
           click={onClickLocationHandler}
-          location={location}
-          setUploadedHashTag={setUploadedHashTag}
-          setData={setData}
         />
       }
       {/* <MoreItemButton onClick={() => stepForwardHandler(stepParam)}>다음으로</MoreItemButton> */}
