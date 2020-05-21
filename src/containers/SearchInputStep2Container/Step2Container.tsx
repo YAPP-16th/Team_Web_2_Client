@@ -6,7 +6,7 @@ const SearchInputStep2Container = ({ setIsHover }: any) => {
   const searchInput = useSearchInput();
 
   (searchInput.searchInputData.transitMode !== [])
-    && (searchInput.searchInputData.transferLimit !== 0)
+    && (searchInput.searchInputData.transferLimit !== 100)
     ? setIsHover(true)
     : setIsHover(false)
   return (

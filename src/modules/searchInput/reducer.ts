@@ -11,7 +11,7 @@ const initialState: SearchInputState = {
     addressTag: 'tag',
     maxTime: 0,
     minTime: 0,
-    transferLimit: 0,
+    transferLimit: 100,
     transitMode: [],
   }
 };
