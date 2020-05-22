@@ -14,8 +14,6 @@ const DEVICE_SIZE = {
 
 const ToolbarWrapper = styled.nav`
   padding: 44px 33px 26px;
-  backgroundcolor: var(--BackgroundColor);
-  color: var(--GreyTextColor);
 
   @media only screen and (max-width: ${DEVICE_SIZE.mobile}) {
     padding: 18px 20px;
