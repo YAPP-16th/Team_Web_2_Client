@@ -1,5 +1,28 @@
 .App {
   width: 100%;
   height: 100%;
-  background-color: var(--GreyTextColor);
+  background-color: var(--BackgroundColor);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  header{
+    position: sticky;
+    top: 0px;
+    width: 100%;
+    max-width: 1920px;
+    display: flex;
+    justify-content: center;
+  }
+
+  main{
+    height: 100%;
+    width: 100%;
+    max-width: 1920px;
+  }
+
+  footer{
+    width: 100%;
+    max-width: 1920px;
+  }
 }
