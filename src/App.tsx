@@ -8,9 +8,6 @@ import "./App.scss";
 import ZoneSearchPage from "./pages/ZoneSearchPage/ZoneSearchPage";
 import HeaderPage from "./pages/HeaderPage/HeaderPage";
 
-// Containers
-import ListViewContainer from "./containers/ListViewContainer/ListViewContainer";
-
 // Components
 import Modal from './components/Modal/Modal';
 
