@@ -8,6 +8,7 @@ type SearchResultInfoProps = {
   itemCount: string | number;
   addedHeight: string;
   className?: string;
+  searchData?: SearchData | null;
 };
 
 interface SpanProps {
@@ -20,6 +21,15 @@ interface EmphasisSpanProps {
   letterSpacing?: string;
   bold?: boolean;
 }
+
+export type SearchData = {
+  type: string;
+  address: string;
+  transitMode: string;
+  transferLimit: string;
+  maxTime: number;
+  minTime: number;
+} | null;
 
 const DEVICE_SIZE = {
   mobile: "425px",
@@ -37,7 +47,7 @@ const SearchResultInfoWrapper = styled.div<{ addedHeight: string }>`
   padding: 39px 33px 28px;
 
   @media only screen and (max-width: ${DEVICE_SIZE.mobile}) {
-    padding: 7px 20px 16px;
+    padding: 23px 20px 16px;
   }
 `;
 
@@ -126,13 +136,8 @@ const SearchResultInfo = ({
   itemCount,
   addedHeight,
   className,
+  searchData,
 }: SearchResultInfoProps) => {
-  const location = "회사",
-    address = "서울 강남구 선릉로 429 (KR타워)",
-    transport = "지하철",
-    transmit = "환승 여부 상관없음",
-    minTime = 10,
-    maxTime = 20;
   return (
     <SearchResultInfoWrapper addedHeight={addedHeight} className={className}>
       <ResultContainer>
@@ -153,20 +158,26 @@ const SearchResultInfo = ({
           <Icon icon="share" size={"20px"} />
         </RightContent>
       </ResultContainer>
-      <Divider />
-      <SearchContainer>
-        <SearchSpan color="var(--LightTextColor)" marginRight="10px">
-          {location}
-        </SearchSpan>
-        <SearchSpan marginRight="10px">{address}</SearchSpan>
-        <SearchSpan color="var(--LightTextColor)" marginRight="10px">
-          까지 / {transport}
-        </SearchSpan>
-        <SearchSpan marginRight="10px">{transmit} </SearchSpan>
-        <SearchSpan color="var(--LightTextColor)">
-          로 / {minTime} - {maxTime}분
-        </SearchSpan>
-      </SearchContainer>
+      {searchData && (
+        <>
+          <Divider />
+          <SearchContainer>
+            <SearchSpan color="var(--LightTextColor)" marginRight="10px">
+              {searchData.type}
+            </SearchSpan>
+            <SearchSpan marginRight="10px">{searchData.address}</SearchSpan>
+            <SearchSpan color="var(--LightTextColor)" marginRight="10px">
+              까지 / {searchData.transitMode}
+            </SearchSpan>
+            <SearchSpan marginRight="10px">
+              {searchData.transferLimit}{" "}
+            </SearchSpan>
+            <SearchSpan color="var(--LightTextColor)">
+              로 / {searchData.minTime} - {searchData.maxTime}분
+            </SearchSpan>
+          </SearchContainer>
+        </>
+      )}
     </SearchResultInfoWrapper>
   );
 };
