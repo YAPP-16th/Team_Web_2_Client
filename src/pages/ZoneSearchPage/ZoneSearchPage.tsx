@@ -1,31 +1,31 @@
 import React from "react";
-import "./ZoneSearchPage.scss";
 import {
-  HashRouter,
-  withRouter,
-  Route,
-  Link,
-  RouteComponentProps,
-  Switch,
+  useLocation,
 } from "react-router-dom";
 
-import queryString from "query-string";
-
 // Page
-import ZoneDetailPage from "../ZoneDetailPage/ZoneDetailPage";
+import ZoneSearchResultPage from "../ZoneSearchResultPage/ZoneSearchResultPage";
 
-const ZoneSearchPage = ({ match, location }: RouteComponentProps) => {
+interface loadingContainer {
+  data: locationData;
+  closeCallback?: () => void;
+}
 
+interface locationData {
+  address: string;
+  transitMode: string;
+  minTime: number;
+  maxTime: number;
+}
 
-  return (
-    <div className="zone-search">
-      <Switch>
-        <HashRouter basename="/zone">
-          <Route path="/:id/:feature" exact component={ZoneDetailPage} />
-        </HashRouter>
-      </Switch>
-    </div>
+const ZoneSearchPage = () => {
+  const location = useLocation();
+
+  return location.search ? (
+    <ZoneSearchResultPage />
+  ) : (
+    <div>여기는 검색 페이지 넣어야함</div>
   );
 };
 
-export default withRouter(ZoneSearchPage);
+export default ZoneSearchPage;
