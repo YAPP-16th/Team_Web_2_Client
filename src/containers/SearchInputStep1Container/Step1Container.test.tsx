@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import Step1Container from "./Step1Container";
+import Dialog from "../../components/Dialog/Dialog";
 
 const DEFAULT_VALUES = {
   searchInputData: {
@@ -10,7 +11,9 @@ const DEFAULT_VALUES = {
     minTime: 0,
     transferLimit: 100,
     transitMode: [],
-    // setIsHover: 
+  },
+  setIsHover: () => {
+    console.log("다음으로 색 바뀌는 테스트")
   }
 };
 
@@ -28,15 +31,29 @@ describe("Step1Container 컴포넌트", () => {
       const TAG_NAME = ["svg", "DIV", "BUTTON", "DIV"];
       const MATCH_STRING: string[] = [
         "loading-twinkle.svg",
-        "icon-close.svg",
-        "",
-        "loadingSpinner",
       ];
       const { container } = render(
         <Step1Container
           setIsHover={DEFAULT_VALUES.setIsHover}
         />
       );
+      const { dialog } = render(
+        <Dialog
+          className="pop_up"
+          display={isOpen}
+          click={onClickLocationHandler}
+        />
+      )
+      const { zoneSearchPopUp } = render(
+        <ZoneSearchPopUp
+          close={onClickLocationHandler}
+        />
+      )
+      const { searchInput1 } = render(
+        <SearchInput1
+          click={onClickLocationHandler}
+        />
+      )
 
       expect(container.innerHTML).not.toEqual("");
       expect(container.innerHTML).toMatch(`id="` + DEFAULT_VALUES.id + `"`);
@@ -53,9 +70,8 @@ describe("Step1Container 컴포넌트", () => {
             const content = children[j].children as HTMLCollection;
             let idx = 0;
             const TEST_VALUES = [
-              DEFAULT_VALUES.address,
-              DEFAULT_VALUES.transitMode,
-              `${DEFAULT_VALUES.minTime}분-${DEFAULT_VALUES.maxTime}분 이내`,
+              DEFAULT_VALUES.searchInputData.address,
+              DEFAULT_VALUES.searchInputData.addressTag,
             ];
 
             for (let element of content) {
@@ -67,6 +83,7 @@ describe("Step1Container 컴포넌트", () => {
           } else {
             expect(children[j].innerHTML).toMatch(MATCH_STRING[j]);
 
+            // 다음으로 버튼을 눌렀을 때 리덕스에 값이 변화했는지는 어떻게 확인할까요 ?.?
             if (children[j].tagName === "BUTTON") {
               const Button = children[j] as HTMLElement;
               expect(Button.onclick).toBeDefined();
