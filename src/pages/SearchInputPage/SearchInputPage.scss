@@ -2,13 +2,36 @@
   width: 100%;
   height: 100%;
   background-color: #1d1d1d;
-  margin-left: 1rem;
   margin-top: 2rem;
+
+  .search1_elements_wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    @media screen and (min-width: 1060px) {
+      height: 70vh;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .input_header_wrapper {
+    margin-bottom: 12px;
+    @media screen and (min-width: 1060px) {
+      margin-bottom: 42px;
+    }
+  }
+
+  .input_question_wrapper {
+    margin-bottom: 21px;
+    display: flex;
+    flex-direction: column;
+  }
+
 }
 
 .STEP-1 {
-  width: 86px;
-  height: 39px;
+  margin-right: 12px;
   font-family: Gotham;
   font-size: 28px;
   font-weight: bold;
@@ -46,8 +69,6 @@
 }
 
 .Rectangle_ment {
-  width: 152px;
-  height: 48px;
   font-family: NotoSansCJKkr;
   font-size: 16px;
   font-weight: 500;
@@ -56,6 +77,9 @@
   line-height: 1.5;
   letter-spacing: -0.71px;
   color: #b6b6b6;
+  @media screen and (min-width: 1060px) {
+    text-align: center;
+  }
 }
 
 .text-style-1 {

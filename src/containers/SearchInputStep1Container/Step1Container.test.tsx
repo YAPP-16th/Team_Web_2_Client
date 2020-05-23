@@ -1,23 +1,23 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 import Step1Container from "./Step1Container";
 import Dialog from "../../components/Dialog/Dialog";
+import SearchInputStep2Container from "../SearchInputStep2Container/Step2Container";
+import { createMemoryHistory } from "history";
+import { Router } from "react-router-dom";
+
 
 const DEFAULT_VALUES = {
   searchInputData: {
     address: '주소를 입력해 주세요',
     addressTag: 'tag',
-    maxTime: 0,
-    minTime: 0,
-    transferLimit: 100,
-    transitMode: [],
   },
   setIsHover: () => {
     console.log("다음으로 색 바뀌는 테스트")
   }
 };
 
-describe("Step1Container 컴포넌트", () => {
+describe("Step1Container", () => {
   describe("import 했을 시", () => {
     it("정상적으로 Load 되었다.", () => {
       expect(Step1Container).not.toBeNull();
@@ -37,60 +37,38 @@ describe("Step1Container 컴포넌트", () => {
           setIsHover={DEFAULT_VALUES.setIsHover}
         />
       );
-      const { dialog } = render(
-        <Dialog
-          className="pop_up"
-          display={isOpen}
-          click={onClickLocationHandler}
-        />
-      )
-      const { zoneSearchPopUp } = render(
-        <ZoneSearchPopUp
-          close={onClickLocationHandler}
-        />
-      )
       const { searchInput1 } = render(
         <SearchInput1
           click={onClickLocationHandler}
         />
       )
+    })
 
-      expect(container.innerHTML).not.toEqual("");
-      expect(container.innerHTML).toMatch(`id="` + DEFAULT_VALUES.id + `"`);
+    // 다음으로 버튼 누르면, Redux 값이 바뀌면서 다음 페이지로 넘어간다.
+    it("다음으로 버튼 눌렀을 때", () => {
+      const history = createMemoryHistory();
+      history.push("/searchInput/2");
+      const utils = render(
+        <Router history={history}>
+          <SearchInputStep2Container />
+        </Router>
+      );
 
-      for (let i = 0; i < container.children.length; i++) {
-        const { children } = container.children[i];
-        expect(container.children[i].tagName).toEqual("DIV");
-        expect(container.children[i].children.length).toBe(4);
+      // const goNext = utils.getByTestId('MoreItemButton');
+      // fireEvent.click(goNext);
+      // expect(history.location.pathname).toBe('/searchInput/2');
+      // })
 
-        for (let j = 0; j < children.length; j++) {
-          expect(children[j].tagName).toEqual(TAG_NAME[j]);
-          if (j === 1) {
-            expect(children[j].children.length).toBe(7);
-            const content = children[j].children as HTMLCollection;
-            let idx = 0;
-            const TEST_VALUES = [
-              DEFAULT_VALUES.searchInputData.address,
-              DEFAULT_VALUES.searchInputData.addressTag,
-            ];
-
-            for (let element of content) {
-              if (element.tagName === "SPAN") {
-                expect(element.innerHTML).toEqual(TEST_VALUES[idx]);
-                idx++;
-              }
-            }
-          } else {
-            expect(children[j].innerHTML).toMatch(MATCH_STRING[j]);
-
-            // 다음으로 버튼을 눌렀을 때 리덕스에 값이 변화했는지는 어떻게 확인할까요 ?.?
-            if (children[j].tagName === "BUTTON") {
-              const Button = children[j] as HTMLElement;
-              expect(Button.onclick).toBeDefined();
-            }
-          }
-        }
-      }
-    });
-  });
-});
+      it("해시태그 눌렀을 때", () => {
+        const utils = render(
+          <HashTag />
+        );
+      })
+        .
+        it("주소 입력창 눌렀을 때(Modal)", () => {
+          render(
+            <Dialog />
+          )
+        })
+    })
+  })
