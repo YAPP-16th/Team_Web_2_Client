@@ -30,13 +30,13 @@ const MapStyle = {
 };
 
 function ZoneSearchResultContainer(props: ContainerProps) {
-  const { zonedata, searchData } = props;
+  const { zonedata = {}, searchData } = props;
   const { inputLocation = {}, data = [] } = zonedata;
 
   const RoomClickCallback = useCallback((props: RoomClickEvent) => {}, []);
   const ClusterClickCallback = useCallback((props: ClusterClickEvent) => {}, []);
   const ZoneClickCallback = useCallback((props: ZoneClickEvent) => {}, []);
-
+  
   return (
     <Container>
       <ZoneSearchResultInfo
