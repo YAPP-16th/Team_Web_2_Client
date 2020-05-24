@@ -109,7 +109,7 @@ const items = [
   { id: 8, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
 ];
 
-const ListViewContainer = ({ data }: { data: Array<any> }) => {
+const ListViewContainer = ({ data=items }: { data?: Array<any> }) => {
   // States
   const listView = useListView();
 
