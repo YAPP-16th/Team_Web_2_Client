@@ -16,8 +16,8 @@ interface RightContentsProps {
 }
 
 const HeaderContainerWrapper = styled.div`
-  position: sticky;
-  top: 100px;
+  max-width: 1120px;
+  width: 100%;
 `;
 
 const RightContentsWrapper = styled.div`

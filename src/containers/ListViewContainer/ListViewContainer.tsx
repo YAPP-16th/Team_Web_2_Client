@@ -1,11 +1,6 @@
 import React, { MouseEvent } from "react";
 import styled, { keyframes } from "styled-components";
-import {
-  Link,
-  HashRouter,
-  withRouter,
-  RouteComponentProps,
-} from "react-router-dom";
+import { Link, HashRouter } from "react-router-dom";
 
 // Custom Hooks
 import useListView from "./ListViewHooks";
@@ -114,7 +109,7 @@ const items = [
   { id: 8, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
 ];
 
-const ListViewContainer = ({ location }: RouteComponentProps) => {
+const ListViewContainer = ({ data=items }: { data?: Array<any> }) => {
   // States
   const listView = useListView();
 
@@ -133,7 +128,7 @@ const ListViewContainer = ({ location }: RouteComponentProps) => {
   };
 
   // Props Handling
-  const searchResultItemList = items.map((item) => {
+  const searchResultItemList = data.map((item: any) => {
     return (
       <div key={item.id}>
         <Link to={`/${item.id}/timecompare`}>
@@ -149,25 +144,21 @@ const ListViewContainer = ({ location }: RouteComponentProps) => {
     );
   });
 
-  if (location.search && !location.hash.includes("/zone/")) {
-    return (
-      <HashRouter basename="/zone">
-        <ListViewContainerWrapper clicked={listView.toggled}>
-          <ModalHeader>
-            <span className="text">
-              {listView.toggled ? `${items.length}개의 ZONE` : ""}
-            </span>
-            <span className="button" onMouseUp={onToggleHandler}>
-              리스트뷰 +
-            </span>
-          </ModalHeader>
-          <ModalBody>{searchResultItemList}</ModalBody>
-        </ListViewContainerWrapper>
-      </HashRouter>
-    );
-  } else {
-    return <div></div>;
-  }
+  return (
+    <HashRouter basename="/zone">
+      <ListViewContainerWrapper clicked={listView.toggled}>
+        <ModalHeader>
+          <span className="text">
+            {listView.toggled ? `${items.length}개의 ZONE` : ""}
+          </span>
+          <span className="button" onMouseUp={onToggleHandler}>
+            리스트뷰 +
+          </span>
+        </ModalHeader>
+        <ModalBody>{searchResultItemList}</ModalBody>
+      </ListViewContainerWrapper>
+    </HashRouter>
+  );
 };
 
-export default withRouter(ListViewContainer);
+export default ListViewContainer;

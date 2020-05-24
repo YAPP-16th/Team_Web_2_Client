@@ -29,7 +29,7 @@
 
 ### Third Party library
 
-Redux-saga, axios, SASS, Styled-Components
+- Redux-saga, axios, SASS, Styled-Components
 
 ### Bundling
 

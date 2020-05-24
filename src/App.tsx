@@ -8,11 +8,8 @@ import "./App.scss";
 import ZoneSearchPage from "./pages/ZoneSearchPage/ZoneSearchPage";
 import HeaderPage from "./pages/HeaderPage/HeaderPage";
 
-// Containers
-import ListViewContainer from "./containers/ListViewContainer/ListViewContainer";
-
 // Components
-import Modal from './components/Modal/Modal';
+import Modal from "./components/Modal/Modal";
 
 function App() {
   return (
@@ -22,9 +19,9 @@ function App() {
         <HeaderPage />
       </header>
       <main>
-        <Switch>
-          <Route path="/search" exact component={ZoneSearchPage}></Route>
-        </Switch>
+          <Switch>
+            <Route exact path="/search" component={ZoneSearchPage} />
+          </Switch>
       </main>
       <footer></footer>
     </div>
