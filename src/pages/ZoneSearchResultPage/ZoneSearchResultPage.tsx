@@ -126,17 +126,22 @@ const ZoneSearchResultPage = () => {
   );
 
   useEffect(() => {
-    const closeCallback = () => {
-      const result = window.confirm("변경사항이 저장되지 않을 수 있습니다.");
+    if (!location.hash.match(/zone/) && !zoneData.hasOwnProperty('data')) {
+      const closeCallback = () => {
+        const result = window.confirm("변경사항이 저장되지 않을 수 있습니다.");
 
-      if (result) {
-        history.goBack();
-      }
-    };
-    modal.setContainer(createLoadingContainer({ data: params, closeCallback }));
-    modal.openModal();
-    requestZones(params);
-  }, []);
+        if (result) {
+          history.goBack();
+        }
+      };
+
+      modal.setContainer(
+        createLoadingContainer({ data: params, closeCallback })
+      );
+      modal.openModal();
+      requestZones(params);
+    }
+  }, [location.hash]);
 
   return (
     <HashRouter basename="/zone">
@@ -149,7 +154,7 @@ const ZoneSearchResultPage = () => {
             />
           )}
         </Route>
-        <Route path="/:id/:feature" exact component={ZoneDetailPage} />
+        <Route exact path="/:id/:feature" component={ZoneDetailPage} />
       </Switch>
     </HashRouter>
   );
