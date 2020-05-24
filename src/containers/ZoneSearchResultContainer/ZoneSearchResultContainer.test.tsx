@@ -23,7 +23,7 @@ describe("ZoneSearchResultContainer 컴포넌트", () => {
           <ZoneSearchResultContainer></ZoneSearchResultContainer>
         </Provider>
       );
-      console.log(container.getElementsByTagName("span").length);
+      
       expect(container.innerHTML).toMatch(/개의/);
       expect(container.innerHTML).toMatch(/ZONE/);
       expect(container.innerHTML).toMatch(/검색되었습니다./);
