@@ -24,7 +24,7 @@ const ZoneDetailHeaderContainer = ({ history, location }: RouteComponentProps) =
     <HashRouter basename={`/zone/${id}`}>
       <HeaderContainerWrapper>
         <Toolbar
-          leftContents={<Icon testId="go-back" onClick={goToSearchPageHandler} icon="back" size="13px"/>}
+          leftContents={<Icon testId="go-back" onClick={goToSearchPageHandler} icon="back" size="13px" cursor="pointer"/>}
         />
       </HeaderContainerWrapper>
     </HashRouter>
