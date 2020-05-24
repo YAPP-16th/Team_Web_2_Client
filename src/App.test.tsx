@@ -1,38 +1,53 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import App from "./App";
-import { createMemoryHistory } from "history";
+import { createMemoryHistory, createBrowserHistory } from "history";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import rootReducer from "./modules";
 import { Router } from "react-router-dom";
 
-const store = createStore(rootReducer);
-
 describe("Routing Test", () => {
-  it("Zone Search Page Render", () => {
+  it("검색 페이지 라우팅 Test", () => {
+    const store = createStore(rootReducer);
     const history = createMemoryHistory();
-    history.push("/search?key=value");
-    const { container, getByText } = render(
+    history.push("/search");
+    const { container } = render(
       <Provider store={store}>
         <Router history={history}>
           <App />
         </Router>
       </Provider>
     );
-    expect(container.innerHTML).toMatch("검색되었습니다");
+    expect(container.innerHTML).toMatch("여기는 검색 페이지 넣어야함");
   });
 
-  it("Zone Detail Page Render", () => {
+  it("검색 결과 페이지 라우팅 Test", () => {
+    const store = createStore(rootReducer);
     const history = createMemoryHistory();
-    history.push("/search?key=value#/zone/1/timecompare");
-    const { container, getByText } = render(
+    history.push("/search?key=value");
+    const { container } = render(
       <Provider store={store}>
         <Router history={history}>
           <App />
         </Router>
       </Provider>
     );
+    expect(container.innerHTML).toMatch(/id="Modal"/);
+  });
+
+  it("Zone 자세히 보기 페이지 라우팅 Test", () => {
+    const store = createStore(rootReducer);
+    const history = createBrowserHistory();
+    history.push("/search?key=value#/1/timecompare");
+    const { container } = render(
+      <Provider store={store}>
+        <Router history={history}>
+          <App />
+        </Router>
+      </Provider>
+    );
+
     expect(container.innerHTML).toMatch("시간비교");
   });
 });
