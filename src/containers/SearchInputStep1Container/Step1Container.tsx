@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import useSearchInput from '../../hooks/useSearchInput';
 
 type InputProps = {
+  // setIsHover?: (isHover: boolean) => void | undefined;
   setIsHover?: any;
 };
 

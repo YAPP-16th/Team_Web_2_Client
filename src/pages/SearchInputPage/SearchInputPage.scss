@@ -20,40 +20,113 @@
     @media screen and (min-width: 1060px) {
       margin-bottom: 42px;
     }
+    .STEP-1 {
+      margin-right: 12px;
+      font-family: Gotham;
+      font-size: 28px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.39;
+      letter-spacing: -1.25px;
+      color: #40aee1;
+    }
+  
+    .location {
+      width: 86px;
+      height: 39px;
+      font-family: Gotham;
+      font-size: 20px;
+      font-weight: 300;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.95;
+      letter-spacing: -0.89px;
+      color: #40aee1;
+    }
+    
   }
 
   .input_question_wrapper {
     margin-bottom: 21px;
     display: flex;
     flex-direction: column;
+    @media screen and (min-width: 1060px) {
+      margin-bottom: 60px;
+    }
+    .Rectangle_ment {
+      font-family: NotoSansCJKkr;
+      font-size: 16px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.5;
+      letter-spacing: -0.71px;
+      color: #b6b6b6;
+      @media screen and (min-width: 1060px) {
+        text-align: center;
+      }
+    }
+
+  
+  }
   }
 
-}
 
-.STEP-1 {
-  margin-right: 12px;
-  font-family: Gotham;
-  font-size: 28px;
-  font-weight: bold;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.39;
-  letter-spacing: -1.25px;
-  color: #40aee1;
-}
 
-.location {
-  width: 86px;
-  height: 39px;
-  font-family: Gotham;
-  font-size: 20px;
-  font-weight: 300;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.95;
-  letter-spacing: -0.89px;
-  color: #40aee1;
-}
+  .StyledHashTag {
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.64;
+    letter-spacing: -0.62px;
+    color: #ffffff;
+    width: 74px;
+    height: 34px;
+    border-radius: 18.5px;
+    box-shadow: 0 0 6px 0 rgba(23, 23, 23, 0.03);
+    border: solid 1px #2a2a2a;
+    // flex-direction: row;
+    padding-left: 16px;
+    display: flex;
+    text-align: center;
+    line-height: 2.3em;
+    margin-right: 8px;
+    // position: absolute;
+  }
+  
+  .hashTag_Wrapper{
+    display: flex;
+    padding-bottom: 20px;
+    @media screen and (min-width: 1060px) {
+      padding-bottom: 33px;
+    }
+  }
+
+  .SelectedHashTag {
+    font-family: NotoSansCJKkr;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.64;
+    letter-spacing: -0.62px;
+    color: #ffffff;
+    width: 74px;
+    height: 34px;
+    border-radius: 18.5px;
+    box-shadow: 0 0 6px 0 rgba(23, 23, 23, 0.03);
+    border: solid 1px #2a2a2a;
+    background-color: #2a2a2a;
+    padding-left: 16px;
+    text-align: center;
+    line-height: 2.3em;
+    display: flex;
+    margin-right: 8px;
+    // position: absolute;
+  }
 
 .option {
   width: 86px;
@@ -68,73 +141,13 @@
   color: #40aee1;
 }
 
-.Rectangle_ment {
-  font-family: NotoSansCJKkr;
-  font-size: 16px;
-  font-weight: 500;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.5;
-  letter-spacing: -0.71px;
-  color: #b6b6b6;
-  @media screen and (min-width: 1060px) {
-    text-align: center;
-  }
-}
+
 
 .text-style-1 {
   font-weight: 300;
 }
 
-.StyledHashTag {
-  width: 32px;
-  height: 23px;
-  font-family: NotoSansCJKkr;
-  font-size: 14px;
-  font-weight: 300;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.64;
-  letter-spacing: -0.62px;
-  color: #ffffff;
-  width: 74px;
-  height: 34px;
-  border-radius: 18.5px;
-  box-shadow: 0 0 6px 0 rgba(23, 23, 23, 0.03);
-  border: solid 1px #2a2a2a;
-  // background-color: #2a2a2a;
-  display: flex;
-  padding-left: 16px;
-  text-align: center;
-  line-height: 2.3em;
-  float: left;
-  margin-right: 10px;
-}
 
-.SelectedHashTag {
-  width: 32px;
-  height: 23px;
-  font-family: NotoSansCJKkr;
-  font-size: 14px;
-  font-weight: 300;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.64;
-  letter-spacing: -0.62px;
-  color: #ffffff;
-  width: 74px;
-  height: 34px;
-  border-radius: 18.5px;
-  box-shadow: 0 0 6px 0 rgba(23, 23, 23, 0.03);
-  border: solid 1px #2a2a2a;
-  background-color: #2a2a2a;
-  display: flex;
-  padding-left: 16px;
-  text-align: center;
-  line-height: 2.3em;
-  float: left;
-  margin-right: 10px;
-}
 
 .Rectangle_location {
   width: 40px;
@@ -180,6 +193,10 @@
   background-color:#2a2a2a;
   border: none;
   text-align: center;
+  @media screen and (min-width: 1060px) {
+    width: 600px;
+    // height: 60px;
+  }
 }
 
 .hashtag {

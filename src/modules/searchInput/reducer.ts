@@ -7,7 +7,7 @@ import {
 // 전체 상품 리스트의
 const initialState: SearchInputState = {
   searchInputData: {
-    address: '주소를 입력해 주세요',
+    address: '주소를 입력하세요',
     addressTag: 'tag',
     maxTime: 0,
     minTime: 0,

@@ -34,6 +34,18 @@ const SearchInputPage = ({ match, history }: RouteComponentProps<paramsType>) =>
   text-align: center;
   position: absolute;
   bottom: 0;
+  @media screen and (min-width: 1060px) {
+    background-color: #1d1d1d;
+    font-family: NotoSansCJKkr;
+    font-size: 18px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.8px;
+    color: white;
+    padding-bottom: 243px;
+  }
 `;
 
   const MoreItemButtonHovered = styled.button`
@@ -53,6 +65,18 @@ const SearchInputPage = ({ match, history }: RouteComponentProps<paramsType>) =>
   text-align: center;
   position: absolute;
   bottom: 0;
+  @media screen and (min-width: 1060px) {
+    background-color: #1d1d1d;
+    font-family: NotoSansCJKkr;
+    font-size: 18px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.8px;
+    color: var(--PrimaryColor);
+    padding-bottom: 243px;
+  }
   `
 
 
@@ -114,7 +138,7 @@ const SearchInputPage = ({ match, history }: RouteComponentProps<paramsType>) =>
   if (stepParam === '1') {
     container =
       <SearchInputStep1Container
-        setIsHover={setIsHover}
+        setIsHover={(isHover: boolean) => setIsHover(isHover)}
       />;
   } else if (stepParam === '2') {
     container =

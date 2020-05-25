@@ -1,5 +1,6 @@
 import React, { useState, useEffect, KeyboardEvent } from 'react';
 import useSearchInput from '../../../hooks/useSearchInput';
+import '../../../pages/SearchInputPage/SearchInputPage.scss';
 
 
 const HashTag = () => {
@@ -72,16 +73,18 @@ const HashTag = () => {
     );
   });
   return <>
-    {tagListMap}
-    {isInput
-      ? <input className="styledInput" defaultValue="# " onKeyPress={onKeyPressHandler} autoFocus />
-      :
-      <>
-        <div className=" StyledHashTag" onClick={() => onClickHandler()}>+추가</div>
-      </>
-    }
+    <div className="hashTag_Wrapper">
+      {tagListMap}
+      {isInput
+        ? <input className="styledInput" defaultValue="# " onKeyPress={onKeyPressHandler} autoFocus />
+        :
+        <>
+          <div className=" StyledHashTag" onClick={() => onClickHandler()}>+추가</div>
+        </>
+      }
 
-    <br />
+      <br />
+    </div>
   </>;
 };
 
