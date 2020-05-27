@@ -163,7 +163,6 @@ const SearchInputPage = ({ match, history }: RouteComponentProps<paramsType>) =>
           ? <MoreItemButtonHovered onClick={() => stepForwardHandler(stepParam)}>다음으로</MoreItemButtonHovered>
           : <MoreItemButton onClick={() => stepForwardHandler(stepParam)}>다음으로</MoreItemButton>
         }
-
       </SearchInputWrapper>
     </>
   );

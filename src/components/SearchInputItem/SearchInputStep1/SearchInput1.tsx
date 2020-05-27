@@ -28,7 +28,7 @@ const SearchInput1 = ({ click }: InputProps) => {
           </div>
           <div className="input_question_wrapper">
             <span className="Rectangle_ment">평소 자주 방문하는 곳의</span>
-            <span className="Rectangle_ment">위치를 알려주세요</span>
+            <span className="Rectangle_ment">위치를 알려주세요.</span>
           </div>
           <HashTag />
           <input

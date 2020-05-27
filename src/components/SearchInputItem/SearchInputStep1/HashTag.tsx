@@ -50,7 +50,6 @@ const HashTag = () => {
   };
 
   const tagListMap: any = tagList.map((e: any, idx: number) => {
-    console.log('이거', searchInput.searchInputData.addressTag)
     return (
 
       (e.slice(2) === searchInput.searchInputData.addressTag)
@@ -79,7 +78,7 @@ const HashTag = () => {
         ? <input className="styledInput" defaultValue="# " onKeyPress={onKeyPressHandler} autoFocus />
         :
         <>
-          <div className=" StyledHashTag" onClick={() => onClickHandler()}>+추가</div>
+          <div className=" StyledHashTag" onClick={() => onClickHandler()}>추가+</div>
         </>
       }
 
