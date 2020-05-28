@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import ZoneSearchPopUp from '../SearchInputStep1/ZoneSearchPopup';
 import Dialog from '../../Dialog/Dialog';
 import styled from 'styled-components';
-import HashTag from '../SearchInputStep1/HashTag';
-import CurrentLocation from '../SearchInputStep1/CurrentLocation';
 import check1 from '../../../assets/img/check1.png';
 import check0 from '../../../assets/img/check0.png';
 import useSearchInput from '../../../hooks/useSearchInput';
@@ -112,22 +109,20 @@ const SearchInput2 = () => {
 
   return (
     <>
-
-      <div className="search1_select_done">
-        {/* <input type="text" onChange={ZoneSearchClickHandler} value="주소를 입력하세요" /> */}
-        {/* <ZoneSearchPopUp></ZoneSearchPopUp> */}
-        <span className="STEP-1">STEP 2</span>
-        <span className="location"> / transport</span>
-        <br />
-        <span className="Rectangle_ment">선호하는 이동수단을</span>
-        <br />
-        <span className="Rectangle_ment">선택해주세요</span>
-        <br />
-        {transportList}
-        <span className="option"> * 옵션을 선택해주세요</span>
+      <div className="search_select_done">
+        <div className="search_elements_wrapper">
+          <div className="input_header_wrapper">
+            <span className="STEP">STEP 2</span>
+            <span className="slash"> / transport</span>
+          </div>
+          <div className="input_question_wrapper">
+            <span className="Rectangle_ment">선호하는 이동수단을</span>
+            <span className="Rectangle_ment">선택해주세요</span>
+          </div>
+          {transportList}
+          <span className="option"> * 옵션을 선택해주세요</span>
+        </div>
       </div>
-
-
     </>
   );
 }

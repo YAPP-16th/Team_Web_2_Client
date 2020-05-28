@@ -60,20 +60,20 @@ const SearchInput3 = () => {
   return (
     <>
 
-      <div className="search1_select_done">
-        {/* <input type="text" onChange={ZoneSearchClickHandler} value="주소를 입력하세요" /> */}
-        {/* <ZoneSearchPopUp></ZoneSearchPopUp> */}
-        <span className="STEP-1">STEP 3</span>
-        <span className="location"> / time</span>
-        <br />
-        <span className="Rectangle_ment">이동시 희망하는 소요시간을</span>
-        <br />
-        <span className="Rectangle_ment">선택해주세요 (편도기준)</span>
-        <br />
-        {timeList}
+      <div className="search_select_done">
+        <div className="search_elements_wrapper">
+          <div className="input_header_wrapper">
+            <span className="STEP">STEP 3</span>
+            <span className="slash"> / time</span>
+          </div>
+          <div className="input_question_wrapper">
+            <span className="Rectangle_ment">이동시 희망하는 소요시간을</span>
+            <span className="Rectangle_ment">선택해주세요. (편도기준)</span>
+          </div>
+          {timeList}
+          <span className="option"> * 옵션을 선택해주세요</span>
+        </div>
       </div>
-
-
     </>
   );
 }

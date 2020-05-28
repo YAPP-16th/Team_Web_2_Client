@@ -16,7 +16,7 @@ type paramsType = {
 }
 
 const SearchInputPage = ({ match, history }: RouteComponentProps<paramsType>) => {
-  const MoreItemButton = styled.button`
+  const MoreItemButton = styled.div`
   width: 100%;
   font-size: 16px;
   font-weight: 500;
@@ -26,9 +26,7 @@ const SearchInputPage = ({ match, history }: RouteComponentProps<paramsType>) =>
   letter-spacing: -0.71px;
   text-align: center;
   color: #1d1d1d;
-  // border-radius: 8px;
   padding: 17px 50px;
-  // background-color: var(--PrimaryColor);
   background-color: var(--GreyTextColor);
   border: none;
   text-align: center;
@@ -44,11 +42,12 @@ const SearchInputPage = ({ match, history }: RouteComponentProps<paramsType>) =>
     line-height: normal;
     letter-spacing: -0.8px;
     color: white;
-    padding-bottom: 243px;
+    position: relative;
+    cursor: pointer;
   }
 `;
 
-  const MoreItemButtonHovered = styled.button`
+  const MoreItemButtonHovered = styled.div`
   width: 100%;
   font-size: 16px;
   font-weight: 500;
@@ -75,7 +74,8 @@ const SearchInputPage = ({ match, history }: RouteComponentProps<paramsType>) =>
     line-height: normal;
     letter-spacing: -0.8px;
     color: var(--PrimaryColor);
-    padding-bottom: 243px;
+    position: relative;
+    cursor: pointer;
   }
   `
 

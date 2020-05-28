@@ -17,14 +17,11 @@ const SearchInput1 = ({ click }: InputProps) => {
 
   return (
     <>
-      <div className="search1_select_done">
-        {/* <input type="text" onChange={ZoneSearchClickHandler} value="주소를 입력하세요" /> */}
-        {/* <ZoneSearchPopUp></ZoneSearchPopUp> */}
-        <div className="search1_elements_wrapper">
-
+      <div className="search_select_done">
+        <div className="search_elements_wrapper">
           <div className="input_header_wrapper">
-            <span className="STEP-1">STEP 1</span>
-            <span className="location"> / location</span>
+            <span className="STEP">STEP 1</span>
+            <span className="slash"> / location</span>
           </div>
           <div className="input_question_wrapper">
             <span className="Rectangle_ment">평소 자주 방문하는 곳의</span>
@@ -37,6 +34,7 @@ const SearchInput1 = ({ click }: InputProps) => {
             onClick={click}
             className="Rectangle_Long"
           ></input>
+          <span className="option"> * 옵션을 선택해주세요</span>
           {/* <img src={icongps} style={{ width: '30px' }} alt="currentLocation" onClick={onClickCurrentLocationHandler} /> */}
         </div>
       </div>

@@ -22,7 +22,7 @@ const SearchInputStep1Container = ({ setIsHover }: InputProps) => {
   const searchInput = useSearchInput();
 
   const isHover = () => {
-    (searchInput.searchInputData.address !== '주소를 입력해 주세요')
+    (searchInput.searchInputData.address !== '주소를 입력하세요')
       &&
       (searchInput.searchInputData.addressTag !== 'tag')
       ? setIsHover(true)
