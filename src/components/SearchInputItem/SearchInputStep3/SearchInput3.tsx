@@ -70,9 +70,11 @@ const SearchInput3 = () => {
             <span className="Rectangle_ment">이동시 희망하는 소요시간을</span>
             <span className="Rectangle_ment">선택해주세요. (편도기준)</span>
           </div>
-          {timeList}
-          <span className="option"> * 옵션을 선택해주세요</span>
         </div>
+        <div className="contents">
+          {timeList}
+          {/* <span className="option"> * 옵션을 선택해주세요</span> */}
+        </ div>
       </div>
     </>
   );

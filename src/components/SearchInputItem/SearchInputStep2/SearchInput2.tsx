@@ -119,8 +119,10 @@ const SearchInput2 = () => {
             <span className="Rectangle_ment">선호하는 이동수단을</span>
             <span className="Rectangle_ment">선택해주세요</span>
           </div>
+        </div>
+        <div className="contents">
           {transportList}
-          <span className="option"> * 옵션을 선택해주세요</span>
+          {/* <span className="option"> * 옵션을 선택해주세요</span> */}
         </div>
       </div>
     </>

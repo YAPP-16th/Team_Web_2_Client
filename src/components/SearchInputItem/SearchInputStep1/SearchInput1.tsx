@@ -12,7 +12,6 @@ type InputProps = {
 }
 const SearchInput1 = ({ click }: InputProps) => {
   const searchInput = useSearchInput();
-  console.log(searchInput.searchInputData)
   const location = searchInput.searchInputData.address
 
   return (
@@ -27,6 +26,8 @@ const SearchInput1 = ({ click }: InputProps) => {
             <span className="Rectangle_ment">평소 자주 방문하는 곳의</span>
             <span className="Rectangle_ment">위치를 알려주세요.</span>
           </div>
+        </div>
+        <div className="contents">
           <HashTag />
           <input
             type="text"
@@ -34,7 +35,7 @@ const SearchInput1 = ({ click }: InputProps) => {
             onClick={click}
             className="Rectangle_Long"
           ></input>
-          <span className="option"> * 옵션을 선택해주세요</span>
+          {/* <span className="option"> * 옵션을 선택해주세요</span> */}
           {/* <img src={icongps} style={{ width: '30px' }} alt="currentLocation" onClick={onClickCurrentLocationHandler} /> */}
         </div>
       </div>

@@ -9,7 +9,8 @@
     flex-direction: column;
     margin-left: 20px;
     @media screen and (min-width: 1060px) {
-      height: 70vh;
+      // height: 70vh;
+      margin-top: 10rem;
       justify-content: center;
       align-items: center;
     }
@@ -87,6 +88,18 @@
   }
   }
 
+  // 문구 아래 선택 부분
+  .contents{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    @media screen and (min-width: 1060px) {
+      // height: 70vh;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
   //해ㅣ태그 부분
   .hashTag_Wrapper{
     display: flex;
@@ -153,6 +166,7 @@
       line-height: 2.3em;
       display: flex;
       margin-right: 8px;
+      justify-content: center;
       @media screen and (min-width: 1060px) {
         width: 45px;
         height: 23px;
@@ -229,12 +243,16 @@
   letter-spacing: -0.89px;
   color: #40aee1;
   margin-top: 9px;
+  margin-left: 2rem;
   @media screen and (min-width: 1060px) {
     margin-top: 14px;
     font-size: 18px;
     font-weight: 300;
     line-height: normal;
     letter-spacing: -0.8px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 }
 

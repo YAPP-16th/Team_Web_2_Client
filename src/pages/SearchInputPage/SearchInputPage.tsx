@@ -161,7 +161,8 @@ const SearchInputPage = ({ match, history }: RouteComponentProps<paramsType>) =>
         {container}
         {isHover
           ? <MoreItemButtonHovered onClick={() => stepForwardHandler(stepParam)}>다음으로</MoreItemButtonHovered>
-          : <MoreItemButton onClick={() => stepForwardHandler(stepParam)}>다음으로</MoreItemButton>
+          : <><div className="option"> * 옵션을 선택해주세요</div>
+            <MoreItemButton onClick={() => stepForwardHandler(stepParam)}>다음으로</MoreItemButton></>
         }
       </SearchInputWrapper>
     </>
