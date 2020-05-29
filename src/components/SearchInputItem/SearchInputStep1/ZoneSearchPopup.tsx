@@ -1,12 +1,23 @@
 import React from 'react';
 import DaumPostcode from 'react-daum-postcode';
+import useSearchInput from '../../../hooks/useSearchInput';
 
 type ZoneSearchPopUpProps = {
   close?: () => void | undefined;
-  setLocation?: () => void | undefined;
+  setLocation?: any;
 }
 
-const ZoneSearchPopUp = ({ close, setLocation }: ZoneSearchPopUpProps ) => {
+const ZoneSearchPopUp = ({ close, setLocation }: ZoneSearchPopUpProps) => {
+
+  const searchInput = useSearchInput();
+
+  // setLocation ->  
+  const setLocationRedux = (location: any) => {
+    const processed = { ...searchInput.searchInputData };
+    processed.address = location;
+    searchInput.setSearchInputData(processed);
+  }
+
   const handleComplete = (data: any) => {
     console.log('data', data);
     let fullAddress = data.address;
@@ -23,10 +34,14 @@ const ZoneSearchPopUp = ({ close, setLocation }: ZoneSearchPopUpProps ) => {
       fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
     // alert(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'\
+    // setLocation(fullAddress)
+    setLocationRedux(fullAddress)
     //@ts-ignore
-    setLocation(fullAddress)
+    // setData("address", fullAddress)
     //@ts-ignore
     close();
+
+
   };
 
   return (

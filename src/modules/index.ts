@@ -7,6 +7,8 @@ import room, { roomsSaga } from './room';
 import transit, { transitsSaga } from './transit';
 import place, { placesSaga } from './place';
 import modal from './modal'
+import searchInput from './searchInput';
+
 
 // 루트 라우터
 const rootReducer = combineReducers({
@@ -14,7 +16,8 @@ const rootReducer = combineReducers({
   listView,
   modal,
   place,
-  transit
+  transit,
+  searchInput,
 });
 
 export default rootReducer;

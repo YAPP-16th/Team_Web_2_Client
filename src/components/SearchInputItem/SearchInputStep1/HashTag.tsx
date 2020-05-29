@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { KeyboardEvent } from "react";
+import React, { useState, useEffect, KeyboardEvent } from 'react';
+import useSearchInput from '../../../hooks/useSearchInput';
+import '../../../pages/SearchInputPage/SearchInputPage.scss';
+
 
 const HashTag = () => {
 
@@ -11,8 +13,9 @@ const HashTag = () => {
     setTagList(array)
   };
 
-  const [isInput, setIsInput] = useState(false as boolean)
-  const [tagList, setTagList] = useState(['# 회사', '# 학교'] as Array<String>)
+  const [isInput, setIsInput] = useState(false as boolean);
+  const [tagList, setTagList] = useState(['# 회사', '# 학교'] as Array<String>);
+  const [selected, setSelected] = useState('' as string)
 
   // useEffect(() => { }, [toggle]);
 
@@ -29,39 +32,58 @@ const HashTag = () => {
       addTag(tagList, e.target.value)
       setIsInput(false)
     }
+  };
+
+  const searchInput = useSearchInput();
+
+  const setAddressTagRedux = (addressTag: any) => {
+    const processed = { ...searchInput.searchInputData };
+    processed.addressTag = addressTag;
+    searchInput.setSearchInputData(processed);
   }
 
   const onClickSelectHandler = (e: string) => {
     // Redux 보내는 부분
-    console.log(e, '리덕스 보내기')
-  }
+    // setData("addressTag", e.slice(2))
+    setAddressTagRedux(e.slice(2))
+    setSelected(e)
+  };
 
   const tagListMap: any = tagList.map((e: any, idx: number) => {
     return (
-      <>
+
+      (e.slice(2) === searchInput.searchInputData.addressTag)
+        ?
         <div
-          className="StyledHashTag"
-          key={idx + 100}
+          className="SelectedHashTag"
+          key={idx}
           onClick={() => onClickSelectHandler(e)}
         >
           {e}
         </div>
-      </>
+        :
+        <div
+          className="StyledHashTag"
+          key={idx}
+          onClick={() => onClickSelectHandler(e)}
+        >
+          {e}
+        </div>
     );
   });
   return <>
-    {tagListMap}
-    {isInput
-      ? <input className="styledInput" defaultValue="# " onKeyPress={onKeyPressHandler} autoFocus/>
-      :
-      <>
-        <div className=" StyledHashTag" onClick={() => onClickHandler()}>+추가</div>
-      </>
-    }
+    <div className="hashTag_Wrapper">
+      {tagListMap}
+      {isInput
+        ? <input className="styledInput" defaultValue="# " onKeyPress={onKeyPressHandler} autoFocus />
+        :
+        <>
+          <div className=" StyledHashTag" onClick={() => onClickHandler()}>추가+</div>
+        </>
+      }
 
-    <br />
-    <br />
-    <br />
+      <br />
+    </div>
   </>;
 };
 

@@ -1,21 +1,35 @@
 import React, { useState } from 'react';
-// import '../../pages/SearchInputPage/ZoneSearchPage.scss';
 import SearchInput1 from '../../components/SearchInputItem/SearchInputStep1/SearchInput1';
 import ZoneSearchPopUp from '../../components/SearchInputItem/SearchInputStep1/ZoneSearchPopup';
 import Dialog from '../../components/Dialog/Dialog';
+import styled from 'styled-components';
+import useSearchInput from '../../hooks/useSearchInput';
 
 type InputProps = {
-  click?: () => void;
+  // setIsHover?: (isHover: boolean) => void | undefined;
+  setIsHover?: any;
 };
 
-const SearchInputStep1Container = ({ click }: InputProps) => {
+const SearchInputStep1Container = ({ setIsHover }: InputProps) => {
+
 
   const onClickLocationHandler = () => {
     return setIsOpen(!isOpen)
   };
 
-  const [location, setLocation] = useState('주소를 입력하세요' as string)
   const [isOpen, setIsOpen] = useState(false as boolean);
+
+  const searchInput = useSearchInput();
+
+  const isHover = () => {
+    (searchInput.searchInputData.address !== '주소를 입력하세요')
+      &&
+      (searchInput.searchInputData.addressTag !== 'tag')
+      ? setIsHover(true)
+      : setIsHover(false)
+  }
+
+  isHover();
 
   return (
     <>
@@ -26,19 +40,16 @@ const SearchInputStep1Container = ({ click }: InputProps) => {
           display={isOpen}
           click={onClickLocationHandler}
         >
-          <ZoneSearchPopUp 
-          close={onClickLocationHandler}
-          //@ts-ignore
-          setLocation={setLocation}
+          <ZoneSearchPopUp
+            close={onClickLocationHandler}
           />
         </Dialog>
         :
         <SearchInput1
           click={onClickLocationHandler}
-          location={location}
         />
       }
-
+      {/* <MoreItemButton onClick={() => stepForwardHandler(stepParam)}>다음으로</MoreItemButton> */}
     </>
   );
 }

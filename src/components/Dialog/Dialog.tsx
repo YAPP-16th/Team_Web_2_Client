@@ -18,7 +18,7 @@ const Dialog = ({
 }: DialogProps) => {
   const DialogWrapper = styled.div<{ display: boolean, backgroundColor: string | undefined; }>`
     position: fixed;
-    background-color: ${(props) => props.backgroundColor ? backgroundColor : 'rgba(0, 0, 0, 0.3'};
+    // background-color: ${(props) => props.backgroundColor ? backgroundColor : 'rgba(0, 0, 0, 0.3'};
     width: 100%;
     height: 100%;
     z-index: 1000;

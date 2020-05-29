@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import './HeaderPage.scss';
 
 //Containers
 import DefaultHeaderContainer from "../../containers/HeaderContainer/DefaultHeaderContainer";

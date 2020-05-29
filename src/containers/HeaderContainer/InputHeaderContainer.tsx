@@ -1,21 +1,21 @@
-import React from 'react';
-import styled from 'styled-components';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import React from "react";
+import styled from "styled-components";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 
 // Components
-import Toolbar from '../../components/Toolbar/Toolbar';
-import Icon from '../../components/Icon/Icon';
+import Toolbar from "../../components/Toolbar/Toolbar";
+import Icon from "../../components/Icon/Icon";
 
 // Dummy Data
 
 const HeaderContainerWrapper = styled.div`
-  position: sticky;
-  top: 100px;
+  max-width: 1120px;
+  width: 100%;
 `;
 
 const InputHeaderContainer = ({ history }: RouteComponentProps) => {
   // handlers
-  const goHomePageHandler = () => history.push('/');
+  const goHomePageHandler = () => history.push("/");
 
   return (
     <HeaderContainerWrapper>
