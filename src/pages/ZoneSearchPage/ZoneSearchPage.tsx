@@ -1,21 +1,32 @@
 import React from "react";
-import "./ZoneSearchPage.scss";
+import { Switch, HashRouter, Route } from "react-router-dom"
 import {
-  HashRouter,
-  withRouter,
-  Route,
-  Link,
-  RouteComponentProps,
-  Switch,
+  useLocation,
 } from "react-router-dom";
 
-import queryString from "query-string";
-
 // Page
+import ZoneSearchResultPage from "../ZoneSearchResultPage/ZoneSearchResultPage";
 import ZoneDetailPage from "../ZoneDetailPage/ZoneDetailPage";
 
-const ZoneSearchPage = ({ match, location }: RouteComponentProps) => {
-  return (
+interface loadingContainer {
+  data: locationData;
+  closeCallback?: () => void;
+}
+
+interface locationData {
+  address: string;
+  transitMode: string;
+  minTime: number;
+  maxTime: number;
+}
+
+const ZoneSearchPage = () => {
+
+  const location = useLocation();
+
+  return location.search ? (
+    <ZoneSearchResultPage />
+  ) : (
     <div className="zone-search">
       <Switch>
         <HashRouter basename="/zone">
@@ -23,7 +34,7 @@ const ZoneSearchPage = ({ match, location }: RouteComponentProps) => {
         </HashRouter>
       </Switch>
     </div>
-  );
+  )
 };
 
-export default withRouter(ZoneSearchPage);
+export default ZoneSearchPage;

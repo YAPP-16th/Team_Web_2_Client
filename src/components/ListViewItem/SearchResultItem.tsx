@@ -5,11 +5,13 @@ export type ListViewItemProps = {
   id: string | number;
   zoneCode: string | number;
   zoneName: string;
-  distance: string | number;
+  distance: number;
   onClick: (id: string | number) => void;
   /* 추가적인 스타일링을 적용하기 위한 클래스 */
   className?: string;
 };
+
+const METER_CONSTANT = 10;
 
 const ListViewItemWrapper = styled.div`
   display: flex;
@@ -63,7 +65,7 @@ const ListViewItem = ({
     <ListViewItemWrapper onClick={() => onClick(id)}>
       <ZoneCodeWrapper>ZONE {zoneCode}</ZoneCodeWrapper>
       <ZoneNameWrapper>{zoneName}</ZoneNameWrapper>
-      <DistanceWrapper>{distance}</DistanceWrapper>
+      <DistanceWrapper>{(distance / METER_CONSTANT).toFixed(1)}km</DistanceWrapper>
     </ListViewItemWrapper>
   );
 };

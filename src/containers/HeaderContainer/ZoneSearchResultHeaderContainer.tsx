@@ -4,7 +4,6 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 // Components
 import Toolbar from "../../components/Toolbar/Toolbar";
-import ZoneSearchResultHeaderInfo from "../../components/HeaderInfo/SearchResultInfo";
 import Icon from "../../components/Icon/Icon";
 
 import useListView from '../../hooks/listViewHooks';
@@ -55,7 +54,6 @@ const ZoneSearchResultHeaderContainer = ({history}: RouteComponentProps) => {
         leftContents={<Icon testId="go-home" icon="simplifiedLogo" onClick={goHomePageHandler} size="27px" />}
         rightContents={rightContents}
       />
-      <ZoneSearchResultHeaderInfo itemCount={itemCount} addedHeight={addedHeight} />
     </HeaderContainerWrapper>
   );
 };

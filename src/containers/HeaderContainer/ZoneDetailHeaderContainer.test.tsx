@@ -37,13 +37,16 @@ describe("<ZoneDetailHeaderContainer />", () => {
       </Provider>
     );
 
-    const goTimecompareButton = utils.getByTestId('timecompare');
-    const goTransportation = utils.getByTestId('transportation');
-    const goRealEsatate = utils.getByTestId('realestate');
+    /**
+     * 현재 컨테이너 -> ZoneDetailPage.tsx로 이동
+     */
+    // const goTimecompareButton = utils.getByTestId('timecompare');
+    // const goTransportation = utils.getByTestId('transportation');
+    // const goRealEsatate = utils.getByTestId('realestate');
 
-    expect(goTimecompareButton).toHaveAttribute('href', '#/zone/1/timecompare');
-    expect(goTransportation).toHaveAttribute('href', '#/zone/1/transportation');
-    expect(goRealEsatate).toHaveAttribute('href', '#/zone/1/realestate');
+    // expect(goTimecompareButton).toHaveAttribute('href', '#/zone/1/timecompare');
+    // expect(goTransportation).toHaveAttribute('href', '#/zone/1/transportation');
+    // expect(goRealEsatate).toHaveAttribute('href', '#/zone/1/realestate');
 
   });
 

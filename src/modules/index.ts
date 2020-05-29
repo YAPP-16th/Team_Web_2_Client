@@ -6,13 +6,15 @@ import listView from './listView'
 import room, { roomsSaga } from './room';
 import transit, { transitsSaga } from './transit';
 import place, { placesSaga } from './place';
+import modal from './modal'
 
 // 루트 라우터
 const rootReducer = combineReducers({
-  listView,
   room,
-  transit,
-  place
+  listView,
+  modal,
+  place,
+  transit
 });
 
 export default rootReducer;

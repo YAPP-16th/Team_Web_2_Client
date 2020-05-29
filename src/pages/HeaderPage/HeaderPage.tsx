@@ -1,30 +1,16 @@
-import React from 'react';
-import './HeaderPage.scss';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-
-import queryString from 'query-string';
+import React from "react";
+import { useLocation } from "react-router-dom";
 
 //Containers
-import DefaultHeaderContainer from '../../containers/HeaderContainer/DefaultHeaderContainer';
-import ZoneDetailHeaderContainer from '../../containers/HeaderContainer/ZoneDetailHeaderContainer';
-import ZoneSearchResultHeaderContainer from '../../containers/HeaderContainer/ZoneSearchResultHeaderContainer';
-import { loadavg } from 'os';
+import DefaultHeaderContainer from "../../containers/HeaderContainer/DefaultHeaderContainer";
+import ZoneDetailHeaderContainer from "../../containers/HeaderContainer/ZoneDetailHeaderContainer";
 
-type ParamsType = {
-  id: string;
-  feature: string;
-}
-
-const HeaderPage = ({ match, location, history}: RouteComponentProps<ParamsType>) => {  
-  
+const HeaderPage = () => {
+  const location = useLocation();
   let HeaderContainer;
 
-  const isLanding = location.pathname === '/' ? "fixed" : "initial";
-
-  if (location.hash.includes('/zone/')) {
+  if (location.hash.includes("/zone/")) {
     HeaderContainer = ZoneDetailHeaderContainer;
-  } else if (location.search) {
-    HeaderContainer = ZoneSearchResultHeaderContainer;
   } else {
     if (location.pathname === "/") {
       HeaderContainer = () => <DefaultHeaderContainer displayLogo={false} />;
@@ -32,6 +18,8 @@ const HeaderPage = ({ match, location, history}: RouteComponentProps<ParamsType>
       HeaderContainer = () => <DefaultHeaderContainer displayLogo />;
     }
   }
+  
+  const isLanding = location.pathname === '/' ? "fixed" : "initial";
 
   return (
     <div className="header" style={{position: isLanding}}>
@@ -40,4 +28,4 @@ const HeaderPage = ({ match, location, history}: RouteComponentProps<ParamsType>
   )
 }
 
-export default withRouter(HeaderPage);
+export default HeaderPage;

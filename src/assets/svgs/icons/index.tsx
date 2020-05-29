@@ -11,5 +11,5 @@ export { ReactComponent as filterOption } from './icon-filter-option.svg';
 export { ReactComponent as edit } from './icon-edit.svg';
 export { ReactComponent as delete } from './icon-delete.svg';
 export { ReactComponent as next } from './icon-next.svg';
-
-
+export { ReactComponent as footerLogo } from './icon-footer-logo.svg';
+export { ReactComponent as close } from './icon-close.svg';

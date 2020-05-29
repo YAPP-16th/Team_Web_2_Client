@@ -10,15 +10,13 @@ import ZoneSearchPage from "./pages/ZoneSearchPage/ZoneSearchPage";
 import HeaderPage from "./pages/HeaderPage/HeaderPage";
 import SearchInputPage from './pages/SearchInputPage/SearchInputPage';
 
-// Containers
-import ListViewContainer from "./containers/ListViewContainer/ListViewContainer";
+// Components
+import Modal from "./components/Modal/Modal";
 
 function App() {
   return (
     <div className="App">
-      <section className="modal-section">
-        <ListViewContainer />
-      </section>
+      <Modal></Modal>
       <header>
         <HeaderPage />
       </header>

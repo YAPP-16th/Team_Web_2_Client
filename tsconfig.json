@@ -17,9 +17,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react",
+    "removeComments": true,
+    "downlevelIteration": true
   },
   "include": [
-    "src"
-  ]
+    "src", "public/openapi/MarkerClustering.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.test.tsx"
+]
 }
