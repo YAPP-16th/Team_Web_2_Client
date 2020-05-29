@@ -10,6 +10,13 @@ import { Router } from "react-router-dom";
 
 import { createMemoryHistory } from "history";
 
+describe("Step2Container", () => {
+  describe("import 했을 시", () => {
+    it("임시방편", () => {
+
+    });
+  })
+})
 // const store = createStore(rootReducer);
 
 // describe("<Step2Container />", () => {
