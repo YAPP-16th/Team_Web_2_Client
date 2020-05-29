@@ -41,4 +41,16 @@ export const TagButton = styled.button<{ fontSize: string }>`
   font-style: normal;
   line-height: 0px;
   letter-spacing: -0.62px;
+  transition: all 0.5s;
+  outline: none;
+
+  &:hover {
+    color: var(--ItemColor);
+    background-color: var(--PrimaryColor);
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+
 `;

@@ -4,7 +4,8 @@ export type PlaceVoItem = {
   categoryName: string,
   placeName: string,
   address: string,
-  distance: string
+  distance: string,
+  placeUrl: string,
 }
 
 export type Place = {

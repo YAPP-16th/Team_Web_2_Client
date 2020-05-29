@@ -26,10 +26,5 @@ describe("<ZoneDetailHeaderContainer />", () => {
     fireEvent.click(goHomeLogo);
     expect(history.location.pathname).toBe("/");
   });
-  // it("메인메뉴 모달창 show/hide", () => {
-  //   const utils = render(<DefaultHeaderContainer />);
-  // });
-  // it("검색 페이지로 이동", () => {
-  //   const utils = render(<DefaultHeaderContainer />);
-  // });
+
 });

@@ -33,12 +33,12 @@ const LandingPage = () => {
           <div className="intro-text">
             불필요하게 <br />
             낭비되는 <br />
-            <div className="emphasized-text-wrapper"><p className={`emphasized-text1 ${scrollAnimation ? "emphasized-text-slide-up" : "emphasized-text-slide-down"}`} >통학 시간</p><p className={`emphasized-text2 ${scrollAnimation ? "emphasized-text-slide-up" : "emphasized-text-slide-down"}`} >통근 시간</p>을</div> <br />
+            <div className="emphasized-text-wrapper" data-testid="emphasized-text-wrapper"><p className={`emphasized-text1 ${scrollAnimation ? "emphasized-text-slide-up" : "emphasized-text-slide-down"}`} >통학 시간</p><p className={`emphasized-text2 ${scrollAnimation ? "emphasized-text-slide-up" : "emphasized-text-slide-down"}`} >통근 시간</p>을</div> <br />
             절약하세요!
           </div>
-          <div className="intro-text-desktop">
+          <div className="intro-text-desktop" data-testid="intro-text-desktop">
             불필요하게 낭비되는 <br />
-            <div className="emphasized-text-wrapper"><p className={`emphasized-text1 ${scrollAnimation ? "emphasized-text-slide-up" : "emphasized-text-slide-down"}`} >통학 시간</p><p className={`emphasized-text2 ${scrollAnimation ? "emphasized-text-slide-up" : "emphasized-text-slide-down"}`} >통근 시간</p>을</div> 절약하세요!
+            <div className="emphasized-text-wrapper" data-testid="emphasized-text-wrapper"><p className={`emphasized-text1 ${scrollAnimation ? "emphasized-text-slide-up" : "emphasized-text-slide-down"}`} >통학 시간</p><p className={`emphasized-text2 ${scrollAnimation ? "emphasized-text-slide-up" : "emphasized-text-slide-down"}`} >통근 시간</p>을</div> 절약하세요!
           </div>
           <div className="intro-sub-text">
             맞춤형 주거 지역 추천 <br />
@@ -67,6 +67,7 @@ const LandingPage = () => {
       autoPlay={true}
       loop={true}
       muted={true}
+      playsInline={true}
       // poster="images/Gaulois-poster.PNG"
     >
       <source src="/video/bg_video.mp4" type = "video/mp4"/>

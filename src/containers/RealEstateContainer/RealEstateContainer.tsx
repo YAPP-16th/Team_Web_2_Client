@@ -97,7 +97,7 @@ const RealEstateContainer = ({ zoneId }: RealEstateContainerProps) => {
 
   const realEstateListItems = realestateContents.map((item) => {
     return (
-      <div key={item.id}>
+      <div key={item.id} data-testid="realestate-item">
         <RealEstateListItem
           registerId={item.registerId}
           className="realestate-item"

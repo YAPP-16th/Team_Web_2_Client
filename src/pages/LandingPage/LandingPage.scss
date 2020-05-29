@@ -99,7 +99,6 @@
   grid-template-columns: 1fr 4fr 1fr;
   z-index: 11;
   top: -54px;
-  
 
   // &::-webkit-scrollbar {
 	// 	width: 0px;
@@ -142,10 +141,10 @@
     
 
     .logo {
-      position: relative;
+      position: absolute;
       z-index: 11;
-
       margin-top: 135px;
+      left: 0px;
       @media screen and (min-width: 1060px) {
         margin-top: 204px;
       }
@@ -293,7 +292,7 @@
       .next-icon {
         margin-left: 12px;
         position: relative;
-        top: -10px;
+        top: -2px;
       }
     }
   }

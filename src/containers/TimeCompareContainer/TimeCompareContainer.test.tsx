@@ -1,18 +1,29 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import React from "react";
+import { render, waitForElement } from "@testing-library/react";
 import TimeCompareContainer from './TimeCompareContainer';
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import rootReducer from "../../modules";
+import { Router } from "react-router-dom";
+
+import { getRooms } from '../../api/rooms';
+
+import { createMemoryHistory } from "history";
+
+const store = createStore(rootReducer);
 
 describe("<TimeCompareContainer />", () => {
-  it("우편주소 검색하기", () => {
-    const utils = render(<TimeCompareContainer />);
-  });
-  it("현재 위치 가져오기 및 권한 취득", () => {
-    const utils = render(<TimeCompareContainer />);
-  });
-  it("비교장소 추가하기", () => {
-    const utils = render(<TimeCompareContainer />);
-  });
-  it("절약시간 보여주기 및 로딩 애니메이션 처리", () => {
-    const utils = render(<TimeCompareContainer />);
+  it("렌더링 여부", () => {
+    const history = createMemoryHistory();
+    history.push("/search?startLat=37.5725&startLng=126.820454&zoneId=3771#/zone/2/realestate")
+
+    const utils = render(
+      <Provider store={store}>
+      <Router history={history}>
+        <TimeCompareContainer currentZoneId={3771} startAddress={"강남구 1동"}  />
+      </Router>
+    </Provider>);
+
+    utils.getByText('강남구 1동');
   });
 });

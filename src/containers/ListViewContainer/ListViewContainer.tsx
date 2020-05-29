@@ -187,7 +187,7 @@ const ListViewContainer = ({ location }: RouteComponentProps) => {
   // Props Handling
   const searchResultItemList = items.map((item) => {
     return (
-      <div key={item.id}>
+      <div key={item.id} data-testid="searchResult-item">
         <Link to={`/${item.id}/timecompare`}>
           <SearchResultItem
             id={item.id}

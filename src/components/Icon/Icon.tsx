@@ -15,9 +15,10 @@ type IconProps = {
   /** 따로 집어넣을 클래스 */
   className?: string;
   /** 클릭시 실행할 함수 */
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
   /** 테스트에 필요한 test-id */
   testId?: string;
+  cursor?: string; // style curosr설정
 };
 
 /** 아이콘을 보여주고 싶을 땐 `Icon` 컴포넌트를 사용하세요.
@@ -27,16 +28,20 @@ type IconProps = {
  * 스타일로 모양새를 설정 할 때에는 `color`로 색상을 설정하고 `width`로 크기를 설정하세요.
  */
 
-const Icon = ({ icon, color, size, className, onClick, testId }: IconProps) => {
+const Icon = ({ icon, color, size, className, onClick, testId, cursor = "default" }: IconProps) => {
   const SVGWrapper = styled.div`
-    height: ${size};
+    height: ${typeof size === "string" ? size : size+"px"};
     svg {
-      width: ${size};
+      width: ${typeof size === "string" ? size : size+"px"};
       height: auto;
     }
     path {
       fill: ${color};
     }
+    cursor: ${cursor};
+    display: flex;
+    justify-content: center;
+    align-items: center;
   `;
 
   const SVGIcon = icons[icon];

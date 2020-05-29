@@ -4,14 +4,26 @@ import styled from "styled-components";
 export type PlaceListItemProps = {
   heading: string;
   subHeading: string;
+  url: string;
 };
 
-const PlaceListItemWrapper = styled.div`
+const PlaceListItemWrapper = styled.a`
   display: flex;
   flex-direction: column;
   padding: 17px 18px;
   background-color: var(--ItemColor);
   border-radius: 8px;
+
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+
 `;
 
 const PlaceListItemHeading = styled.h1`
@@ -25,7 +37,7 @@ const PlaceListItemHeading = styled.h1`
 `;
 
 const PlaceListItemDescription = styled.h2`
-  color: var(--GreyTextColor);
+  color: var(--DarkTextColor);
   font-size: 14px;
   font-weight: 300;
   font-stretch: normal;
@@ -34,9 +46,9 @@ const PlaceListItemDescription = styled.h2`
   letter-spacing: -0.62px;
 `;
 
-const PlaceListItem = ({ heading, subHeading }: PlaceListItemProps) => {
+const PlaceListItem = ({ heading, subHeading, url }: PlaceListItemProps) => {
   return (
-    <PlaceListItemWrapper>
+    <PlaceListItemWrapper href={url} target="blank">
       <PlaceListItemHeading>{heading}</PlaceListItemHeading>
       <PlaceListItemDescription>{subHeading}</PlaceListItemDescription>
     </PlaceListItemWrapper>
