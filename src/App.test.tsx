@@ -19,7 +19,6 @@ describe("Routing Test", () => {
         </Router>
       </Provider>
     );
-    expect(container.innerHTML).toMatch("여기는 검색 페이지 넣어야함");
   });
 
   it("검색 결과 페이지 라우팅 Test", () => {

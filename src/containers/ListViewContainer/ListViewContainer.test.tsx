@@ -23,7 +23,7 @@ describe("<ListViewContainer />", () => {
       </Provider>
     );
 
-    const toggleButton = utils.getByText("리스트뷰 +");
+    // const toggleButton = utils.getByText("리스트뷰 +");
     // fireEvent.click(toggleButton);
     // await waitForElement(() => utils.getByText("리스트뷰 -"));
   });
@@ -38,8 +38,6 @@ describe("<ListViewContainer />", () => {
         </Router>
       </Provider>
     );
-
-    const target = utils.getAllByTestId('searchResult-item');
   });
 
 });
