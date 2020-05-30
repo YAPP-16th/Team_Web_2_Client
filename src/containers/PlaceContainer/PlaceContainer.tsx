@@ -103,7 +103,7 @@ const PlacesTagButtonsWrapper = styled.div`
     top: 6px;
     right: 0px;
     box-shadow: 0px 0 10px 17px #1d1d1d;
-    background-color: rgba(255, 255, 255);
+    background-color: rgb(255, 255, 255);
     transform: rotate(-180deg);
     width: 20px;
     height: 20px;
