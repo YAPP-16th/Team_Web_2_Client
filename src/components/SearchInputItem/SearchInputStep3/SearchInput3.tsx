@@ -20,9 +20,6 @@ const SearchInput3 = () => {
   const handleTime = (time: string) => {
     const a = parseInt(time[0])
     setTimeRedux(timesForData[a][0], timesForData[a][1])
-    // setData("minTime", timesForData[a][0])
-    // setData("maxTime", timesForData[a][1])
-    // console.log(searchInput.searchInputData.minTime)
   }
 
   const selectedTpCheckBox = (time: any) => {
@@ -46,36 +43,29 @@ const SearchInput3 = () => {
   const timeList = times.map((time, idx) => {
     return (
       <>
-        {/* unique key error 가 왜 나는지 모르겠음 ㅡㅡ */}
         <div className="Rectangle" onClick={() => handleTime(time)} key={idx}>
           {selectedTpCheckBox(time)}
           {time}
         </div>
-
-
       </>
     );
   });
 
   return (
     <>
-
-      <div className="search_select_done">
-        <div className="search_elements_wrapper">
-          <div className="input_header_wrapper">
-            <span className="STEP">STEP 3</span>
-            <span className="slash"> / time</span>
-          </div>
-          <div className="input_question_wrapper">
-            <span className="Rectangle_ment">이동시 희망하는 소요시간을</span>
-            <span className="Rectangle_ment">선택해주세요. (편도기준)</span>
-          </div>
+      <div className="search_elements_wrapper">
+        <div className="input_header_wrapper">
+          <span className="STEP">STEP 3</span>
+          <span className="slash"> / time</span>
         </div>
-        <div className="contents">
-          {timeList}
-          {/* <span className="option"> * 옵션을 선택해주세요</span> */}
-        </ div>
+        <div className="input_question_wrapper">
+          <span className="Rectangle_ment">이동시 희망하는 소요시간을</span>
+          <span className="Rectangle_ment">선택해주세요. (편도기준)</span>
+        </div>
       </div>
+      <div className="contents">
+        {timeList}
+      </ div>
     </>
   );
 }
