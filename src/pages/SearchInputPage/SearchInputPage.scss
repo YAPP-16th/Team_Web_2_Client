@@ -3,6 +3,11 @@
   height: 100%;
   background-color: #1d1d1d;
   margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
 
   .search_elements_wrapper {
     display: flex;
@@ -10,7 +15,6 @@
     margin-left: 20px;
     @media screen and (min-width: 1060px) {
       // height: 70vh;
-      margin-top: 10rem;
       justify-content: center;
       align-items: center;
     }
@@ -90,13 +94,18 @@
 
   // 문구 아래 선택 부분
   .contents{
+    width: fit-content;
     display: flex;
     flex-direction: column;
     margin-left: 20px;
+    border-radius: 8px;
+    overflow: hidden;
     @media screen and (min-width: 1060px) {
       // height: 70vh;
       justify-content: center;
       align-items: center;
+      border-radius: 8px;
+
     }
   }
 
@@ -267,7 +276,6 @@
 .Rectangle {
   width: 320px;
   height: 51px;
-  border-radius: 8px;
   background-color: #323232;
   color: #ffffff;
   font-family: NotoSansCJKkr;
@@ -275,6 +283,10 @@
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
+  border-bottom: 1px solid black;
+  &:last-child {
+    border-bottom: none;
+  }
   // line-height: 1.64;
   line-height: 3.8;
   letter-spacing: -0.62px;
@@ -282,8 +294,11 @@
   @media screen and (min-width: 1060px) {
     width: 600px;
     height: 51px;
-    border-radius: 8px;
     background-color: #323232;
+    border-bottom: 1px solid black;
+    &:last-child {
+      border-bottom: none;
+    }
     color: #ffffff;
     font-family: NotoSansCJKkr;
     font-size: 20px;
