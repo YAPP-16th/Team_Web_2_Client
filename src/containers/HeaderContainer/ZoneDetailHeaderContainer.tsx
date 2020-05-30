@@ -14,6 +14,8 @@ const HeaderContainerWrapper = styled.div`
   width: 100%;
 `;
 
+
+
 const ZoneDetailHeaderContainer = ({ history, location }: RouteComponentProps) => {
   // Handlers
   const goToSearchPageHandler = () => history.goBack();

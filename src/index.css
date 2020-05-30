@@ -28,13 +28,18 @@ code {
 
 #root {
   height: 100%;
+
   --BackgroundColor: #1d1d1d;
+  --FadedBackgroundColor: rgba(29, 29, 29, 0.9);
+  --IntroDescBackgroundColor: #242424;
   --ItemColor: #2a2a2a;
+  --ItemHoverColor: rgba(42, 42, 42, 0.5);
   --LightItemColor: #ffffff;
   --PrimaryColor: #40aee1;
   --LightTextColor: #ffffff;
   --GreyTextColor: #b6b6b6;
   --DarkTextColor: #5e5e5e;
+
 }
 
 /* FONTS */

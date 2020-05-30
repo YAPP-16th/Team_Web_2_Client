@@ -1,23 +1,31 @@
-import * as RequestAPI from "./rootAPI";
+import axios from "axios";
+
+export type RoomObj = {
+  code: number;
+  data: Array<Room>;
+};
 
 export type Room = {
+  id: number;
   name: string;
-  description: string;
-  coordinate: { latitude: number; longitude: number };
-  buildingType: "빌라" | "주택" | "아파트";
-  livingType: "월세" | "전세" | "하숙?";
-  monthlyPayment: number;
+  zipcode: number;
+  address: string;
+  roomType: string;
+  img: null | string;
+  buildingType: null | string;
+  loanType: string;
   deposit: number;
+  registerId: number;
+  monthlyPayment: number;
+  location: {
+    lat: number;
+    lng: number;
+  };
 };
 
-export type Zone = {
-  latitude: number;
-  longitude: number;
-  radius: number;
-};
-
-export async function getRooms(payload: Zone) {
-  const url = "url";
-  const response = await RequestAPI.get({ url, data: payload });
-  return response.data;
+export async function getRooms(payload: number) {
+  const response = await axios.get<RoomObj>(
+    process.env.REACT_APP_API_URL + `/rooms/byRegistration/?zoneId=${payload}`
+  );
+  return response.data.data;
 }

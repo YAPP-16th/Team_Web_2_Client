@@ -10,6 +10,10 @@ import Icon from "../../components/Icon/Icon";
 import ModalHooks from "../../components/Modal/ModalHooks";
 import MenuContainer from "../MenuContainer/MenuContainer";
 
+type DefaultHeaderContainerProps = {
+  displayLogo?: boolean;
+}
+
 interface RightContentsProps {
   history: any;
   location: any;
@@ -78,7 +82,7 @@ const rightContents = (props: RightContentsProps) => {
   );
 };
 
-const DefaultHeaderContainer = () => {
+const DefaultHeaderContainer = ({displayLogo }: DefaultHeaderContainerProps) => {
   let history = useHistory();
   let location = useLocation();
 
@@ -106,5 +110,9 @@ const DefaultHeaderContainer = () => {
     </HeaderContainerWrapper>
   );
 };
+
+DefaultHeaderContainer.defaultProps = {
+  displayLogo: true
+}
 
 export default DefaultHeaderContainer;

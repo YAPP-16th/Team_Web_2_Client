@@ -1,15 +1,10 @@
-import {
-  getRoomsAsync,
-  GET_ROOMS
-} from "./actions";
-
-import { Room, getRooms } from "../../api/rooms";
-
-import { call, put, takeLatest } from "redux-saga/effects";
+import { GET_ROOMS, getRoomsAsync } from './actions';
+import { getRooms, Room } from '../../api/rooms';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 function* getRoomsSaga(action: ReturnType<typeof getRoomsAsync.request>) {
   try {
-    const rooms: Room[] = yield call(getRooms, action.payload);
+    const rooms: Array<Room> = yield call(getRooms, action.payload);
     yield put(getRoomsAsync.success(rooms));
   } catch (e) {
     yield put(getRoomsAsync.failure(e));

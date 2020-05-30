@@ -48,20 +48,6 @@ describe("<ZoneDetailHeaderContainer />", () => {
     // expect(goTransportation).toHaveAttribute('href', '#/zone/1/transportation');
     // expect(goRealEsatate).toHaveAttribute('href', '#/zone/1/realestate');
 
-    // 왜 안 되누.....
-
-    // await fireEvent.click(goTransportation);
-    // let currentFeature = history.location.hash.split('/').pop();
-    // expect(currentFeature).toBe("transportation");
-
-    // await fireEvent.click(goRealEsatate);
-    // currentFeature = history.location.hash.split('/').pop();
-    // expect(currentFeature).toBe("realestate");
-
-    // await fireEvent.click(goTimecompareButton);
-    // currentFeature = history.location.hash.split('/').pop();
-    // expect(currentFeature).toBe("timecompare");
-
   });
 
 

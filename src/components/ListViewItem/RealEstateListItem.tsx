@@ -2,27 +2,29 @@ import React from "react";
 import styled from "styled-components";
 
 export type RealEstateItemProps = {
-  imageUrl: string;
-  paymentType: "월세" | "전세";
-  deposit: number | string;
-  monthlyPayment: number | string;
-  description: string;
-  roomType: "빌라" | "오피스텔";
-  buildingType: "주택" | "아파트";
-  numOfRoom: number | string;
+  registerId: number;
+  img: string | null;
+  loanType: string;
+  deposit: number;
+  monthlyPayment: number;
+  name: string;
+  roomType: string;
+  buildingType: string | null;
   className?: string;
 };
 
-const RealEstateItemWrapper = styled.div`
+const RealEstateItemWrapper = styled.a`
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   color: var(--LightTextColor);
   background-color: var(--ItemColor);
+  overflow: hidden;
 `;
 
 const TextInfoWrapper = styled.div`
   padding: 14px;
+  height: 132px;
 `;
 
 const RealEstateItemImage = styled.img`
@@ -32,7 +34,15 @@ const RealEstateItemImage = styled.img`
   height: 154px;
 `;
 
-const RealEstateItemPaymentType = styled.span`
+const RealEstateItemEmptyImage = styled.div`
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  width: 100%;
+  height: 154px;
+  background-color: var(--ItemColor);
+`;
+
+const RealEstateItemLoanType = styled.span`
   padding: 3px 7px;
   border-radius: 10px;
   background-color: var(--PrimaryColor);
@@ -70,7 +80,7 @@ const MainInfoWrapper = styled.div`
   margin-bottom: 14px;
 `;
 
-const RealEstateItemDescription = styled.p`
+const RealEstateItemName = styled.p`
   font-size: 14px;
   font-weight: 500;
   font-stretch: normal;
@@ -91,51 +101,39 @@ const SubInfoWrapper = styled.div`
   color: var(--DarkTextColor);
 `;
 
-const RealEstateItemRoomType = styled.span``;
-
 const RealEstateItemBuildingType = styled.span``;
 
-const RealEstateItemNumOfRoom = styled.span``;
+const RealEstateItemRoomType = styled.span``;
 
 const RealEstateItem = ({
-  imageUrl,
-  paymentType,
+  registerId,
+  img,
+  loanType,
   deposit,
   monthlyPayment,
-  description,
+  name,
   roomType,
   buildingType,
-  numOfRoom,
   className,
 }: RealEstateItemProps) => {
-  if (numOfRoom < 1) {
-    numOfRoom = "방 없음";
-  } else if (numOfRoom === 1) {
-    numOfRoom = "원룸";
-  } else if (numOfRoom === 2) {
-    numOfRoom = "투룸";
-  } else {
-    numOfRoom = "방 3개 이상";
-  }
 
   return (
-    <RealEstateItemWrapper className={className}>
-      <RealEstateItemImage src={imageUrl}></RealEstateItemImage>
+    <RealEstateItemWrapper className={className} href={`https://www.peterpanz.com/house/${registerId}`} target="blank">
+      {img ? <RealEstateItemImage src={img} /> : <RealEstateItemEmptyImage />}
       <TextInfoWrapper>
         <MainInfoWrapper>
-          <RealEstateItemPaymentType>{paymentType}</RealEstateItemPaymentType>
-          <RealEstateItemDeposit>{deposit}</RealEstateItemDeposit>/
+          <RealEstateItemLoanType>{loanType}</RealEstateItemLoanType>
+          <RealEstateItemDeposit>{deposit / 10000}</RealEstateItemDeposit>/
           <RealEstateItemMonthlyPayment>
-            {monthlyPayment}
+            {monthlyPayment / 10000}
           </RealEstateItemMonthlyPayment>
         </MainInfoWrapper>
-        <RealEstateItemDescription>{description}</RealEstateItemDescription>
+        <RealEstateItemName>{img ? name : "판매완료 혹은 비공개 매물"}</RealEstateItemName>
         <SubInfoWrapper>
           <RealEstateItemBuildingType>
             {buildingType}
           </RealEstateItemBuildingType>
-          /<RealEstateItemRoomType>{roomType}</RealEstateItemRoomType> |{" "}
-          <RealEstateItemNumOfRoom>{numOfRoom}</RealEstateItemNumOfRoom>
+          <RealEstateItemRoomType>{roomType}</RealEstateItemRoomType>
         </SubInfoWrapper>
       </TextInfoWrapper>
     </RealEstateItemWrapper>

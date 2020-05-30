@@ -39,6 +39,9 @@ const Icon = ({ icon, color, size, className, onClick, testId, cursor = "default
       fill: ${color};
     }
     cursor: ${cursor};
+    display: flex;
+    justify-content: center;
+    align-items: center;
   `;
 
   const SVGIcon = icons[icon];

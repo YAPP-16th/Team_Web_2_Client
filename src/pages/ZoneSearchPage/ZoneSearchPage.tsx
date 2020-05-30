@@ -1,10 +1,12 @@
 import React from "react";
+import { Switch, HashRouter, Route } from "react-router-dom"
 import {
   useLocation,
 } from "react-router-dom";
 
 // Page
 import ZoneSearchResultPage from "../ZoneSearchResultPage/ZoneSearchResultPage";
+import ZoneDetailPage from "../ZoneDetailPage/ZoneDetailPage";
 
 interface loadingContainer {
   data: locationData;
@@ -19,13 +21,20 @@ interface locationData {
 }
 
 const ZoneSearchPage = () => {
+
   const location = useLocation();
 
   return location.search ? (
     <ZoneSearchResultPage />
   ) : (
-    <div>여기는 검색 페이지 넣어야함</div>
-  );
+    <div className="zone-search">
+      <Switch>
+        <HashRouter basename="/zone">
+          <Route path="/:id/:feature" exact component={ZoneDetailPage} />
+        </HashRouter>
+      </Switch>
+    </div>
+  )
 };
 
 export default ZoneSearchPage;

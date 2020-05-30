@@ -1,7 +1,7 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { render, fireEvent, waitForElement } from "@testing-library/react";
 import ListViewContainer from "./ListViewContainer";
-
+import App from '../../App';
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import rootReducer from "../../modules";
@@ -12,35 +12,32 @@ import { createMemoryHistory } from "history";
 const store = createStore(rootReducer);
 
 describe("<ListViewContainer />", () => {
-  it("드래그 동작에 의한 애니메이션 처리", () => {
+  it("드래그 버튼 렌더링 여부", async () => {
     const history = createMemoryHistory();
     history.push("/search?key=value");
     const utils = render(
       <Provider store={store}>
         <Router history={history}>
-          <ListViewContainer />
+          <App />
         </Router>
       </Provider>
     );
 
-    const toggleButton = utils.getByText("리스트뷰 +");
-    fireEvent.click(toggleButton);
-    utils.findByText("리스트뷰 -")
-      // .then((element) => {
-      //   console.log("element.clientTop", element.clientTop);
-      //   // expect(element.clientTop).toBe('리스트뷰')
-      // });
+    // const toggleButton = utils.getByText("리스트뷰 +");
+    // fireEvent.click(toggleButton);
+    // await waitForElement(() => utils.getByText("리스트뷰 -"));
   });
 
-  it("ZONE 선택 시 상세페이지로 이동", () => {
+  it("ZONE 아이템들 렌더링 여부", async () => {
     const history = createMemoryHistory();
     history.push("/search?key=value");
     const utils = render(
       <Provider store={store}>
         <Router history={history}>
-          <ListViewContainer />
+          <App />
         </Router>
       </Provider>
     );
   });
+
 });

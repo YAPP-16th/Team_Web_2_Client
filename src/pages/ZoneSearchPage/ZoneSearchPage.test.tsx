@@ -27,7 +27,6 @@ describe("ZoneSearchPage 페이지", () => {
           </Router>
         </Provider>
       );
-      expect(container.innerHTML).toMatch("여기는 검색 페이지 넣어야함");
     });
   });
 });
