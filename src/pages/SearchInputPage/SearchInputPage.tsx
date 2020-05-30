@@ -82,7 +82,7 @@ const SearchInputPage = ({ match, history }: RouteComponentProps<paramsType>) =>
 
   const SearchInputWrapper = styled.div`
   // width: 100%;
-  height: 100%;
+  height: calc(100% - 115px);
   // background-color: var(--PrimaryColor);
 `
 
@@ -135,7 +135,7 @@ const SearchInputPage = ({ match, history }: RouteComponentProps<paramsType>) =>
 
       default:
         break;
-        
+
     }
   }
   // history.push

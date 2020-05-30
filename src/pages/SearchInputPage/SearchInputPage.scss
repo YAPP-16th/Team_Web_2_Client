@@ -5,8 +5,14 @@
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  // 
+  // align-items: flex-start;
+  justify-content: flex-start;
+
+  @media screen and (min-width: 1060px) {
+    align-items: center;
+    justify-content: center;
+  }
 
 
   .search_elements_wrapper {
