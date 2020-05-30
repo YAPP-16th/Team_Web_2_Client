@@ -75,7 +75,7 @@ const HashTag = () => {
     <div className="hashTag_Wrapper">
       {tagListMap}
       {isInput
-        ? <input className="styledInput" defaultValue="# " onKeyPress={onKeyPressHandler} autoFocus />
+        ? <input className="styledInput" defaultValue="   #  " onKeyPress={onKeyPressHandler} autoFocus />
         :
         <>
           <div className=" StyledHashTag" onClick={() => onClickHandler()}>추가+</div>

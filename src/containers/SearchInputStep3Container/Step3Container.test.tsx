@@ -1,8 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import Step3Container from "./Step3Container";
-import SearchInputLoadingContainer from "../SearchInputLoadingContainer/SearchInputLoadingContainer"
-
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import rootReducer from "../../modules";

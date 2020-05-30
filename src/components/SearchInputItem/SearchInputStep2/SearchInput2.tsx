@@ -5,6 +5,8 @@ import check1 from '../../../assets/img/check1.png';
 import check0 from '../../../assets/img/check0.png';
 import useSearchInput from '../../../hooks/useSearchInput';
 
+import './SearchInput2.scss'
+
 
 const SearchInput2 = () => {
 
@@ -43,33 +45,22 @@ const SearchInput2 = () => {
 
   const transportDetail = ['환승없음', '1회환승', '2회환승'];
 
-  // const [selectedTp, setSelectedTp] = useState('' as string);
-  // const [selectedDetailTp, setSelectedDetailTp] = useState('' as string);
-
   const handleTp = (tp: string) => {
-    // setSelectedTp(tp)
     if (tp === "지하철") {
-      // setData("transitMode", ["subway"])
       setTransitModeRedux(["subway"])
     } else if (tp === "버스") {
-      // setData("transitMode", ["bus"])
       setTransitModeRedux(["bus"])
     } else if (tp === "지하철 & 버스") {
-      // setData("transitMode", ["subway", "bus"])
       setTransitModeRedux(["subway", "bus"])
     }
   }
 
   const handleDetailTp = (dtp: string) => {
-    // setSelectedDetailTp(dtp)
     if (dtp === "환승없음") {
-      // setData("transferLimit", 0)
       setTransferLimitRedux(0)
     } else if (dtp === "1회환승") {
-      // setData("transferLimit", 1)
       setTransferLimitRedux(1)
     } else if (dtp === "2회환승") {
-      // setData("transferLimit", 2)
       setTransferLimitRedux(2)
     }
   }
@@ -82,7 +73,7 @@ const SearchInput2 = () => {
   const transportDetailList = transportDetail.map((tpd, idx) => {
     return (
       <>
-        <div className="Rectangle" onClick={() => handleDetailTp(tpd)} style={{ marginLeft: '30px' }} key={idx}>
+        <div className="Rectangle TransportDetailRectangle" onClick={() => handleDetailTp(tpd)} style={{}} key={idx}>
           {selectedTpCheckBox(tpd, translate(searchInput.searchInputData.transferLimit))}
           {tpd}
         </div>
@@ -91,13 +82,21 @@ const SearchInput2 = () => {
   })
 
   const transportList = transport.map((tp, idx) => {
+
+    const curTranslate = translate(searchInput.searchInputData.transitMode);
+    let classNames = "Rectangle";
+
+    if (curTranslate && tp !== curTranslate) {
+      classNames += " NonTranslatedRectangle"
+    }
+
     return (
       <>
-        <div className="Rectangle" onClick={() => handleTp(tp)} key={idx}>
-          {selectedTpCheckBox(tp, translate(searchInput.searchInputData.transitMode))}
+        <div className={classNames} onClick={() => handleTp(tp)} key={idx}>
+          {selectedTpCheckBox(tp, curTranslate)}
           {tp}
         </div>
-        {tp === translate(searchInput.searchInputData.transitMode)
+        {tp === curTranslate
           ? transportDetailList
           : null
         }
@@ -105,25 +104,20 @@ const SearchInput2 = () => {
     );
   });
 
-  // console.log(translate(searchInput.searchInputData.transitMode))
-
   return (
     <>
-      <div className="search_select_done">
-        <div className="search_elements_wrapper">
-          <div className="input_header_wrapper">
-            <span className="STEP">STEP 2</span>
-            <span className="slash"> / transport</span>
-          </div>
-          <div className="input_question_wrapper">
-            <span className="Rectangle_ment">선호하는 이동수단을</span>
-            <span className="Rectangle_ment">선택해주세요</span>
-          </div>
+      <div className="search_elements_wrapper">
+        <div className="input_header_wrapper">
+          <span className="STEP">STEP 2</span>
+          <span className="slash"> / transport</span>
         </div>
-        <div className="contents">
-          {transportList}
-          {/* <span className="option"> * 옵션을 선택해주세요</span> */}
+        <div className="input_question_wrapper">
+          <span className="Rectangle_ment">선호하는 이동수단을</span>
+          <span className="Rectangle_ment">선택해주세요</span>
         </div>
+      </div>
+      <div className="contents">
+        {transportList}
       </div>
     </>
   );

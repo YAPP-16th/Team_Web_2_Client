@@ -3,16 +3,23 @@
   height: 100%;
   background-color: #1d1d1d;
   margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  @media screen and (min-width: 1060px) {
+    align-items: center;
+    justify-content: center;
+  }
+
 
   .search_elements_wrapper {
     display: flex;
     flex-direction: column;
     margin-left: 20px;
     @media screen and (min-width: 1060px) {
-      // height: 70vh;
-      margin-top: 10rem;
       justify-content: center;
       align-items: center;
+      margin-top: 100px;
     }
   }
 
@@ -90,13 +97,17 @@
 
   // 문구 아래 선택 부분
   .contents{
+    width: fit-content;
     display: flex;
     flex-direction: column;
     margin-left: 20px;
+    border-radius: 8px;
+    overflow: hidden;
     @media screen and (min-width: 1060px) {
-      // height: 70vh;
       justify-content: center;
       align-items: center;
+      border-radius: 8px;
+
     }
   }
 
@@ -127,6 +138,7 @@
       line-height: 2.3em;
       margin-right: 8px;
       justify-content: center;
+      cursor: pointer;
       @media screen and (min-width: 1060px) {
         width: 111px;
         height: 49px;
@@ -223,18 +235,24 @@
     background-color:#2a2a2a;
     border: none;
     text-align: center;
+    cursor: pointer;
     @media screen and (min-width: 1060px) {
       width: 600px;
       height: 65px;
       background-color:#2a2a2a;
-      // margin-bottom: 110px;
       font-size: 20px;
     }
   }
-  
 
+.optionWrapper {
+  margin-top: 9px;
+  justify-content: flex-start;
+  display: flex;
+}
+// 옵션을 선택해주세요 문구
 .option {
   font-family: Gotham;
+  display: inline-block;
   font-size: 15px;
   font-weight: 100;
   font-stretch: normal;
@@ -242,7 +260,6 @@
   line-height: 1.95;
   letter-spacing: -0.89px;
   color: #40aee1;
-  margin-top: 9px;
   margin-left: 2rem;
   @media screen and (min-width: 1060px) {
     margin-top: 14px;
@@ -251,23 +268,19 @@
     line-height: normal;
     letter-spacing: -0.8px;
     justify-content: center;
-    align-items: center;
     text-align: center;
+    margin-bottom: 20px
   }
 }
-
-
 
 .text-style-1 {
   font-weight: 300;
 }
 
-
-
+// 체크 선택 박스
 .Rectangle {
   width: 320px;
   height: 51px;
-  border-radius: 8px;
   background-color: #323232;
   color: #ffffff;
   font-family: NotoSansCJKkr;
@@ -275,15 +288,22 @@
   font-weight: 300;
   font-stretch: normal;
   font-style: normal;
-  // line-height: 1.64;
+  border-bottom: 1px solid black;
+  &:last-child {
+    border-bottom: none;
+  }
   line-height: 3.8;
   letter-spacing: -0.62px;
   color: #ffffff;
+  cursor: pointer;
   @media screen and (min-width: 1060px) {
     width: 600px;
     height: 51px;
-    border-radius: 8px;
     background-color: #323232;
+    border-bottom: 1px solid black;
+    &:last-child {
+      border-bottom: none;
+    }
     color: #ffffff;
     font-family: NotoSansCJKkr;
     font-size: 20px;
@@ -296,6 +316,7 @@
   }
 }
 
+// 체크 마크
 .check1 {
   width: 17px;
   height: 17px;
@@ -308,20 +329,6 @@
     margin-left: 20px;
   }
 }
-
-// .ment {
-//   width: 34px;
-//   height: 23px;
-//   font-family: NotoSansCJKkr;
-//   font-size: 14px;
-//   font-weight: 300;
-//   font-stretch: normal;
-//   font-style: normal;
-//   line-height: 1.64;
-//   letter-spacing: -0.62px;
-//   color: var(--greyish);
-// }
-
 
 .pop_up {
   width: 100%;
