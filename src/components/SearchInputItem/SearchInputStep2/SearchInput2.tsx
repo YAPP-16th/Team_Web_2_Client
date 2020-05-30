@@ -5,6 +5,8 @@ import check1 from '../../../assets/img/check1.png';
 import check0 from '../../../assets/img/check0.png';
 import useSearchInput from '../../../hooks/useSearchInput';
 
+import './SearchInput2.scss'
+
 
 const SearchInput2 = () => {
 
@@ -82,7 +84,7 @@ const SearchInput2 = () => {
   const transportDetailList = transportDetail.map((tpd, idx) => {
     return (
       <>
-        <div className="Rectangle" onClick={() => handleDetailTp(tpd)} style={{ marginLeft: '30px' }} key={idx}>
+        <div className="Rectangle TransportDetailRectangle" onClick={() => handleDetailTp(tpd)} style={{}} key={idx}>
           {selectedTpCheckBox(tpd, translate(searchInput.searchInputData.transferLimit))}
           {tpd}
         </div>
@@ -91,13 +93,21 @@ const SearchInput2 = () => {
   })
 
   const transportList = transport.map((tp, idx) => {
+
+    const curTranslate = translate(searchInput.searchInputData.transitMode);
+    let classNames = "Rectangle";
+
+    if (curTranslate && tp !== curTranslate) {
+      classNames += " NonTranslatedRectangle"
+    }
+
     return (
       <>
-        <div className="Rectangle" onClick={() => handleTp(tp)} key={idx}>
-          {selectedTpCheckBox(tp, translate(searchInput.searchInputData.transitMode))}
+        <div className={classNames} onClick={() => handleTp(tp)} key={idx}>
+          {selectedTpCheckBox(tp, curTranslate)}
           {tp}
         </div>
-        {tp === translate(searchInput.searchInputData.transitMode)
+        {tp === curTranslate
           ? transportDetailList
           : null
         }
