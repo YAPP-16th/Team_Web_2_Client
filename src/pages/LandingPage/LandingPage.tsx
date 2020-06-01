@@ -98,7 +98,7 @@ const LandingPage = () => {
           </div>
 
           <div className="intro-button">
-            <Link to="/searchInput/1">
+            <Link to="/search">
               ZONE 찾기 <Icon className="next-icon" icon="next" size="20px" />
             </Link>
           </div>
