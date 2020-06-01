@@ -42,7 +42,7 @@ export async function getTransits({
     case "LocationToLocation":
       if (destinationLocation && startLocation) {
         response = await axios.get<TransitObj>(
-          process.env.REACT_APP_API_URL + `/transit/LocationToLocation?destinationLat=${destinationLocation.lat}&destinationLng=${destinationLocation.lng}&startLat=${startLocation.lat}&startLng=${startLocation.lng}`
+          process.env.REACT_APP_SERVER + `/transit/LocationToLocation?destinationLat=${destinationLocation.lat}&destinationLng=${destinationLocation.lng}&startLat=${startLocation.lat}&startLng=${startLocation.lng}`
         );
       }
       break;
@@ -50,14 +50,14 @@ export async function getTransits({
       if (startLocation) {
         console.log(startLocation, zoneId);
         response = await axios.get<TransitObj>(
-          process.env.REACT_APP_API_URL + `/transit/LocationToZone?destinationZoneId=${zoneId}&startLat=${startLocation.lat}&startLng=${startLocation.lng}`
+          process.env.REACT_APP_SERVER + `/transit/LocationToZone?destinationZoneId=${zoneId}&startLat=${startLocation.lat}&startLng=${startLocation.lng}`
         );
       }
       break;
     case "ZoneToLocation":
       if (destinationLocation) {
         response = await axios.get<TransitObj>(
-          process.env.REACT_APP_API_URL + `/transit/ZoneToLocation?destinationLat=${destinationLocation.lat}&destinationLng=${destinationLocation.lng}&startZoneId=${zoneId}`
+          process.env.REACT_APP_SERVER + `/transit/ZoneToLocation?destinationLat=${destinationLocation.lat}&destinationLng=${destinationLocation.lng}&startZoneId=${zoneId}`
         );
       }
       break;

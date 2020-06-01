@@ -22,7 +22,7 @@ export type PlaceObj = {
 
 export async function getPlaces(payload: number) {
   const response = await axios.get<PlaceObj>(
-    process.env.REACT_APP_API_URL + `/places?zoneId=${payload}`
+    process.env.REACT_APP_SERVER + `/places?zoneId=${payload}`
   );
   return response.data.data;
 }

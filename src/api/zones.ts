@@ -47,7 +47,7 @@ export async function getZones({
     transitQueryString += "transMode=" + transitMode + "&";
   }
   const response = await axios.get<ZoneQuery>(
-    process.env.REACT_APP_API_URL + `/zones?address=${address}&addressTag=${addressTag}&maxTime=${maxTime}&minTime=${minTime}&${transitQueryString}transferLimit=${transferLimit}`
+    process.env.REACT_APP_SERVER + `/zones?address=${address}&addressTag=${addressTag}&maxTime=${maxTime}&minTime=${minTime}&${transitQueryString}transferLimit=${transferLimit}`
   );
   return response.data;
 }
@@ -65,7 +65,7 @@ export async function testGetZones({
     transitQueryString += "transMode=" + transitMode + "&";
   }
   const response = await axios.get<ZoneQuery>(
-    process.env.REACT_APP_API_URL + `/test/zones?address=${address}&addressTag=${addressTag}&maxTime=${maxTime}&minTime=${minTime}&${transitQueryString}transferLimit=${transferLimit}`
+    process.env.REACT_APP_SERVER + `/test/zones?address=${address}&addressTag=${addressTag}&maxTime=${maxTime}&minTime=${minTime}&${transitQueryString}transferLimit=${transferLimit}`
   );
   return response.data;
 }
