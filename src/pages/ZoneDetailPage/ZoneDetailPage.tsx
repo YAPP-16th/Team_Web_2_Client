@@ -22,6 +22,7 @@ const address = "강남구 역삼1동, 서울특별시";
 const zoneCode = 301421;
 const sections = [
   { name: "시간비교", to: "timecompare" },
+  { name: "주거환경", to: "place" },
   { name: "교통편", to: "transportation" },
   { name: "매물", to: "realestate" },
 ];
@@ -52,11 +53,9 @@ const ZoneDetailPage = ({ match }: RouteComponentProps<paramsType>) => {
   const destinationLat = Number(queries.destinationLat);
   const destinationLng = Number(queries.destinationLng);
 
-  let ZoneDetailContainer;
-
   switch (match.params.feature) {
     case "timecompare":
-      ZoneDetailContainer = () => (
+      container = (
         <TimeCompareContainer
           currentZoneId={zoneId}
           startAddress="서울시 마포구 431 화인빌라"
@@ -64,7 +63,7 @@ const ZoneDetailPage = ({ match }: RouteComponentProps<paramsType>) => {
       );
       break;
     case "transportation":
-      ZoneDetailContainer = () => (
+      container = (
         <TransportationContainer
           zoneAddress="강남구 역삼1동, 서울특별시"
           zoneCode="06020"
@@ -75,11 +74,10 @@ const ZoneDetailPage = ({ match }: RouteComponentProps<paramsType>) => {
       );
       break;
     case "realestate":
-      ZoneDetailContainer = () => <RealEstateContainer zoneId={zoneId} />;
+      container = <RealEstateContainer zoneId={zoneId} />;
       break;
     case "place":
-      ZoneDetailContainer = () => <PlaceContainer zoneId={zoneId} />;
-    default:
+      container = <PlaceContainer zoneId={zoneId} />;
       break;
   }
 
