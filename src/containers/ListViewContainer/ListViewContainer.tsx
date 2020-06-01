@@ -82,7 +82,7 @@ const ListViewContainerWrapper = styled.div<{ clicked: boolean }>`
   width: 100%;
   height: Calc(100% - 193px);
   position: fixed;
-  z-index: 1;
+  z-index: 100;
   top: 92%;
   background-color: var(--BackgroundColor);
   border-top-left-radius: 12px;
