@@ -8,7 +8,6 @@ import "./App.scss";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import ZoneSearchPage from "./pages/ZoneSearchPage/ZoneSearchPage";
 import HeaderPage from "./pages/HeaderPage/HeaderPage";
-import SearchInputPage from './pages/SearchInputPage/SearchInputPage';
 
 // Components
 import Modal from "./components/Modal/Modal";
@@ -24,7 +23,6 @@ function App() {
         <Switch>
           <Route path="/" exact component={LandingPage}></Route>
           <Route path="/search" exact component={ZoneSearchPage}></Route>
-          <Route path="/searchInput/:step" exact component={SearchInputPage}></Route>
         </Switch>
       </main>
       <footer></footer>

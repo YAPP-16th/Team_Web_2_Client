@@ -1,21 +1,18 @@
-import React, { useState } from 'react';
-import './SearchInputPage.scss';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import "./SearchInputPage.scss";
+import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
-import SearchInputStep1Container from '../../containers/SearchInputStep1Container/Step1Container';
-import SearchInputStep2Container from '../../containers/SearchInputStep2Container/Step2Container';
-import SearchInputStep3Container from '../../containers/SearchInputStep3Container/Step3Container';
-import searchInput from '../../modules/searchInput';
-import useSearchInput from '../../hooks/useSearchInput';
-import { search } from '../../assets/svgs/icons';
+import SearchInputStep1Container from "../../containers/SearchInputStep1Container/Step1Container";
+import SearchInputStep2Container from "../../containers/SearchInputStep2Container/Step2Container";
+import SearchInputStep3Container from "../../containers/SearchInputStep3Container/Step3Container";
+import useSearchInput from "../../hooks/useSearchInput";
 
 type paramsType = {
   step: string;
-}
+};
 
-const SearchInputPage = ({ match, history }: RouteComponentProps<paramsType>) => {
-  const MoreItemButton = styled.div`
+const MoreItemButton = styled.div`
   width: 100%;
   font-size: 16px;
   font-weight: 500;
@@ -46,7 +43,7 @@ const SearchInputPage = ({ match, history }: RouteComponentProps<paramsType>) =>
   }
 `;
 
-  const MoreItemButtonHovered = styled.div`
+const MoreItemButtonHovered = styled.div`
   width: 100%;
   font-size: 16px;
   font-weight: 500;
@@ -76,112 +73,96 @@ const SearchInputPage = ({ match, history }: RouteComponentProps<paramsType>) =>
     cursor: pointer;
     display: inline;
   }
-  `
+`;
 
+const SearchInputWrapper = styled.div`
+  height: 95%;
+`;
 
-  const SearchInputWrapper = styled.div`
-    height: 95%;
-`
+const ButtonWrapper = styled.div`
+  align-items: center;
+  text-align: center;
+`;
 
-  const ButtonWrapper = styled.div`
-    align-items: center;
-    text-align: center;
-  `
-
-
-  // 전역 상태
+const SearchInputPage = () => {
   const searchInput = useSearchInput();
-  var data = searchInput.searchInputData
+  let data = searchInput.searchInputData;
 
-  const [isHover, setIsHover] = useState(false as boolean)
+  const [isHover, setIsHover] = useState(false as boolean);
+  const [step, setStep] = useState(1);
+  const history = useHistory();
 
   let container;
 
-  const stepPrevHandler = (step: string) => {
-    switch (step) {
+  const stepPrevHandler = () => {
+    step > 1 && setStep(step - 1);
+  };
 
-      case "2":
-        history.push("1")
-        break;
-
-      case "3":
-        history.push("2")
-        break;
-
-      default:
-        break;
-
+  const stepForwardHandler = () => {
+    console.log("다음으로", step);
+    if (step < 3) {
+      setStep(step + 1);
+    } else {
+      history.push(
+        `/search?address=${data.address}&addressTag=${data.addressTag}&maxTime=${data.maxTime}&minTime=${data.minTime}&transferLimit=${data.transferLimit}&transitMode=${data.transitMode}`
+      );
     }
+  };
+
+  switch (step) {
+    case 1:
+      container = (
+        <SearchInputStep1Container
+          setIsHover={(isHover: boolean) => setIsHover(isHover)}
+        />
+      );
+      break;
+    case 2:
+      container = <SearchInputStep2Container setIsHover={setIsHover} />;
+      break;
+    case 3:
+      container = <SearchInputStep3Container setIsHover={setIsHover} />;
+      break;
   }
 
-  const stepForwardHandler = (step: string) => {
-    // searchInput.setSearchInputData(processed)
-    switch (step) {
-      case "1":
-        history.push("2")
-        break;
-
-      case "2":
-        history.push("3")
-        break;
-
-      case "3":
-        history.push(`/search?address=${data.address}&addressTag=${data.addressTag}&maxTime=${data.maxTime}&minTime=${data.minTime}&transferLimit=${data.transferLimit}&transitMode=${data.transitMode}`);
-        break;
-
-      default:
-        break;
-
-    }
-  }
-  // history.push
-  const stepParam = match.params.step;
-  if (stepParam === '1') {
-    container =
-      <SearchInputStep1Container
-        setIsHover={(isHover: boolean) => setIsHover(isHover)}
-      />;
-  } else if (stepParam === '2') {
-    container =
-      <SearchInputStep2Container
-        setIsHover={setIsHover}
-      />;
-  } else if (stepParam === '3') {
-    container =
-      <SearchInputStep3Container
-        setIsHover={setIsHover}
-      />;
-  }
-
-  const prev = "< 이전으로"
-
+  const prev = "< 이전으로";
+  console.log("?", isHover);
   return (
     <>
       <div className="search_select_done">
         <SearchInputWrapper>
           {container}
-          {isHover
-            ?
+          {isHover ? (
             <ButtonWrapper>
               <div className="option"></div>
-              <MoreItemButton onClick={() => stepPrevHandler(stepParam)}>{prev}</MoreItemButton>
-              <MoreItemButtonHovered onClick={() => stepForwardHandler(stepParam)}>다음으로 ></MoreItemButtonHovered>
+              <MoreItemButton onClick={() => stepPrevHandler()}>
+                {prev}
+              </MoreItemButton>
+              <MoreItemButtonHovered onClick={() => stepForwardHandler()}>
+                다음으로 >
+              </MoreItemButtonHovered>
             </ButtonWrapper>
-            : <ButtonWrapper>
+          ) : (
+            <ButtonWrapper>
               <div className="optionWrapper">
                 <div className="option"> * 옵션을 선택해주세요</div>
               </div>
-              {stepParam === "1"
-                ? <></>
-                : <MoreItemButton onClick={() => stepPrevHandler(stepParam)}>{prev}</MoreItemButton>
-              }
-              <MoreItemButton onClick={() => stepForwardHandler(stepParam)}>다음으로 ></MoreItemButton>
+              {step === 1 ? (
+                <></>
+              ) : (
+                <MoreItemButton onClick={() => stepPrevHandler()}>
+                  {prev}
+                </MoreItemButton>
+              )}
+              <MoreItemButton onClick={() => stepForwardHandler()}>
+                다음으로 >
+              </MoreItemButton>
             </ButtonWrapper>
-          }
+          )}
         </SearchInputWrapper>
       </div>
     </>
   );
 };
 
-export default withRouter(SearchInputPage);
+export default SearchInputPage;

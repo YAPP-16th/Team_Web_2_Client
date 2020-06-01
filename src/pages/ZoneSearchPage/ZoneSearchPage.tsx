@@ -6,7 +6,7 @@ import {
 
 // Page
 import ZoneSearchResultPage from "../ZoneSearchResultPage/ZoneSearchResultPage";
-import ZoneDetailPage from "../ZoneDetailPage/ZoneDetailPage";
+import SearchInputPage from "../SearchInputPage/SearchInputPage";
 
 interface loadingContainer {
   data: locationData;
@@ -27,13 +27,7 @@ const ZoneSearchPage = () => {
   return location.search ? (
     <ZoneSearchResultPage />
   ) : (
-    <div className="zone-search">
-      <Switch>
-        <HashRouter basename="/zone">
-          <Route path="/:id/:feature" exact component={ZoneDetailPage} />
-        </HashRouter>
-      </Switch>
-    </div>
+    <SearchInputPage/>
   )
 };
 
