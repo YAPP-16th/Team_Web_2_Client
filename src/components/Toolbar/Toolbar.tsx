@@ -4,6 +4,8 @@ import styled from "styled-components";
 type ToolbarProps = {
   rightContents?: React.ReactNode;
   leftContents?: React.ReactNode;
+  backgroundColor?: boolean;
+  bottomShadow?: boolean;
 };
 
 const DEVICE_SIZE = {
@@ -12,8 +14,15 @@ const DEVICE_SIZE = {
   laptop: "1024px",
 };
 
-const ToolbarWrapper = styled.nav`
+const ToolbarWrapper = styled.nav<{
+  backgroundColor?: boolean;
+  bottomShadow?: boolean;
+}>`
   padding: 26px 33px 26px;
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor ? "var(--BackgroundColor)" : "none"};
+  box-shadow: ${({ bottomShadow }) =>
+    bottomShadow ? "0px 4px 6px rgba(0,0,0,0.2)" : "none"};
 
   @media only screen and (max-width: ${DEVICE_SIZE.mobile}) {
     padding: 18px 20px;
@@ -31,9 +40,17 @@ const ToolbarItem = styled.li`
   padding-left: 0px;
 `;
 
-const Toolbar = ({ rightContents, leftContents }: ToolbarProps) => {
+const Toolbar = ({
+  rightContents,
+  leftContents,
+  backgroundColor,
+  bottomShadow,
+}: ToolbarProps) => {
   return (
-    <ToolbarWrapper>
+    <ToolbarWrapper
+      backgroundColor={backgroundColor}
+      bottomShadow={bottomShadow}
+    >
       <ToolbarContent>
         <ToolbarItem>{leftContents}</ToolbarItem>
         <ToolbarItem>{rightContents}</ToolbarItem>
