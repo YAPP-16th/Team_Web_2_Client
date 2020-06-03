@@ -231,6 +231,16 @@ function ZoneMap(props: MapProps) {
     markers.forEach((value) => value.setOptions({ visible: bShow }));
   };
 
+  const changeMap = (array: Array<any>): void => {
+    array.forEach((value: any) => {
+      if (Array.isArray(value)) {
+        changeMap(value);
+      } else {
+        value.setMap(naverMapAPI);
+      }
+    });
+  };
+
   const createNaverMap = (
     parent: HTMLElement | string,
     x: number,
@@ -286,6 +296,13 @@ function ZoneMap(props: MapProps) {
         //2. 폴리곤 생성하기
         const polygon = createPolygon(obj.id, createPolygonPaths(obj.polygon));
         setZones(zones.set(obj.id, { location, polygon, rooms }));
+      } else {
+        const zone = zones.get(obj.id);
+        if (zone) {
+          const { rooms, polygon } = zone;
+          changeMap(rooms);
+          changeMap(polygon);
+        }
       }
     });
 

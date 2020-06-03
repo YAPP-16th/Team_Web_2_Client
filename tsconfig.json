@@ -21,8 +21,9 @@
     "removeComments": true,
     "downlevelIteration": true
   },
+  "files": ["./public/openapi/MarkerClustering.js"],
   "include": [
-    "src", "public/openapi/MarkerClustering.js"
+    "src"
   ],
   "exclude": [
     "node_modules",

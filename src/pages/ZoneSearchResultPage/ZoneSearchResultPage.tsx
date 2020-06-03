@@ -126,7 +126,7 @@ const ZoneSearchResultPage = () => {
   );
 
   useEffect(() => {
-    if (!location.hash.match(/zone/) && !zoneData.hasOwnProperty('data')) {
+    if (location.hash && !location.hash.match(/zone/) && !zoneData.hasOwnProperty('data')) {
       const closeCallback = () => {
         const result = window.confirm("변경사항이 저장되지 않을 수 있습니다.");
 
