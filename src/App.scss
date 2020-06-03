@@ -3,6 +3,8 @@
   height: 100%;
   background-color: var(--BackgroundColor);
   overflow-y: auto;
+  position: relative;
+  z-index: 100000;
 
   header{
     top: 0px;
