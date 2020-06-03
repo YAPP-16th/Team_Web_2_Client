@@ -98,7 +98,7 @@
 .landing-page {
   position: relative;
   width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
   z-index: 11;
@@ -325,6 +325,11 @@
 .landing-page-desc {
   position: relative;
   top: -750px;
+
+  @media screen and (min-width: 540px) {
+    top: -1350px;
+  }
+
   @media screen and (min-width: 1060px) {
     top: 0px;
   }
