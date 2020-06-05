@@ -19,7 +19,7 @@ const place = createReducer<PlacesState, PlacesAction>(initialState, {
   [GET_PLACES_SUCCESS]: (state, action) => {
     const processed = { ...state };
     if (action.payload) {
-      processed.data = action.payload;
+      processed.data = action.payload ? action.payload : [];
     }
     return {
       ...processed,
