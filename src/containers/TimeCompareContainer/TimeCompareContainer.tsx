@@ -181,8 +181,6 @@ const TimeCompareContainer = ({
   useEffect(() => {
     let timeCompareItems = getTimeCompareItems();
 
-    /** 지금 selectedZoneId 는 Dummy 입니다*/
-
     if (timeCompareItems === null) {
       setDefaultTimeCompareItem(currentZoneId, selectedZoneId)
         .then((results) => {

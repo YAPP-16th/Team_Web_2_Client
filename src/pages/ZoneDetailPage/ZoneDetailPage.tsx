@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ZoneDetailPage.scss";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import queryString from "query-string";
@@ -12,6 +12,11 @@ import PlaceContainer from "../../containers/PlaceContainer/PlaceContainer";
 
 import ZoneDetailHeaderInfo from "../../components/ZoneInfo/CurrentItemInfo";
 import TabItem from "../../components/TabItem/TabItem";
+
+type ZoneDetailPageProps = {
+  startLng: number;
+  startLat: number;
+}
 
 type paramsType = {
   id: string;
@@ -34,24 +39,20 @@ const StickyTabs = styled.div`
   }
 `;
 
-const ZoneDetailPage = ({ match }: RouteComponentProps<paramsType>) => {
+const ZoneDetailPage = ({ startLng, startLat, match }: ZoneDetailPageProps & RouteComponentProps<paramsType>) => {
+  const hashes = window.location.hash.split('/');
+  const [ zoneId, setZoneId ] = useState(Number(hashes[2]));
+
   let container = <div></div>;
   const tabItems = sections.map((section) => {
     return (
       <div key={section.name}>
-        <TabItem to={section.to} testId={section.to}>
+        <TabItem to={`${zoneId}/${section.to}`} testId={section.to}>
           {section.name}
         </TabItem>
       </div>
     );
   });
-
-  const queries = queryString.parse(window.location.search);
-  const zoneId = Number(queries.zoneId);
-  const startLat = Number(queries.startLat);
-  const startLng = Number(queries.startLng);
-  const destinationLat = Number(queries.destinationLat);
-  const destinationLng = Number(queries.destinationLng);
 
   switch (match.params.feature) {
     case "timecompare":
@@ -69,7 +70,6 @@ const ZoneDetailPage = ({ match }: RouteComponentProps<paramsType>) => {
           zoneCode="06020"
           zoneId={zoneId}
           startLocation={{ lat: startLat, lng: startLng }}
-          destinationLocation={{ lat: destinationLat, lng: destinationLng }}
         />
       );
       break;
@@ -82,7 +82,7 @@ const ZoneDetailPage = ({ match }: RouteComponentProps<paramsType>) => {
   }
 
   return (
-    <>
+    <div className="zone-detail-page">
       <ZoneDetailHeaderInfo
         className="header-info"
         address={address}
@@ -90,7 +90,7 @@ const ZoneDetailPage = ({ match }: RouteComponentProps<paramsType>) => {
       />
       <StickyTabs className="header-tabs">{tabItems}</StickyTabs>
       {container}
-    </>
+    </div>
   );
 };
 
