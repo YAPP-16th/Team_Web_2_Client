@@ -38,10 +38,10 @@ const ZoneSearchPopUp = ({ close, setLocation }: ZoneSearchPopUpProps) => {
   };
 
   return (
-    <>
+    <div className="postcode-iframe-wrapper">
       <DaumPostcode onComplete={handleComplete} />
       <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
-    </>
+    </div>
   );
 };
 

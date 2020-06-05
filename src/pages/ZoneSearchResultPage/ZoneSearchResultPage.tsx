@@ -110,8 +110,8 @@ const ZoneSearchResultPage = () => {
         
         // 이용자가 설정한 주소 저장
         timeCompare.setLocation("userLocation", {
-          lat: res.inputLocation.x,
-          lng: res.inputLocation.y
+          lat: res.inputLocation.y,
+          lng: res.inputLocation.x
         });
 
         setZoneData({

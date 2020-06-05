@@ -15,7 +15,7 @@
   .search_elements_wrapper {
     display: flex;
     flex-direction: column;
-    margin-left: 20px;
+    padding: 20px;
     @media screen and (min-width: 1060px) {
       justify-content: center;
       align-items: center;
@@ -100,7 +100,6 @@
     width: fit-content;
     display: flex;
     flex-direction: column;
-    margin-left: 20px;
     border-radius: 8px;
     overflow: hidden;
     @media screen and (min-width: 1060px) {
