@@ -19,7 +19,7 @@ const room = createReducer<RoomsState, RoomsAction>(initialState, {
   [GET_ROOMS_SUCCESS]: (state, action) => {
     const processed = { ...state };
     if (action.payload) {
-      processed.data = action.payload;
+      processed.data = action.payload ? action.payload : [];
     }
     return {
       ...processed,
