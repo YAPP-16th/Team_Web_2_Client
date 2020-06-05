@@ -3,6 +3,7 @@ import { all } from 'redux-saga/effects';
 
 // Reducers
 import listView from './listView'
+import timeCompare from './timeCompare';
 import room, { roomsSaga } from './room';
 import transit, { transitsSaga } from './transit';
 import place, { placesSaga } from './place';
@@ -14,6 +15,7 @@ import searchInput from './searchInput';
 const rootReducer = combineReducers({
   room,
   listView,
+  timeCompare,
   modal,
   place,
   transit,

@@ -161,7 +161,7 @@ const items = [
 
 ];
 
-const ListViewContainer = ({ data=items }: { data?: Array<any> }) => {
+const ListViewContainer = ({ data = items }: { data?: Array<any> }) => {
   // States
   const listView = useListView();
 
@@ -176,6 +176,8 @@ const ListViewContainer = ({ data=items }: { data?: Array<any> }) => {
   };
 
   const onItemClickHandler = (id: string | number) => {
+    // 여기 리덕스 코드 삽입. selected ZoneId 들어가도록
+
     listView.toggle(); // 어 이거 지우면 되는거 같은데
   };
 

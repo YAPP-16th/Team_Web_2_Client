@@ -13,10 +13,13 @@ import queryString from "query-string";
 import ZoneDetailPage from "../ZoneDetailPage/ZoneDetailPage";
 import ZoneSearchResultContainer from "../../containers/ZoneSearchResultContainer/ZoneSearchResultContainer";
 
-//Test
+// Test
 import { getTestZones } from "../../api/zoneAPI";
 import LoadingContainer from "../../containers/LoadingContainer/LoadingContainer";
 import ModalHooks from "../../components/Modal/ModalHooks";
+
+// Hooks
+import useTimeCompare from "../../hooks/timeCompareHooks";
 
 interface loadingContainer {
   data: locationData;
@@ -92,6 +95,8 @@ const ZoneSearchResultPage = () => {
   const params: any = queryString.parse(location.search);
   const searchData = convertSearchInfoData(params);
 
+  const timeCompare = useTimeCompare();
+
   const requestZones = useCallback(
     async (data: any) => {
       const headers = {
@@ -102,6 +107,13 @@ const ZoneSearchResultPage = () => {
 
       try {
         const res = await getTestZones({ headers, data });
+        
+        // 이용자가 설정한 주소 저장
+        timeCompare.setLocation("userLocation", {
+          lat: res.inputLocation.x,
+          lng: res.inputLocation.y
+        });
+
         setZoneData({
           inputLocation: res.inputLocation,
           data: res.data.map((value: any) => {
@@ -154,7 +166,7 @@ const ZoneSearchResultPage = () => {
             />
           )}
         </Route>
-        <Route exact path="/:id/:feature" component={ZoneDetailPage} />
+        <Route exact path="/:id/:feature" component={() => <ZoneDetailPage startLat={timeCompare.userLocation.lat} startLng={timeCompare.userLocation.lng} />} />
       </Switch>
     </HashRouter>
   );

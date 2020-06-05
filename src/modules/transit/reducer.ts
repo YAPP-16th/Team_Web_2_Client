@@ -18,7 +18,7 @@ const transit = createReducer<TransitsState, TransitsAction>(initialState, {
   },
   [GET_TRANSITS_SUCCESS]: (state, action) => {
     const processed = { ...state };
-    processed.data = action.payload;
+    processed.data = action.payload ? action.payload : [];
     return {
       ...processed,
       error: null,

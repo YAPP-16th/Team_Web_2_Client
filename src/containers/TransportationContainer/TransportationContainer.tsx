@@ -183,11 +183,8 @@ const TransportationArea = styled.div`
 `;
 
 const TransportationContainer = ({
-  zoneCode,
-  zoneAddress,
   zoneId,
   startLocation,
-  destinationLocation
 }: TransportationContainerProps) => {
   const transit = useTransit();
 
@@ -239,7 +236,7 @@ const TransportationContainer = ({
   });
 
   const tagButtons = tagButtonContents.map((content) => {
-    return <a href={`/searchInput/${content.step}`}><TagButton fontSize="14px">{content.text}</TagButton></a>;
+    return <a href={`/`}><TagButton fontSize="14px">{content.text}</TagButton></a>;
   });
 
   // Handlers
