@@ -16,7 +16,10 @@ const Dialog = ({
   children,
   show,
 }: DialogProps) => {
-  const DialogWrapper = styled.div<{ show: boolean, backgroundColor: string | undefined; }>`
+  const DialogWrapper = styled.div<{
+    show: boolean;
+    backgroundColor: string | undefined;
+  }>`
     padding: 0;
     position: fixed;
     top: 0px;
@@ -29,11 +32,9 @@ const Dialog = ({
     background-color: var(--BackgroundColor);
 
     .postcode-iframe-wrapper {
-      
       width: 700px;
     }
   `;
-
 
   return (
     <DialogWrapper
