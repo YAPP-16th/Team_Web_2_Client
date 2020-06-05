@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import "./SearchInputPage.scss";
-import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import './SearchInputPage.scss';
+import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
-import SearchInputStep1Container from "../../containers/SearchInputStep1Container/Step1Container";
-import SearchInputStep2Container from "../../containers/SearchInputStep2Container/Step2Container";
-import SearchInputStep3Container from "../../containers/SearchInputStep3Container/Step3Container";
-import useSearchInput from "../../hooks/useSearchInput";
+import SearchInputStep1Container from '../../containers/SearchInputStep1Container/Step1Container';
+import SearchInputStep2Container from '../../containers/SearchInputStep2Container/Step2Container';
+import SearchInputStep3Container from '../../containers/SearchInputStep3Container/Step3Container';
+import useSearchInput from '../../hooks/useSearchInput';
 
 type paramsType = {
   step: string;
@@ -124,8 +124,8 @@ const SearchInputPage = () => {
       break;
   }
 
-  const prev = "< 이전으로";
-  console.log("?", isHover);
+  const prev = '< 이전으로';
+  console.log('?', isHover);
   return (
     <>
       <div className="search_select_done">
