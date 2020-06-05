@@ -198,6 +198,8 @@ const TransportationContainer = ({
     },
   });
 
+  console.log('transportation!', zoneId, startLocation);
+
   useEffect(() => {
     transit.loadTransitsByQueries({ zoneId, startLocation, mode: "LocationToZone" });
   }, []);
@@ -217,9 +219,9 @@ const TransportationContainer = ({
   });
 
   const tagButtonContents = [
-    { text: "#회사", step: "1" },
-    { text: "#버스", step: "2" },
-    { text: "#10-20m", step: "3" },
+    { text: "#회사"},
+    { text: "#버스"},
+    { text: "#10-20m"},
   ];
 
   // Item Components
@@ -236,7 +238,7 @@ const TransportationContainer = ({
   });
 
   const tagButtons = tagButtonContents.map((content) => {
-    return <a href={`/`}><TagButton fontSize="14px">{content.text}</TagButton></a>;
+    return <TagButton fontSize="14px">{content.text}</TagButton>;
   });
 
   // Handlers
