@@ -15,6 +15,7 @@ interface ContainerProps {
   searchData?: SearchData;
 }
 
+
 const Container = Styled.div`
     width: 100%;
     height: 100%;

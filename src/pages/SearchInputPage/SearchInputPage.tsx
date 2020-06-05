@@ -99,8 +99,6 @@ const SearchInputPage = () => {
   };
 
   const stepForwardHandler = () => {
-    console.log("다음으로", step);
-    console.log('search data!', data);
     if (step < 3) {
       setStep(step + 1);
     } else {
