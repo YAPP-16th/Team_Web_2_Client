@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import "./ZoneDetailPage.scss";
-import { withRouter, RouteComponentProps } from "react-router-dom";
-import queryString from "query-string";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import './ZoneDetailPage.scss';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
+import queryString from 'query-string';
+import styled from 'styled-components';
 
 //Containers
-import RealEstateContainer from "../../containers/RealEstateContainer/RealEstateContainer";
-import TimeCompareContainer from "../../containers/TimeCompareContainer/TimeCompareContainer";
-import TransportationContainer from "../../containers/TransportationContainer/TransportationContainer";
-import PlaceContainer from "../../containers/PlaceContainer/PlaceContainer";
+import RealEstateContainer from '../../containers/RealEstateContainer/RealEstateContainer';
+import TimeCompareContainer from '../../containers/TimeCompareContainer/TimeCompareContainer';
+import TransportationContainer from '../../containers/TransportationContainer/TransportationContainer';
+import PlaceContainer from '../../containers/PlaceContainer/PlaceContainer';
 
-import ZoneDetailHeaderInfo from "../../components/ZoneInfo/CurrentItemInfo";
-import TabItem from "../../components/TabItem/TabItem";
+import ZoneDetailHeaderInfo from '../../components/ZoneInfo/CurrentItemInfo';
+import TabItem from '../../components/TabItem/TabItem';
 
 type ZoneDetailPageProps = {
   startLng: number;
@@ -23,13 +23,13 @@ type paramsType = {
   feature: string;
 };
 
-const address = "강남구 역삼1동, 서울특별시";
+const address = '강남구 역삼1동, 서울특별시';
 const zoneCode = 301421;
 const sections = [
-  { name: "시간비교", to: "timecompare" },
-  { name: "주거환경", to: "place" },
-  { name: "교통편", to: "transportation" },
-  { name: "매물", to: "realestate" },
+  { name: '시간비교', to: 'timecompare' },
+  { name: '주거환경', to: 'place' },
+  { name: '교통편', to: 'transportation' },
+  { name: '매물', to: 'realestate' },
 ];
 
 const StickyTabs = styled.div`
@@ -44,7 +44,7 @@ const ZoneDetailPage = ({
   startLat,
   match,
 }: ZoneDetailPageProps & RouteComponentProps<paramsType>) => {
-  const hashes = window.location.hash.split("/");
+  const hashes = window.location.hash.split('/');
   const [zoneId, setZoneId] = useState(Number(hashes[2]));
   const feature = hashes[3];
 
@@ -64,10 +64,10 @@ const ZoneDetailPage = ({
   });
 
   switch (match.params.feature) {
-    case "timecompare":
+    case 'timecompare':
       container = <TimeCompareContainer currentZoneId={zoneId} />;
       break;
-    case "transportation":
+    case 'transportation':
       container = (
         <TransportationContainer
           zoneAddress="강남구 역삼1동, 서울특별시"
@@ -77,10 +77,10 @@ const ZoneDetailPage = ({
         />
       );
       break;
-    case "realestate":
+    case 'realestate':
       container = <RealEstateContainer zoneId={zoneId} />;
       break;
-    case "place":
+    case 'place':
       container = <PlaceContainer zoneId={zoneId} />;
       break;
   }
