@@ -2,6 +2,7 @@ import * as actions from './actions';
 import { ActionType } from "typesafe-actions";
 
 export type TimeCompareState = {
+  userAddress: string;
   userLocation: {
     lat: number;
     lng: number;
@@ -9,7 +10,7 @@ export type TimeCompareState = {
   compareLocation: {
     lat: number;
     lng: number;
-  }
+  },
 };
 
 export type TimeCompareAction = ActionType<typeof actions>;

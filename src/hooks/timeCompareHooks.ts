@@ -1,13 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useCallback } from 'react';
 import { RootState } from '../modules'
-import { setUserLocation, setCompareLocation } from '../modules/timeCompare'
+import { setUserLocation, setCompareLocation, setUserAddress } from '../modules/timeCompare'
 
 const useTimeCompare = () => {
-  const { compareLocation, userLocation } = useSelector(
+  const { compareLocation, userLocation, userAddress } = useSelector(
     (state: RootState) => state.timeCompare
   );
   const dispatch = useDispatch();
+
+  const setAddress = useCallback((address: string) => {
+    return dispatch(setUserAddress(address));
+  }, [dispatch])
 
   const setLocation = useCallback(
     (mode: "userLocation" | "compareLocation", location: {lat: number, lng: number}) => {
@@ -25,8 +29,10 @@ const useTimeCompare = () => {
 
   return {
     compareLocation,
+    userAddress,
     userLocation,
-    setLocation
+    setLocation,
+    setAddress
   };
 };
 

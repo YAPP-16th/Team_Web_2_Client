@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import DaumPostcode from "react-daum-postcode";
 
 // Components
 import { Button } from "../../components/Button/Button";
 import TimeCompareListItem, {
   TimeCompareListItemProps,
 } from "../../components/ListViewItem/TimeCompareListItem";
-import { IconType } from "../../components/Icon/Icon";
 import LoadingDots from "../../components/Loading/LoadingDots";
 import ZoneSearchPopUp from "../../components/SearchInputItem/SearchInputStep1/ZoneSearchPopup";
 import Dialog from "../../components/Dialog/Dialog";
@@ -21,9 +19,14 @@ import {
   timeCompare,
 } from "../../utils/TimeCompare/functions";
 
+// Hooks
+import useTimeCompare from "../../hooks/timeCompareHooks";
+
+// API
+import { getCoordinates } from "../../api/coordinates"
+
 // Data Types
 type TimeCompareContainerProps = {
-  startAddress: string;
   currentZoneId: number;
 };
 
@@ -168,21 +171,21 @@ const ItemAddButton = styled.a`
 `;
 
 const TimeCompareContainer = ({
-  startAddress,
   currentZoneId,
 }: TimeCompareContainerProps) => {
   const [timeCompareContents, setTimeCompareContents] = useState<
     TimeCompareItem[]
   >([]);
 
-  // Dummy Data
-  const selectedZoneId = 3600;
+  // TimeCompare Hooks
+  const timeCompareHook = useTimeCompare();
+  const [ userAddress, setUserAddress ] = useState("주소를 설정해주세요");
 
   useEffect(() => {
     let timeCompareItems = getTimeCompareItems();
 
-    if (timeCompareItems === null) {
-      setDefaultTimeCompareItem(currentZoneId, selectedZoneId)
+    if (timeCompareItems === null || userAddress !== "주소를 설정해주세요") {
+      setDefaultTimeCompareItem(currentZoneId, timeCompareHook.compareLocation)
         .then((results) => {
           setTimeCompareContents(results);
         })
@@ -190,9 +193,11 @@ const TimeCompareContainer = ({
           console.log(err);
         });
     } else {
-      setTimeCompareContents(timeCompareItems);
+      if (userAddress !== "주소를 설정해주세요") {
+        setTimeCompareContents(timeCompareItems);
+      }
     }
-  }, []);
+  }, [userAddress]);
 
   // Handlers - item 내용을 업데이트 할 때는 기존의 내용을 바탕으로 해야합니다.
   const updateTimeCompareItemHandler = async (
@@ -217,7 +222,7 @@ const TimeCompareContainer = ({
       const compareSuccess = await timeCompare(
         item,
         currentZoneId,
-        selectedZoneId
+        timeCompareHook.compareLocation
       );
       if (compareSuccess) {
         item.editMode = false;
@@ -297,8 +302,14 @@ const TimeCompareContainer = ({
     );
   });
 
-  const [location, setLocation] = useState("주소를 입력하세요" as string);
   const [isOpen, setIsOpen] = useState(false as boolean);
+
+  const setLocationHandler = async (address: string) => {
+    const coordinates = await getCoordinates(address);
+    // 네트워크 에러 때문에 안되는거 맞나?
+    setUserAddress(address);
+    timeCompareHook.setLocation("compareLocation", { lat: coordinates.y, lng: coordinates.x });
+  }
   
   const onClickLocationHandler = () => {
     return setIsOpen(!isOpen);
@@ -309,13 +320,13 @@ const TimeCompareContainer = ({
       {isOpen ? (
         <Dialog
           className="pop_up"
-          display={isOpen}
+          show={isOpen}
           click={onClickLocationHandler}
         >
           <ZoneSearchPopUp
             close={onClickLocationHandler}
             //@ts-ignore
-            setLocation={setLocation}
+            setLocation={setLocationHandler}
           />
         </Dialog>
       ) : (
@@ -327,16 +338,22 @@ const TimeCompareContainer = ({
           </TextSectionWrapper>
 
           <StartPositionSelectWrapper>
-            <PlainText>{startAddress}</PlainText>
+            <PlainText>{timeCompareHook.userAddress}</PlainText>
             <Button onClick={onClickLocationHandler}>수정</Button>
           </StartPositionSelectWrapper>
           <TimeCompareList>
             {timeCompareList.length !== 0 ? (
               timeCompareList
             ) : (
-              <LoadingDots color="white" size="15px" />
+              <p
+                style={{
+                  color: "white"
+                }}
+              >
+                주소가 설정되지 않았거나 추가할 아이템이 없습니다.
+              </p>
             )}
-            <ItemAddButton onClick={addTimeCompareItemHandler}>
+            <ItemAddButton style={{display: userAddress === "주소를 설정해주세요" ? "none" : "block"}} onClick={addTimeCompareItemHandler}>
               + 추가하기
             </ItemAddButton>
           </TimeCompareList>
