@@ -17,13 +17,13 @@ const moveUp = keyframes`
   }
 
   75% {
-    transform: translateY(Calc(250px - 100vh));
+    transform: translateY(Calc(290px - 100vh));
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
   }
 
   100% {
-    transform: translateY(Calc(250px - 100vh));
+    transform: translateY(Calc(290px - 100vh));
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
   }
@@ -35,11 +35,11 @@ const moveUpDesktop = keyframes`
   }
 
   75% {
-    transform: translateY(Calc(270px - 100vh));
+    transform: translateY(Calc(380px - 100vh));
   }
 
   100% {
-    transform: translateY(Calc(270px - 100vh));
+    transform: translateY(Calc(380px - 100vh));
   }
 `;
 
