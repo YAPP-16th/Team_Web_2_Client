@@ -45,6 +45,11 @@ const SearchResultInfoWrapper = styled.div<{ addedHeight: string }>`
   width: 100%;
   padding: 3.6vh 2.063rem 2.6vh;
 
+  .result-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   @media only screen and (max-width: ${DEVICE_SIZE.mobile}) {
     padding: 0px 1.25rem 2vh;
   }
@@ -146,7 +151,7 @@ const SearchResultInfo = ({
 }: SearchResultInfoProps) => {
   return (
     <SearchResultInfoWrapper addedHeight={addedHeight} className={className}>
-      <ResultContainer>
+      <ResultContainer className="result-container">
         <LeftContent>
           <LeftRow>
             <EmphasisSpan bold>{itemCount}</EmphasisSpan>
