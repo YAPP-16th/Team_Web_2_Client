@@ -164,7 +164,9 @@ const PlaceContainer = ({ zoneId }: PlaceContainerProps) => {
 
   // Handlers
   const selectPlaceContentHandler = (item: Place) => {
-    setSelectedPlaceContent(item);
+    const processed = { ...item };
+    processed.placeVoList = item.placeVoList;
+    setSelectedPlaceContent(processed);
   };
 
   // Dynamically Generated
@@ -185,7 +187,7 @@ const PlaceContainer = ({ zoneId }: PlaceContainerProps) => {
   const placesListItems = selectedPlaceContent.placeVoList.map((item) => {
     console.log(selectedPlaceContent.placeVoList);
     return (
-      <div key={item.address}>
+      <div key={item.placeUrl}>
         <PlaceListItem
           url={item.placeUrl}
           heading={item.placeName}
