@@ -1,6 +1,6 @@
 import { createReducer } from "typesafe-actions";
 import { TimeCompareState, TimeCompareAction } from "./types";
-import { SET_USER_LOCATION, SET_COMPARE_LOCATION } from "./actions";
+import { SET_USER_LOCATION, SET_COMPARE_LOCATION, SET_USER_ADDRESS } from "./actions";
 
 const initialState: TimeCompareState = {
   compareLocation: {
@@ -10,7 +10,8 @@ const initialState: TimeCompareState = {
   userLocation: {
     lat: 0,
     lng: 0,
-  }
+  },
+  userAddress: "주소를 설정해주세요"
 };
 
 const listView = createReducer<TimeCompareState, TimeCompareAction>(initialState, {
@@ -24,6 +25,11 @@ const listView = createReducer<TimeCompareState, TimeCompareAction>(initialState
     processed.compareLocation = action.payload;
     return processed;
   },
+  [SET_USER_ADDRESS]: (state, action) => {
+    const processed = { ...state };
+    processed.userAddress = action.payload;
+    return processed;
+  }
 })
 
 export default listView;

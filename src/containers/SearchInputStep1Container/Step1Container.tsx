@@ -36,7 +36,7 @@ const SearchInputStep1Container = ({ setIsHover }: InputProps) => {
         ?
         <Dialog
           className="pop_up"
-          display={isOpen}
+          show={isOpen}
           click={onClickLocationHandler}
         >
           <ZoneSearchPopUp

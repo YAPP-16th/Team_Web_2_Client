@@ -23,22 +23,28 @@ export const setTimeCompareItems = (items: TimeCompareItem[]) => {
   localStorage.setItem("timeCompareItems", JSON.stringify(items));
 }
 
-export const timeCompare = async (item: TimeCompareItem, currentZoneId: number, selectedZoneId: number) => {  
+export const timeCompare = async (item: TimeCompareItem, currentZoneId: number, selectedLocation: { lat: number, lng: number }) => {  
   const currentZoneTransitData = await getTransits({
     startLocation: {
+      // 해당 핫플의 lat, lng 구나
       lat: item.location.lat,
       lng: item.location.lng,
     },
+    // currentZoneId는 zoneId 구나
     zoneId: currentZoneId,
     mode: "LocationToZone"
   });
+
   const selectedZoneTransitData = await getTransits({
     startLocation: {
       lat: item.location.lat,
       lng: item.location.lng,
     },
-    zoneId: selectedZoneId,
-    mode: "LocationToZone"
+    destinationLocation: {
+      lat: selectedLocation.lat,
+      lng: selectedLocation.lng
+    },
+    mode: "LocationToLocation"
   });
 
   if (!(currentZoneTransitData && selectedZoneTransitData)) {
@@ -55,7 +61,7 @@ export const timeCompare = async (item: TimeCompareItem, currentZoneId: number, 
   return true;
 }
 
-export const setDefaultTimeCompareItem = async (currentZoneId: number, selectedZoneId: number) => {
+export const setDefaultTimeCompareItem = async (currentZoneId: number, selectedLocation: { lat: number, lng: number }) => {
   const defaultItems = [
     {
       icon: "koex" as const,
@@ -85,7 +91,7 @@ export const setDefaultTimeCompareItem = async (currentZoneId: number, selectedZ
     }
   ];
   for (let item of defaultItems) {
-    await timeCompare(item, currentZoneId, selectedZoneId);
+    await timeCompare(item, currentZoneId, selectedLocation);
   }
   localStorage.setItem("timeCompareItems", JSON.stringify(defaultItems));
   return defaultItems;

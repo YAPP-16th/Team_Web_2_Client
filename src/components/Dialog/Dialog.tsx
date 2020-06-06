@@ -6,7 +6,7 @@ type DialogProps = {
   className: string;
   backgroundColor?: string;
   children?: React.ReactNode;
-  display: boolean;
+  show: boolean;
 };
 
 const Dialog = ({
@@ -14,9 +14,9 @@ const Dialog = ({
   className,
   backgroundColor,
   children,
-  display,
+  show,
 }: DialogProps) => {
-  const DialogWrapper = styled.div<{ display: boolean, backgroundColor: string | undefined; }>`
+  const DialogWrapper = styled.div<{ show: boolean, backgroundColor: string | undefined; }>`
     padding: 0;
     position: fixed;
     top: 0px;
@@ -38,7 +38,7 @@ const Dialog = ({
   return (
     <DialogWrapper
       backgroundColor={backgroundColor}
-      display={display}
+      show={show}
       onClick={click}
       className={className}
     >
