@@ -119,6 +119,7 @@ const SearchSpan = styled(Span)`
 `;
 
 const Divider = styled.hr`
+  background-color: var(--DarkTextColor);
   border: 1px solid var(--DarkTextColor);
   margin-top: 2.125rem;
   margin-bottom: 1.438rem;
