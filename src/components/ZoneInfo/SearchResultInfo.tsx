@@ -43,10 +43,10 @@ const SearchResultInfoWrapper = styled.div<{ addedHeight: string }>`
   min-width: 320px;
   max-width: 1120px;
   width: 100%;
-  padding: 2.438rem 2.063rem 1.75rem;
+  padding: 3.6vh 2.063rem 2.6vh;
 
   @media only screen and (max-width: ${DEVICE_SIZE.mobile}) {
-    padding: 1.438rem 1.25rem 1rem;
+    padding: 0px 1.25rem 2vh;
   }
 `;
 
