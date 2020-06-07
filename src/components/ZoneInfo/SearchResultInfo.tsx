@@ -13,12 +13,11 @@ type SearchResultInfoProps = {
 
 interface SpanProps {
   color?: string;
-  marginRight?: string;
+  marginRight?: boolean;
 }
 
 interface EmphasisSpanProps {
-  fontSize?: number;
-  letterSpacing?: string;
+  highlight?: boolean;
   bold?: boolean;
 }
 
@@ -41,13 +40,13 @@ const SearchResultInfoWrapper = styled.div<{ addedHeight: string }>`
   display: flex;
   flex-direction: column;
   transition: all 1s;
-  min-width: 360px;
+  min-width: 320px;
   max-width: 1120px;
   width: 100%;
-  padding: 39px 33px 28px;
+  padding: 2.438rem 2.063rem 1.75rem;
 
   @media only screen and (max-width: ${DEVICE_SIZE.mobile}) {
-    padding: 23px 20px 16px;
+    padding: 1.438rem 1.25rem 1rem;
   }
 `;
 
@@ -90,28 +89,28 @@ const SearchContainer = styled.div`
 
 const Span = styled.span<SpanProps>`
   color: ${(props) => (props.color ? props.color : "var(--GreyTextColor)")};
-  margin-right: ${(props) => (props.marginRight ? props.marginRight : "")};
+  margin-right: ${(props) => (props.marginRight ? 0.625+`rem` : "")};
 `;
 
 const EmphasisSpan = styled(Span)<EmphasisSpanProps>`
   color: var(--LightTextColor);
   font-family: ${(props) => (props.bold ? "GothamMedium" : "NotoSansMedium")};
   font-weight: ${(props) => (props.bold ? "500" : "300")};
-  font-size: ${(props) => (props.fontSize ? props.fontSize : 30)}px;
-  line-height: 38px;
-  letter-spacing: ${(props) =>
-    props.letterSpacing ? props.letterSpacing : "-1.34px"};
+  font-size: ${(props) => (props.highlight ? 2 : 1.875)}rem;
+  line-height: 2.375rem;
+  letter-spacing: -${(props) => (props.highlight ? 0.089 : 0.084)}rem;
   cursor: default;
 
   @media only screen and (max-width: ${DEVICE_SIZE.mobile}) {
-    font-size: ${(props) => (props.fontSize ? props.fontSize - 8 : 22)}px;
-    line-height: 30px;
+    font-size: ${(props) => (props.highlight ? 1.5 : 1.375)}rem;
+    line-height: 1.875rem;
+    letter-spacing: -${(props) => (props.highlight ? 0.067 : 0.061)}rem;
   }
 `;
 
 const SearchSpan = styled(Span)`
   font-family: NotoSansMedium;
-  font-size: 20px;
+  font-size: 1.25rem;
   cursor: default;
 
   @media only screen and (max-width: ${DEVICE_SIZE.tablet}) {
@@ -121,8 +120,8 @@ const SearchSpan = styled(Span)`
 
 const Divider = styled.hr`
   border: 1px solid var(--DarkTextColor);
-  margin-top: 34px;
-  margin-bottom: 23px;
+  margin-top: 2.125rem;
+  margin-bottom: 1.438rem;
 
   @media only screen and (max-width: ${DEVICE_SIZE.tablet}) {
     display: none;
@@ -145,7 +144,7 @@ const SearchResultInfo = ({
           <LeftRow>
             <EmphasisSpan bold>{itemCount}</EmphasisSpan>
             <EmphasisSpan>개의</EmphasisSpan>
-            <EmphasisSpan fontSize={32} letterSpacing="-1.43px" bold>
+            <EmphasisSpan bold highlight>
               ZONE
             </EmphasisSpan>
             <EmphasisSpan>이</EmphasisSpan>
@@ -162,14 +161,14 @@ const SearchResultInfo = ({
         <>
           <Divider />
           <SearchContainer>
-            <SearchSpan color="var(--LightTextColor)" marginRight="10px">
+            <SearchSpan color="var(--LightTextColor)" marginRight>
               {searchData.type}
             </SearchSpan>
-            <SearchSpan marginRight="10px">{searchData.address}</SearchSpan>
-            <SearchSpan color="var(--LightTextColor)" marginRight="10px">
+            <SearchSpan marginRight>{searchData.address}</SearchSpan>
+            <SearchSpan color="var(--LightTextColor)" marginRight>
               까지 / {searchData.transitMode}
             </SearchSpan>
-            <SearchSpan marginRight="10px">
+            <SearchSpan marginRight>
               {searchData.transferLimit}{" "}
             </SearchSpan>
             <SearchSpan color="var(--LightTextColor)">
