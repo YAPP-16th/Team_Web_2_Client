@@ -28,10 +28,11 @@ const RightContentsWrapper = styled.div`
   display: flex;
   > div {
     :not(:last-child) {
-      margin-right: 22px;
+      margin-right: 1.375rem;
     }
   }
 `;
+
 const rightContents = (props: RightContentsProps) => {
   const { history, location } = props;
   const {
