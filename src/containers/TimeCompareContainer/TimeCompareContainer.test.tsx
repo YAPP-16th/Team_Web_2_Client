@@ -20,10 +20,8 @@ describe("<TimeCompareContainer />", () => {
     const utils = render(
       <Provider store={store}>
       <Router history={history}>
-        <TimeCompareContainer currentZoneId={3771} startAddress={"강남구 1동"}  />
+        <TimeCompareContainer currentZoneId={3771} />
       </Router>
     </Provider>);
-
-    utils.getByText('강남구 1동');
   });
 });

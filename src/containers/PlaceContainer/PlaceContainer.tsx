@@ -173,7 +173,7 @@ const PlaceContainer = ({ zoneId }: PlaceContainerProps) => {
 
   const placesTagButtons = place.data.map((item) => {
     return (
-      <div key={item.categoryName}>     
+      <div key={item.categoryName}>
         <TagButton
           fontSize="14px"
           onClick={() => selectPlaceContentHandler(item)}
@@ -185,7 +185,6 @@ const PlaceContainer = ({ zoneId }: PlaceContainerProps) => {
   });
 
   const placesListItems = selectedPlaceContent.placeVoList.map((item) => {
-    console.log(selectedPlaceContent.placeVoList);
     return (
       <div key={item.placeUrl}>
         <PlaceListItem
