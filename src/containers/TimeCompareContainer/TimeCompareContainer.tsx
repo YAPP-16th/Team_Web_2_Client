@@ -179,31 +179,35 @@ const TimeCompareContainer = ({
 
   // TimeCompare Hooks
   const timeCompareHook = useTimeCompare();
-  const [ userAddress, setUserAddress ] = useState("주소를 설정해주세요");
 
   useEffect(() => {
     let timeCompareItems = getTimeCompareItems();
 
-    if (timeCompareItems === null || userAddress !== "주소를 설정해주세요") {
-      setDefaultTimeCompareItem(currentZoneId, timeCompareHook.compareLocation)
-        .then((results) => {
-          setTimeCompareContents(results);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    if (timeCompareItems === null) {
+      if (timeCompareHook.userAddress !== "주소를 설정해주세요") {
+        setDefaultTimeCompareItem(currentZoneId, timeCompareHook.compareLocation)
+          .then((results) => {
+            setTimeCompareContents(results);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
     } else {
-      if (userAddress !== "주소를 설정해주세요") {
+      if (timeCompareHook.userAddress !== "주소를 설정해주세요") {
         setTimeCompareContents(timeCompareItems);
       }
     }
-  }, [userAddress]);
+  }, []);
 
-  // Handlers - item 내용을 업데이트 할 때는 기존의 내용을 바탕으로 해야합니다.
   const updateTimeCompareItemHandler = async (
     item: TimeCompareItem,
     notCompleted?: boolean
   ) => {
+    if (notCompleted) {
+      timeCompareHook.setSetterTargetFunc("compareItemAddress");
+      timeCompareHook.setSetterModeFunc(true);
+    }
     const processed = [...timeCompareContents];
     const targetCount = processed.reduce((a, x) => {
       let matched = a;
@@ -265,6 +269,7 @@ const TimeCompareContainer = ({
     };
     processed.push(emptyItem);
     setTimeCompareContents(processed);
+    console.log('processed!', processed);
     setTimeCompareItems(processed);
   };
 
@@ -302,31 +307,40 @@ const TimeCompareContainer = ({
     );
   });
 
-  const [isOpen, setIsOpen] = useState(false as boolean);
 
-  const setLocationHandler = async (address: string) => {
+  const setUserLocationHandler = async (address: string) => {
     const coordinates = await getCoordinates(address);
-    // 네트워크 에러 때문에 안되는거 맞나?
-    setUserAddress(address);
+    timeCompareHook.setAddress("userAddress", address);
     timeCompareHook.setLocation("compareLocation", { lat: coordinates.y, lng: coordinates.x });
+  }
+
+  const setCompareItemLocationHandler = async (address: string) => {
+    timeCompareHook.setAddress("compareItemAddress", address);
+    timeCompareHook.setSetterTargetFunc("userAddress");
   }
   
   const onClickLocationHandler = () => {
-    return setIsOpen(!isOpen);
+    return timeCompareHook.setSetterModeFunc(!timeCompareHook.setterMode);
   };
 
   return (
     <>
-      {isOpen ? (
+      {timeCompareHook.setterMode ? (
         <Dialog
           className="pop_up"
-          show={isOpen}
+          show={timeCompareHook.setterMode}
           click={onClickLocationHandler}
         >
           <ZoneSearchPopUp
-            close={onClickLocationHandler}
+            close={() => {onClickLocationHandler()}}
             //@ts-ignore
-            setLocation={setLocationHandler}
+            setLocation={(address: string) => {
+              if (timeCompareHook.setterTarget === "userAddress") {
+                setUserLocationHandler(address);
+              } else if (timeCompareHook.setterTarget === "compareItemAddress") {
+                setCompareItemLocationHandler(address); 
+              }
+            }}
           />
         </Dialog>
       ) : (
@@ -353,7 +367,7 @@ const TimeCompareContainer = ({
                 주소가 설정되지 않았거나 추가할 아이템이 없습니다.
               </p>
             )}
-            <ItemAddButton style={{display: userAddress === "주소를 설정해주세요" ? "none" : "block"}} onClick={addTimeCompareItemHandler}>
+            <ItemAddButton style={{display: timeCompareHook.userAddress === "주소를 설정해주세요" ? "none" : "block"}} onClick={addTimeCompareItemHandler}>
               + 추가하기
             </ItemAddButton>
           </TimeCompareList>

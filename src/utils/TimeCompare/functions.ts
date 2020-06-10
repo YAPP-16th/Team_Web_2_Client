@@ -48,7 +48,6 @@ export const timeCompare = async (item: TimeCompareItem, currentZoneId: number, 
   });
 
   if (!(currentZoneTransitData && selectedZoneTransitData)) {
-    alert('주소를 설정해주세요');
     return false;
   }
 
