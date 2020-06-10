@@ -6,6 +6,8 @@ import Icon, { IconType } from "../Icon/Icon";
 import { Button } from "../Button/Button";
 import { TimeCompareItem } from "../../utils/TimeCompare/functions";
 
+import useTimeCompare from "../../hooks/timeCompareHooks";
+
 // type
 export type TimeCompareListItemProps = {
   icon: IconType;
@@ -146,16 +148,14 @@ const TimeCompareListItem = ({
     if (inputValue) {
       heading = inputValue;
     }
-    console.log(heading);
   };
 
+  const timeCompareHook = useTimeCompare();
+
   const onAddressRegisterHandler = (content?: TimeCompareItem) => {
-    // 주소, location 은 여기서 변경
-    // 현재는 테스트를 위해 수동으로 location과 주소를 할당합니다
     if (editFunc && content) {
-      address = "서울 성동구 뚝섬로 273";
+      content.address = timeCompareHook.compareItemAddress;
       content.heading = heading;
-      content.address = address;
       content.location.lat = 37.5444;
       content.location.lng = 127.0374;
       editFunc(content, true);
