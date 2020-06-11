@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import useSearchInput from '../../hooks/useSearchInput';
 
 type InputProps = {
-  // setIsHover?: (isHover: boolean) => void | undefined;
   setIsHover?: any;
 };
 
@@ -48,7 +47,6 @@ const SearchInputStep1Container = ({ setIsHover }: InputProps) => {
           click={onClickLocationHandler}
         />
       }
-      {/* <MoreItemButton onClick={() => stepForwardHandler(stepParam)}>다음으로</MoreItemButton> */}
     </>
   );
 }
