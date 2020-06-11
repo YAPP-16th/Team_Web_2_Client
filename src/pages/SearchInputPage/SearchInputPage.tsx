@@ -108,6 +108,8 @@ const SearchInputPage = () => {
     }
   };
 
+
+
   switch (step) {
     case 1:
       container = (
@@ -125,7 +127,21 @@ const SearchInputPage = () => {
   }
 
   const prev = "< 이전으로";
-  console.log("?", isHover);
+  const next = "다음으로 >";
+
+  const shake = () => {
+    const option = document.querySelector("div#option");
+    if (option) {
+      option.classList.add("apply-shake")
+    }
+    setTimeout(function () {
+      const option = document.querySelector("div#option");
+      if (option) {
+        option.classList.remove("apply-shake")
+      }
+    }, 600);
+  }
+
   return (
     <>
       <div className="search_select_done">
@@ -138,26 +154,26 @@ const SearchInputPage = () => {
                 {prev}
               </MoreItemButton>
               <MoreItemButtonHovered onClick={() => stepForwardHandler()}>
-                다음으로 >
+                {next}
               </MoreItemButtonHovered>
             </ButtonWrapper>
           ) : (
-            <ButtonWrapper>
-              <div className="optionWrapper">
-                <div className="option"> * 옵션을 선택해주세요</div>
-              </div>
-              {step === 1 ? (
-                <></>
-              ) : (
-                <MoreItemButton onClick={() => stepPrevHandler()}>
-                  {prev}
+              <ButtonWrapper>
+                <div className="optionWrapper">
+                  <div id="option" className="option"> * 옵션을 선택해주세요</div>
+                </div>
+                {step === 1 ? (
+                  <></>
+                ) : (
+                    <MoreItemButton onClick={() => stepPrevHandler()}>
+                      {prev}
+                    </MoreItemButton>
+                  )}
+                <MoreItemButton onClick={() => shake()}>
+                  {next}
                 </MoreItemButton>
-              )}
-              <MoreItemButton onClick={() => stepForwardHandler()}>
-                다음으로 >
-              </MoreItemButton>
-            </ButtonWrapper>
-          )}
+              </ButtonWrapper>
+            )}
         </SearchInputWrapper>
       </div>
     </>
