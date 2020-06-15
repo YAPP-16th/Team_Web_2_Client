@@ -6,8 +6,13 @@ import Icon, { IconType } from '../Icon/Icon';
 import { Button } from '../Button/Button';
 import { TimeCompareItem } from '../../utils/TimeCompare/functions';
 
+<<<<<<< HEAD
 import useTimeCompare from '../../hooks/timeCompareHooks';
 import { getCoordinates } from '../../api/coordinates';
+=======
+import useTimeCompare from "../../hooks/timeCompareHooks";
+import { getCoordinates } from "../../api/coordinates";
+>>>>>>> 60a1d9d... 시간비교 기능 구현 완료
 
 // type
 export type TimeCompareListItemProps = {
