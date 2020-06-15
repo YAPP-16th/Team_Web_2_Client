@@ -154,7 +154,6 @@ const TimeCompareListItem = ({
   const timeCompareHook = useTimeCompare();
 
   const onAddressRegisterHandler = (content?: TimeCompareItem) => {
-    // 아 이 부분이 모달이 열리기도 전에 동작해버리는구나
     if (editFunc && content) {
       content.address = '주소 등록 완료';
       editFunc(content, true);

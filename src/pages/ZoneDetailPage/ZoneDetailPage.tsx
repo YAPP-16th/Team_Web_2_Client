@@ -16,7 +16,7 @@ import TabItem from "../../components/TabItem/TabItem";
 type ZoneDetailPageProps = {
   startLng: number;
   startLat: number;
-}
+};
 
 type paramsType = {
   id: string;
@@ -39,15 +39,24 @@ const StickyTabs = styled.div`
   }
 `;
 
-const ZoneDetailPage = ({ startLng, startLat, match }: ZoneDetailPageProps & RouteComponentProps<paramsType>) => {
-  const hashes = window.location.hash.split('/');
-  const [ zoneId, setZoneId ] = useState(Number(hashes[2]));
+const ZoneDetailPage = ({
+  startLng,
+  startLat,
+  match,
+}: ZoneDetailPageProps & RouteComponentProps<paramsType>) => {
+  const hashes = window.location.hash.split("/");
+  const [zoneId, setZoneId] = useState(Number(hashes[2]));
+  const feature = hashes[3];
 
   let container = <div></div>;
   const tabItems = sections.map((section) => {
     return (
       <div key={section.name}>
-        <TabItem to={`${zoneId}/${section.to}`} testId={section.to}>
+        <TabItem
+          to={`${zoneId}/${section.to}`}
+          testId={section.to}
+          active={feature === section.to}
+        >
           {section.name}
         </TabItem>
       </div>
@@ -56,11 +65,7 @@ const ZoneDetailPage = ({ startLng, startLat, match }: ZoneDetailPageProps & Rou
 
   switch (match.params.feature) {
     case "timecompare":
-      container = (
-        <TimeCompareContainer
-          currentZoneId={zoneId}
-        />
-      );
+      container = <TimeCompareContainer currentZoneId={zoneId} />;
       break;
     case "transportation":
       container = (
