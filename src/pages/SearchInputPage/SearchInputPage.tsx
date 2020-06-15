@@ -8,10 +8,6 @@ import SearchInputStep2Container from "../../containers/SearchInputStep2Containe
 import SearchInputStep3Container from "../../containers/SearchInputStep3Container/Step3Container";
 import useSearchInput from "../../hooks/useSearchInput";
 
-type paramsType = {
-  step: string;
-};
-
 const MoreItemButton = styled.div`
   width: 100%;
   font-size: 16px;
@@ -88,21 +84,22 @@ const ButtonWrapper = styled.div`
 
 const SearchInputPage = () => {
   const searchInput = useSearchInput();
+
   let data = searchInput.searchInputData;
 
   const [isHover, setIsHover] = useState(false as boolean);
-  const [step, setStep] = useState(1);
   const history = useHistory();
 
   let container;
 
   const stepPrevHandler = () => {
-    step > 1 && setStep(step - 1);
+    searchInput.searchInputData.searchStep > 1 &&
+      searchInput.moveSearchStep("prev");
   };
 
   const stepForwardHandler = () => {
-    if (step < 3) {
-      setStep(step + 1);
+    if (searchInput.searchInputData.searchStep < 3) {
+      searchInput.moveSearchStep("next");
     } else {
       history.push(
         `/search?address=${data.address}&addressTag=${data.addressTag}&maxTime=${data.maxTime}&minTime=${data.minTime}&transferLimit=${data.transferLimit}&transitMode=${data.transitMode}`
@@ -110,9 +107,7 @@ const SearchInputPage = () => {
     }
   };
 
-
-
-  switch (step) {
+  switch (searchInput.searchInputData.searchStep) {
     case 1:
       container = (
         <SearchInputStep1Container
@@ -134,15 +129,15 @@ const SearchInputPage = () => {
   const shake = () => {
     const option = document.querySelector("div#option");
     if (option) {
-      option.classList.add("apply-shake")
+      option.classList.add("apply-shake");
     }
     setTimeout(function () {
       const option = document.querySelector("div#option");
       if (option) {
-        option.classList.remove("apply-shake")
+        option.classList.remove("apply-shake");
       }
     }, 600);
-  }
+  };
 
   return (
     <>
@@ -160,22 +155,23 @@ const SearchInputPage = () => {
               </MoreItemButtonHovered>
             </ButtonWrapper>
           ) : (
-              <ButtonWrapper>
-                <div className="optionWrapper">
-                  <div id="option" className="option"> * 옵션을 선택해주세요</div>
+            <ButtonWrapper>
+              <div className="optionWrapper">
+                <div id="option" className="option">
+                  {" "}
+                  * 옵션을 선택해주세요
                 </div>
-                {step === 1 ? (
-                  <></>
-                ) : (
-                    <MoreItemButton onClick={() => stepPrevHandler()}>
-                      {prev}
-                    </MoreItemButton>
-                  )}
-                <MoreItemButton onClick={() => shake()}>
-                  {next}
+              </div>
+              {searchInput.searchInputData.searchStep === 1 ? (
+                <></>
+              ) : (
+                <MoreItemButton onClick={() => stepPrevHandler()}>
+                  {prev}
                 </MoreItemButton>
-              </ButtonWrapper>
-            )}
+              )}
+              <MoreItemButton onClick={() => shake()}>{next}</MoreItemButton>
+            </ButtonWrapper>
+          )}
         </SearchInputWrapper>
       </div>
     </>

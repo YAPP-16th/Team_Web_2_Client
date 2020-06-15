@@ -9,10 +9,11 @@ import InputIcon from "../../components/Icon/InputIcon";
 
 // Hooks
 import ModalHooks from "../../components/Modal/ModalHooks";
+import useSearchInput from "../../hooks/useSearchInput";
 
 type DefaultHeaderContainerProps = {
   displayLogo?: boolean;
-}
+};
 
 interface RightContentsProps {
   history: any;
@@ -71,6 +72,7 @@ const rightContents = (props: RightContentsProps) => {
 const InputHeaderContainer = ({ displayLogo }: DefaultHeaderContainerProps) => {
   let history = useHistory();
   let location = useLocation();
+  let searchInput = useSearchInput();
 
   const goHomePageHandler = useCallback(() => {
     const { hash, pathname, search } = location;
@@ -80,11 +82,12 @@ const InputHeaderContainer = ({ displayLogo }: DefaultHeaderContainerProps) => {
   }, [history, location]);
 
   const goBackHandler = () => {
-    history.goBack();
+    if (searchInput.searchInputData.searchStep > 0) {
+      searchInput.moveSearchStep("prev");
+    }
   };
 
   return (
-
     <HeaderContainerWrapper>
       <Toolbar
         leftContents={
@@ -104,7 +107,7 @@ const InputHeaderContainer = ({ displayLogo }: DefaultHeaderContainerProps) => {
 };
 
 InputHeaderContainer.defaultProps = {
-  displayLogo: true
-}
+  displayLogo: true,
+};
 
 export default InputHeaderContainer;

@@ -8,11 +8,12 @@ import Icon from "../../components/Icon/Icon";
 
 // Hooks
 import ModalHooks from "../../components/Modal/ModalHooks";
+import useSearchInput from "../../hooks/useSearchInput";
 import MenuContainer from "../MenuContainer/MenuContainer";
 
 type DefaultHeaderContainerProps = {
   displayLogo?: boolean;
-}
+};
 
 interface RightContentsProps {
   history: any;
@@ -82,9 +83,13 @@ const rightContents = (props: RightContentsProps) => {
   );
 };
 
-const DefaultHeaderContainer = ({ displayLogo }: DefaultHeaderContainerProps) => {
+const DefaultHeaderContainer = ({
+  displayLogo,
+}: DefaultHeaderContainerProps) => {
   let history = useHistory();
   let location = useLocation();
+
+  let searchInput = useSearchInput();
 
   const goHomePageHandler = useCallback(() => {
     const { hash, pathname, search } = location;
@@ -94,22 +99,24 @@ const DefaultHeaderContainer = ({ displayLogo }: DefaultHeaderContainerProps) =>
   }, [history, location]);
 
   const goBackHandler = () => {
-    history.goBack()
+    if (searchInput.searchInputData.searchStep > 0) {
+      searchInput.moveSearchStep("prev");
+    }
   };
 
   return (
-
     <HeaderContainerWrapper>
       <Toolbar
         leftContents={
-          location.pathname === "/search" ?
+          location.pathname === "/search" ? (
             <Icon
-              testId="go-home"
+              testId="go-back"
               onClick={goBackHandler}
               icon="back"
               size="12px"
               cursor="pointer"
-            /> :
+            />
+          ) : (
             <Icon
               testId="go-home"
               onClick={goHomePageHandler}
@@ -117,6 +124,7 @@ const DefaultHeaderContainer = ({ displayLogo }: DefaultHeaderContainerProps) =>
               size="27px"
               cursor="pointer"
             />
+          )
         }
         rightContents={rightContents({ history, location })}
       />
@@ -125,7 +133,7 @@ const DefaultHeaderContainer = ({ displayLogo }: DefaultHeaderContainerProps) =>
 };
 
 DefaultHeaderContainer.defaultProps = {
-  displayLogo: true
-}
+  displayLogo: true,
+};
 
 export default DefaultHeaderContainer;

@@ -1,4 +1,4 @@
-import * as actions from './actions';
+import * as actions from "./actions";
 import { ActionType } from "typesafe-actions";
 
 export type SearchInputData = {
@@ -8,7 +8,8 @@ export type SearchInputData = {
   minTime: number;
   transferLimit: number;
   transitMode: Array<string>;
-}
+  searchStep: number;
+};
 
 export type SearchInputState = {
   searchInputData: SearchInputData;
