@@ -1,12 +1,13 @@
-import React, { MouseEvent } from "react";
-import styled from "styled-components";
+import React, { MouseEvent } from 'react';
+import styled from 'styled-components';
 
 // Components
-import Icon, { IconType } from "../Icon/Icon";
-import { Button } from "../Button/Button";
-import { TimeCompareItem } from "../../utils/TimeCompare/functions";
+import Icon, { IconType } from '../Icon/Icon';
+import { Button } from '../Button/Button';
+import { TimeCompareItem } from '../../utils/TimeCompare/functions';
 
-import useTimeCompare from "../../hooks/timeCompareHooks";
+import useTimeCompare from '../../hooks/timeCompareHooks';
+import { getCoordinates } from '../../api/coordinates';
 
 // type
 export type TimeCompareListItemProps = {
@@ -121,8 +122,8 @@ const EditIconWrapper = styled.div<{ right?: string; top?: string }>`
   cursor: pointer;
   display: none;
   position: absolute;
-  top: ${({ top }) => (top ? top : "")};
-  right: ${({ right }) => (right ? right : "")};
+  top: ${({ top }) => (top ? top : '')};
+  right: ${({ right }) => (right ? right : '')};
   border-radius: 50%;
   background-color: white;
   padding: 3px;
@@ -153,18 +154,22 @@ const TimeCompareListItem = ({
   const timeCompareHook = useTimeCompare();
 
   const onAddressRegisterHandler = (content?: TimeCompareItem) => {
+    // 아 이 부분이 모달이 열리기도 전에 동작해버리는구나
     if (editFunc && content) {
-      content.address = timeCompareHook.compareItemAddress;
-      content.heading = heading;
-      content.location.lat = 37.5444;
-      content.location.lng = 127.0374;
+      content.address = '주소 등록 완료';
       editFunc(content, true);
     }
   };
 
-  const onCompleteHandler = (event: MouseEvent) => {
+  const onCompleteHandler = async (event: MouseEvent) => {
     if (editFunc && content) {
       content.heading = heading;
+      content.address = timeCompareHook.compareItemAddress;
+      const coordinates = await getCoordinates(
+        timeCompareHook.compareItemAddress
+      );
+      content.location.lat = coordinates.y;
+      content.location.lng = coordinates.x;
       editFunc(content);
     }
   };
@@ -195,7 +200,13 @@ const TimeCompareListItem = ({
   );
 
   return (
-    <TimeCompareListItemWrapper className={className}  href="#" onClick={(e) => { e.preventDefault() }}>
+    <TimeCompareListItemWrapper
+      className={className}
+      href="#"
+      onClick={(e) => {
+        e.preventDefault();
+      }}
+    >
       <ContentRow>
         <HeadingAndIcon>
           <Icon icon={icon} />
@@ -211,7 +222,7 @@ const TimeCompareListItem = ({
         </HeadingAndIcon>
         {!editMode && (
           <SavingTime>
-            {savingTime >= 0 ? savingTime + "분 절약" : savingTime + "분"}
+            {savingTime >= 0 ? savingTime + '분 절약' : savingTime + '분'}
           </SavingTime>
         )}
       </ContentRow>
