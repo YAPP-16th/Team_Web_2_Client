@@ -9,7 +9,15 @@ type InputProps = {
   setIsHover?: any;
 };
 
+// interface Step1Props {
+//   address?: string;
+//   addressTag?: string;
+// }
+
 const SearchInputStep1Container = ({ setIsHover }: InputProps) => {
+
+
+
 
   const onClickLocationHandler = () => {
     return setIsOpen(!isOpen)
