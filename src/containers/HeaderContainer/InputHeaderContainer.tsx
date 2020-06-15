@@ -58,6 +58,7 @@ const rightContents = (props: RightContentsProps) => {
   }: any = ModalHooks();
 
   const finishClick = () => {
+    alert("홈 화면으로 돌아갑니다. 변경사항은 저장됩니다.");
     history.push("/");
   };
 
@@ -71,13 +72,6 @@ const rightContents = (props: RightContentsProps) => {
 const InputHeaderContainer = ({ displayLogo }: DefaultHeaderContainerProps) => {
   let history = useHistory();
   let location = useLocation();
-
-  const goHomePageHandler = useCallback(() => {
-    const { hash, pathname, search } = location;
-    if (hash || pathname !== "/" || search) {
-      history.push("/");
-    }
-  }, [history, location]);
 
   const goBackHandler = () => {
     history.goBack();
