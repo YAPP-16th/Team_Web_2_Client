@@ -85,6 +85,9 @@ const SearchContainer = styled.div`
   @media only screen and (max-width: ${DEVICE_SIZE.mobile}) {
     display: none;
   }
+  @media screen and (orientation:landscape) {
+    display: none;
+  }
 `;
 
 const Span = styled.span<SpanProps>`
@@ -128,6 +131,9 @@ const Divider = styled.hr`
     display: none;
   }
   @media only screen and (max-width: ${DEVICE_SIZE.mobile}) {
+    display: none;
+  }
+  @media screen and (orientation:landscape) {
     display: none;
   }
 `;

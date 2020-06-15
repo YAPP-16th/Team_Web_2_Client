@@ -20,6 +20,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media screen and (orientation:landscape) and (max-height: 768px){
+  html {
+    font-size: 80%;
+  }
+}
+@media screen and (orientation:landscape) and (max-height: 425px){
+  html {
+    font-size: 60%;
+  }
+}
+@media screen and (orientation:landscape) and (max-height: 360px){
+  html {
+    font-size: 50%;
+  }
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
