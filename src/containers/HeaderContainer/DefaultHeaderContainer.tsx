@@ -7,7 +7,7 @@ import Toolbar from "../../components/Toolbar/Toolbar";
 import Icon from "../../components/Icon/Icon";
 
 // Hooks
-import ModalHooks from "../../components/Modal/ModalHooks";
+import ModalHooks from "../../hooks/ModalHooks";
 import MenuContainer from "../MenuContainer/MenuContainer";
 
 type DefaultHeaderContainerProps = {

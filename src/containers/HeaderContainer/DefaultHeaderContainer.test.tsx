@@ -8,7 +8,7 @@ import { createStore } from "redux";
 import rootReducer from "../../modules";
 
 import DefaultHeaderContainer from "./DefaultHeaderContainer";
-import modalHooks from "../../components/Modal/ModalHooks";
+import modalHooks from "../../hooks/ModalHooks";
 
 describe("<DefaultHeaderContainer />", () => {
   const store = createStore(rootReducer);

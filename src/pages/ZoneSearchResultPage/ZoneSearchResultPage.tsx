@@ -16,7 +16,7 @@ import ZoneSearchResultContainer from "../../containers/ZoneSearchResultContaine
 // Test
 import { getTestZones } from "../../api/zoneAPI";
 import LoadingContainer from "../../containers/LoadingContainer/LoadingContainer";
-import ModalHooks from "../../components/Modal/ModalHooks";
+import ModalHooks from "../../hooks/ModalHooks";
 
 // Hooks
 import useTimeCompare from "../../hooks/timeCompareHooks";

@@ -2,7 +2,7 @@ import React from "react";
 import Styled from "styled-components";
 import { useHistory, useLocation } from "react-router-dom";
 import FooterContainer from "./MenuFooterContainer";
-import ModalHooks from "../../components/Modal/ModalHooks";
+import ModalHooks from "../../hooks/ModalHooks";
 import Icon from "../../components/Icon/Icon";
 
 interface MenuContainerProps {

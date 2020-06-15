@@ -1,11 +1,11 @@
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import { useCallback } from "react";
-import { RootState } from "../../modules";
+import { RootState } from "../modules";
 import {
   showModal,
   hideModal,
   changeContainerModal,
-} from "../../modules/modal";
+} from "../modules/modal";
 
 const useModal = () => {
   const dispatch = useDispatch();
