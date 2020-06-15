@@ -91,26 +91,29 @@ const SearchInputPage = () => {
   let data = searchInput.searchInputData;
 
   const [isHover, setIsHover] = useState(false as boolean);
-  const [step, setStep] = useState(1);
+
   const history = useHistory();
+  const state: any = history.location.state;
+  const step = state ? state.step : 1;
 
   let container;
 
   const stepPrevHandler = () => {
-    step > 1 && setStep(step - 1);
+    step > 1 && history.goBack();
   };
 
   const stepForwardHandler = () => {
     if (step < 3) {
-      setStep(step + 1);
+      // if (step === 1) {
+      //   history.replace("/search", { step: step + 1 });
+      // } else {
+      history.push("/search", { step: step + 1 })
     } else {
       history.push(
         `/search?address=${data.address}&addressTag=${data.addressTag}&maxTime=${data.maxTime}&minTime=${data.minTime}&transferLimit=${data.transferLimit}&transitMode=${data.transitMode}`
       );
     }
   };
-
-
 
   switch (step) {
     case 1:
@@ -152,9 +155,13 @@ const SearchInputPage = () => {
           {isHover ? (
             <ButtonWrapper>
               <div className="option"></div>
-              <MoreItemButton onClick={() => stepPrevHandler()}>
-                {prev}
-              </MoreItemButton>
+              {step === 1 ? (
+                <></>
+              ) : (
+                  <MoreItemButton onClick={() => stepPrevHandler()}>
+                    {prev}
+                  </MoreItemButton>
+                )}
               <MoreItemButtonHovered onClick={() => stepForwardHandler()}>
                 {next}
               </MoreItemButtonHovered>

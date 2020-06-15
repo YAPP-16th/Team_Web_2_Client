@@ -94,30 +94,18 @@ const DefaultHeaderContainer = ({ displayLogo }: DefaultHeaderContainerProps) =>
     }
   }, [history, location]);
 
-  const goBackHandler = () => {
-    history.goBack()
-  };
-
   return (
 
     <HeaderContainerWrapper>
       <Toolbar
         leftContents={
-          location.pathname === "/search" ?
-            <Icon
-              testId="go-home"
-              onClick={goBackHandler}
-              icon="back"
-              size="12px"
-              cursor="pointer"
-            /> :
-            <Icon
-              testId="go-home"
-              onClick={goHomePageHandler}
-              icon="simplifiedLogo"
-              size="27px"
-              cursor="pointer"
-            />
+          <Icon
+            testId="go-home"
+            onClick={goHomePageHandler}
+            icon="simplifiedLogo"
+            size="27px"
+            cursor="pointer"
+          />
         }
         rightContents={rightContents({ history, location })}
       />

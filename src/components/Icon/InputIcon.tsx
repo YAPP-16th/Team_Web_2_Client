@@ -1,6 +1,8 @@
 import React from "react";
 import * as icons from "../../assets/svgs/icons";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
+
 
 export type IconType = keyof typeof icons;
 export const iconTypes: IconType[] = Object.keys(icons) as any[]; // 스토리에서 불러오기 위함
@@ -8,6 +10,7 @@ export const iconTypes: IconType[] = Object.keys(icons) as any[]; // 스토리�
 type IconProps = {
   /** 사용 할 아이콘 타입 */
   icon: IconType;
+  mobileIcon: IconType;
   /** 아이콘 색상 */
   color?: string;
   /** 아이콘 크기 */
@@ -19,13 +22,12 @@ type IconProps = {
   /** 테스트에 필요한 test-id */
   testId?: string;
   cursor?: string; // style curosr설정
-  mobileIcon: IconType;
 };
 
 /** SearchInput 부분에서만 분기를 주기 위해 쓰이는 아이콘입니다.
  */
 
-const Icon = ({ icon, color, size, className, onClick, testId, cursor, mobileIcon }: IconProps) => {
+const Icon = ({ icon, color, size, testId, cursor, mobileIcon }: IconProps) => {
 
   const DEVICE_SIZE = {
     mobile: "425px",
@@ -74,11 +76,21 @@ const Icon = ({ icon, color, size, className, onClick, testId, cursor, mobileIco
   }
   `;
 
+  let history = useHistory();
+
+  const goBackClick = () => {
+    history.goBack();
+  };
+
+  const finishClick = () => {
+    alert("홈 화면으로 돌아갑니다. 변경사항은 저장됩니다.");
+    history.push("/");
+  };
 
   return (
-    <SVGWrapper onClick={onClick} data-testid={testId}>
-      <SVGIcon id="normal" />
-      <SVGmobileIcon id="mobile" />
+    <SVGWrapper data-testid={testId}>
+      <SVGIcon id="normal" onClick={finishClick} />
+      <SVGmobileIcon id="mobile" onClick={goBackClick} />
     </SVGWrapper>
   );
 };
