@@ -8,10 +8,6 @@ import SearchInputStep2Container from "../../containers/SearchInputStep2Containe
 import SearchInputStep3Container from "../../containers/SearchInputStep3Container/Step3Container";
 import useSearchInput from "../../hooks/useSearchInput";
 
-type paramsType = {
-  step: string;
-};
-
 const MoreItemButton = styled.div`
   width: 100%;
   font-size: 16px;
@@ -88,10 +84,10 @@ const ButtonWrapper = styled.div`
 
 const SearchInputPage = () => {
   const searchInput = useSearchInput();
+
   let data = searchInput.searchInputData;
 
   const [isHover, setIsHover] = useState(false as boolean);
-
   const history = useHistory();
   const state: any = history.location.state;
   const step = state ? state.step : 1;
@@ -137,15 +133,15 @@ const SearchInputPage = () => {
   const shake = () => {
     const option = document.querySelector("div#option");
     if (option) {
-      option.classList.add("apply-shake")
+      option.classList.add("apply-shake");
     }
     setTimeout(function () {
       const option = document.querySelector("div#option");
       if (option) {
-        option.classList.remove("apply-shake")
+        option.classList.remove("apply-shake");
       }
     }, 600);
-  }
+  };
 
   return (
     <>
@@ -169,7 +165,9 @@ const SearchInputPage = () => {
           ) : (
               <ButtonWrapper>
                 <div className="optionWrapper">
-                  <div id="option" className="option"> * 옵션을 선택해주세요</div>
+                  <div id="option" className="option">
+                    * 옵션을 선택해주세요
+                </div>
                 </div>
                 {step === 1 ? (
                   <></>
@@ -178,9 +176,7 @@ const SearchInputPage = () => {
                       {prev}
                     </MoreItemButton>
                   )}
-                <MoreItemButton onClick={() => shake()}>
-                  {next}
-                </MoreItemButton>
+                <MoreItemButton onClick={() => shake()}>{next}</MoreItemButton>
               </ButtonWrapper>
             )}
         </SearchInputWrapper>
