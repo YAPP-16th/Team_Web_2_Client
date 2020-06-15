@@ -74,13 +74,6 @@ const InputHeaderContainer = ({ displayLogo }: DefaultHeaderContainerProps) => {
   let location = useLocation();
   let searchInput = useSearchInput();
 
-  const goHomePageHandler = useCallback(() => {
-    const { hash, pathname, search } = location;
-    if (hash || pathname !== "/" || search) {
-      history.push("/");
-    }
-  }, [history, location]);
-
   const goBackHandler = () => {
     if (searchInput.searchInputData.searchStep > 0) {
       searchInput.moveSearchStep("prev");
