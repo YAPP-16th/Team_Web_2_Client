@@ -7,7 +7,7 @@ import Toolbar from "../../components/Toolbar/Toolbar";
 import Icon from "../../components/Icon/Icon";
 
 // Hooks
-import ModalHooks from "../../components/Modal/ModalHooks";
+import ModalHooks from "../../hooks/ModalHooks";
 import MenuContainer from "../MenuContainer/MenuContainer";
 
 type DefaultHeaderContainerProps = {
@@ -28,10 +28,11 @@ const RightContentsWrapper = styled.div`
   display: flex;
   > div {
     :not(:last-child) {
-      margin-right: 22px;
+      margin-right: 1.375rem;
     }
   }
 `;
+
 const rightContents = (props: RightContentsProps) => {
   const { history, location } = props;
   const {

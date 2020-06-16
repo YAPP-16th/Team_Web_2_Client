@@ -5,7 +5,7 @@ import Modal from "./Modal";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import rootReducer from "../../modules";
-import modalHooks from "./ModalHooks";
+import modalHooks from "../../hooks/ModalHooks";
 
 describe("Modal 컴포넌트", () => {
   describe("import 했을 시", () => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useCallback } from "react";
 import Styled from "styled-components";
-import useModal from "./ModalHooks";
+import useModal from "../../hooks/ModalHooks";
 
 interface ModalProps {
   backgroundColor?: string;

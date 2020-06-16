@@ -2,7 +2,7 @@ import React from "react";
 import Styled from "styled-components";
 import { useHistory, useLocation } from "react-router-dom";
 import FooterContainer from "./MenuFooterContainer";
-import ModalHooks from "../../components/Modal/ModalHooks";
+import ModalHooks from "../../hooks/ModalHooks";
 import Icon from "../../components/Icon/Icon";
 
 interface MenuContainerProps {
@@ -21,7 +21,7 @@ const Container = Styled.div`
     display: flex;
     flex-flow: column;
     height: 100%;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
     
     @media only screen and (max-width: ${DEVICE_SIZE.mobile}) {
@@ -38,10 +38,10 @@ const InnerContainer = Styled.div`
     flex-direction: column;
     display: flex;
     justify-content: space-between;
-    padding-bottom: 110px;
+    padding-bottom: 6.875rem;
 
     @media only screen and (max-width: ${DEVICE_SIZE.mobile}) {
-        padding-bottom: 46px;
+        padding-bottom: 2.875rem;
     }
 `;
 
@@ -55,8 +55,8 @@ const MenuListView = Styled.div`
     color: var(--LightTextColor);    
     cursor: default;
     font-family: NotoSansMedium;
-    font-size: 30px;
-    line-height: 39px;
+    font-size: 1.875rem;
+    line-height: 2.438rem;
     width: 100%;
     height: 270px;
     flex-direction: column;
@@ -64,7 +64,7 @@ const MenuListView = Styled.div`
     justify-content: space-between;
   
     @media only screen and (max-width: ${DEVICE_SIZE.mobile}) {
-        font-size: 22px;
+        font-size: 1.375rem;
         height: 204px;
     }
 `;
@@ -72,7 +72,7 @@ const MenuListView = Styled.div`
 const MenuItem = Styled.span`
     cursor: pointer;
     width: fit-content;
-    margin-left: 60px;
+    margin-left: 3.75rem;
 `;
 
 const CloseDiv = Styled.div`
@@ -81,14 +81,14 @@ const CloseDiv = Styled.div`
     border: 0;
     height: auto;
     width: auto;
-    margin-top: 46px;
-    margin-right: 20px;
-    margin-bottom: 140px;
+    margin-top: 2.875rem;
+    margin-right: 1.25rem;
+    margin-bottom: 8.75rem;
   
     @media only screen and (max-width: ${DEVICE_SIZE.mobile}) {
-        margin-top: 23px;
-        margin-right: 20px;
-        margin-bottom: 73px;
+        margin-top: 1.438rem;
+        margin-right: 1.25rem;
+        margin-bottom: 4.563rem;
     }
 `;
 

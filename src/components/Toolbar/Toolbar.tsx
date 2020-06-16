@@ -18,14 +18,14 @@ const ToolbarWrapper = styled.nav<{
   backgroundColor?: boolean;
   bottomShadow?: boolean;
 }>`
-  padding: 26px 33px 26px;
+  padding: 1.625rem 2.063rem 1.625rem;
   background-color: ${({ backgroundColor }) =>
     backgroundColor ? "var(--BackgroundColor)" : "none"};
   box-shadow: ${({ bottomShadow }) =>
     bottomShadow ? "0px 4px 6px rgba(0,0,0,0.2)" : "none"};
 
   @media only screen and (max-width: ${DEVICE_SIZE.mobile}) {
-    padding: 18px 20px;
+    padding: 1.125rem 1.25rem;
   }
 `;
 
