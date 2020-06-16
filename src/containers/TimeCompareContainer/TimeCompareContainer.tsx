@@ -285,11 +285,18 @@ const TimeCompareContainer = ({ currentZoneId }: TimeCompareContainerProps) => {
     setTimeCompareContents(processed);
   };
 
+  const saveChangeHandler = (item: TimeCompareItem, index: number) => {
+    const processed = [...timeCompareContents];
+    processed.splice(index, 1, item);
+    setTimeCompareContents(processed);
+    setTimeCompareItems(processed);
+  };
+
   // Dynamically Generated Elements
 
-  const timeCompareList = timeCompareContents.map((content) => {
+  const timeCompareList = timeCompareContents.map((content, index) => {
     return (
-      <div key={content.heading}>
+      <div key={index}>
         <TimeCompareListItem
           className="timecompare-item"
           icon={content.icon}
@@ -300,9 +307,11 @@ const TimeCompareContainer = ({ currentZoneId }: TimeCompareContainerProps) => {
           distanceTo={content.distanceTo}
           editMode={content.editMode}
           content={content}
+          index={index}
           editFunc={updateTimeCompareItemHandler}
           deleteFunc={deleteTimeCompareItemHandler}
           editModeFunc={editModeTriggerHandler}
+          saveFunc={saveChangeHandler}
         />
       </div>
     );
@@ -328,7 +337,7 @@ const TimeCompareContainer = ({ currentZoneId }: TimeCompareContainerProps) => {
 
   return (
     <>
-      {timeCompareHook.setterMode ? (
+      {timeCompareHook.setterMode && (
         <Dialog
           className="pop_up"
           show={timeCompareHook.setterMode}
@@ -350,47 +359,46 @@ const TimeCompareContainer = ({ currentZoneId }: TimeCompareContainerProps) => {
             }}
           />
         </Dialog>
-      ) : (
-        <TimeCompareContainerWrapper>
-          <TextSectionWrapper>
-            <BoldText>지금보다</BoldText>
-            <BoldText>얼마나 많은 시간이</BoldText>
-            <BoldText>절약될까요?</BoldText>
-          </TextSectionWrapper>
-
-          <StartPositionSelectWrapper>
-            <PlainText>{timeCompareHook.userAddress}</PlainText>
-            <Button onClick={onClickLocationHandler}>수정</Button>
-          </StartPositionSelectWrapper>
-          <TimeCompareList>
-            {timeCompareHook.userAddress === '주소를 설정해주세요' && (
-              <p
-                style={{
-                  color: 'white',
-                }}
-              >
-                주소가 설정되지 않았거나 추가할 아이템이 없습니다.
-              </p>
-            )}
-            {timeCompareHook.userAddress !== '주소를 설정해주세요' &&
-              timeCompareList.length === 0 && (
-                <LoadingDots color="white" size="15px" />
-              )}
-            {timeCompareList.length !== 0 && timeCompareList}
-            <ItemAddButton
-              style={{
-                display:
-                  timeCompareHook.userAddress === '주소를 설정해주세요'
-                    ? 'none'
-                    : 'block',
-              }}
-              onClick={addTimeCompareItemHandler}
-            >
-              + 추가하기
-            </ItemAddButton>
-          </TimeCompareList>
-        </TimeCompareContainerWrapper>
       )}
+      <TimeCompareContainerWrapper>
+        <TextSectionWrapper>
+          <BoldText>지금보다</BoldText>
+          <BoldText>얼마나 많은 시간이</BoldText>
+          <BoldText>절약될까요?</BoldText>
+        </TextSectionWrapper>
+
+        <StartPositionSelectWrapper>
+          <PlainText>{timeCompareHook.userAddress}</PlainText>
+          <Button onClick={onClickLocationHandler}>수정</Button>
+        </StartPositionSelectWrapper>
+        <TimeCompareList>
+          {timeCompareHook.userAddress === '주소를 설정해주세요' && (
+            <p
+              style={{
+                color: 'white',
+              }}
+            >
+              주소가 설정되지 않았거나 추가할 아이템이 없습니다.
+            </p>
+          )}
+          {timeCompareHook.userAddress !== '주소를 설정해주세요' &&
+            timeCompareList.length === 0 && (
+              <LoadingDots color="white" size="15px" />
+            )}
+          {timeCompareList.length !== 0 && timeCompareList}
+          <ItemAddButton
+            style={{
+              display:
+                timeCompareHook.userAddress === '주소를 설정해주세요'
+                  ? 'none'
+                  : 'block',
+            }}
+            onClick={addTimeCompareItemHandler}
+          >
+            + 추가하기
+          </ItemAddButton>
+        </TimeCompareList>
+      </TimeCompareContainerWrapper>
     </>
   );
 };
