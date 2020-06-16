@@ -91,17 +91,17 @@ const ListViewContainerWrapper = styled.div<{ clicked: boolean }>`
     forwards;
   overflow-y: scroll;
   &::-webkit-scrollbar {
-		width: 10px;
+    width: 10px;
     background: none;
-	}
-	&::-webkit-scrollbar-thumb {
-      background: none;
-      border-radius: 20px;
-	    opacity: .4;
-	}
-	&::-webkit-scrollbar-track {
-	    background: none;
-	}
+  }
+  &::-webkit-scrollbar-thumb {
+    background: none;
+    border-radius: 20px;
+    opacity: 0.4;
+  }
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
 
   @media screen and (min-width: 1060px) {
     width: 332px;
@@ -158,7 +158,6 @@ const items = [
   { id: 11, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
   { id: 12, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
   { id: 13, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
-
 ];
 
 const ListViewContainer = ({ data = items }: { data?: Array<any> }) => {
@@ -176,9 +175,7 @@ const ListViewContainer = ({ data = items }: { data?: Array<any> }) => {
   };
 
   const onItemClickHandler = (id: string | number) => {
-    // 여기 리덕스 코드 삽입. selected ZoneId 들어가도록
-
-    listView.toggle(); // 어 이거 지우면 되는거 같은데
+    listView.toggle();
   };
 
   // Props Handling
