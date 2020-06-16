@@ -25,7 +25,9 @@ export type TimeCompareListItemProps = {
   className?: string;
   editMode?: boolean;
   editModeFunc?: (item: TimeCompareItem) => void;
+  saveFunc?: (item: TimeCompareItem, index: number) => void;
   content?: TimeCompareItem;
+  index?: number;
   editFunc?: (item: TimeCompareItem, notCompleted?: boolean) => Promise<void>;
   deleteFunc?: (item: TimeCompareItem) => void;
 };
@@ -144,12 +146,14 @@ const TimeCompareListItem = ({
   className,
   content,
   editMode,
+  index,
   editFunc,
   deleteFunc,
   editModeFunc,
+  saveFunc,
 }: TimeCompareListItemProps) => {
   // Handlers
-  const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     if (inputValue) {
       heading = inputValue;
@@ -159,9 +163,18 @@ const TimeCompareListItem = ({
   const timeCompareHook = useTimeCompare();
 
   const onAddressRegisterHandler = (content?: TimeCompareItem) => {
+<<<<<<< HEAD
     if (editFunc && content) {
       content.address = '주소 등록 완료';
       editFunc(content, true);
+=======
+    if (saveFunc && content && index) {
+      content.heading = heading;
+      content.address = "주소 등록 완료";
+      saveFunc(content, index);
+      timeCompareHook.setSetterTargetFunc("compareItemAddress");
+      timeCompareHook.setSetterModeFunc(true);
+>>>>>>> 3fdadf3... 시간 비교 아이템 중간 저장 안되는 버그 수정
     }
   };
 
@@ -217,7 +230,7 @@ const TimeCompareListItem = ({
           {editMode ? (
             <EditableHeading
               defaultValue={heading}
-              onChange={onChangeHandler}
+              onInput={onInputHandler}
               className="editable-heading"
             />
           ) : (
