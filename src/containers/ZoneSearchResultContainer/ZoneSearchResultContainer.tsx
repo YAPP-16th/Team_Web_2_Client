@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React, { useCallback } from "react";
 import Styled from "styled-components";
 import Map, {
   RoomClickEvent,
@@ -9,12 +9,13 @@ import ListViewContainer from "../ListViewContainer/ListViewContainer";
 import ZoneSearchResultInfo, {
   SearchData,
 } from "../../components/ZoneInfo/SearchResultInfo";
+import { useDispatch } from "react-redux";
+import { toggleListView } from "../../modules/listView";
 
 interface ContainerProps {
   zonedata?: any;
   searchData?: SearchData;
 }
-
 
 const Container = Styled.div`
     width: 100%;
@@ -34,10 +35,20 @@ function ZoneSearchResultContainer(props: ContainerProps) {
   const { zonedata = {}, searchData } = props;
   const { inputLocation = {}, data = [] } = zonedata;
 
+  const dispatch = useDispatch();
+
   const RoomClickCallback = useCallback((props: RoomClickEvent) => {}, []);
-  const ClusterClickCallback = useCallback((props: ClusterClickEvent) => {}, []);
-  const ZoneClickCallback = useCallback((props: ZoneClickEvent) => {}, []);
-  
+
+  const ClusterClickCallback = useCallback((props: ClusterClickEvent) => {},
+  []);
+
+  const ZoneClickCallback = useCallback(
+    (props: ZoneClickEvent) => {
+      return dispatch(toggleListView());
+    },
+    [dispatch]
+  );
+
   return (
     <Container>
       <ZoneSearchResultInfo

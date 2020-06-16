@@ -6,13 +6,8 @@ import Icon, { IconType } from '../Icon/Icon';
 import { Button } from '../Button/Button';
 import { TimeCompareItem } from '../../utils/TimeCompare/functions';
 
-<<<<<<< HEAD
 import useTimeCompare from '../../hooks/timeCompareHooks';
 import { getCoordinates } from '../../api/coordinates';
-=======
-import useTimeCompare from "../../hooks/timeCompareHooks";
-import { getCoordinates } from "../../api/coordinates";
->>>>>>> 60a1d9d... 시간비교 기능 구현 완료
 
 // type
 export type TimeCompareListItemProps = {
@@ -163,18 +158,12 @@ const TimeCompareListItem = ({
   const timeCompareHook = useTimeCompare();
 
   const onAddressRegisterHandler = (content?: TimeCompareItem) => {
-<<<<<<< HEAD
-    if (editFunc && content) {
-      content.address = '주소 등록 완료';
-      editFunc(content, true);
-=======
     if (saveFunc && content && index) {
       content.heading = heading;
-      content.address = "주소 등록 완료";
+      content.address = '주소 등록 완료';
       saveFunc(content, index);
-      timeCompareHook.setSetterTargetFunc("compareItemAddress");
+      timeCompareHook.setSetterTargetFunc('compareItemAddress');
       timeCompareHook.setSetterModeFunc(true);
->>>>>>> 3fdadf3... 시간 비교 아이템 중간 저장 안되는 버그 수정
     }
   };
 
