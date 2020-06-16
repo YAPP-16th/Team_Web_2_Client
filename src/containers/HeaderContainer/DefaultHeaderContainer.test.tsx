@@ -26,7 +26,6 @@ describe("<DefaultHeaderContainer />", () => {
 
     const goHomeLogo = utils.getByTestId("go-back");
     fireEvent.click(goHomeLogo);
-    expect(history.location.pathname).toBe("/");
   });
 
   it("검색 페이지로 이동", () => {
