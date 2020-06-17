@@ -12,7 +12,7 @@ import MenuContainer from "../MenuContainer/MenuContainer";
 
 type DefaultHeaderContainerProps = {
   displayLogo?: boolean;
-}
+};
 
 interface RightContentsProps {
   history: any;
@@ -83,9 +83,13 @@ const rightContents = (props: RightContentsProps) => {
   );
 };
 
-const DefaultHeaderContainer = ({ displayLogo }: DefaultHeaderContainerProps) => {
+const DefaultHeaderContainer = ({
+  displayLogo,
+}: DefaultHeaderContainerProps) => {
   let history = useHistory();
   let location = useLocation();
+
+  let searchInput = useSearchInput();
 
   const goHomePageHandler = useCallback(() => {
     const { hash, pathname, search } = location;
@@ -95,7 +99,6 @@ const DefaultHeaderContainer = ({ displayLogo }: DefaultHeaderContainerProps) =>
   }, [history, location]);
 
   return (
-
     <HeaderContainerWrapper>
       <Toolbar
         leftContents={
@@ -114,7 +117,7 @@ const DefaultHeaderContainer = ({ displayLogo }: DefaultHeaderContainerProps) =>
 };
 
 DefaultHeaderContainer.defaultProps = {
-  displayLogo: true
-}
+  displayLogo: true,
+};
 
 export default DefaultHeaderContainer;
