@@ -166,11 +166,10 @@ const SearchInputPage = () => {
               <ButtonWrapper>
                 <div className="optionWrapper">
                   <div id="option" className="option">
-                    {" "}
                     * 옵션을 선택해주세요
                 </div>
                 </div>
-                {searchInput.searchInputData.searchStep === 1 ? (
+                {step === 1 ? (
                   <></>
                 ) : (
                     <MoreItemButton onClick={() => stepPrevHandler()}>

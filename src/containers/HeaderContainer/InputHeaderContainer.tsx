@@ -73,6 +73,7 @@ const InputHeaderContainer = ({ displayLogo }: InputHeaderContainerProps) => {
         leftContents={
           <InputIcon
             testId="go-back"
+            onClick={goBackHandler}
             icon="simplifiedLogo"
             mobileIcon="back"
             size="27px"
