@@ -15,14 +15,14 @@ describe("<DefaultHeaderContainer />", () => {
 
   it("홈으로 이동하기(랜딩 페이지)", () => {
     const history = createMemoryHistory();
-    history.push("/search");
-    const utils = render(
-      <Provider store={store}>
-        <Router history={history}>
-          <DefaultHeaderContainer />
-        </Router>
-      </Provider>
-    );
+    // history.push("/search");
+    // const utils = render(
+    //   <Provider store={store}>
+    //     <Router history={history}>
+    //       <DefaultHeaderContainer />
+    //     </Router>
+    //   </Provider>
+    // );
 
     // const goHomeLogo = utils.getByTestId("go-back");
     // fireEvent.click(goHomeLogo);
