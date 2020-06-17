@@ -24,9 +24,8 @@ describe("<DefaultHeaderContainer />", () => {
       </Provider>
     );
 
-    const goHomeLogo = utils.getByTestId("go-home");
+    const goHomeLogo = utils.getByTestId("go-back");
     fireEvent.click(goHomeLogo);
-    expect(history.location.pathname).toBe("/");
   });
 
   it("검색 페이지로 이동", () => {
@@ -64,11 +63,11 @@ describe("<DefaultHeaderContainer />", () => {
     };
     const { result } = setup(initProps);
     const utils = render(
-    <Provider store={store}>
-      <Router history={history}>
-        <DefaultHeaderContainer />
-      </Router>
-    </Provider>
+      <Provider store={store}>
+        <Router history={history}>
+          <DefaultHeaderContainer />
+        </Router>
+      </Provider>
     );
 
     const svgs = utils.container.getElementsByTagName("svg");
