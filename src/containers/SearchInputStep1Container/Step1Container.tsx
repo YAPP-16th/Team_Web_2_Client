@@ -6,11 +6,18 @@ import styled from 'styled-components';
 import useSearchInput from '../../hooks/useSearchInput';
 
 type InputProps = {
-  // setIsHover?: (isHover: boolean) => void | undefined;
   setIsHover?: any;
 };
 
+// interface Step1Props {
+//   address?: string;
+//   addressTag?: string;
+// }
+
 const SearchInputStep1Container = ({ setIsHover }: InputProps) => {
+
+
+
 
   const onClickLocationHandler = () => {
     return setIsOpen(!isOpen)
@@ -48,7 +55,6 @@ const SearchInputStep1Container = ({ setIsHover }: InputProps) => {
           click={onClickLocationHandler}
         />
       }
-      {/* <MoreItemButton onClick={() => stepForwardHandler(stepParam)}>다음으로</MoreItemButton> */}
     </>
   );
 }

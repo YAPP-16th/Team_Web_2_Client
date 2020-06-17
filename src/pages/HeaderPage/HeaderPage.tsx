@@ -5,6 +5,7 @@ import './HeaderPage.scss';
 //Containers
 import DefaultHeaderContainer from "../../containers/HeaderContainer/DefaultHeaderContainer";
 import ZoneDetailHeaderContainer from "../../containers/HeaderContainer/ZoneDetailHeaderContainer";
+import InputHeaderContainer from "../../containers/HeaderContainer/InputHeaderContainer";
 
 const HeaderPage = () => {
   const location = useLocation();
@@ -15,15 +16,18 @@ const HeaderPage = () => {
   } else {
     if (location.pathname === "/") {
       HeaderContainer = () => <DefaultHeaderContainer displayLogo={false} />;
+    } if (location.pathname === "/search") {
+      HeaderContainer = () => <InputHeaderContainer displayLogo />;
     } else {
       HeaderContainer = () => <DefaultHeaderContainer displayLogo />;
     }
   }
-  
+
+
   const isLanding = location.pathname === '/' ? "fixed" : "initial";
 
   return (
-    <div className="header" style={{position: isLanding}}>
+    <div className="header" style={{ position: isLanding }}>
       <HeaderContainer />
     </div>
   )

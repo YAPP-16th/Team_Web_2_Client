@@ -12,7 +12,7 @@ import MenuContainer from "../MenuContainer/MenuContainer";
 
 type DefaultHeaderContainerProps = {
   displayLogo?: boolean;
-}
+};
 
 interface RightContentsProps {
   history: any;
@@ -83,7 +83,9 @@ const rightContents = (props: RightContentsProps) => {
   );
 };
 
-const DefaultHeaderContainer = ({displayLogo }: DefaultHeaderContainerProps) => {
+const DefaultHeaderContainer = ({
+  displayLogo,
+}: DefaultHeaderContainerProps) => {
   let history = useHistory();
   let location = useLocation();
 
@@ -113,7 +115,7 @@ const DefaultHeaderContainer = ({displayLogo }: DefaultHeaderContainerProps) => 
 };
 
 DefaultHeaderContainer.defaultProps = {
-  displayLogo: true
-}
+  displayLogo: true,
+};
 
 export default DefaultHeaderContainer;

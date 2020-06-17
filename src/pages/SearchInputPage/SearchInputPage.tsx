@@ -8,10 +8,6 @@ import SearchInputStep2Container from "../../containers/SearchInputStep2Containe
 import SearchInputStep3Container from "../../containers/SearchInputStep3Container/Step3Container";
 import useSearchInput from "../../hooks/useSearchInput";
 
-type paramsType = {
-  step: string;
-};
-
 const MoreItemButton = styled.div`
   width: 100%;
   font-size: 16px;
@@ -61,17 +57,19 @@ const MoreItemButtonHovered = styled.div`
   bottom: 0;
   @media screen and (min-width: 1060px) {
     background-color: #1d1d1d;
+    position: relative;
+    cursor: pointer;
+    display: inline;
+    width: 67px;
+    height: 27px;
     font-family: NotoSansCJKkr;
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 320;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: -0.8px;
-    color: var(--PrimaryColor);
-    position: relative;
-    cursor: pointer;
-    display: inline;
+    color: #ffffff;
   }
 `;
 
@@ -86,21 +84,26 @@ const ButtonWrapper = styled.div`
 
 const SearchInputPage = () => {
   const searchInput = useSearchInput();
+
   let data = searchInput.searchInputData;
 
   const [isHover, setIsHover] = useState(false as boolean);
-  const [step, setStep] = useState(1);
   const history = useHistory();
+  const state: any = history.location.state;
+  const step = state ? state.step : 1;
 
   let container;
 
   const stepPrevHandler = () => {
-    step > 1 && setStep(step - 1);
+    step > 1 && history.goBack();
   };
 
   const stepForwardHandler = () => {
     if (step < 3) {
-      setStep(step + 1);
+      // if (step === 1) {
+      //   history.replace("/search", { step: step + 1 });
+      // } else {
+      history.push("/search", { step: step + 1 })
     } else {
       history.push(
         `/search?address=${data.address}&addressTag=${data.addressTag}&maxTime=${data.maxTime}&minTime=${data.minTime}&transferLimit=${data.transferLimit}&transitMode=${data.transitMode}`
@@ -125,7 +128,21 @@ const SearchInputPage = () => {
   }
 
   const prev = "< 이전으로";
-  console.log("?", isHover);
+  const next = "다음으로 >";
+
+  const shake = () => {
+    const option = document.querySelector("div#option");
+    if (option) {
+      option.classList.add("apply-shake");
+    }
+    setTimeout(function () {
+      const option = document.querySelector("div#option");
+      if (option) {
+        option.classList.remove("apply-shake");
+      }
+    }, 600);
+  };
+
   return (
     <>
       <div className="search_select_done">
@@ -134,30 +151,34 @@ const SearchInputPage = () => {
           {isHover ? (
             <ButtonWrapper>
               <div className="option"></div>
-              <MoreItemButton onClick={() => stepPrevHandler()}>
-                {prev}
-              </MoreItemButton>
-              <MoreItemButtonHovered onClick={() => stepForwardHandler()}>
-                다음으로 >
-              </MoreItemButtonHovered>
-            </ButtonWrapper>
-          ) : (
-            <ButtonWrapper>
-              <div className="optionWrapper">
-                <div className="option"> * 옵션을 선택해주세요</div>
-              </div>
               {step === 1 ? (
                 <></>
               ) : (
-                <MoreItemButton onClick={() => stepPrevHandler()}>
-                  {prev}
-                </MoreItemButton>
-              )}
-              <MoreItemButton onClick={() => stepForwardHandler()}>
-                다음으로 >
-              </MoreItemButton>
+                  <MoreItemButton onClick={() => stepPrevHandler()}>
+                    {prev}
+                  </MoreItemButton>
+                )}
+              <MoreItemButtonHovered onClick={() => stepForwardHandler()}>
+                {next}
+              </MoreItemButtonHovered>
             </ButtonWrapper>
-          )}
+          ) : (
+              <ButtonWrapper>
+                <div className="optionWrapper">
+                  <div id="option" className="option">
+                    * 옵션을 선택해주세요
+                </div>
+                </div>
+                {step === 1 ? (
+                  <></>
+                ) : (
+                    <MoreItemButton onClick={() => stepPrevHandler()}>
+                      {prev}
+                    </MoreItemButton>
+                  )}
+                <MoreItemButton onClick={() => shake()}>{next}</MoreItemButton>
+              </ButtonWrapper>
+            )}
         </SearchInputWrapper>
       </div>
     </>

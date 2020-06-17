@@ -5,11 +5,8 @@ import useSearchInput from '../../hooks/useSearchInput';
 const SearchInputStep3Container = ({ setIsHover }: any) => {
 
   const searchInput = useSearchInput();
-  // console.log('min', searchInput.searchInputData.minTime);
-  // console.log('max', searchInput.searchInputData.maxTime);
 
-  (searchInput.searchInputData.minTime !== 0)
-    && (searchInput.searchInputData.maxTime !== 0)
+  (searchInput.searchInputData.maxTime !== 0)
     ? setIsHover(true)
     : setIsHover(false)
   return (
