@@ -89,8 +89,6 @@ const DefaultHeaderContainer = ({
   let history = useHistory();
   let location = useLocation();
 
-  let searchInput = useSearchInput();
-
   const goHomePageHandler = useCallback(() => {
     const { hash, pathname, search } = location;
     if (hash || pathname !== "/" || search) {
