@@ -4,11 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 
 // Components
 import Toolbar from "../../components/Toolbar/Toolbar";
-import Icon from "../../components/Icon/Icon";
 import InputIcon from "../../components/Icon/InputIcon";
-
-// Hooks
-import ModalHooks from "../../components/Modal/ModalHooks";
 
 type DefaultHeaderContainerProps = {
   displayLogo?: boolean;
@@ -48,14 +44,7 @@ const RightContentsWrapper = styled.div`
 `;
 
 const rightContents = (props: RightContentsProps) => {
-  const { history, location } = props;
-  const {
-    bShow,
-    container,
-    openModal,
-    closeModal,
-    setContainer,
-  }: any = ModalHooks();
+  const { history } = props;
 
   const finishClick = () => {
     alert("홈 화면으로 돌아갑니다. 변경사항은 저장됩니다.");
@@ -83,8 +72,7 @@ const InputHeaderContainer = ({ displayLogo }: DefaultHeaderContainerProps) => {
       <Toolbar
         leftContents={
           <InputIcon
-            testId="go-home"
-            onClick={goBackHandler}
+            testId="go-back"
             icon="simplifiedLogo"
             mobileIcon="back"
             size="27px"
