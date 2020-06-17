@@ -8,6 +8,7 @@ import { createStore } from "redux";
 import rootReducer from "../../modules";
 
 import DefaultHeaderContainer from "./DefaultHeaderContainer";
+import InputHeaderContainer from "./InputHeaderContainer";
 import modalHooks from "../../hooks/ModalHooks";
 
 describe("<DefaultHeaderContainer />", () => {
@@ -19,7 +20,7 @@ describe("<DefaultHeaderContainer />", () => {
     const utils = render(
       <Provider store={store}>
         <Router history={history}>
-          <DefaultHeaderContainer />
+          <InputHeaderContainer />
         </Router>
       </Provider>
     );

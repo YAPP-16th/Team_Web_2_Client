@@ -6,7 +6,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import Toolbar from "../../components/Toolbar/Toolbar";
 import InputIcon from "../../components/Icon/InputIcon";
 
-type DefaultHeaderContainerProps = {
+type InputHeaderContainerProps = {
   displayLogo?: boolean;
 }
 
@@ -58,7 +58,7 @@ const rightContents = (props: RightContentsProps) => {
   );
 };
 
-const InputHeaderContainer = ({ displayLogo }: DefaultHeaderContainerProps) => {
+const InputHeaderContainer = ({ displayLogo }: InputHeaderContainerProps) => {
   let history = useHistory();
   let location = useLocation();
 
