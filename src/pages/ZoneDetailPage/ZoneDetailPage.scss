@@ -1,3 +1,43 @@
 .zone-detail-page {
   margin-top: 50px;
+
+  @media screen and (min-width: 1060px) {
+    width: 1120px;
+    margin: auto;
+    margin-top: 100px;
+  }
+
+  .header-info {
+    @media screen and (min-width: 1060px) {
+      align-items: flex-start;
+      > h1:first-child {
+        order: 2;
+        font-size: 20px;
+      }
+      margin-bottom: 80px;
+      padding-left: 30px;
+    }
+  }
+
+  .header-tabs {
+    @media screen and (min-width: 1060px) {
+      align-items: flex-start;
+      padding-left: 20px;
+      position: relative;
+      > * {
+        flex: initial;
+        a {
+          font-size: 20px;
+        }
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        z-index: -1;
+        border-bottom: 2px solid var(--ItemColor);
+      }
+    }
+  }
 }

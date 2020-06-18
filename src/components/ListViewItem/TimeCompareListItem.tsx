@@ -1,10 +1,13 @@
-import React, { MouseEvent } from "react";
-import styled from "styled-components";
+import React, { MouseEvent } from 'react';
+import styled from 'styled-components';
 
 // Components
-import Icon, { IconType } from "../Icon/Icon";
-import { Button } from "../Button/Button";
-import { TimeCompareItem } from "../../utils/TimeCompare/functions";
+import Icon, { IconType } from '../Icon/Icon';
+import { Button } from '../Button/Button';
+import { TimeCompareItem } from '../../utils/TimeCompare/functions';
+
+import useTimeCompare from '../../hooks/timeCompareHooks';
+import { getCoordinates } from '../../api/coordinates';
 
 // type
 export type TimeCompareListItemProps = {
@@ -17,7 +20,9 @@ export type TimeCompareListItemProps = {
   className?: string;
   editMode?: boolean;
   editModeFunc?: (item: TimeCompareItem) => void;
+  saveFunc?: (item: TimeCompareItem, index: number) => void;
   content?: TimeCompareItem;
+  index?: number;
   editFunc?: (item: TimeCompareItem, notCompleted?: boolean) => Promise<void>;
   deleteFunc?: (item: TimeCompareItem) => void;
 };
@@ -119,8 +124,8 @@ const EditIconWrapper = styled.div<{ right?: string; top?: string }>`
   cursor: pointer;
   display: none;
   position: absolute;
-  top: ${({ top }) => (top ? top : "")};
-  right: ${({ right }) => (right ? right : "")};
+  top: ${({ top }) => (top ? top : '')};
+  right: ${({ right }) => (right ? right : '')};
   border-radius: 50%;
   background-color: white;
   padding: 3px;
@@ -136,35 +141,41 @@ const TimeCompareListItem = ({
   className,
   content,
   editMode,
+  index,
   editFunc,
   deleteFunc,
   editModeFunc,
+  saveFunc,
 }: TimeCompareListItemProps) => {
   // Handlers
-  const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onInputHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     if (inputValue) {
       heading = inputValue;
     }
-    console.log(heading);
   };
 
+  const timeCompareHook = useTimeCompare();
+
   const onAddressRegisterHandler = (content?: TimeCompareItem) => {
-    // 주소, location 은 여기서 변경
-    // 현재는 테스트를 위해 수동으로 location과 주소를 할당합니다
-    if (editFunc && content) {
-      address = "서울 성동구 뚝섬로 273";
+    if (saveFunc && content && index) {
       content.heading = heading;
-      content.address = address;
-      content.location.lat = 37.5444;
-      content.location.lng = 127.0374;
-      editFunc(content, true);
+      content.address = '주소 등록 완료';
+      saveFunc(content, index);
+      timeCompareHook.setSetterTargetFunc('compareItemAddress');
+      timeCompareHook.setSetterModeFunc(true);
     }
   };
 
-  const onCompleteHandler = (event: MouseEvent) => {
+  const onCompleteHandler = async (event: MouseEvent) => {
     if (editFunc && content) {
       content.heading = heading;
+      content.address = timeCompareHook.compareItemAddress;
+      const coordinates = await getCoordinates(
+        timeCompareHook.compareItemAddress
+      );
+      content.location.lat = coordinates.y;
+      content.location.lng = coordinates.x;
       editFunc(content);
     }
   };
@@ -195,14 +206,20 @@ const TimeCompareListItem = ({
   );
 
   return (
-    <TimeCompareListItemWrapper className={className}  href="#" onClick={(e) => { e.preventDefault() }}>
+    <TimeCompareListItemWrapper
+      className={className}
+      href="#"
+      onClick={(e) => {
+        e.preventDefault();
+      }}
+    >
       <ContentRow>
         <HeadingAndIcon>
           <Icon icon={icon} />
           {editMode ? (
             <EditableHeading
               defaultValue={heading}
-              onChange={onChangeHandler}
+              onInput={onInputHandler}
               className="editable-heading"
             />
           ) : (
@@ -211,7 +228,7 @@ const TimeCompareListItem = ({
         </HeadingAndIcon>
         {!editMode && (
           <SavingTime>
-            {savingTime >= 0 ? savingTime + "분 절약" : savingTime + "분"}
+            {savingTime >= 0 ? savingTime + '분 절약' : savingTime + '분'}
           </SavingTime>
         )}
       </ContentRow>

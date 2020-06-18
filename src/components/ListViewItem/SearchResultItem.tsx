@@ -15,7 +15,7 @@ const METER_CONSTANT = 10;
 
 const ListViewItemWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   border-bottom: 1px solid rgba(182, 182, 182, 0.1);
   padding: 14px 20px;
 `;
@@ -29,6 +29,11 @@ const ZoneCodeWrapper = styled.div`
   line-height: 1.76;
   letter-spacing: -0.76px;
 `;
+
+const ZoneDetailInfo = styled.div`
+  display:flex;
+  justify-content: space-between;
+`
 
 const ZoneNameWrapper = styled.div`
   font-family: NotoSansRegular;
@@ -51,6 +56,7 @@ const DistanceWrapper = styled.div`
   line-height: 2;
   letter-spacing: -0.67px;
   text-align: right;
+  margin-left: 10px;
 `;
 
 const ListViewItem = ({
@@ -63,9 +69,12 @@ const ListViewItem = ({
 }: ListViewItemProps) => {
   return (
     <ListViewItemWrapper onClick={() => onClick(id)}>
-      <ZoneCodeWrapper>ZONE {zoneCode}</ZoneCodeWrapper>
-      <ZoneNameWrapper>{zoneName}</ZoneNameWrapper>
-      <DistanceWrapper>{(distance / METER_CONSTANT).toFixed(1)}km</DistanceWrapper>
+      <ZoneCodeWrapper>ZONE {zoneCode} </ZoneCodeWrapper>
+      <ZoneDetailInfo>
+        <ZoneNameWrapper>{zoneName}</ZoneNameWrapper>
+        <DistanceWrapper>{(distance / METER_CONSTANT).toFixed(1)}km</DistanceWrapper>
+      </ZoneDetailInfo>
+      
     </ListViewItemWrapper>
   );
 };

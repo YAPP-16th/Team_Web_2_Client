@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import useTransit from "../../hooks/transitHooks";
-import { Transit, TransitQuery } from "../../api/transits";
+import useTransit from '../../hooks/transitHooks';
+import { Transit, TransitQuery } from '../../api/transits';
 
 // Components
-import TransportationListItem from "../../components/ListViewItem/TransportationListItem";
-import { TagButton } from "../../components/Button/Button";
-import LoadingDots from "../../components/Loading/LoadingDots";
+import TransportationListItem from '../../components/ListViewItem/TransportationListItem';
+import { TagButton } from '../../components/Button/Button';
+import LoadingDots from '../../components/Loading/LoadingDots';
 
 type TransportationContainerProps = TransitQuery & {
   zoneCode: string | number;
@@ -67,7 +67,7 @@ const PathItem = styled.span`
   line-height: 1.88;
   letter-spacing: -0.71px;
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     margin-left: 10px;
     margin-top: 10px;
@@ -92,7 +92,7 @@ const PathItemsWrapper = styled.div`
   }
 
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     border-left: 0.1px solid var(--GreyTextColor);
     height: 40px;
@@ -190,10 +190,10 @@ const TransportationContainer = ({
 
   const [selectedTransit, setSelectTransit] = useState({
     transitObj: {
-      firstStation: "",
+      firstStation: '',
       firstStationLine: 0,
-      transitCount: "",
-      vehicleTypes: ["버스"],
+      transitCount: '',
+      vehicleTypes: ['버스'],
       time: 0,
     },
   });
@@ -201,14 +201,18 @@ const TransportationContainer = ({
   console.log('transportation!', zoneId, startLocation);
 
   useEffect(() => {
-    transit.loadTransitsByQueries({ zoneId, startLocation, mode: "LocationToZone" });
+    transit.loadTransitsByQueries({
+      zoneId,
+      startLocation,
+      mode: 'LocationToZone',
+    });
   }, []);
 
   const transportationContents = transit.data.map((data) => {
-    let transportationInfo = data.vehicleTypes[0] + " " + data.firstStationLine;
+    let transportationInfo = data.vehicleTypes[0] + ' ' + data.firstStationLine;
     if (data.vehicleTypes.length > 1) {
       for (let i = 1; i < data.vehicleTypes.length; i++) {
-        transportationInfo += " + " + data.vehicleTypes[i];
+        transportationInfo += ' + ' + data.vehicleTypes[i];
       }
     }
     return {
@@ -219,9 +223,9 @@ const TransportationContainer = ({
   });
 
   const tagButtonContents = [
-    { text: "#회사"},
-    { text: "#버스"},
-    { text: "#10-20m"},
+    { text: '#회사' },
+    { text: '#버스' },
+    { text: '#10-20m' },
   ];
 
   // Item Components
@@ -257,7 +261,7 @@ const TransportationContainer = ({
 
   return (
     <>
-      {transit.error && "에러가 발생했습니다"}
+      {transit.error && '에러가 발생했습니다'}
       <TransportationContainerWrapper>
         <PathArea>
           <Heading>
@@ -265,14 +269,14 @@ const TransportationContainer = ({
             출퇴근길을 위해서
           </Heading>
           <SubHeading>
-            선택했던 옵션을 바탕으로 <br /> 새로운 교통편을 안내해드릴게요.{" "}
+            선택했던 옵션을 바탕으로 <br /> 새로운 교통편을 안내해드릴게요.{' '}
           </SubHeading>
           <DesktopHeading>
             보다 만족스러운 <br />
             출퇴근길을 위해서
           </DesktopHeading>
           <DesktopSubHeading>
-            선택했던 옵션을 바탕으로 <br /> 새로운 교통편을 안내해드릴게요.{" "}
+            선택했던 옵션을 바탕으로 <br /> 새로운 교통편을 안내해드릴게요.{' '}
           </DesktopSubHeading>
           <TagButtonsWrapper>{tagButtons}</TagButtonsWrapper>
         </PathArea>
@@ -286,9 +290,9 @@ const TransportationContainer = ({
             ) : (
               <p
                 style={{
-                  textAlign: "center",
-                  color: "white",
-                  display: transit.loading ? "none" : "block",
+                  textAlign: 'center',
+                  color: 'white',
+                  display: transit.loading ? 'none' : 'block',
                 }}
               >
                 교통편이 없습니다

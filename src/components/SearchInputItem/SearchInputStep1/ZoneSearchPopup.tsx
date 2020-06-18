@@ -32,16 +32,22 @@ const ZoneSearchPopUp = ({ close, setLocation }: ZoneSearchPopUpProps) => {
       }
       fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
-    setLocationRedux(fullAddress)
+    setLocationRedux(fullAddress);
+
+    // 추가적으로 주소 정보를 활용하는 함수를 받아왔다면 실행
+    if (setLocation) {
+      setLocation(fullAddress);
+    }
+
     //@ts-ignore
     close();
   };
 
   return (
-    <>
+    <div className="postcode-iframe-wrapper">
       <DaumPostcode onComplete={handleComplete} />
       <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js?autoload=false"></script>
-    </>
+    </div>
   );
 };
 

@@ -6,7 +6,7 @@ type DialogProps = {
   className: string;
   backgroundColor?: string;
   children?: React.ReactNode;
-  display: boolean;
+  show: boolean;
 };
 
 const Dialog = ({
@@ -14,23 +14,32 @@ const Dialog = ({
   className,
   backgroundColor,
   children,
-  display,
+  show,
 }: DialogProps) => {
-  const DialogWrapper = styled.div<{ display: boolean, backgroundColor: string | undefined; }>`
+  const DialogWrapper = styled.div<{
+    show: boolean;
+    backgroundColor: string | undefined;
+  }>`
+    padding: 0;
     position: fixed;
-    // background-color: ${(props) => props.backgroundColor ? backgroundColor : 'rgba(0, 0, 0, 0.3'};
-    width: 100%;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
-    z-index: 1000;
-    padding: 30px;
-    display: ${(props) => (props.display ? 'block' : 'none')};
-  `;
+    z-index: 9999999999;
+    background-color: var(--BackgroundColor);
 
+    .postcode-iframe-wrapper {
+      width: 700px;
+    }
+  `;
 
   return (
     <DialogWrapper
       backgroundColor={backgroundColor}
-      display={display}
+      show={show}
       onClick={click}
       className={className}
     >

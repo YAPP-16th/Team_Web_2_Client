@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 // Icon
-import Icon from "../Icon/Icon";
+import Icon from '../Icon/Icon';
 
 type SearchResultInfoProps = {
   itemCount: string | number;
@@ -31,9 +31,9 @@ export type SearchData = {
 } | null;
 
 const DEVICE_SIZE = {
-  mobile: "425px",
-  tablet: "768px",
-  laptop: "1024px",
+  mobile: '425px',
+  tablet: '768px',
+  laptop: '1024px',
 };
 
 const SearchResultInfoWrapper = styled.div<{ addedHeight: string }>`
@@ -85,20 +85,20 @@ const SearchContainer = styled.div`
   @media only screen and (max-width: ${DEVICE_SIZE.mobile}) {
     display: none;
   }
-  @media screen and (orientation:landscape) {
+  @media screen and (orientation: landscape) {
     display: none;
   }
 `;
 
 const Span = styled.span<SpanProps>`
-  color: ${(props) => (props.color ? props.color : "var(--GreyTextColor)")};
-  margin-right: ${(props) => (props.marginRight ? 0.625+`rem` : "")};
+  color: ${(props) => (props.color ? props.color : 'var(--GreyTextColor)')};
+  margin-right: ${(props) => (props.marginRight ? 0.625 + `rem` : '')};
 `;
 
 const EmphasisSpan = styled(Span)<EmphasisSpanProps>`
   color: var(--LightTextColor);
-  font-family: ${(props) => (props.bold ? "GothamMedium" : "NotoSansMedium")};
-  font-weight: ${(props) => (props.bold ? "500" : "300")};
+  font-family: ${(props) => (props.bold ? 'GothamMedium' : 'NotoSansMedium')};
+  font-weight: ${(props) => (props.bold ? '500' : '300')};
   font-size: ${(props) => (props.highlight ? 2 : 1.875)}rem;
   line-height: 2.375rem;
   letter-spacing: -${(props) => (props.highlight ? 0.089 : 0.084)}rem;
@@ -133,7 +133,7 @@ const Divider = styled.hr`
   @media only screen and (max-width: ${DEVICE_SIZE.mobile}) {
     display: none;
   }
-  @media screen and (orientation:landscape) {
+  @media screen and (orientation: landscape) {
     display: none;
   }
 `;
@@ -161,7 +161,7 @@ const SearchResultInfo = ({
           </LeftRow>
         </LeftContent>
         <RightContent>
-          <Icon icon="share" size={"20px"} />
+          <Icon icon="share" size={'20px'} />
         </RightContent>
       </ResultContainer>
       {searchData && (
@@ -175,9 +175,7 @@ const SearchResultInfo = ({
             <SearchSpan color="var(--LightTextColor)" marginRight>
               까지 / {searchData.transitMode}
             </SearchSpan>
-            <SearchSpan marginRight>
-              {searchData.transferLimit}{" "}
-            </SearchSpan>
+            <SearchSpan marginRight>{searchData.transferLimit} </SearchSpan>
             <SearchSpan color="var(--LightTextColor)">
               로 / {searchData.minTime} - {searchData.maxTime}분
             </SearchSpan>

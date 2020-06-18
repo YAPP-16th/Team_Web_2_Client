@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import "./SearchInputPage.scss";
-import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import React, { useState } from 'react';
+import './SearchInputPage.scss';
+import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
-import SearchInputStep1Container from "../../containers/SearchInputStep1Container/Step1Container";
-import SearchInputStep2Container from "../../containers/SearchInputStep2Container/Step2Container";
-import SearchInputStep3Container from "../../containers/SearchInputStep3Container/Step3Container";
-import useSearchInput from "../../hooks/useSearchInput";
+import SearchInputStep1Container from '../../containers/SearchInputStep1Container/Step1Container';
+import SearchInputStep2Container from '../../containers/SearchInputStep2Container/Step2Container';
+import SearchInputStep3Container from '../../containers/SearchInputStep3Container/Step3Container';
+import useSearchInput from '../../hooks/useSearchInput';
 
 const MoreItemButton = styled.div`
   width: 100%;
@@ -103,7 +103,7 @@ const SearchInputPage = () => {
       // if (step === 1) {
       //   history.replace("/search", { step: step + 1 });
       // } else {
-      history.push("/search", { step: step + 1 })
+      history.push('/search', { step: step + 1 });
     } else {
       history.push(
         `/search?address=${data.address}&addressTag=${data.addressTag}&maxTime=${data.maxTime}&minTime=${data.minTime}&transferLimit=${data.transferLimit}&transitMode=${data.transitMode}`
@@ -127,18 +127,18 @@ const SearchInputPage = () => {
       break;
   }
 
-  const prev = "< 이전으로";
-  const next = "다음으로 >";
+  const prev = '< 이전으로';
+  const next = '다음으로 >';
 
   const shake = () => {
-    const option = document.querySelector("div#option");
+    const option = document.querySelector('div#option');
     if (option) {
-      option.classList.add("apply-shake");
+      option.classList.add('apply-shake');
     }
     setTimeout(function () {
-      const option = document.querySelector("div#option");
+      const option = document.querySelector('div#option');
       if (option) {
-        option.classList.remove("apply-shake");
+        option.classList.remove('apply-shake');
       }
     }, 600);
   };
@@ -154,31 +154,31 @@ const SearchInputPage = () => {
               {step === 1 ? (
                 <></>
               ) : (
-                  <MoreItemButton onClick={() => stepPrevHandler()}>
-                    {prev}
-                  </MoreItemButton>
-                )}
+                <MoreItemButton onClick={() => stepPrevHandler()}>
+                  {prev}
+                </MoreItemButton>
+              )}
               <MoreItemButtonHovered onClick={() => stepForwardHandler()}>
                 {next}
               </MoreItemButtonHovered>
             </ButtonWrapper>
           ) : (
-              <ButtonWrapper>
-                <div className="optionWrapper">
-                  <div id="option" className="option">
-                    * 옵션을 선택해주세요
+            <ButtonWrapper>
+              <div className="optionWrapper">
+                <div id="option" className="option">
+                  * 옵션을 선택해주세요
                 </div>
-                </div>
-                {step === 1 ? (
-                  <></>
-                ) : (
-                    <MoreItemButton onClick={() => stepPrevHandler()}>
-                      {prev}
-                    </MoreItemButton>
-                  )}
-                <MoreItemButton onClick={() => shake()}>{next}</MoreItemButton>
-              </ButtonWrapper>
-            )}
+              </div>
+              {step === 1 ? (
+                <></>
+              ) : (
+                <MoreItemButton onClick={() => stepPrevHandler()}>
+                  {prev}
+                </MoreItemButton>
+              )}
+              <MoreItemButton onClick={() => shake()}>{next}</MoreItemButton>
+            </ButtonWrapper>
+          )}
         </SearchInputWrapper>
       </div>
     </>

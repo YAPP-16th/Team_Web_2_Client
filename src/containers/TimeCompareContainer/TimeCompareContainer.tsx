@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
-import DaumPostcode from "react-daum-postcode";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
 // Components
-import { Button } from "../../components/Button/Button";
+import { Button } from '../../components/Button/Button';
 import TimeCompareListItem, {
   TimeCompareListItemProps,
-} from "../../components/ListViewItem/TimeCompareListItem";
-import { IconType } from "../../components/Icon/Icon";
-import LoadingDots from "../../components/Loading/LoadingDots";
-import ZoneSearchPopUp from "../../components/SearchInputItem/SearchInputStep1/ZoneSearchPopup";
-import Dialog from "../../components/Dialog/Dialog";
+} from '../../components/ListViewItem/TimeCompareListItem';
+import LoadingDots from '../../components/Loading/LoadingDots';
+import ZoneSearchPopUp from '../../components/SearchInputItem/SearchInputStep1/ZoneSearchPopup';
+import Dialog from '../../components/Dialog/Dialog';
 
 // Utils
 import {
@@ -19,11 +17,16 @@ import {
   getTimeCompareItems,
   TimeCompareItem,
   timeCompare,
-} from "../../utils/TimeCompare/functions";
+} from '../../utils/TimeCompare/functions';
+
+// Hooks
+import useTimeCompare from '../../hooks/timeCompareHooks';
+
+// API
+import { getCoordinates } from '../../api/coordinates';
 
 // Data Types
 type TimeCompareContainerProps = {
-  startAddress: string;
   currentZoneId: number;
 };
 
@@ -167,38 +170,45 @@ const ItemAddButton = styled.a`
   }
 `;
 
-const TimeCompareContainer = ({
-  startAddress,
-  currentZoneId,
-}: TimeCompareContainerProps) => {
+const TimeCompareContainer = ({ currentZoneId }: TimeCompareContainerProps) => {
   const [timeCompareContents, setTimeCompareContents] = useState<
     TimeCompareItem[]
   >([]);
 
-  // Dummy Data
-  const selectedZoneId = 3600;
+  // TimeCompare Hooks
+  const timeCompareHook = useTimeCompare();
 
   useEffect(() => {
     let timeCompareItems = getTimeCompareItems();
 
     if (timeCompareItems === null) {
-      setDefaultTimeCompareItem(currentZoneId, selectedZoneId)
-        .then((results) => {
-          setTimeCompareContents(results);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      if (timeCompareHook.userAddress !== '주소를 설정해주세요') {
+        setDefaultTimeCompareItem(
+          currentZoneId,
+          timeCompareHook.compareLocation
+        )
+          .then((results) => {
+            setTimeCompareContents(results);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
     } else {
-      setTimeCompareContents(timeCompareItems);
+      if (timeCompareHook.userAddress !== '주소를 설정해주세요') {
+        setTimeCompareContents(timeCompareItems);
+      }
     }
-  }, []);
+  }, [timeCompareHook.userAddress]);
 
-  // Handlers - item 내용을 업데이트 할 때는 기존의 내용을 바탕으로 해야합니다.
   const updateTimeCompareItemHandler = async (
     item: TimeCompareItem,
     notCompleted?: boolean
   ) => {
+    if (notCompleted) {
+      timeCompareHook.setSetterTargetFunc('compareItemAddress');
+      timeCompareHook.setSetterModeFunc(true);
+    }
     const processed = [...timeCompareContents];
     const targetCount = processed.reduce((a, x) => {
       let matched = a;
@@ -209,7 +219,7 @@ const TimeCompareContainer = ({
     }, 0);
     if (targetCount !== 1) {
       // 중복되는 주소와 제목을 가진 아이템이 있거나, 해당하는 주소와 제목의 아이템이 없음
-      alert("중복되는 이름과 주소의 아이템이 있습니다");
+      alert('중복되는 이름과 주소의 아이템이 있습니다');
     } else {
       const targetIndex = processed.findIndex(
         (x) => x.heading === item.heading && x.address === item.address
@@ -217,7 +227,7 @@ const TimeCompareContainer = ({
       const compareSuccess = await timeCompare(
         item,
         currentZoneId,
-        selectedZoneId
+        timeCompareHook.compareLocation
       );
       if (compareSuccess) {
         item.editMode = false;
@@ -243,15 +253,15 @@ const TimeCompareContainer = ({
 
   const addTimeCompareItemHandler = async () => {
     const processed = [...timeCompareContents];
-    const defaultName = "이름을 입력해주세요";
-    const defaultAddress = "주소를 입력해주세요";
+    const defaultName = '이름을 입력해주세요';
+    const defaultAddress = '주소를 입력해주세요';
     const emptyItem = {
-      icon: "company" as const,
+      icon: 'company' as const,
       heading: defaultName,
       savingTime: 0,
       address: defaultAddress,
-      distanceFrom: "0km",
-      distanceTo: "0km",
+      distanceFrom: '0km',
+      distanceTo: '0km',
       editMode: true,
       location: {
         lat: 0,
@@ -260,6 +270,7 @@ const TimeCompareContainer = ({
     };
     processed.push(emptyItem);
     setTimeCompareContents(processed);
+    console.log('processed!', processed);
     setTimeCompareItems(processed);
   };
 
@@ -274,11 +285,18 @@ const TimeCompareContainer = ({
     setTimeCompareContents(processed);
   };
 
+  const saveChangeHandler = (item: TimeCompareItem, index: number) => {
+    const processed = [...timeCompareContents];
+    processed.splice(index, 1, item);
+    setTimeCompareContents(processed);
+    setTimeCompareItems(processed);
+  };
+
   // Dynamically Generated Elements
 
-  const timeCompareList = timeCompareContents.map((content) => {
+  const timeCompareList = timeCompareContents.map((content, index) => {
     return (
-      <div key={content.heading}>
+      <div key={index}>
         <TimeCompareListItem
           className="timecompare-item"
           icon={content.icon}
@@ -289,59 +307,98 @@ const TimeCompareContainer = ({
           distanceTo={content.distanceTo}
           editMode={content.editMode}
           content={content}
+          index={index}
           editFunc={updateTimeCompareItemHandler}
           deleteFunc={deleteTimeCompareItemHandler}
           editModeFunc={editModeTriggerHandler}
+          saveFunc={saveChangeHandler}
         />
       </div>
     );
   });
 
-  const [location, setLocation] = useState("주소를 입력하세요" as string);
-  const [isOpen, setIsOpen] = useState(false as boolean);
-  
+  const setUserLocationHandler = async (address: string) => {
+    const coordinates = await getCoordinates(address);
+    timeCompareHook.setAddress('userAddress', address);
+    timeCompareHook.setLocation('compareLocation', {
+      lat: coordinates.y,
+      lng: coordinates.x,
+    });
+  };
+
+  const setCompareItemLocationHandler = async (address: string) => {
+    timeCompareHook.setAddress('compareItemAddress', address);
+    timeCompareHook.setSetterTargetFunc('userAddress');
+  };
+
   const onClickLocationHandler = () => {
-    return setIsOpen(!isOpen);
+    return timeCompareHook.setSetterModeFunc(!timeCompareHook.setterMode);
   };
 
   return (
     <>
-      {isOpen ? (
+      {timeCompareHook.setterMode && (
         <Dialog
           className="pop_up"
-          display={isOpen}
+          show={timeCompareHook.setterMode}
           click={onClickLocationHandler}
         >
           <ZoneSearchPopUp
-            close={onClickLocationHandler}
+            close={() => {
+              onClickLocationHandler();
+            }}
             //@ts-ignore
-            setLocation={setLocation}
+            setLocation={(address: string) => {
+              if (timeCompareHook.setterTarget === 'userAddress') {
+                setUserLocationHandler(address);
+              } else if (
+                timeCompareHook.setterTarget === 'compareItemAddress'
+              ) {
+                setCompareItemLocationHandler(address);
+              }
+            }}
           />
         </Dialog>
-      ) : (
-        <TimeCompareContainerWrapper>
-          <TextSectionWrapper>
-            <BoldText>지금보다</BoldText>
-            <BoldText>얼마나 많은 시간이</BoldText>
-            <BoldText>절약될까요?</BoldText>
-          </TextSectionWrapper>
+      )}
+      <TimeCompareContainerWrapper>
+        <TextSectionWrapper>
+          <BoldText>지금보다</BoldText>
+          <BoldText>얼마나 많은 시간이</BoldText>
+          <BoldText>절약될까요?</BoldText>
+        </TextSectionWrapper>
 
-          <StartPositionSelectWrapper>
-            <PlainText>{startAddress}</PlainText>
-            <Button onClick={onClickLocationHandler}>수정</Button>
-          </StartPositionSelectWrapper>
-          <TimeCompareList>
-            {timeCompareList.length !== 0 ? (
-              timeCompareList
-            ) : (
+        <StartPositionSelectWrapper>
+          <PlainText>{timeCompareHook.userAddress}</PlainText>
+          <Button onClick={onClickLocationHandler}>수정</Button>
+        </StartPositionSelectWrapper>
+        <TimeCompareList>
+          {timeCompareHook.userAddress === '주소를 설정해주세요' && (
+            <p
+              style={{
+                color: 'white',
+              }}
+            >
+              주소가 설정되지 않았거나 추가할 아이템이 없습니다.
+            </p>
+          )}
+          {timeCompareHook.userAddress !== '주소를 설정해주세요' &&
+            timeCompareList.length === 0 && (
               <LoadingDots color="white" size="15px" />
             )}
-            <ItemAddButton onClick={addTimeCompareItemHandler}>
-              + 추가하기
-            </ItemAddButton>
-          </TimeCompareList>
-        </TimeCompareContainerWrapper>
-      )}
+          {timeCompareList.length !== 0 && timeCompareList}
+          <ItemAddButton
+            style={{
+              display:
+                timeCompareHook.userAddress === '주소를 설정해주세요'
+                  ? 'none'
+                  : 'block',
+            }}
+            onClick={addTimeCompareItemHandler}
+          >
+            + 추가하기
+          </ItemAddButton>
+        </TimeCompareList>
+      </TimeCompareContainerWrapper>
     </>
   );
 };
