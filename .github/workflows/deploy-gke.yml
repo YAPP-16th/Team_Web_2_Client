@@ -2,7 +2,7 @@ name: Build and Deploy to GKE
 
 on:
   pull_request:
-    types: [closed]
+    types: [opened]
     branches: 
       - master
 
@@ -16,6 +16,8 @@ env:
   IMAGE: ${{ secrets.IMAGE }}
   REGISTRY_HOSTNAME: ${{ secrets.REGISTRY_HOSTNAME }}
   DEPLOYMENT_NAME: ${{ secrets.DEPLOYMENT_NAME }}
+  REACT_APP_SERVER: ${{ secrets.REACT_APP_SERVER }}
+  REACT_APP_NAVER_MAP_KEY: ${{ secrets.REACT_APP_NAVER_MAP_KEY }}
 
 jobs:
   setup-build-publish-deploy:
@@ -33,6 +35,14 @@ jobs:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
         service_account_email: ${{ secrets.GKE_EMAIL }}
         service_account_key: ${{ secrets.GKE_KEY }}
+
+    # set .env value
+    - name: set .env.* file
+      run: |
+        sed -i '1s/=/&${{ secrets.REACT_APP_SERVER }}/' .env.production
+        sed -i '2s/=/&${{ secrets.REACT_APP_NAVER_MAP_KEY }}/' .env.production
+        sed -i '1s/=/&${{ secrets.REACT_APP_SERVER }}/' .env.development
+        sed -i '2s/=/&${{ secrets.REACT_APP_NAVER_MAP_KEY }}/' .env.development
 
     # Configure docker to use the gcloud command-line tool as a credential helper
     - run: |
