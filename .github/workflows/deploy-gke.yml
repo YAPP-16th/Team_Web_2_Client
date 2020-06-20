@@ -16,8 +16,8 @@ env:
   IMAGE: ${{ secrets.IMAGE }}
   REGISTRY_HOSTNAME: ${{ secrets.REGISTRY_HOSTNAME }}
   DEPLOYMENT_NAME: ${{ secrets.DEPLOYMENT_NAME }}
-  REACT_APP_SERVER: ${{ secrets.REACT_APP_SERVER }}
-  REACT_APP_NAVER_MAP_KEY: ${{ secrets.REACT_APP_NAVER_MAP_KEY }}
+  SERVER: ${{ secrets.REACT_APP_SERVER }}
+  NAVER_MAP_KEY: ${{ secrets.REACT_APP_NAVER_MAP_KEY }}
 
 jobs:
   setup-build-publish-deploy:
@@ -31,10 +31,10 @@ jobs:
     # set .env value
     - name: set .env.* file
       run: |
-        sed -i '1s/=/&'${REACT_APP_SERVER}'/' .env.production
-        sed -i '2s/=/&'${REACT_APP_NAVER_MAP_KEY}'/' .env.production
-        sed -i '1s/=/&'${REACT_APP_SERVER}'/' .env.development
-        sed -i '2s/=/&'${REACT_APP_NAVER_MAP_KEY}'/' .env.development
+        sed -i "1s/=/&$SERVER/" .env.production
+        sed -i "2s/=/&${NAVER_MAP_KEY}/" .env.production
+        sed -i "1s/=/&${SERVER}/" .env.development
+        sed -i "2s/=/&${NAVER_MAP_KEY}/" .env.development
 
     # Setup gcloud CLI
     - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
