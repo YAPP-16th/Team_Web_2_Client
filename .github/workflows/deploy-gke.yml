@@ -28,6 +28,14 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
+    # set .env value
+    - name: set .env.* file
+      run: |
+        sed -i '1s/=/&'${REACT_APP_SERVER}'/' .env.production
+        sed -i '2s/=/&'${REACT_APP_NAVER_MAP_KEY}'/' .env.production
+        sed -i '1s/=/&'${REACT_APP_SERVER}'/' .env.development
+        sed -i '2s/=/&'${REACT_APP_NAVER_MAP_KEY}'/' .env.development
+
     # Setup gcloud CLI
     - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
       with:
@@ -35,14 +43,6 @@ jobs:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
         service_account_email: ${{ secrets.GKE_EMAIL }}
         service_account_key: ${{ secrets.GKE_KEY }}
-
-    # set .env value
-    - name: set .env.* file
-      run: |
-        sed -i '1s/=/&${{ secrets.REACT_APP_SERVER }}/' .env.production
-        sed -i '2s/=/&${{ secrets.REACT_APP_NAVER_MAP_KEY }}/' .env.production
-        sed -i '1s/=/&${{ secrets.REACT_APP_SERVER }}/' .env.development
-        sed -i '2s/=/&${{ secrets.REACT_APP_NAVER_MAP_KEY }}/' .env.development
 
     # Configure docker to use the gcloud command-line tool as a credential helper
     - run: |
