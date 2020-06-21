@@ -116,7 +116,7 @@ const SearchInput2 = () => {
           <span className="Rectangle_ment">선택해주세요</span>
         </div>
       </div>
-      <div className="contents">
+      <div className="contents" style={{ marginLeft: '20px' }}>
         {transportList}
       </div>
     </>
