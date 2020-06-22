@@ -1,0 +1,499 @@
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(35px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+
+  
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(35px);
+  }
+}
+
+@keyframes slide-up-desktop {
+  0% {
+    transform: translateY(50px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+
+  
+}
+
+@keyframes slide-down-desktop {
+  0% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(50px);
+  }
+}
+
+
+
+.image-wrapper {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0px;
+  z-index: 10;
+  bottom: -54px;
+  display: none;
+  overflow: hidden;
+  .mockup-image {
+    position: absolute;
+    z-index: 11;
+    bottom: -94px;
+    right: calc(1 / 6 * 100%); 
+  }
+  @media screen and (min-width: 1060px) {
+    display: block;
+  }
+}
+
+.bg-video {
+  position: relative;
+  width: 100%;
+  top: -750px;
+  height: 750px;
+  object-fit: cover;
+  z-index: 10;
+  @media screen and (min-width: 768px) {
+    top: -1426px;
+    height: 1366px;
+  }
+  @media screen and (min-width: 1060px) {
+    display: none;
+  }
+}
+
+
+.landing-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  z-index: 11;
+  top: -54px;
+
+  .intro {
+    position: relative;
+    
+
+    .logo {
+      position: absolute;
+      z-index: 11;
+      margin-top: 135px;
+      left: 0px;
+      @media screen and (min-width: 1060px) {
+        margin-top: 204px;
+      }
+    }
+
+    .emphasized-text-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 150px;
+      top: 8.5px;
+      height: 36px;
+      overflow: hidden;
+      @media screen and (min-width: 1060px) {
+        width: 170px;
+        top: 3.5px;
+        height: 42px;
+      }
+      .emphasized-text1 {
+        position: relative;
+        display: inline-block;
+        color: var(--PrimaryColor);
+        // transform: translateY(30px);
+      }
+      .emphasized-text2 {
+        position: absolute;
+        display: inline-block;
+        color: var(--PrimaryColor);
+        left: 0px;
+        top: -35px;
+        @media screen and (min-width: 1060px) {
+          top: -50px;
+        }
+        // transform: translateY(30px);
+      }
+      .emphasized-text-slide-down {
+        animation: slide-down 1s forwards;
+        @media screen and (min-width: 1060px) {
+          animation: slide-down-desktop 1s forwards;
+        }
+      }
+
+      .emphasized-text-slide-up {
+        animation: slide-up 1s forwards;
+        @media screen and (min-width: 1060px) {
+          animation: slide-up-desktop 1s forwards;
+        }
+      }
+    }
+
+    
+
+    .intro-text {
+      position: relative;
+      z-index: 11;
+
+      margin-top: 180px;
+      font-size: 26px;
+      font-weight: 100;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.5;
+      letter-spacing: -1.3px;
+      color: var(--LightTextColor);
+      @media screen and (min-width: 1060px) {
+        display: none;
+      }
+    }
+
+    .intro-text-desktop {
+      position: relative;
+      z-index: 11;
+      display: none;
+
+      margin-top: 251px;
+      font-size: 36px;
+      font-weight: 300; 
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.39;
+      letter-spacing: -1.8px;
+      color: var(--LightTextColor);
+      @media screen and (min-width: 1060px) {
+        display: block;
+      }
+    }
+
+    .intro-sub-text {
+      position: relative;
+      z-index: 11;
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: thin;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.43;
+      letter-spacing: -0.7px;
+      color: var(--DarkTextColor);
+
+      @media screen and (min-width: 1060px) {
+        margin-top: 18px;
+        display: block;
+        font-size: 20px;
+        font-weight: 300;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.4;
+        letter-spacing: -1px;
+      }
+
+      
+    }
+
+    .intro-button {
+      position: relative;
+      width: 176px;
+      z-index: 11;
+      padding: 6px 38px;
+      font-size: 14px;
+      font-weight: 500;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 2.79;
+      letter-spacing: -0.7px;
+      border-radius: 24.5px;
+      background-color: var(--PrimaryColor);
+      margin-top: 46px;
+
+      @media screen and (min-width: 1060px) {
+        margin-top: 64px;
+        width: 222px;
+        font-size: 20px;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.95;
+        letter-spacing: -1px;
+      }
+
+
+      > a {
+        display: flex;
+        align-items: center;
+        color: var(--BackgroundColor);
+      }
+      .next-icon {
+        margin-left: 12px;
+        position: relative;
+        top: -2px;
+      }
+    }
+  }
+
+  .scroll-text {
+    display: flex;
+    align-items: center;
+    margin-top: 200px;
+    margin-left: 15px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    position: relative;
+    z-index: 11;
+    color: var(--DarkTextColor);
+    font-size: 18px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.8px;
+
+    &::before {
+      content: "scroll down";
+      position: absolute;
+      z-index: 1;
+      color: white;
+      animation: blink 2s infinite;
+      animation-timing-function: ease-in-out;
+    }
+
+    @media screen and (min-width: 1060px) {
+      display: none;
+    }
+  }
+
+  .scroll-text-desktop {
+    display: none;
+    position: relative;
+    margin-top: 100px;
+    z-index: 11;
+    font-size: 18px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.8px;
+    color: var(--DarkTextColor);
+    &::before {
+      content: "scroll down";
+      position: absolute;
+      z-index: 1;
+      color: white;
+      animation: blink 2s infinite;
+      animation-timing-function: ease-in-out;
+    }
+    @media screen and (min-width: 1060px) {
+      display: block;
+    }
+  }
+}
+
+.landing-page-desc {
+  position: relative;
+  top: -750px;
+
+  @media screen and (min-width: 768px) {
+    top: -1350px;
+  }
+
+  @media screen and (min-width: 1060px) {
+    top: 0px;
+  }
+
+  &:last-child {
+    background-color: var(--IntroDescBackgroundColor);
+  }
+
+  .desc-intro {
+    padding: 47px 30px;
+    height: fit-content;
+    .desc-intro-text {
+      font-size: 24px;
+      font-weight: 100;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.46;
+      letter-spacing: -1.2px;
+      color: var(--LightTextColor);
+
+      @media screen and (min-width: 1060px) {
+        text-align: center;
+        font-size: 36px;
+        margin-top: 100px;
+        margin-bottom: 100px;
+        .text-break {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .desc-intro-cards-wrapper {
+    overflow: hidden;
+    overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      height: 0px;
+      background: none;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: var(--ItemColor);
+      border-radius: 22px;
+      opacity: 0.4;
+    }
+    &::-webkit-scrollbar-track {
+      background: none;
+    }
+
+    .desc-intro-cards {
+      width: 200%;
+      @media screen and (min-width: 1060px) {
+        width: 100%;
+        justify-content: center;
+      }
+      display: flex;
+      justify-content: space-around;
+      position: relative;
+      .desc-intro-card {
+        width: 100%;
+        @media screen and (min-width: 1060px) {
+          width: initial;
+
+          &:nth-child(1) {
+            margin-right: 120px;
+          }
+
+          &:nth-child(2) {
+            margin-left: 120px;
+          }
+        }
+
+        position: relative;
+        z-index: 10;
+
+        .desc-content {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .card-image-wrapper {
+            position: relative;
+            .card-image {
+              position: relative;
+              right: 8px;
+              width: 194px;
+              height: 194px;
+              margin-bottom: 58px;
+
+              @media screen and (min-width: 1060px) {
+                width: 253px;
+                height: 253px;
+                margin-bottom: 92px;
+              }
+            }
+      
+            .card-slide-button-right {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              position: absolute;
+              border-radius: 50%;
+              top: 92px;
+              right: 0px;
+              background-color: rgb(255, 255, 255);
+              transform: rotate(-180deg);
+              width: 20px;
+              height: 20px;
+              @media screen and (min-width: 1060px) {
+                display: none;
+              }
+            }
+      
+            .card-slide-button-left {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              position: absolute;
+              border-radius: 50%;
+              top: 92px;
+              left: 0px;
+              background-color: rgb(255, 255, 255);
+              width: 20px;
+              height: 20px;
+              @media screen and (min-width: 1060px) {
+                display: none;
+              }
+            }
+          }
+          .card-title {
+            font-size: 20px;
+            font-weight: 500;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.35;
+            letter-spacing: -1px;
+            text-align: center;
+            margin-bottom: 21px;
+            color: var(--LightTextColor);
+
+            @media screen and (min-width: 1060px) {
+              font-size: 30px;
+            }
+          }
+    
+          .card-text {
+            font-size: 16px;
+            font-weight: 300;
+            font-stretch: normal;
+            font-style: normal;
+            line-height: 1.5;
+            letter-spacing: -0.8px;
+            text-align: center;
+            color: var(--DarkTextColor);
+            margin-bottom: 42px;
+
+            @media screen and (min-width: 1060px) {
+              font-size: 20px;
+              margin-bottom: 148px;
+            }
+          }
+        }
+      }
+    }
+  } 
+}
+

@@ -1,0 +1,11 @@
+.Rectangle.NonTranslatedRectangle{
+    background-color: rgba(42,42,42,1);
+}
+
+.TransportDetailRectangle .check1{
+    margin-left: 40px;
+
+    @media screen and (min-width: 1060px) {
+        margin-left: 52px;
+    }
+}
