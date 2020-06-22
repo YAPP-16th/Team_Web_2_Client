@@ -1,25 +1,18 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import {
-  HashRouter,
-  Route,
-  Switch,
-  useLocation,
-  useHistory,
-} from 'react-router-dom';
+import React, { useEffect, useState, useCallback } from "react";
+import { useLocation, useHistory } from "react-router-dom";
 
-import queryString from 'query-string';
+import queryString from "query-string";
 
 // Page
-import ZoneDetailPage from '../ZoneDetailPage/ZoneDetailPage';
-import ZoneSearchResultContainer from '../../containers/ZoneSearchResultContainer/ZoneSearchResultContainer';
+import ZoneSearchResultContainer from "../../containers/ZoneSearchResultContainer/ZoneSearchResultContainer";
 
 // Test
-import { getTestZones } from '../../api/zoneAPI';
-import LoadingContainer from '../../containers/LoadingContainer/LoadingContainer';
-import ModalHooks from '../../hooks/ModalHooks';
+import { getTestZones } from "../../api/zoneAPI";
+import LoadingContainer from "../../containers/LoadingContainer/LoadingContainer";
+import ModalHooks from "../../hooks/ModalHooks";
 
 // Hooks
-import useTimeCompare from '../../hooks/timeCompareHooks';
+import useTimeCompare from "../../hooks/timeCompareHooks";
 
 interface loadingContainer {
   data: locationData;
@@ -47,31 +40,31 @@ const createLoadingContainer = (props: loadingContainer) => {
 };
 
 const convertSearchInfoData = (params: any) => {
-  const type = '회사';
-  let transitMode = '';
-  let transferLimit = '환승 여부 상관없음';
+  const type = "회사";
+  let transitMode = "";
+  let transferLimit = "환승 여부 상관없음";
 
   switch (params.transitMode) {
-    case 'subway':
-      transitMode = '지하철';
+    case "subway":
+      transitMode = "지하철";
       break;
-    case 'bus':
-      transitMode = '버스';
+    case "bus":
+      transitMode = "버스";
       break;
     default:
-      transitMode = '지하철&버스';
+      transitMode = "지하철&버스";
       break;
   }
 
   switch (params.transferLimit) {
     case 0:
-      transferLimit = '환승 없음';
+      transferLimit = "환승 없음";
       break;
     case 1:
-      transferLimit = '1회 환승';
+      transferLimit = "1회 환승";
       break;
     case 2:
-      transferLimit = '2회 환승';
+      transferLimit = "2회 환승";
       break;
     default:
       break;
@@ -100,16 +93,16 @@ const ZoneSearchResultPage = () => {
   const requestZones = useCallback(
     async (data: any) => {
       const headers = {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers':
-          'Origin, X-Requested-With, Content-Type, Accept',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers":
+          "Origin, X-Requested-With, Content-Type, Accept",
       };
 
       try {
         const res = await getTestZones({ headers, data });
 
         // 이용자가 설정한 주소 저장
-        timeCompare.setLocation('userLocation', {
+        timeCompare.setLocation("userLocation", {
           lat: res.inputLocation.y,
           lng: res.inputLocation.x,
         });
@@ -141,10 +134,10 @@ const ZoneSearchResultPage = () => {
     if (
       location.hash &&
       !location.hash.match(/zone/) &&
-      !zoneData.hasOwnProperty('data')
+      !zoneData.hasOwnProperty("data")
     ) {
       const closeCallback = () => {
-        const result = window.confirm('변경사항이 저장되지 않을 수 있습니다.');
+        const result = window.confirm("변경사항이 저장되지 않을 수 있습니다.");
 
         if (result) {
           history.goBack();
@@ -159,29 +152,10 @@ const ZoneSearchResultPage = () => {
     }
   }, [location.hash]);
 
-  return (
-    <HashRouter basename="/zone">
-      <Switch>
-        <Route exact path="/">
-          {!modal.bShow && (
-            <ZoneSearchResultContainer
-              zonedata={zoneData}
-              searchData={searchData}
-            />
-          )}
-        </Route>
-        <Route
-          exact
-          path="/:id/:feature"
-          component={() => (
-            <ZoneDetailPage
-              startLat={timeCompare.userLocation.lat}
-              startLng={timeCompare.userLocation.lng}
-            />
-          )}
-        />
-      </Switch>
-    </HashRouter>
+  return !modal.bShow ? (
+    <ZoneSearchResultContainer zonedata={zoneData} searchData={searchData} />
+  ) : (
+    <></>
   );
 };
 

@@ -28,11 +28,13 @@ const ZoneCodeWrapper = styled.div`
   font-style: normal;
   line-height: 1.76;
   letter-spacing: -0.76px;
+  cursor: pointer;
 `;
 
 const ZoneDetailInfo = styled.div`
   display:flex;
   justify-content: space-between;
+  cursor: pointer;
 `
 
 const ZoneNameWrapper = styled.div`
