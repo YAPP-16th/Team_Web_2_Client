@@ -9,6 +9,7 @@ import useListView from "../../hooks/listViewHooks";
 import SearchResultItem from "../../components/ListViewItem/SearchResultItem";
 
 import ModalHooks from "../../hooks/ModalHooks";
+import PromoteContainer from "../PromoteContainer/PromoteContainer";
 
 // Animations
 const moveUp = keyframes`
@@ -183,21 +184,21 @@ const ListViewContainer = ({ data = items }: { data?: Array<any> }) => {
      * setContainer에 팝업 만든거 넣어주면 되요
      * continaer안쪽에서 닫는거는 modal.closeModal
      */
-    // modal.setContainer();
-    // modal.openModal();
+    modal.setContainer(<PromoteContainer />);
+    modal.openModal();
     listView.toggle();
   };
 
   const searchResultItemList = data.map((item: any) => {
     return (
       <div key={item.id} data-testid="searchResult-item">
-          <SearchResultItem
-            id={item.id}
-            zoneCode={item.zoneCode}
-            zoneName={item.zoneName}
-            distance={item.distance}
-            onClick={onItemClickHandler}
-          />
+        <SearchResultItem
+          id={item.id}
+          zoneCode={item.zoneCode}
+          zoneName={item.zoneName}
+          distance={item.distance}
+          onClick={onItemClickHandler}
+        />
       </div>
     );
   });
