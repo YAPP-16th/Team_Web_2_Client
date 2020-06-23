@@ -23,7 +23,7 @@ describe("ZoneSearchResultContainer 컴포넌트", () => {
           <ZoneSearchResultContainer></ZoneSearchResultContainer>
         </Provider>
       );
-      
+
       expect(container.innerHTML).toMatch(/개의/);
       expect(container.innerHTML).toMatch(/ZONE/);
       expect(container.innerHTML).toMatch(/검색되었습니다./);
@@ -73,10 +73,10 @@ describe("ZoneSearchResultContainer 컴포넌트", () => {
       expect(container.innerHTML).toMatch("버스");
       expect(container.innerHTML).toMatch("10 - 20분");
       expect(container.innerHTML).toMatch("1회 환승");
-      expect(container.innerHTML).toMatch(`href="#/zone/1/timecompare"`);
-      expect(container.innerHTML).toMatch("ZONE 46975");
-      expect(container.innerHTML).toMatch("부산광역시 사상구 광장로104번길 15-6");
-      expect(container.innerHTML).toMatch("3.4km");
+      // expect(container.innerHTML).toMatch(`href="#/zone/1/timecompare"`);
+      // expect(container.innerHTML).toMatch("ZONE 46975");
+      // expect(container.innerHTML).toMatch("부산광역시 사상구 광장로104번길 15-6");
+      // expect(container.innerHTML).toMatch("3.4km");
     });
   });
 });
