@@ -1,10 +1,6 @@
 import React from "react";
 import Styled from "styled-components";
-import { ReactComponent as twinkle } from "../../assets/svgs/loading-twinkle.svg";
-import { ReactComponent as close } from "../../assets/svgs/icons/icon-close.svg";
-import modal from "../../modules/modal";
 import Icon from "../../components/Icon/Icon";
-import { Link } from "react-router-dom";
 import ModalHooks from "../../hooks/ModalHooks";
 
 const DEVICE_SIZE = {
@@ -114,12 +110,12 @@ const PromoteContainer = () => {
         <br />
         <BtnWrapper>
           <NoBtn onClick={closeHandler}>안할래요</NoBtn>
-          <Link to="/">
+          <div onClick={() => window.location.assign("https://chajazone.typeform.com/to/f5wEhRkp")}>
             <YesBtn>30초만에 신청하기</YesBtn>
-          </Link>
+          </div>
         </BtnWrapper>
       </TextWrapper>
-    </Container>
+    </Container >
   )
 }
 
