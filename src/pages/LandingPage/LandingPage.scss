@@ -20,8 +20,6 @@
   100% {
     transform: translateY(0px);
   }
-
-  
 }
 
 @keyframes slide-down {
@@ -42,8 +40,6 @@
   100% {
     transform: translateY(0px);
   }
-
-  
 }
 
 @keyframes slide-down-desktop {
@@ -55,8 +51,6 @@
     transform: translateY(50px);
   }
 }
-
-
 
 .image-wrapper {
   width: 100%;
@@ -71,7 +65,7 @@
     position: absolute;
     z-index: 11;
     bottom: -94px;
-    right: calc(1 / 6 * 100%); 
+    right: calc(1 / 6 * 100%);
   }
   @media screen and (min-width: 1060px) {
     display: block;
@@ -94,7 +88,6 @@
   }
 }
 
-
 .landing-page {
   position: relative;
   width: 100%;
@@ -106,7 +99,6 @@
 
   .intro {
     position: relative;
-    
 
     .logo {
       position: absolute;
@@ -162,8 +154,6 @@
       }
     }
 
-    
-
     .intro-text {
       position: relative;
       z-index: 11;
@@ -188,7 +178,7 @@
 
       margin-top: 251px;
       font-size: 36px;
-      font-weight: 300; 
+      font-weight: 300;
       font-stretch: normal;
       font-style: normal;
       line-height: 1.39;
@@ -221,8 +211,6 @@
         line-height: 1.4;
         letter-spacing: -1px;
       }
-
-      
     }
 
     .intro-button {
@@ -251,12 +239,9 @@
         letter-spacing: -1px;
       }
 
-
-      > a {
-        display: flex;
-        align-items: center;
-        color: var(--BackgroundColor);
-      }
+      display: flex;
+      align-items: center;
+      color: var(--BackgroundColor);
       .next-icon {
         margin-left: 12px;
         position: relative;
@@ -283,7 +268,7 @@
     letter-spacing: -0.8px;
 
     &::before {
-      content: "scroll down";
+      content: 'scroll down';
       position: absolute;
       z-index: 1;
       color: white;
@@ -309,7 +294,7 @@
     letter-spacing: -0.8px;
     color: var(--DarkTextColor);
     &::before {
-      content: "scroll down";
+      content: 'scroll down';
       position: absolute;
       z-index: 1;
       color: white;
@@ -425,7 +410,7 @@
                 margin-bottom: 92px;
               }
             }
-      
+
             .card-slide-button-right {
               display: flex;
               justify-content: center;
@@ -442,7 +427,7 @@
                 display: none;
               }
             }
-      
+
             .card-slide-button-left {
               display: flex;
               justify-content: center;
@@ -474,7 +459,7 @@
               font-size: 30px;
             }
           }
-    
+
           .card-text {
             font-size: 16px;
             font-weight: 300;
@@ -494,6 +479,5 @@
         }
       }
     }
-  } 
+  }
 }
-

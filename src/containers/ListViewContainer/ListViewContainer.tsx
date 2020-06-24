@@ -1,12 +1,12 @@
-import React, { MouseEvent } from "react";
-import styled, { keyframes } from "styled-components";
-import { Link, HashRouter } from "react-router-dom";
+import React, { MouseEvent } from 'react';
+import styled, { keyframes } from 'styled-components';
+import { Link, HashRouter } from 'react-router-dom';
 
 // Custom Hooks
-import useListView from "../../hooks/listViewHooks";
+import useListView from '../../hooks/listViewHooks';
 
 // Components
-import SearchResultItem from "../../components/ListViewItem/SearchResultItem";
+import SearchResultItem from '../../components/ListViewItem/SearchResultItem';
 
 // Animations
 const moveUp = keyframes`
@@ -145,19 +145,19 @@ const ModalBody = styled.div`
 
 // Dummy Data
 const items = [
-  { id: 1, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
-  { id: 2, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
-  { id: 3, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
-  { id: 4, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
-  { id: 5, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
-  { id: 6, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
-  { id: 7, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
-  { id: 8, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
-  { id: 9, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
-  { id: 10, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
-  { id: 11, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
-  { id: 12, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
-  { id: 13, zoneCode: 602011, zoneName: "강남구 역삼 1동", distance: 11.5 },
+  { id: 1, zoneCode: 602011, zoneName: '강남구 역삼 1동', distance: 11.5 },
+  { id: 2, zoneCode: 602011, zoneName: '강남구 역삼 1동', distance: 11.5 },
+  { id: 3, zoneCode: 602011, zoneName: '강남구 역삼 1동', distance: 11.5 },
+  { id: 4, zoneCode: 602011, zoneName: '강남구 역삼 1동', distance: 11.5 },
+  { id: 5, zoneCode: 602011, zoneName: '강남구 역삼 1동', distance: 11.5 },
+  { id: 6, zoneCode: 602011, zoneName: '강남구 역삼 1동', distance: 11.5 },
+  { id: 7, zoneCode: 602011, zoneName: '강남구 역삼 1동', distance: 11.5 },
+  { id: 8, zoneCode: 602011, zoneName: '강남구 역삼 1동', distance: 11.5 },
+  { id: 9, zoneCode: 602011, zoneName: '강남구 역삼 1동', distance: 11.5 },
+  { id: 10, zoneCode: 602011, zoneName: '강남구 역삼 1동', distance: 11.5 },
+  { id: 11, zoneCode: 602011, zoneName: '강남구 역삼 1동', distance: 11.5 },
+  { id: 12, zoneCode: 602011, zoneName: '강남구 역삼 1동', distance: 11.5 },
+  { id: 13, zoneCode: 602011, zoneName: '강남구 역삼 1동', distance: 11.5 },
 ];
 
 const ListViewContainer = ({ data = items }: { data?: Array<any> }) => {
@@ -168,13 +168,13 @@ const ListViewContainer = ({ data = items }: { data?: Array<any> }) => {
   const onToggleHandler = (e: MouseEvent) => {
     listView.toggle();
     if (listView.toggled) {
-      e.currentTarget.innerHTML = "리스트뷰 +";
+      e.currentTarget.innerHTML = '리스트뷰 +';
     } else {
-      e.currentTarget.innerHTML = "리스트뷰 -";
+      e.currentTarget.innerHTML = '리스트뷰 -';
     }
   };
 
-  const onItemClickHandler = (id: string | number) => {
+  const onItemClickHandler = () => {
     listView.toggle();
   };
 
@@ -182,7 +182,7 @@ const ListViewContainer = ({ data = items }: { data?: Array<any> }) => {
   const searchResultItemList = data.map((item: any) => {
     return (
       <div key={item.id} data-testid="searchResult-item">
-        <Link to={`/${item.id}/timecompare`}>
+        <Link to={`/${item.zoneCode}/timecompare`}>
           <SearchResultItem
             id={item.id}
             zoneCode={item.zoneCode}
@@ -200,7 +200,7 @@ const ListViewContainer = ({ data = items }: { data?: Array<any> }) => {
       <ListViewContainerWrapper clicked={listView.toggled}>
         <ModalHeader>
           <span className="text">
-            {listView.toggled ? `${items.length}개의 ZONE` : ""}
+            {listView.toggled ? `${items.length}개의 ZONE` : ''}
           </span>
           <span className="button" onMouseUp={onToggleHandler}>
             리스트뷰 +

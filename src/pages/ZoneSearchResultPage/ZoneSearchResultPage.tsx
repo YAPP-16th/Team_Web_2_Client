@@ -117,6 +117,16 @@ const ZoneSearchResultPage = () => {
         setZoneData({
           inputLocation: res.inputLocation,
           data: res.data.map((value: any) => {
+            console.log(value);
+            let zoneName;
+            if (value.address.address) {
+              zoneName = value.address.address;
+            } else {
+              zoneName = `
+              ${value.address.sido ? value.address.sido : ''} 
+              ${value.address.sigungu ? value.address.sigungu : ''} 
+              ${value.address.dong ? value.address.dong : ''}`;
+            }
             return {
               id: value.id,
               x: value.location.lat,
@@ -124,7 +134,7 @@ const ZoneSearchResultPage = () => {
               polygon: value.polygon,
               rooms: value.rooms,
               zoneCode: value.zipcode,
-              zoneName: value.address.address,
+              zoneName: zoneName,
               distance: value.distance,
             };
           }),

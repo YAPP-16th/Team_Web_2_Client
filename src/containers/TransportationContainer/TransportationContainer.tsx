@@ -132,7 +132,7 @@ const ZoneCode = styled.h1`
 const TagButtonsWrapper = styled.div`
   display: flex;
   margin-bottom: 41px;
-  > a {
+  > button {
     margin-right: 13px;
     margin-bottom: 18px;
   }
