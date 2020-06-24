@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
-import { Place } from "../../api/places";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import { Place } from '../../api/places';
+import styled from 'styled-components';
 import {
   Link,
   HashRouter,
   withRouter,
   RouteComponentProps,
-} from "react-router-dom";
+} from 'react-router-dom';
 
 // Custom Hooks
-import usePlace from "../../hooks/placeHooks";
+import usePlace from '../../hooks/placeHooks';
 
 // Components
-import PlaceListItem from "../../components/ListViewItem/PlaceListItem";
-import { TagButton } from "../../components/Button/Button";
-import LoadingDots from "../../components/Loading/LoadingDots";
-import Icon from "../../components/Icon/Icon";
+import PlaceListItem from '../../components/ListViewItem/PlaceListItem';
+import { TagButton } from '../../components/Button/Button';
+import LoadingDots from '../../components/Loading/LoadingDots';
+import Icon from '../../components/Icon/Icon';
 
 // Type
 type PlaceContainerProps = {
@@ -45,6 +45,7 @@ const PlaceListItemsWrapper = styled.div`
       align-items: center;
       justify-content: space-between;
       padding: 31px 37px;
+      min-height: 134px;
 
       h1 {
         font-size: 24px;
@@ -62,6 +63,7 @@ const PlaceListItemsWrapper = styled.div`
         font-style: normal;
         line-height: 1.88;
         letter-spacing: -0.71px;
+        text-align: right;
       }
     }
   }
@@ -157,7 +159,7 @@ const PlaceContainer = ({ zoneId }: PlaceContainerProps) => {
   }, []);
 
   const [selectedPlaceContent, setSelectedPlaceContent] = useState<Place>({
-    categoryName: "",
+    categoryName: '',
     size: 0,
     placeVoList: [],
   });
@@ -206,12 +208,14 @@ const PlaceContainer = ({ zoneId }: PlaceContainerProps) => {
       <PlacesTagButtonsDraggableArea>
         {place.loading && <LoadingDots color="white" size="15px" />}
         {place.error && (
-          <p style={{ textAlign: "center", color: "white" }}>에러발생</p>
+          <p style={{ textAlign: 'center', color: 'white' }}>에러발생</p>
         )}
         {place.data.length !== 0 && (
           <PlacesTagButtonsWrapper>
             {placesTagButtons}
-            <div className="scroll-indicator"><Icon icon="back" color="black" size="6px" /></div>
+            <div className="scroll-indicator">
+              <Icon icon="back" color="black" size="6px" />
+            </div>
           </PlacesTagButtonsWrapper>
         )}
       </PlacesTagButtonsDraggableArea>

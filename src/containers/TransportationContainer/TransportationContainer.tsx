@@ -9,10 +9,7 @@ import TransportationListItem from '../../components/ListViewItem/Transportation
 import { TagButton } from '../../components/Button/Button';
 import LoadingDots from '../../components/Loading/LoadingDots';
 
-type TransportationContainerProps = TransitQuery & {
-  zoneCode: string | number;
-  zoneAddress: string;
-};
+type TransportationContainerProps = TransitQuery;
 
 const TransportationContainerWrapper = styled.div`
   background-color: var(--BackgroundColor);

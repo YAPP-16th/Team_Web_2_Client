@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 export type PlaceListItemProps = {
   heading: string;
@@ -23,7 +23,6 @@ const PlaceListItemWrapper = styled.a`
   &:active {
     opacity: 0.5;
   }
-
 `;
 
 const PlaceListItemHeading = styled.h1`
@@ -34,6 +33,7 @@ const PlaceListItemHeading = styled.h1`
   font-style: normal;
   line-height: normal;
   letter-spacing: -0.8px;
+  margin-right: 40px;
 `;
 
 const PlaceListItemDescription = styled.h2`
