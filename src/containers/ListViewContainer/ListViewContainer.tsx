@@ -182,7 +182,7 @@ const ListViewContainer = ({ data = items }: { data?: Array<any> }) => {
   const searchResultItemList = data.map((item: any) => {
     return (
       <div key={item.id} data-testid="searchResult-item">
-        <Link to={`/${item.zoneCode}/timecompare`}>
+        <Link to={`/${item.id}/timecompare`}>
           <SearchResultItem
             id={item.id}
             zoneCode={item.zoneCode}
