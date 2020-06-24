@@ -1,8 +1,8 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 // Icon
-import Icon from "../Icon/Icon";
+import Icon from '../Icon/Icon';
 
 type CurrentItemInfoProps = {
   address: string | number;
@@ -13,11 +13,11 @@ type CurrentItemInfoProps = {
 const CurrentItemInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;  
+  align-items: center;
 `;
 
 const Address = styled.h1`
-  font-family: NotoSansRegular;
+  font-family: NotoSansDemiLight;
   color: var(--LightTextColor);
   font-size: 16px;
   font-weight: 300;
@@ -46,7 +46,7 @@ const ZoneCode = styled.h2`
 const CurrentItemInfo = ({
   address,
   zoneCode,
-  className
+  className,
 }: CurrentItemInfoProps) => {
   return (
     <CurrentItemInfoWrapper className={className}>

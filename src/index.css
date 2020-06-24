@@ -45,7 +45,6 @@ code {
 
 #root {
   height: 100%;
-
   --BackgroundColor: #1d1d1d;
   --FadedBackgroundColor: rgba(29, 29, 29, 0.9);
   --IntroDescBackgroundColor: #242424;
@@ -59,6 +58,11 @@ code {
 }
 
 /* FONTS */
+
+@font-face {
+  font-family: NotoSansDemiLight;
+  src: url('./assets/fonts/NotoSansKR-DemiLight.woff2');
+}
 
 @font-face {
   font-family: NotoSansLight;

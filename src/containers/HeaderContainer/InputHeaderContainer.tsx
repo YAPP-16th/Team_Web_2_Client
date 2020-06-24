@@ -1,14 +1,14 @@
-import React, { useCallback } from "react";
-import styled from "styled-components";
-import { useHistory, useLocation } from "react-router-dom";
+import React, { useCallback } from 'react';
+import styled from 'styled-components';
+import { useHistory, useLocation } from 'react-router-dom';
 
 // Components
-import Toolbar from "../../components/Toolbar/Toolbar";
-import InputIcon from "../../components/Icon/InputIcon";
+import Toolbar from '../../components/Toolbar/Toolbar';
+import InputIcon from '../../components/Icon/InputIcon';
 
 type InputHeaderContainerProps = {
   displayLogo?: boolean;
-}
+};
 
 interface RightContentsProps {
   history: any;
@@ -24,7 +24,6 @@ const RightContentsWrapper = styled.div`
   display: flex;
   width: 48px;
   height: 27px;
-  font-family: NotoSansCJKkr;
   font-size: 18px;
   font-weight: 500;
   font-stretch: normal;
@@ -47,8 +46,8 @@ const rightContents = (props: RightContentsProps) => {
   const { history } = props;
 
   const finishClick = () => {
-    alert("홈 화면으로 돌아갑니다. 변경사항은 저장됩니다.");
-    history.push("/");
+    alert('홈 화면으로 돌아갑니다. 변경사항은 저장됩니다.');
+    history.push('/');
   };
 
   return (
@@ -67,7 +66,6 @@ const InputHeaderContainer = ({ displayLogo }: InputHeaderContainerProps) => {
   };
 
   return (
-
     <HeaderContainerWrapper>
       <Toolbar
         leftContents={
@@ -87,7 +85,7 @@ const InputHeaderContainer = ({ displayLogo }: InputHeaderContainerProps) => {
 };
 
 InputHeaderContainer.defaultProps = {
-  displayLogo: true
-}
+  displayLogo: true,
+};
 
 export default InputHeaderContainer;

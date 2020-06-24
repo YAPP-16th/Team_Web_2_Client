@@ -32,8 +32,9 @@ const Heading = styled.h1`
     display: none;
   }
   color: var(--LightTextColor);
+  font-family: NotoSansBold;
   font-size: 22px;
-  font-weight: bold;
+  font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.36;
@@ -147,8 +148,9 @@ const DesktopHeading = styled.h1`
   margin-bottom: 30px;
   @media screen and (min-width: 1060px) {
     display: block;
+    font-family: NotoSansBold;
     font-size: 32px;
-    font-weight: bold;
+    font-weight: normal;
     font-stretch: normal;
     font-style: normal;
     line-height: 1.44;

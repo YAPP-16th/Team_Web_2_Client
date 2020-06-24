@@ -2,7 +2,7 @@
   width: 100%;
   height: 100%;
   background-color: #1d1d1d;
-  margin-top: 2rem;
+  padding-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -10,7 +10,6 @@
     align-items: center;
     justify-content: center;
   }
-
 
   .search_elements_wrapper {
     display: flex;
@@ -32,7 +31,7 @@
     // STEP1, 2, 3
     .STEP {
       margin-right: 12px;
-      font-family: Gotham;
+      font-family: GothamBold;
       font-size: 28px;
       font-weight: bold;
       font-stretch: normal;
@@ -46,12 +45,12 @@
         letter-spacing: -1.79px;
       }
     }
-  
+
     // 옆에 / 텍스트
     .slash {
       width: 86px;
       height: 39px;
-      font-family: Gotham;
+      font-family: GothamLight;
       font-size: 20px;
       font-weight: 300;
       font-stretch: normal;
@@ -65,7 +64,6 @@
         letter-spacing: -1.34px;
       }
     }
-    
   }
 
   // 부가 문장 멘트
@@ -77,7 +75,7 @@
       margin-bottom: 80px;
     }
     .Rectangle_ment {
-      font-family: NotoSansCJKkr;
+      font-family: NotoSansDemiLight;
       font-size: 16px;
       font-weight: 500;
       font-stretch: normal;
@@ -93,141 +91,139 @@
       }
     }
   }
+}
+
+//해ㅣ태그 부분
+.hashTag_Wrapper {
+  display: flex;
+  padding-bottom: 20px;
+  @media screen and (min-width: 1060px) {
+    padding-bottom: 33px;
   }
-
-
-  //해ㅣ태그 부분
-  .hashTag_Wrapper{
-    display: flex;
-    padding-bottom: 20px;
-    @media screen and (min-width: 1060px) {
-      padding-bottom: 33px;
-    }
-    //해시태그 기본
-    .StyledHashTag {
-      font-family: NotoSansCJKkr;
-      font-size: 14px;
-      font-weight: 300;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: 1.64;
-      letter-spacing: -0.62px;
-      color: #ffffff;
-      width: 74px;
-      height: 34px;
-      border-radius: 18.5px;
-      box-shadow: 0 0 6px 0 rgba(23, 23, 23, 0.03);
-      border: solid 1px #2a2a2a;
-      display: flex;
-      text-align: center;
-      line-height: 2.3em;
-      margin-right: 8px;
-      justify-content: center;
-      cursor: pointer;
-      @media screen and (min-width: 1060px) {
-        width: 111px;
-        height: 49px;
-        border-radius: 48px;
-        border: solid 2px #2a2a2a;
-        background-color: var(--black);
-        font-family: NotoSansCJKkr;
-        font-size: 20px;
-        font-weight: 300;
-        font-stretch: normal;
-        font-style: normal;
-        letter-spacing: -0.89px;
-        color: #ffffff;
-        line-height: 49px;
-        text-align: center;
-        justify-content: center;
-      }
-      
-    }
-    // 선택된 해시태그
-    .SelectedHashTag {
-      font-family: NotoSansCJKkr;
-      font-size: 14px;
-      font-weight: 300;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: 1.64;
-      letter-spacing: -0.62px;
-      color: #ffffff;
-      width: 74px;
-      height: 34px;
-      border-radius: 18.5px;
-      box-shadow: 0 0 6px 0 rgba(23, 23, 23, 0.03);
-      border: solid 1px #2a2a2a;
-      background-color: #2a2a2a;
-      text-align: center;
-      line-height: 2.3em;
-      display: flex;
-      margin-right: 8px;
-      justify-content: center;
-      @media screen and (min-width: 1060px) {
-        width: 45px;
-        height: 23px;
-        font-size: 20px;
-        font-weight: 300;
-        line-height: 1.15;
-        letter-spacing: -0.89px;
-        color: #ffffff;
-        width: 111px;
-        height: 49px;
-        border-radius: 48px;
-        border: solid 2px #2a2a2a;
-        background-color: #2a2a2a;
-        line-height: 49px;
-        justify-content: center;
-      }
-    }
-
-    //해시태그 추가 입력 인풋
-    .styledInput {
-      width: 32px;
-      height: 23px;
-      font-family: NotoSansCJKkr;
-      font-size: 14px;
-      font-weight: 300;
-      font-stretch: normal;
-      font-style: normal;
-      line-height: 1.64;
-      letter-spacing: -0.62px;
-      color: #ffffff;
-      background-color: #2a2a2a;
-      width: 74px;
-      height: 34px;
-      border-radius: 18.5px;
-      box-shadow: 0 0 6px 0 rgba(23, 23, 23, 0.03);
-      border: solid 1px #2a2a2a;
-      outline: none;
-      display: flex;
-      @media screen and (min-width: 1060px) {
-        width: 111px;
-        height: 49px;
-        border-radius: 48px;
-        border: solid 2px var(--black);
-        font-size: 20px;
-      }
-    }
-  }
-  // 주소 입력 창
-  .Rectangle_Long {
-    width: 320px;
-    height: 50px;
-    border-radius: 8px;
+  //해시태그 기본
+  .StyledHashTag {
+    font-family: NotoSansLight;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.64;
+    letter-spacing: -0.62px;
+    color: #ffffff;
+    width: 74px;
+    height: 34px;
+    border-radius: 18.5px;
     box-shadow: 0 0 6px 0 rgba(23, 23, 23, 0.03);
-    background-color:#2a2a2a;
-    border: none;
+    border: solid 1px #2a2a2a;
+    display: flex;
     text-align: center;
+    line-height: 2.3em;
+    margin-right: 8px;
+    justify-content: center;
     cursor: pointer;
     @media screen and (min-width: 1060px) {
-      width: 600px;
-      height: 65px;
-      background-color:#2a2a2a;
+      width: 111px;
+      height: 49px;
+      border-radius: 48px;
+      border: solid 2px #2a2a2a;
+      background-color: var(--black);
+      font-family: NotoSansLight;
+      font-size: 20px;
+      font-weight: 300;
+      font-stretch: normal;
+      font-style: normal;
+      letter-spacing: -0.89px;
+      color: #ffffff;
+      line-height: 49px;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+  // 선택된 해시태그
+  .SelectedHashTag {
+    font-family: NotoSansLight;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.64;
+    letter-spacing: -0.62px;
+    color: #ffffff;
+    width: 74px;
+    height: 34px;
+    border-radius: 18.5px;
+    box-shadow: 0 0 6px 0 rgba(23, 23, 23, 0.03);
+    border: solid 1px #2a2a2a;
+    background-color: #2a2a2a;
+    text-align: center;
+    line-height: 2.3em;
+    display: flex;
+    margin-right: 8px;
+    justify-content: center;
+    @media screen and (min-width: 1060px) {
+      width: 45px;
+      height: 23px;
+      font-size: 20px;
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.89px;
+      color: #ffffff;
+      width: 111px;
+      height: 49px;
+      border-radius: 48px;
+      border: solid 2px #2a2a2a;
+      background-color: #2a2a2a;
+      line-height: 49px;
+      justify-content: center;
+    }
+  }
+
+  //해시태그 추가 입력 인풋
+  .styledInput {
+    width: 32px;
+    height: 23px;
+    font-family: NotoSansLight;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.64;
+    letter-spacing: -0.62px;
+    color: #ffffff;
+    background-color: #2a2a2a;
+    width: 74px;
+    height: 34px;
+    border-radius: 18.5px;
+    box-shadow: 0 0 6px 0 rgba(23, 23, 23, 0.03);
+    border: solid 1px #2a2a2a;
+    outline: none;
+    display: flex;
+    @media screen and (min-width: 1060px) {
+      width: 111px;
+      height: 49px;
+      border-radius: 48px;
+      border: solid 2px var(--black);
       font-size: 20px;
     }
   }
+}
+// 주소 입력 창
+.Rectangle_Long {
+  width: 320px;
+  height: 50px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px 0 rgba(23, 23, 23, 0.03);
+  background-color: #2a2a2a;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  @media screen and (min-width: 1060px) {
+    width: 600px;
+    height: 65px;
+    background-color: #2a2a2a;
+    font-size: 20px;
+  }
+}
 
 .optionWrapper {
   margin-top: 9px;
@@ -236,7 +232,7 @@
 }
 // 옵션을 선택해주세요 문구
 .option {
-  font-family: Gotham;
+  font-family: NotoSansDemiLight;
   display: inline-block;
   font-size: 15px;
   font-weight: 100;
@@ -254,12 +250,12 @@
     letter-spacing: -0.8px;
     justify-content: center;
     text-align: center;
-    margin-bottom: 20px
+    margin-bottom: 20px;
   }
 }
 
 // 문구 아래 선택 부분
-.contents{
+.contents {
   width: fit-content;
   display: flex;
   flex-direction: column;
@@ -283,7 +279,7 @@
   height: 51px;
   background-color: #323232;
   color: #ffffff;
-  font-family: NotoSansCJKkr;
+  font-family: NotoSansLight;
   font-size: 14px;
   font-weight: 300;
   font-stretch: normal;
@@ -305,7 +301,7 @@
       border-bottom: none;
     }
     color: #ffffff;
-    font-family: NotoSansCJKkr;
+    font-family: NotoSansLight;
     font-size: 20px;
     font-weight: 300;
     font-stretch: normal;
@@ -323,7 +319,7 @@
   object-fit: contain;
   margin-right: 10px;
   margin-left: 16px;
-  
+
   @media screen and (min-width: 1060px) {
     margin-right: 18px;
     margin-left: 20px;
@@ -342,7 +338,6 @@
   object-fit: contain;
 }
 
-
 .transportList {
   width: 320px;
   height: 51px;
@@ -354,7 +349,6 @@
 .styledLoadingBlueText {
   width: 143px;
   height: 192px;
-  font-family: NotoSansCJKkr;
   font-size: 20px;
   font-weight: 500;
   font-stretch: normal;
@@ -366,30 +360,35 @@
 }
 
 .styledLoadingWhiteText {
-  font-family: Gotham;
+  font-family: NotoSansLight;
   font-weight: 300;
   color: #ffffff;
 }
 
 // animation
 @keyframes shake {
-  10%, 90% {
+  10%,
+  90% {
     transform: translate3d(-1px, 0, 0);
   }
 
-  20%, 80% {
+  20%,
+  80% {
     transform: translate3d(2px, 0, 0);
   }
 
-  30%, 50%, 70% {
+  30%,
+  50%,
+  70% {
     transform: translate3d(-4px, 0, 0);
   }
 
-  40%, 60% {
+  40%,
+  60% {
     transform: translate3d(4px, 0, 0);
   }
 }
 
 .apply-shake {
-    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }

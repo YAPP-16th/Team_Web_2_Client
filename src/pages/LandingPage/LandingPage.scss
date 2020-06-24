@@ -123,15 +123,15 @@
         height: 42px;
       }
       .emphasized-text1 {
+        font-family: NotoSansBold;
         position: relative;
         display: inline-block;
-        color: var(--PrimaryColor);
         // transform: translateY(30px);
       }
       .emphasized-text2 {
+        font-family: NotoSansBold;
         position: absolute;
         display: inline-block;
-        color: var(--PrimaryColor);
         left: 0px;
         top: -35px;
         @media screen and (min-width: 1060px) {
@@ -157,8 +157,8 @@
     .intro-text {
       position: relative;
       z-index: 11;
-
       margin-top: 180px;
+      font-family: NotoSansDemiLight;
       font-size: 26px;
       font-weight: 100;
       font-stretch: normal;
@@ -177,6 +177,7 @@
       display: none;
 
       margin-top: 251px;
+      font-family: NotoSansDemiLight;
       font-size: 36px;
       font-weight: 300;
       font-stretch: normal;
@@ -193,6 +194,7 @@
       position: relative;
       z-index: 11;
       margin-top: 10px;
+      font-family: NotoSansDemiLight;
       font-size: 14px;
       font-weight: thin;
       font-stretch: normal;
@@ -461,6 +463,7 @@
           }
 
           .card-text {
+            font-family: NotoSansDemiLight;
             font-size: 16px;
             font-weight: 300;
             font-stretch: normal;

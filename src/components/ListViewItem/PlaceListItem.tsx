@@ -38,6 +38,7 @@ const PlaceListItemHeading = styled.h1`
 
 const PlaceListItemDescription = styled.h2`
   color: var(--DarkTextColor);
+  font-family: NotoSansDemiLight;
   font-size: 14px;
   font-weight: 300;
   font-stretch: normal;

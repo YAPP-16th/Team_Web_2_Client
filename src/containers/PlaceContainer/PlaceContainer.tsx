@@ -114,8 +114,9 @@ const PlacesTagButtonsWrapper = styled.div`
 
 const Heading = styled.h1`
   color: var(--LightTextColor);
+  font-family: NotoSansBold;
   font-size: 22px;
-  font-weight: bold;
+  font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.36;

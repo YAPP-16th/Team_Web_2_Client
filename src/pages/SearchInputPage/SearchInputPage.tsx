@@ -10,6 +10,8 @@ import useSearchInput from '../../hooks/useSearchInput';
 
 const MoreItemButton = styled.div`
   width: 100%;
+  cursor: pointer;
+  font-family: NotoSansBold;
   font-size: 16px;
   font-weight: 500;
   font-stretch: normal;
@@ -24,8 +26,9 @@ const MoreItemButton = styled.div`
   position: absolute;
   bottom: 0;
   @media screen and (min-width: 1060px) {
+    top: 20px;
     background-color: #1d1d1d;
-    font-family: NotoSansCJKkr;
+    font-family: NotoSansDemiLight;
     font-size: 18px;
     font-weight: 300;
     font-stretch: normal;
@@ -34,13 +37,14 @@ const MoreItemButton = styled.div`
     letter-spacing: -0.8px;
     color: #5e5e5e;
     position: relative;
-    cursor: pointer;
     display: inline;
   }
 `;
 
 const MoreItemButtonHovered = styled.div`
   width: 100%;
+  cursor: pointer;
+  font-family: NotoSansBold;
   font-size: 16px;
   font-weight: 500;
   font-stretch: normal;
@@ -56,13 +60,13 @@ const MoreItemButtonHovered = styled.div`
   position: absolute;
   bottom: 0;
   @media screen and (min-width: 1060px) {
+    top: 20px;
     background-color: #1d1d1d;
     position: relative;
-    cursor: pointer;
     display: inline;
     width: 67px;
     height: 27px;
-    font-family: NotoSansCJKkr;
+    font-family: NotoSansDemiLight;
     font-size: 18px;
     font-weight: 320;
     font-stretch: normal;
