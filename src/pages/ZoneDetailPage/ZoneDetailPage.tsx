@@ -44,7 +44,6 @@ const ZoneDetailPage = ({
 }: ZoneDetailPageProps & RouteComponentProps<paramsType>) => {
   const hashes = window.location.hash.split('/');
   const queries = queryString.parse(window.location.search);
-  console.log(queries);
 
   const [zoneId, setZoneId] = useState(Number(hashes[2]));
   const feature = hashes[3];
