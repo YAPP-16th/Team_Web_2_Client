@@ -99,11 +99,16 @@
 
   .intro {
     position: relative;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 135px;
 
     .logo {
       position: absolute;
       z-index: 11;
-      margin-top: 135px;
       left: 0px;
       @media screen and (min-width: 1060px) {
         margin-top: 204px;
@@ -157,7 +162,7 @@
     .intro-text {
       position: relative;
       z-index: 11;
-      margin-top: 180px;
+      margin-top: 80px;
       font-family: NotoSansDemiLight;
       font-size: 26px;
       font-weight: 100;
@@ -176,7 +181,7 @@
       z-index: 11;
       display: none;
 
-      margin-top: 251px;
+      margin-top: 135px;
       font-family: NotoSansDemiLight;
       font-size: 36px;
       font-weight: 300;
