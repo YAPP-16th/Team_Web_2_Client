@@ -163,7 +163,7 @@ const items = [
 const ListViewContainer = ({ data = items }: { data?: Array<any> }) => {
   // States
   const listView = useListView();
-
+  
   // Handlers
   const onToggleHandler = (e: MouseEvent) => {
     listView.toggle();
@@ -200,7 +200,7 @@ const ListViewContainer = ({ data = items }: { data?: Array<any> }) => {
       <ListViewContainerWrapper clicked={listView.toggled}>
         <ModalHeader>
           <span className="text">
-            {listView.toggled ? `${items.length}개의 ZONE` : ''}
+            {listView.toggled ? `${data.length}개의 ZONE` : ''}
           </span>
           <span className="button" onMouseUp={onToggleHandler}>
             리스트뷰 +
