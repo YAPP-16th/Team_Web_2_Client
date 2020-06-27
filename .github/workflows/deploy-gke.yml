@@ -2,7 +2,7 @@ name: Build and Deploy to GKE
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronize, reopened, edited]
     branches: 
       - master
 
