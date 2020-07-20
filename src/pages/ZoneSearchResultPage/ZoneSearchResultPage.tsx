@@ -35,12 +35,14 @@ interface locationData {
 
 const createLoadingContainer = (props: loadingContainer) => {
   const { data, closeCallback } = props;
+  const convertData = convertSearchInfoData(data);
+  const dong = convertData.address.slice(convertData.address.indexOf("("));
   return (
     <LoadingContainer
-      address={data.address}
-      transitMode={data.transitMode}
-      minTime={data.minTime}
-      maxTime={data.maxTime}
+      address={convertData.type + dong}
+      transitMode={convertData.transitMode}
+      minTime={convertData.minTime}
+      maxTime={convertData.maxTime}
       closeCallback={closeCallback}
     />
   );
