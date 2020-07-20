@@ -36,7 +36,7 @@ interface locationData {
 const createLoadingContainer = (props: loadingContainer) => {
   const { data, closeCallback } = props;
   const convertData = convertSearchInfoData(data);
-  const dong = convertData.address.slice(convertData.address.indexOf("("));
+  const dong = convertData.address ? convertData.address.slice(convertData.address.indexwOf("(")) : "";
   return (
     <LoadingContainer
       address={convertData.type + dong}
