@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 export type ListViewItemProps = {
   id: string | number;
@@ -31,9 +31,9 @@ const ZoneCodeWrapper = styled.div`
 `;
 
 const ZoneDetailInfo = styled.div`
-  display:flex;
+  display: flex;
   justify-content: space-between;
-`
+`;
 
 const ZoneNameWrapper = styled.div`
   font-family: NotoSansRegular;
@@ -64,17 +64,17 @@ const ListViewItem = ({
   zoneCode,
   zoneName,
   distance,
-  className,
-  onClick
+  onClick,
 }: ListViewItemProps) => {
   return (
     <ListViewItemWrapper onClick={() => onClick(id)}>
       <ZoneCodeWrapper>ZONE {zoneCode} </ZoneCodeWrapper>
       <ZoneDetailInfo>
         <ZoneNameWrapper>{zoneName}</ZoneNameWrapper>
-        <DistanceWrapper>{(distance / METER_CONSTANT).toFixed(1)}km</DistanceWrapper>
+        <DistanceWrapper>
+          {(distance / METER_CONSTANT).toFixed(1)}km
+        </DistanceWrapper>
       </ZoneDetailInfo>
-      
     </ListViewItemWrapper>
   );
 };

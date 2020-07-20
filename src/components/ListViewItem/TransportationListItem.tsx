@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 type TransportationItemProps = {
   transportationInfo: string | number;
@@ -10,6 +10,7 @@ type TransportationItemProps = {
 const TransportationItemWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 27px 23px;
   background-color: var(--ItemColor);
   border-radius: 8px;
@@ -27,6 +28,7 @@ const TransportationItemHeading = styled.h1`
 
 const TransportationItemDescription = styled.h2`
   color: var(--GreyTextColor);
+  font-family: NotoSansDemiLight;
   font-size: 14px;
   font-weight: 300;
   font-stretch: normal;

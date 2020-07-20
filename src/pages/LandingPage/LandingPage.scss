@@ -20,8 +20,6 @@
   100% {
     transform: translateY(0px);
   }
-
-  
 }
 
 @keyframes slide-down {
@@ -42,8 +40,6 @@
   100% {
     transform: translateY(0px);
   }
-
-  
 }
 
 @keyframes slide-down-desktop {
@@ -55,8 +51,6 @@
     transform: translateY(50px);
   }
 }
-
-
 
 .image-wrapper {
   width: 100%;
@@ -71,7 +65,7 @@
     position: absolute;
     z-index: 11;
     bottom: -94px;
-    right: calc(1 / 6 * 100%); 
+    right: calc(1 / 6 * 100%);
   }
   @media screen and (min-width: 1060px) {
     display: block;
@@ -94,7 +88,6 @@
   }
 }
 
-
 .landing-page {
   position: relative;
   width: 100%;
@@ -106,12 +99,16 @@
 
   .intro {
     position: relative;
-    
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 135px;
 
     .logo {
       position: absolute;
       z-index: 11;
-      margin-top: 135px;
       left: 0px;
       @media screen and (min-width: 1060px) {
         margin-top: 204px;
@@ -131,15 +128,15 @@
         height: 42px;
       }
       .emphasized-text1 {
+        font-family: NotoSansBold;
         position: relative;
         display: inline-block;
-        color: var(--PrimaryColor);
         // transform: translateY(30px);
       }
       .emphasized-text2 {
+        font-family: NotoSansBold;
         position: absolute;
         display: inline-block;
-        color: var(--PrimaryColor);
         left: 0px;
         top: -35px;
         @media screen and (min-width: 1060px) {
@@ -162,13 +159,11 @@
       }
     }
 
-    
-
     .intro-text {
       position: relative;
       z-index: 11;
-
-      margin-top: 180px;
+      margin-top: 80px;
+      font-family: NotoSansDemiLight;
       font-size: 26px;
       font-weight: 100;
       font-stretch: normal;
@@ -186,9 +181,10 @@
       z-index: 11;
       display: none;
 
-      margin-top: 251px;
+      margin-top: 135px;
+      font-family: NotoSansDemiLight;
       font-size: 36px;
-      font-weight: 300; 
+      font-weight: 300;
       font-stretch: normal;
       font-style: normal;
       line-height: 1.39;
@@ -203,6 +199,7 @@
       position: relative;
       z-index: 11;
       margin-top: 10px;
+      font-family: NotoSansDemiLight;
       font-size: 14px;
       font-weight: thin;
       font-stretch: normal;
@@ -221,8 +218,6 @@
         line-height: 1.4;
         letter-spacing: -1px;
       }
-
-      
     }
 
     .intro-button {
@@ -251,12 +246,9 @@
         letter-spacing: -1px;
       }
 
-
-      > a {
-        display: flex;
-        align-items: center;
-        color: var(--BackgroundColor);
-      }
+      display: flex;
+      align-items: center;
+      color: var(--BackgroundColor);
       .next-icon {
         margin-left: 12px;
         position: relative;
@@ -283,7 +275,7 @@
     letter-spacing: -0.8px;
 
     &::before {
-      content: "scroll down";
+      content: 'scroll down';
       position: absolute;
       z-index: 1;
       color: white;
@@ -309,7 +301,7 @@
     letter-spacing: -0.8px;
     color: var(--DarkTextColor);
     &::before {
-      content: "scroll down";
+      content: 'scroll down';
       position: absolute;
       z-index: 1;
       color: white;
@@ -425,7 +417,7 @@
                 margin-bottom: 92px;
               }
             }
-      
+
             .card-slide-button-right {
               display: flex;
               justify-content: center;
@@ -442,7 +434,7 @@
                 display: none;
               }
             }
-      
+
             .card-slide-button-left {
               display: flex;
               justify-content: center;
@@ -474,8 +466,9 @@
               font-size: 30px;
             }
           }
-    
+
           .card-text {
+            font-family: NotoSansDemiLight;
             font-size: 16px;
             font-weight: 300;
             font-stretch: normal;
@@ -494,6 +487,5 @@
         }
       }
     }
-  } 
+  }
 }
-

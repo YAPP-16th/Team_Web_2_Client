@@ -9,10 +9,7 @@ import TransportationListItem from '../../components/ListViewItem/Transportation
 import { TagButton } from '../../components/Button/Button';
 import LoadingDots from '../../components/Loading/LoadingDots';
 
-type TransportationContainerProps = TransitQuery & {
-  zoneCode: string | number;
-  zoneAddress: string;
-};
+type TransportationContainerProps = TransitQuery;
 
 const TransportationContainerWrapper = styled.div`
   background-color: var(--BackgroundColor);
@@ -35,8 +32,9 @@ const Heading = styled.h1`
     display: none;
   }
   color: var(--LightTextColor);
+  font-family: NotoSansBold;
   font-size: 22px;
-  font-weight: bold;
+  font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.36;
@@ -132,7 +130,7 @@ const ZoneCode = styled.h1`
 const TagButtonsWrapper = styled.div`
   display: flex;
   margin-bottom: 41px;
-  > a {
+  > button {
     margin-right: 13px;
     margin-bottom: 18px;
   }
@@ -150,8 +148,9 @@ const DesktopHeading = styled.h1`
   margin-bottom: 30px;
   @media screen and (min-width: 1060px) {
     display: block;
+    font-family: NotoSansBold;
     font-size: 32px;
-    font-weight: bold;
+    font-weight: normal;
     font-stretch: normal;
     font-style: normal;
     line-height: 1.44;

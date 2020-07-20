@@ -23,8 +23,6 @@ type paramsType = {
   feature: string;
 };
 
-const address = '강남구 역삼1동, 서울특별시';
-const zoneCode = 301421;
 const sections = [
   { name: '시간비교', to: 'timecompare' },
   { name: '주거환경', to: 'place' },
@@ -45,8 +43,11 @@ const ZoneDetailPage = ({
   match,
 }: ZoneDetailPageProps & RouteComponentProps<paramsType>) => {
   const hashes = window.location.hash.split('/');
+  const queries = queryString.parse(window.location.search);
+
   const [zoneId, setZoneId] = useState(Number(hashes[2]));
   const feature = hashes[3];
+  const address = queries.address as string;
 
   let container = <div></div>;
   const tabItems = sections.map((section) => {
@@ -70,8 +71,6 @@ const ZoneDetailPage = ({
     case 'transportation':
       container = (
         <TransportationContainer
-          zoneAddress="강남구 역삼1동, 서울특별시"
-          zoneCode="06020"
           zoneId={zoneId}
           startLocation={{ lat: startLat, lng: startLng }}
         />
@@ -90,7 +89,7 @@ const ZoneDetailPage = ({
       <ZoneDetailHeaderInfo
         className="header-info"
         address={address}
-        zoneCode={zoneCode}
+        zoneCode={zoneId}
       />
       <StickyTabs className="header-tabs">{tabItems}</StickyTabs>
       {container}

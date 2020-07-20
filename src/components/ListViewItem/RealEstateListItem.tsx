@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 export type RealEstateItemProps = {
   registerId: number;
@@ -47,6 +47,7 @@ const RealEstateItemLoanType = styled.span`
   border-radius: 10px;
   background-color: var(--PrimaryColor);
   font-size: 12px;
+  font-family: NotoSansBold;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -93,6 +94,7 @@ const RealEstateItemName = styled.p`
 
 const SubInfoWrapper = styled.div`
   font-size: 12px;
+  font-family: NotoSansBold;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -116,9 +118,12 @@ const RealEstateItem = ({
   buildingType,
   className,
 }: RealEstateItemProps) => {
-
   return (
-    <RealEstateItemWrapper className={className} href={`https://www.peterpanz.com/house/${registerId}`} target="blank">
+    <RealEstateItemWrapper
+      className={className}
+      href={`https://www.peterpanz.com/house/${registerId}`}
+      target="blank"
+    >
       {img ? <RealEstateItemImage src={img} /> : <RealEstateItemEmptyImage />}
       <TextInfoWrapper>
         <MainInfoWrapper>
@@ -128,7 +133,9 @@ const RealEstateItem = ({
             {monthlyPayment / 10000}
           </RealEstateItemMonthlyPayment>
         </MainInfoWrapper>
-        <RealEstateItemName>{img ? name : "판매완료 혹은 비공개 매물"}</RealEstateItemName>
+        <RealEstateItemName>
+          {img ? name : '판매완료 혹은 비공개 매물'}
+        </RealEstateItemName>
         <SubInfoWrapper>
           <RealEstateItemBuildingType>
             {buildingType}

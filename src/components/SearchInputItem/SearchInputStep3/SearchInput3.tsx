@@ -63,7 +63,7 @@ const SearchInput3 = () => {
           <span className="Rectangle_ment">선택해주세요. (편도기준)</span>
         </div>
       </div>
-      <div className="contents">
+      <div className="contents" style={{ marginLeft: '20px' }}>
         {timeList}
       </ div>
     </>

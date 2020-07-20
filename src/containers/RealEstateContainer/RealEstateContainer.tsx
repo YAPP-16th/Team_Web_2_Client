@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
-import styled, { withTheme } from "styled-components";
+import React, { useEffect } from 'react';
+import styled, { withTheme } from 'styled-components';
 
-import useRoom from "../../hooks/roomHooks";
+import useRoom from '../../hooks/roomHooks';
 
 // Components
 import RealEstateListItem, {
   RealEstateItemProps,
-} from "../../components/ListViewItem/RealEstateListItem";
-import DropDown from "../../components/DropDown/DropDown";
-import LoadingDots from "../../components/Loading/LoadingDots";
+} from '../../components/ListViewItem/RealEstateListItem';
+import DropDown from '../../components/DropDown/DropDown';
+import LoadingDots from '../../components/Loading/LoadingDots';
 
 type RealEstateContainerProps = {
   zoneId: number;
@@ -39,7 +39,8 @@ const Header = styled.div`
 
 const Heading = styled.h1`
   font-size: 22px;
-  font-weight: bold;
+  font-family: NotoSansBold;
+  font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.36;
@@ -93,7 +94,7 @@ const RealEstateContainer = ({ zoneId }: RealEstateContainerProps) => {
     room.loadRoomsByZoneId(zoneId);
   }, []);
 
-  const realestateContents = room.data.filter(x => x.img !== null);
+  const realestateContents = room.data.filter((x) => x.img !== null);
 
   const realEstateListItems = realestateContents.map((item) => {
     return (
@@ -126,18 +127,18 @@ const RealEstateContainer = ({ zoneId }: RealEstateContainerProps) => {
         <RealEstateListItemsWrapper>
           {room.loading && <LoadingDots color="white" size="15px" />}
           {room.error && (
-            <p style={{ textAlign: "center", color: "white" }}>에러발생</p>
+            <p style={{ textAlign: 'center', color: 'white' }}>에러발생</p>
           )}
           {realestateContents.length !== 0 ? (
             realEstateListItems
           ) : (
             <p
               style={{
-                width: "300px",
-                marginBottom: "30px",
-                textAlign: "center",
-                color: "white",
-                display: room.loading ? "none" : "block",
+                width: '300px',
+                marginBottom: '30px',
+                textAlign: 'center',
+                color: 'white',
+                display: room.loading ? 'none' : 'block',
               }}
             >
               이 지역에서 판매 중인 매물이 없습니다

@@ -1,12 +1,12 @@
-import React, { useState, WheelEvent } from "react";
-import "./LandingPage.scss";
-import { Link } from "react-router-dom";
+import React, { useState, WheelEvent } from 'react';
+import './LandingPage.scss';
+import { Link } from 'react-router-dom';
 
-import phoneMockUp from "../../assets/img/phone-mockup.png";
-import busyMan from "../../assets/img/busy-man.png";
+import phoneMockUp from '../../assets/img/phone-mockup.png';
+import busyMan from '../../assets/img/busy-man.png';
 
 // Components
-import Icon from "../../components/Icon/Icon";
+import Icon from '../../components/Icon/Icon';
 
 const LandingPage = () => {
   let scrolled = false;
@@ -40,8 +40,8 @@ const LandingPage = () => {
                 <p
                   className={`emphasized-text1 ${
                     scrollAnimation
-                      ? "emphasized-text-slide-up"
-                      : "emphasized-text-slide-down"
+                      ? 'emphasized-text-slide-up'
+                      : 'emphasized-text-slide-down'
                   }`}
                 >
                   통학 시간
@@ -49,14 +49,14 @@ const LandingPage = () => {
                 <p
                   className={`emphasized-text2 ${
                     scrollAnimation
-                      ? "emphasized-text-slide-up"
-                      : "emphasized-text-slide-down"
+                      ? 'emphasized-text-slide-up'
+                      : 'emphasized-text-slide-down'
                   }`}
                 >
                   통근 시간
                 </p>
                 을
-              </div>{" "}
+              </div>{' '}
               <br />
               절약하세요!
             </div>
@@ -72,8 +72,8 @@ const LandingPage = () => {
                 <p
                   className={`emphasized-text1 ${
                     scrollAnimation
-                      ? "emphasized-text-slide-up"
-                      : "emphasized-text-slide-down"
+                      ? 'emphasized-text-slide-up'
+                      : 'emphasized-text-slide-down'
                   }`}
                 >
                   통학 시간
@@ -81,14 +81,14 @@ const LandingPage = () => {
                 <p
                   className={`emphasized-text2 ${
                     scrollAnimation
-                      ? "emphasized-text-slide-up"
-                      : "emphasized-text-slide-down"
+                      ? 'emphasized-text-slide-up'
+                      : 'emphasized-text-slide-down'
                   }`}
                 >
                   통근 시간
                 </p>
                 을
-              </div>{" "}
+              </div>{' '}
               절약하세요!
             </div>
             <div className="intro-sub-text">
@@ -96,12 +96,9 @@ const LandingPage = () => {
               가이드라인 서비스
             </div>
           </div>
-
-          <div className="intro-button">
-            <Link to="/search">
-              ZONE 찾기 <Icon className="next-icon" icon="next" size="20px" />
-            </Link>
-          </div>
+          <Link to="/search" className="intro-button">
+            ZONE 찾기 <Icon className="next-icon" icon="next" size="20px" />
+          </Link>
           <div className="scroll-text-desktop">scroll down</div>
         </div>
         <div className="desktop-elements">

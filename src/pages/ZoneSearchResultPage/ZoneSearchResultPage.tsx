@@ -35,12 +35,14 @@ interface locationData {
 
 const createLoadingContainer = (props: loadingContainer) => {
   const { data, closeCallback } = props;
+  const convertData = convertSearchInfoData(data);
+  const dong = convertData.address ? convertData.address.slice(convertData.address.indexwOf("(")) : "";
   return (
     <LoadingContainer
-      address={data.address}
-      transitMode={data.transitMode}
-      minTime={data.minTime}
-      maxTime={data.maxTime}
+      address={convertData.type + dong}
+      transitMode={convertData.transitMode}
+      minTime={convertData.minTime}
+      maxTime={convertData.maxTime}
       closeCallback={closeCallback}
     />
   );
@@ -117,6 +119,16 @@ const ZoneSearchResultPage = () => {
         setZoneData({
           inputLocation: res.inputLocation,
           data: res.data.map((value: any) => {
+            console.log(value);
+            let zoneName;
+            if (value.address.address) {
+              zoneName = value.address.address;
+            } else {
+              zoneName = `
+              ${value.address.sido ? value.address.sido : ''} 
+              ${value.address.sigungu ? value.address.sigungu : ''} 
+              ${value.address.dong ? value.address.dong : ''}`;
+            }
             return {
               id: value.id,
               x: value.location.lat,
@@ -124,7 +136,7 @@ const ZoneSearchResultPage = () => {
               polygon: value.polygon,
               rooms: value.rooms,
               zoneCode: value.zipcode,
-              zoneName: value.address.address,
+              zoneName: zoneName,
               distance: value.distance,
             };
           }),
@@ -147,6 +159,7 @@ const ZoneSearchResultPage = () => {
         const result = window.confirm('변경사항이 저장되지 않을 수 있습니다.');
 
         if (result) {
+          modal.closeModal();
           history.goBack();
         }
       };

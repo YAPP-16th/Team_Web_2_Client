@@ -47,8 +47,8 @@ const TextSectionWrapper = styled.div`
 
 const BoldText = styled.h1`
   color: var(--LightTextColor);
+  font-family: NotoSansBold;
   font-size: 22px;
-  font-weight: bold;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.36;
