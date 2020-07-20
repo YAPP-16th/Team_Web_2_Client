@@ -108,8 +108,6 @@ const ZoneSearchResultPage = () => {
       try {
         const res = await getTestZones({ headers, data });
 
-        console.log('res!', res);
-
         // 이용자가 설정한 주소 저장
         timeCompare.setLocation('userLocation', {
           lat: res.inputLocation.y,
@@ -159,6 +157,7 @@ const ZoneSearchResultPage = () => {
         const result = window.confirm('변경사항이 저장되지 않을 수 있습니다.');
 
         if (result) {
+          modal.closeModal();
           history.goBack();
         }
       };
