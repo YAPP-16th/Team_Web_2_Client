@@ -15,7 +15,7 @@
     "@types/redux-saga": "^0.10.5",
     "@types/styled-components": "^5.1.0",
     "axios": "^0.19.2",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "query-string": "^6.12.1",
     "react": "^16.13.1",
     "react-daum-postcode": "^1.9.0",
